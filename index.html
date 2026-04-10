@@ -30,7 +30,7 @@
 
   body {
     font-family: var(--font-body);
-    background: #000;
+    background: #0F0F0F;
     color: #fff;
   }
 
@@ -48,12 +48,13 @@
     width: var(--sidebar-w);
     min-width: var(--sidebar-w);
     height: 100vh;
-    padding: 5px 4px;
+    padding: 5px 4px 5px 5px;
     display: flex;
     flex-direction: column;
     gap: 0;
     z-index: 10;
     position: relative;
+    background: #242424;
     overflow-y: auto;
     overflow-x: hidden;
     transition: width 0.4s cubic-bezier(.4,0,.2,1),
@@ -88,7 +89,7 @@
     overflow: hidden;
     cursor: grab;
     /* Infinite dot grid lives here — CSS background tiles forever */
-    background-color: #000;
+    background-color: #0F0F0F;
     background-image: radial-gradient(circle, rgba(255,255,255,0.25) 1px, transparent 1px);
     background-size: 66px 57px;
     /* background-position updated by JS to follow pan+zoom */
@@ -160,7 +161,7 @@
 
   /* ===== AVATAR CARD ===== */
   .avatar-card {
-    width: 316px;
+    width: 100%;
     height: 220px;
     border-radius: 24px;
     overflow: hidden;
@@ -201,7 +202,7 @@
 
   /* ===== PROFILE CARD ===== */
   .profile-card {
-    width: 316px;
+    width: 100%;
     background: #fff;
     border-radius: 33px;
     color: #000;
@@ -239,10 +240,10 @@
   .exp-row {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    padding: 0 10px;
+    gap: 36px;
+    padding: 0 16px;
   }
-  .exp-col { text-align: center; flex: 1; }
+  .exp-col { text-align: center; flex: 1; min-width: 0; }
   .exp-num-unit {
     font-family: var(--font-heading);
     font-size: 33px;
@@ -264,7 +265,7 @@
 
   /* ===== WORK / EDUCATION CARD ===== */
   .info-card {
-    width: 316px;
+    width: 100%;
     background: #fff;
     border-radius: 33px 33px 47px 47px;
     color: #000;
@@ -1343,7 +1344,7 @@
         </div>
         <div class="exp-col">
           <div class="exp-num-unit">2<br>года</div>
-          <div class="exp-desc">продуктовый<br>дизайн + UX/UI</div>
+          <div class="exp-desc">продуктовый<br><span style="white-space:nowrap">дизайн + UX/UI</span></div>
         </div>
       </div>
     </div>
@@ -2172,7 +2173,7 @@
       exp1num: '3<br>года',
       exp1desc: 'дизайн<br>коммуникаций',
       exp2num: '2<br>года',
-      exp2desc: 'продуктовый<br>дизайн + UX/UI',
+      exp2desc: 'продуктовый<br><span style="white-space:nowrap">дизайн + UX/UI</span>',
       workTitle: 'Работала тут',
       eduTitle: 'Училась тут',
       logoLabels: ['Ozon<br>Tech', 'Redis<br>Agency', 'Red<br>Collar', 'Дизайн<br>ВШЭ', 'Школа<br>Т-Банка', 'ЛШ + ШК<br>Яндекс'],
