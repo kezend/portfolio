@@ -313,6 +313,8 @@
     justify-content: center;
     flex-shrink: 0;
   }
+  .logo-link { cursor: pointer; }
+  .logo-link:hover .logo-circle { box-shadow: 0 0 0 2px rgba(0,200,255,0.5); transition: box-shadow 0.2s; }
   .logo-circle img {
     width: 100%;
     height: 100%;
@@ -411,7 +413,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: 43px;
+    border-radius: var(--card-radius, 43px);
     background: linear-gradient(
       160deg,
       rgba(255,255,255,0.25) 0%,
@@ -514,8 +516,8 @@
   /* Badge — комдиз tag */
   .badge-komdiz {
     position: absolute;
-    top: 614px;
-    left: 1140px;
+    top: 644px;
+    left: 1136px;
     display: inline-flex;
     padding: 6px 13px;
     justify-content: center;
@@ -536,72 +538,72 @@
   /* ===== NEW PROJECT CARDS ===== */
 
   /* Project 2 — Руфъ (row1, col2) */
-  .card-ruf1 { width: 648px; top: 331px; left: 1661px; z-index: 3; transform: rotate(3.664deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
+  .card-ruf1 { width: 648px; top: 331px; left: 1661px; z-index: 3; transform: rotate(3.66deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; border-radius: 59px; }
   .card-ruf1 img { height: auto; object-fit: contain; }
   .card-ruf2 { display: none; }
   .badge-ruf { position: absolute; top: 183px; left: 1563px; display: flex; width: 248px; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-9.042deg); transition: top 0.4s ease, left 0.4s ease; }
   .badge-ruf h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
   .badge-ruf p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
-  .tag-ruf { position: absolute; top: 338px; left: 1588px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 400; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(-3deg); transition: top 0.4s ease, left 0.4s ease; }
+  .tag-ruf { position: absolute; top: 333px; left: 1593px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 400; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(-3deg); transition: top 0.4s ease, left 0.4s ease; }
 
   /* Project 3 — Ozon (row1, col3) */
   .card-ozon1 { width: 421px; top: 340px; left: 2620px; z-index: 3; transform: rotate(-5.089deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
   .card-ozon1 img { height: auto; object-fit: contain; }
-  .card-ozon2 { width: 290px; top: 180px; left: 2960px; z-index: 4; transform: rotate(5.327deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
+  .card-ozon2 { width: 290px; top: 180px; left: 2960px; z-index: 4; transform: rotate(5.33deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; border-radius: 56px; }
   .card-ozon2 img { height: auto; object-fit: contain; }
-  .badge-ozon { position: absolute; top: 198px; left: 2689px; display: flex; width: 240px; padding: 11px 28px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(4.987deg); transition: top 0.4s ease, left 0.4s ease; white-space: nowrap; }
+  .badge-ozon { position: absolute; top: 222px; left: 2699px; display: flex; width: 240px; padding: 11px 28px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-5deg); transition: top 0.4s ease, left 0.4s ease; white-space: nowrap; }
   .badge-ozon h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
   .badge-ozon p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
   .tag-ozon { position: absolute; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 400; border-radius: 12px; z-index: 11; cursor: pointer; transition: top 0.4s ease, left 0.4s ease; }
   .tag-ozon-1 { top: 823px; left: 3100px; transform: rotate(22.046deg); }
   .tag-ozon-2 { top: 826px; left: 3162px; transform: rotate(-6.461deg); }
-  .tag-ozon-3 { top: 877px; left: 3125px; transform: rotate(11.151deg); }
+  .tag-ozon-3 { top: 872px; left: 3126px; transform: rotate(11.151deg); }
 
   /* Project 4 — ACT (row2, col1) */
   .card-redis1 { width: 648px; top: 1560px; left: 350px; z-index: 3; transform: rotate(-3.664deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
   .card-redis1 img { height: auto; object-fit: contain; }
   .card-redis2 { display: none; }
-  .badge-redis { position: absolute; top: 1530px; left: 200px; display: flex; width: 215px; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-9.042deg); transition: top 0.4s ease, left 0.4s ease; }
+  .badge-redis { position: absolute; top: 1530px; left: 200px; display: flex; width: 215px; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-9.042deg); transition: top 0.4s ease, left 0.4s ease; } /* frameRadius not specified in JSON */
   .badge-redis h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
   .badge-redis p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
   .tag-redis { position: absolute; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 500; border-radius: 12px; z-index: 11; cursor: pointer; transition: top 0.4s ease, left 0.4s ease; }
-  .tag-redis-1 { top: 1667px; left: 214px; transform: rotate(-18.52deg); }
-  .tag-redis-2 { top: 1519px; left: 438px; transform: rotate(3deg); }
+  .tag-redis-1 { top: 1653px; left: 225px; transform: rotate(-18.52deg); }
+  .tag-redis-2 { top: 1522px; left: 431px; transform: rotate(3deg); }
 
   /* Project 5 — Афиша (row2, col2) */
-  .card-afisha1 { width: 648px; top: 1571px; left: 1422px; z-index: 3; transform: rotate(4deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
+  .card-afisha1 { width: 648px; top: 1571px; left: 1422px; z-index: 3; transform: rotate(4deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; } /* frameRadius not specified in JSON */
   .card-afisha1 img { height: auto; object-fit: contain; }
   .card-afisha2 { display: none; }
   .badge-afisha { position: absolute; top: 1491px; left: 1878px; display: flex; width: 232px; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(4.13deg); transition: top 0.4s ease, left 0.4s ease; }
   .badge-afisha h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
   .badge-afisha p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
   .tag-afisha { position: absolute; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 400; border-radius: 12px; z-index: 11; cursor: pointer; transition: top 0.4s ease, left 0.4s ease; }
-  .tag-afisha-1 { top: 1442px; left: 1866px; transform: rotate(-5deg); }
-  .tag-afisha-2 { top: 1533px; left: 1821px; transform: rotate(3deg); }
+  .tag-afisha-1 { top: 1442px; left: 1866px; transform: rotate(-5deg); } /* no changes from JSON */
+  .tag-afisha-2 { top: 1533px; left: 1821px; transform: rotate(3deg); } /* no changes from JSON */
 
   /* Project 6 — Т-Банк (row2, col3) */
-  .card-tbank1 { width: 400px; height: 490px; top: 1600px; left: 2600px; z-index: 3; transform: rotate(-3deg); transition: top 0.4s ease, left 0.4s ease; }
-  .card-tbank2 { width: 370px; height: 400px; top: 1841px; left: 2875px; z-index: 4; transform: rotate(8deg); transition: top 0.4s ease, left 0.4s ease; }
+  .card-tbank1 { width: 400px; height: 490px; top: 1600px; left: 2600px; z-index: 3; transform: rotate(-3deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
+  .card-tbank2 { width: 370px; height: 400px; top: 1841px; left: 2875px; z-index: 4; transform: rotate(8deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
   .badge-tbank { position: absolute; top: 1712px; left: 3030px; display: inline-flex; width: 216px; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-5.5deg); transition: top 0.4s ease, left 0.4s ease; }
   .badge-tbank h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
   .badge-tbank p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
-  .tag-tbank { position: absolute; top: 1677px; left: 3181px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 500; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(9deg); transition: top 0.4s ease, left 0.4s ease; }
+  .tag-tbank { position: absolute; top: 1658px; left: 3181px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 500; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(9deg); transition: top 0.4s ease, left 0.4s ease; }
 
   /* Project 7 — Нейро (row3, col1) */
-  .card-neuro1 { width: 420px; height: 500px; top: 2900px; left: 300px; z-index: 3; transform: rotate(5deg); transition: top 0.4s ease, left 0.4s ease; }
-  .card-neuro2 { width: 380px; height: 420px; top: 3150px; left: 540px; z-index: 4; transform: rotate(-7deg); transition: top 0.4s ease, left 0.4s ease; }
-  .badge-neuro { position: absolute; top: 3180px; left: 710px; display: inline-flex; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(3.7deg); transition: top 0.4s ease, left 0.4s ease; }
+  .card-neuro1 { width: 420px; height: 500px; top: 2900px; left: 300px; z-index: 3; transform: rotate(5deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
+  .card-neuro2 { width: 380px; height: 420px; top: 3150px; left: 540px; z-index: 4; transform: rotate(-7deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
+  .badge-neuro { position: absolute; top: 3180px; left: 710px; display: inline-flex; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(3.7deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
   .badge-neuro h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
   .badge-neuro p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
-  .tag-neuro { position: absolute; top: 3150px; left: 780px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 500; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(-10deg); transition: top 0.4s ease, left 0.4s ease; }
+  .tag-neuro { position: absolute; top: 3150px; left: 780px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 500; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(-10deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
 
   /* Project 8 — Плакат (row3, col2) */
-  .card-plakat1 { width: 390px; height: 520px; top: 2850px; left: 1500px; z-index: 3; transform: rotate(-6deg); transition: top 0.4s ease, left 0.4s ease; }
-  .card-plakat2 { width: 360px; height: 380px; top: 3110px; left: 1720px; z-index: 4; transform: rotate(4deg); transition: top 0.4s ease, left 0.4s ease; }
-  .badge-plakat { position: absolute; top: 3140px; left: 1880px; display: inline-flex; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-1.8deg); transition: top 0.4s ease, left 0.4s ease; }
+  .card-plakat1 { width: 390px; height: 520px; top: 2850px; left: 1500px; z-index: 3; transform: rotate(-6deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
+  .card-plakat2 { width: 360px; height: 380px; top: 3110px; left: 1720px; z-index: 4; transform: rotate(4deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
+  .badge-plakat { position: absolute; top: 3140px; left: 1880px; display: inline-flex; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-1.8deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
   .badge-plakat h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
   .badge-plakat p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
-  .tag-plakat { position: absolute; top: 3110px; left: 1960px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 500; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(13deg); transition: top 0.4s ease, left 0.4s ease; }
+  .tag-plakat { position: absolute; top: 3110px; left: 1960px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 500; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(13deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
 
   /* Placeholder gradient cards (no real images yet) */
   .placeholder-img {
@@ -641,7 +643,7 @@
   /* ===== SETTINGS BUTTON ===== */
   .settings-btn {
     position: absolute;
-    z-index: 6;
+    z-index: 1000;
     top: 18px;
     right: 18px;
     display: inline-flex;
@@ -662,7 +664,7 @@
   /* ===== SETTINGS DROPDOWN ===== */
   .settings-dropdown {
     position: absolute;
-    z-index: 7;
+    z-index: 1001;
     top: 58px;
     right: 18px;
     background: #F7F9F9;
@@ -680,7 +682,7 @@
   }
   .lang-switch {
     font-family: var(--font-body);
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 400;
     color: #222;
     white-space: nowrap;
@@ -707,31 +709,7 @@
     background: #ddd;
     margin: 8px 0;
   }
-  .hand-control-toggle {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-body);
-    font-size: 15px;
-    color: #222;
-    cursor: pointer;
-    white-space: nowrap;
-    padding: 2px 0;
-    user-select: none;
-  }
-  .hand-control-toggle svg { width: 18px; height: 18px; flex-shrink: 0; }
-  .hand-control-toggle .toggle-pill {
-    width: 36px; height: 20px; border-radius: 10px;
-    background: #ccc; position: relative; transition: background 0.25s;
-    flex-shrink: 0;
-  }
-  .hand-control-toggle .toggle-pill::after {
-    content: ''; position: absolute; top: 2px; left: 2px;
-    width: 16px; height: 16px; border-radius: 50%;
-    background: #fff; transition: transform 0.25s;
-  }
-  .hand-control-toggle.active .toggle-pill { background: #141414; }
-  .hand-control-toggle.active .toggle-pill::after { transform: translateX(16px); }
+  /* hand-control-toggle now uses .settings-row */
 
   /* Hand tracking indicator */
   .hand-indicator {
@@ -836,14 +814,23 @@
     background: #1c1c1c;
     display: flex;
     flex-direction: column;
-    opacity: 0;
     pointer-events: none;
-    transition: opacity 0.4s ease;
     overflow: hidden;
+    clip-path: circle(0% at 50% 50%);
+    transition: none;
   }
   .project-detail.open {
-    opacity: 1;
     pointer-events: all;
+    clip-path: circle(150% at var(--morph-x, 50%) var(--morph-y, 50%));
+  }
+  .project-detail.morphing {
+    clip-path: circle(150% at var(--morph-x, 50%) var(--morph-y, 50%));
+    transition: clip-path 0.55s cubic-bezier(.4,0,.2,1);
+  }
+  .project-detail.closing {
+    pointer-events: none;
+    clip-path: circle(0% at var(--morph-x, 50%) var(--morph-y, 50%));
+    transition: clip-path 0.45s cubic-bezier(.4,0,.2,1);
   }
 
   /* Back button */
@@ -1023,6 +1010,32 @@
   .edit-tool-btn:hover { background: #333; }
   .edit-exit-btn { background: #c00; }
   .edit-exit-btn:hover { background: #e00; }
+  .edit-visibility-section {
+    width: 100%;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .edit-vis-title {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .edit-vis-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: #fff;
+    cursor: pointer;
+    margin: 2px 8px 2px 0;
+    user-select: none;
+  }
+  .edit-vis-toggle input { accent-color: #00c8ff; width: 14px; height: 14px; cursor: pointer; }
+  .edit-vis-toggle span { opacity: 0.8; }
+  .edit-vis-toggle input:not(:checked) + span { opacity: 0.35; text-decoration: line-through; }
 
   /* Edit mode active state */
   body.edit-mode [data-project] {
@@ -1036,6 +1049,56 @@
   body.edit-mode [data-project].editing {
     outline: 2px solid #00c8ff;
     outline-offset: 4px;
+  }
+  .edit-props-panel {
+    position: fixed;
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 12px 16px 12px 10px;
+    display: none;
+    flex-wrap: wrap;
+    gap: 10px;
+    z-index: 10002;
+    align-items: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    backdrop-filter: blur(20px);
+    max-width: 520px;
+    user-select: none;
+  }
+  .edit-props-panel.visible { display: flex; }
+  .edit-props-handle {
+    cursor: grab;
+    color: rgba(255,255,255,0.3);
+    font-size: 16px;
+    letter-spacing: -2px;
+    padding: 0 4px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .edit-props-handle:active { cursor: grabbing; }
+  .edit-prop-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+  }
+  .edit-prop-group label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    white-space: nowrap;
+  }
+  .edit-prop-group input[type="range"] {
+    width: 100px;
+    accent-color: #00c8ff;
+  }
+  .edit-prop-value {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    color: #00c8ff;
+    min-width: 32px;
+    text-align: center;
   }
   .edit-rotate-handle {
     position: absolute;
@@ -1089,6 +1152,94 @@
     transition: opacity 0.3s;
   }
   .edit-info.visible { opacity: 1; }
+
+
+  /* ===== THEME TOGGLE ===== */
+  body.light-theme { background: #f0f0f0; color: #000; }
+  body.light-theme .canvas-viewport {
+    background-color: #f0f0f0;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.12) 1px, transparent 1px);
+  }
+  body.light-theme .project-detail { background: #e8e8e8; }
+  body.light-theme .detail-sidebar { background: #fff; }
+  body.light-theme .detail-project-info h2 { color: #141414; }
+  body.light-theme .detail-project-info p { color: #141414; }
+  body.light-theme .detail-back { background: #141414; color: #fff; }
+  body.light-theme .detail-back:hover { background: #333; }
+  body.light-theme .detail-tag { background: #141414; color: #fff; }
+  /* Shared settings row style */
+  .settings-row {
+    display: flex; align-items: center; cursor: pointer;
+    font-family: var(--font-body); font-size: 15px; color: #222;
+    padding: 2px 0; user-select: none; white-space: nowrap;
+  }
+  .settings-row svg { display: none; }
+  .settings-row span { flex: 1; opacity: 0.8; }
+  .settings-row .toggle-pill {
+    width: 36px; height: 20px; border-radius: 10px;
+    background: #ccc; position: relative; transition: background 0.25s;
+    flex-shrink: 0; margin-left: 12px;
+  }
+  .settings-row .toggle-pill::after {
+    content: ''; position: absolute; top: 2px; left: 2px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: #fff; transition: transform 0.25s;
+  }
+  .settings-row.active .toggle-pill { background: #141414; }
+  .settings-row.active .toggle-pill::after { transform: translateX(16px); }
+
+  /* ===== TILT EFFECT ===== */
+  .project-card { transform-style: preserve-3d; }
+  .canvas-world { perspective: 1200px; }
+
+  /* morphing transition styles merged into .project-detail above */
+
+  /* ===== AUTO-TOUR ===== */
+  .tour-overlay {
+    position: fixed; inset: 0; z-index: 100;
+    display: flex; align-items: flex-end; justify-content: center;
+    padding-bottom: 40px; pointer-events: none;
+  }
+  .tour-skip {
+    background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; padding: 10px 24px; border-radius: 99px;
+    font-family: var(--font-body); font-size: 15px;
+    cursor: pointer; pointer-events: auto;
+    transition: background 0.2s;
+  }
+  .tour-skip:hover { background: rgba(255,255,255,0.25); }
+
+  /* sound-toggle & theme-toggle now use .settings-row */
+
+  /* ===== ADMIN ENHANCEMENTS ===== */
+  .edit-props-panel {
+    flex-wrap: wrap;
+    max-width: 600px;
+  }
+  .edit-prop-row {
+    display: flex; gap: 14px; align-items: center; width: 100%;
+  }
+  .edit-zindex-btns {
+    display: flex; gap: 4px;
+  }
+  .edit-zindex-btns button {
+    width: 28px; height: 28px; border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1);
+    color: #fff; font-size: 14px; cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+  }
+  .edit-zindex-btns button:hover { background: rgba(255,255,255,0.2); }
+  .edit-group-indicator {
+    position: absolute; top: -8px; right: -8px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #ff6b00; color: #fff; font-size: 10px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10000; font-weight: 700;
+  }
+  body.edit-mode [data-project].grouped {
+    outline-color: #ff6b00 !important;
+  }
 
   /* ===== TEXT ME TRAIL ===== */
   .trail-pill {
@@ -1202,13 +1353,13 @@
       <div class="info-section">
         <h3>Работала тут</h3>
         <div class="logos-row">
-          <div class="logo-item">
+          <div class="logo-item logo-link" data-open-project="ozon">
             <div class="logo-circle">
               <img loading="lazy" src="Logo/icon_rgb-2 1.webp" alt="Ozon">
             </div>
             <span class="logo-label">Ozon<br>Tech</span>
           </div>
-          <div class="logo-item">
+          <div class="logo-item logo-link" data-open-project="afisha">
             <div class="logo-circle">
               <img loading="lazy" src="Logo/icon_rgb-2 1-1.webp" alt="Redis Agency">
             </div>
@@ -1285,10 +1436,30 @@
         <button class="edit-tool-btn" id="editSaveBtn">💾 Сохранить</button>
         <button class="edit-tool-btn" id="editExportBtn">📋 Экспорт</button>
         <button class="edit-tool-btn edit-exit-btn" id="editExitBtn">✕ Выйти</button>
+        <div class="edit-visibility-section" id="editVisibilitySection">
+          <div class="edit-vis-title">Видимость проектов</div>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="vesh"><span>Вещь</span></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="ruf"><span>Бродский</span></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="ozon"><span>Ozon</span></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="redis"><span>ACT</span></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="afisha"><span>Redis Agency</span></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="tbank"><span>Homigo</span></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="neuro"><span>Нейро</span></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="plakat"><span>Плакат</span></label>
+        </div>
       </div>
       <div class="settings-divider"></div>
-      <div class="hand-control-toggle" id="handControlToggle">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 00-4 0v5"/><path d="M14 10V4a2 2 0 00-4 0v7"/><path d="M10 10.5V6a2 2 0 00-4 0v8a8 8 0 0016 0v-3a2 2 0 00-4 0"/></svg>
+      <div class="settings-row theme-toggle" id="themeToggle">
+        <span>Светлая тема</span>
+        <div class="toggle-pill"></div>
+      </div>
+      <div class="settings-divider"></div>
+      <div class="settings-row sound-toggle" id="soundToggle">
+        <span id="soundLabel">Звуки</span>
+        <div class="toggle-pill"></div>
+      </div>
+      <div class="settings-divider"></div>
+      <div class="settings-row hand-control-toggle" id="handControlToggle">
         <span id="handControlLabel">Управление рукой</span>
         <div class="toggle-pill"></div>
       </div>
@@ -1375,6 +1546,51 @@
 
       </div>
     </div>
+  <!-- Floating properties panel (edit mode) -->
+  <div class="edit-props-panel" id="editPropsPanel">
+    <div class="edit-props-handle" id="editPropsHandle">⋮⋮</div>
+    <div class="edit-prop-group">
+      <label>Фрейм</label>
+      <input type="range" id="propFrameRadius" min="0" max="80" value="43">
+      <span class="edit-prop-value" id="propFrameRadiusVal">43</span>
+    </div>
+    <div class="edit-prop-group">
+      <label>Картинка</label>
+      <input type="range" id="propImgRadius" min="0" max="80" value="33">
+      <span class="edit-prop-value" id="propImgRadiusVal">33</span>
+    </div>
+    <div class="edit-prop-group">
+      <label>Наклон</label>
+      <input type="range" id="propSkew" min="-20" max="20" value="0" step="0.5">
+      <span class="edit-prop-value" id="propSkewVal">0°</span>
+    </div>
+    <div class="edit-prop-group">
+      <label>Ширина</label>
+      <input type="range" id="propWidth" min="100" max="900" value="400">
+      <span class="edit-prop-value" id="propWidthVal">400</span>
+    </div>
+    <div class="edit-prop-group">
+      <label>Высота</label>
+      <input type="range" id="propHeight" min="100" max="900" value="400">
+      <span class="edit-prop-value" id="propHeightVal">auto</span>
+    </div>
+    <div class="edit-prop-group">
+      <label>Слой</label>
+      <div class="edit-zindex-btns">
+        <button id="propZDown" title="Ниже">↓</button>
+        <button id="propZUp" title="Выше">↑</button>
+      </div>
+      <span class="edit-prop-value" id="propZVal">3</span>
+    </div>
+    <div class="edit-prop-group">
+      <label>Группа</label>
+      <div class="edit-zindex-btns">
+        <button id="propGroupAdd" title="В группу">G+</button>
+        <button id="propGroupClear" title="Убрать">G−</button>
+      </div>
+    </div>
+  </div>
+
   </main>
 
   <!-- ===== PROJECT DETAIL VIEW ===== -->
@@ -1886,10 +2102,10 @@
   }
 
   // Click handlers — Vesh
-  document.querySelector('.badge-vesh').addEventListener('click', () => { if (!didPan) openDetail('vesh'); });
-  document.querySelector('.badge-komdiz').addEventListener('click', () => { if (!didPan) openDetail('vesh'); });
-  document.querySelector('.card-qr').addEventListener('click', () => { if (!didPan) openDetail('vesh'); });
-  document.querySelector('.card-yulia').addEventListener('click', () => { if (!didPan) openDetail('vesh'); });
+  document.querySelector('.badge-vesh').addEventListener('click', () => { if (!didPan && !document.body.classList.contains('edit-mode')) openDetail('vesh'); });
+  document.querySelector('.badge-komdiz').addEventListener('click', () => { if (!didPan && !document.body.classList.contains('edit-mode')) openDetail('vesh'); });
+  document.querySelector('.card-qr').addEventListener('click', () => { if (!didPan && !document.body.classList.contains('edit-mode')) openDetail('vesh'); });
+  document.querySelector('.card-yulia').addEventListener('click', () => { if (!didPan && !document.body.classList.contains('edit-mode')) openDetail('vesh'); });
 
   // Click handlers — all new projects (badges, tags, cards)
   const projectConfigs = [
@@ -1903,18 +2119,26 @@
   ];
   projectConfigs.forEach(({ key, cards, badge, tag, tags }) => {
     cards.forEach(sel => {
-      document.querySelector(sel).addEventListener('click', () => { if (!didPan) openDetail(key); });
+      document.querySelector(sel).addEventListener('click', () => { if (!didPan && !document.body.classList.contains('edit-mode')) openDetail(key); });
     });
-    document.querySelector(badge).addEventListener('click', () => { if (!didPan) openDetail(key); });
+    document.querySelector(badge).addEventListener('click', () => { if (!didPan && !document.body.classList.contains('edit-mode')) openDetail(key); });
     // Support single tag or multiple tags
     const tagSels = tags || [tag];
     tagSels.forEach(sel => {
-      document.querySelector(sel).addEventListener('click', () => { if (!didPan) openDetail(key); });
+      document.querySelector(sel).addEventListener('click', () => { if (!didPan && !document.body.classList.contains('edit-mode')) openDetail(key); });
+    });
+  });
+
+  // Sidebar logo clicks → open project detail
+  document.querySelectorAll('.logo-link[data-open-project]').forEach(logo => {
+    logo.addEventListener('click', () => {
+      const key = logo.dataset.openProject;
+      if (key) openDetail(key);
     });
   });
 
   // Back button
-  detailBack.addEventListener('click', closeDetail);
+  detailBack.addEventListener('click', () => closeDetail());
 
   // Accordion toggle is now handled dynamically inside openDetail()
 
@@ -2268,6 +2492,10 @@
           el.appendChild(rh);
         });
       });
+      // Initialize undo stack
+      undoStack.length = 0;
+      redoStack.length = 0;
+      undoStack.push(captureState());
     }
 
     function disableEditMode() {
@@ -2276,9 +2504,61 @@
       editToolbar.style.display = 'none';
       document.querySelectorAll('.edit-rotate-handle').forEach(h => h.remove());
       document.querySelectorAll('.edit-resize-handle').forEach(h => h.remove());
+      deselectCard();
+      applyVisibility(); // re-hide hidden projects
       showInfo('Режим редактирования выключен', 1500);
     }
     editExitBtn.addEventListener('click', disableEditMode);
+
+    // --- PROJECT VISIBILITY ---
+    const VIS_KEY = 'portfolio-hidden-projects';
+    function getHiddenProjects() {
+      try { return JSON.parse(localStorage.getItem(VIS_KEY)) || []; } catch(e) { return []; }
+    }
+    function applyVisibility() {
+      const hidden = getHiddenProjects();
+      const inEdit = document.body.classList.contains('edit-mode');
+      document.querySelectorAll('[data-project]').forEach(el => {
+        const key = el.dataset.project;
+        const isHidden = hidden.includes(key);
+        if (inEdit) {
+          // In edit mode: show all but dim hidden ones
+          el.style.display = '';
+          el.style.opacity = isHidden ? '0.25' : '';
+          el.style.pointerEvents = '';
+        } else {
+          el.style.display = isHidden ? 'none' : '';
+          el.style.opacity = '';
+        }
+      });
+    }
+    // Apply on load
+    applyVisibility();
+
+    // Sync checkboxes on edit mode enable
+    const origEnable = enableEditMode;
+    enableEditMode = function() {
+      origEnable();
+      const hidden = getHiddenProjects();
+      document.querySelectorAll('[data-vis-project]').forEach(cb => {
+        cb.checked = !hidden.includes(cb.dataset.visProject);
+      });
+    };
+
+    // Checkbox change handlers
+    document.querySelectorAll('[data-vis-project]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const key = cb.dataset.visProject;
+        let hidden = getHiddenProjects();
+        if (cb.checked) {
+          hidden = hidden.filter(k => k !== key);
+        } else {
+          if (!hidden.includes(key)) hidden.push(key);
+        }
+        localStorage.setItem(VIS_KEY, JSON.stringify(hidden));
+        applyVisibility();
+      });
+    });
 
     // --- DRAG ---
     document.addEventListener('mousedown', (e) => {
@@ -2340,6 +2620,14 @@
     }
 
     function onRotateEnd() {
+      if (rotateTarget) {
+        // Update baseRotate = totalRotation - tilt
+        const t = rotateTarget.style.transform || '';
+        const m = t.match(/rotate\(([-\d.]+)deg\)/);
+        const total = m ? parseFloat(m[1]) : 0;
+        const tilt = parseFloat(rotateTarget.dataset.tilt || 0);
+        rotateTarget.dataset.baseRotate = (total - tilt).toFixed(2);
+      }
       rotateTarget = null;
       document.removeEventListener('mousemove', onRotateMove, true);
       document.removeEventListener('mouseup', onRotateEnd, true);
@@ -2400,6 +2688,164 @@
       document.removeEventListener('mouseup', onResizeEnd, true);
     }
 
+    // --- CARD PROPERTIES PANEL ---
+    const propsPanel = document.getElementById('editPropsPanel');
+    const propFrameRadius = document.getElementById('propFrameRadius');
+    const propFrameRadiusVal = document.getElementById('propFrameRadiusVal');
+    const propImgRadius = document.getElementById('propImgRadius');
+    const propImgRadiusVal = document.getElementById('propImgRadiusVal');
+    const propSkew = document.getElementById('propSkew');
+    const propSkewVal = document.getElementById('propSkewVal');
+    let selectedCard = null;
+
+    function selectCard(el) {
+      if (!el.dataset.project) {
+        deselectCard();
+        return;
+      }
+      if (selectedCard) selectedCard.classList.remove('editing');
+      selectedCard = el;
+      el.classList.add('editing');
+      propsPanel.classList.add('visible');
+
+      // Read current values
+      const cs = getComputedStyle(el);
+      const frameR = parseInt(el.style.borderRadius) || parseInt(cs.borderRadius) || 0;
+      propFrameRadius.value = frameR;
+      propFrameRadiusVal.textContent = frameR;
+
+      const img = el.querySelector('img');
+      if (img) {
+        const imgR = parseInt(img.style.borderRadius) || parseInt(getComputedStyle(img).borderRadius) || 0;
+        propImgRadius.value = imgR;
+        propImgRadiusVal.textContent = imgR;
+      } else {
+        propImgRadius.value = 0;
+        propImgRadiusVal.textContent = '—';
+      }
+
+      // Parse tilt and compute baseRotate if not set
+      const tiltVal = parseFloat(el.dataset.tilt || 0);
+      if (!el.dataset.baseRotate) {
+        const t = el.style.transform || cs.transform || '';
+        const rotM = t.match(/rotate\(([-\d.]+)deg\)/);
+        const totalRot = rotM ? parseFloat(rotM[1]) : 0;
+        el.dataset.baseRotate = (totalRot - tiltVal).toFixed(2);
+      }
+      propSkew.value = tiltVal;
+      propSkewVal.textContent = tiltVal + '°';
+
+      // Position panel near the element
+      positionPanelNear(el);
+    }
+
+    function positionPanelNear(el) {
+      const rect = el.getBoundingClientRect();
+      let x = rect.right + 12;
+      let y = rect.top;
+      // Keep in viewport
+      const pw = propsPanel.offsetWidth || 520;
+      const ph = propsPanel.offsetHeight || 200;
+      if (x + pw > window.innerWidth) x = rect.left - pw - 12;
+      if (x < 10) x = 10;
+      if (y + ph > window.innerHeight) y = window.innerHeight - ph - 10;
+      if (y < 10) y = 10;
+      propsPanel.style.left = x + 'px';
+      propsPanel.style.top = y + 'px';
+    }
+
+    /* ── Drag properties panel by handle ── */
+    (function() {
+      const handle = document.getElementById('editPropsHandle');
+      const panel  = document.getElementById('editPropsPanel');
+      let dragging = false, startX, startY, panelX, panelY;
+
+      handle.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        dragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        panelX = parseInt(panel.style.left, 10) || 0;
+        panelY = parseInt(panel.style.top, 10) || 0;
+        handle.style.cursor = 'grabbing';
+      });
+
+      window.addEventListener('mousemove', function(e) {
+        if (!dragging) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        panel.style.left = (panelX + dx) + 'px';
+        panel.style.top  = (panelY + dy) + 'px';
+      });
+
+      window.addEventListener('mouseup', function() {
+        if (!dragging) return;
+        dragging = false;
+        handle.style.cursor = 'grab';
+      });
+    })();
+
+    function deselectCard() {
+      if (selectedCard) selectedCard.classList.remove('editing');
+      selectedCard = null;
+      propsPanel.classList.remove('visible');
+    }
+
+    // Select card on click in edit mode
+    document.addEventListener('click', (e) => {
+      if (!editActive) return;
+      const card = e.target.closest('[data-project]');
+      if (card) {
+        selectCard(card);
+      } else if (!e.target.closest('.edit-props-panel') && !e.target.closest('.edit-toolbar') && !e.target.closest('.settings-dropdown')) {
+        deselectCard();
+      }
+    });
+
+    // Apply frame border-radius
+    propFrameRadius.addEventListener('input', () => {
+      if (!selectedCard) return;
+      const v = propFrameRadius.value;
+      propFrameRadiusVal.textContent = v;
+      selectedCard.style.borderRadius = v + 'px';
+      // Also update ::before pseudo-element via CSS variable
+      selectedCard.style.setProperty('--card-radius', v + 'px');
+    });
+
+    // Apply image border-radius
+    propImgRadius.addEventListener('input', () => {
+      if (!selectedCard) return;
+      const v = propImgRadius.value;
+      propImgRadiusVal.textContent = v;
+      const img = selectedCard.querySelector('img');
+      if (img) img.style.borderRadius = v + 'px';
+    });
+
+    // Apply tilt (flat rotation)
+    propSkew.addEventListener('input', () => {
+      if (!selectedCard) return;
+      const v = parseFloat(propSkew.value);
+      propSkewVal.textContent = v + '°';
+      selectedCard.dataset.tilt = v;
+      // Combine drag rotation + tilt into one rotate()
+      const t = selectedCard.style.transform || '';
+      const rotMatch = t.match(/rotate\(([-\d.]+)deg\)/);
+      const baseRot = parseFloat(selectedCard.dataset.baseRotate || (rotMatch ? rotMatch[1] : 0));
+      const totalRot = baseRot + v;
+      let newTransform = `rotate(${totalRot}deg)`;
+      selectedCard.style.transform = newTransform;
+    });
+
+    // Deselect when exiting edit mode
+    const origDisable = disableEditMode;
+    disableEditMode = function() {
+      deselectCard();
+      origDisable();
+    };
+    editExitBtn.removeEventListener('click', origDisable);
+    editExitBtn.addEventListener('click', disableEditMode);
+
     // --- SAVE to localStorage ---
     editSaveBtn.addEventListener('click', () => {
       const positions = {};
@@ -2412,12 +2858,19 @@
         const rotMatch = (el.style.transform || '').match(/rotate\(([-\d.]+)deg\)/);
         const w = el.style.width ? parseFloat(el.style.width) : null;
         const h = el.style.height ? parseFloat(el.style.height) : null;
+        const frameR = el.style.borderRadius ? parseInt(el.style.borderRadius) : null;
+        const img = el.querySelector('img');
+        const imgR = img && img.style.borderRadius ? parseInt(img.style.borderRadius) : null;
+        const tilt = parseFloat(el.dataset.tilt || 0);
         positions[id] = {
           top: parseFloat(top),
           left: parseFloat(left),
           rotate: rotMatch ? parseFloat(rotMatch[1]) : null,
           width: w,
-          height: h
+          height: h,
+          frameRadius: frameR,
+          imgRadius: imgR,
+          tilt: tilt !== 0 ? tilt : null
         };
       });
       localStorage.setItem(STORAGE_KEY, JSON.stringify(positions));
@@ -2435,12 +2888,19 @@
         const rotMatch = (el.style.transform || '').match(/rotate\(([-\d.]+)deg\)/);
         const w = el.style.width ? Math.round(parseFloat(el.style.width)) : null;
         const h = el.style.height ? Math.round(parseFloat(el.style.height)) : null;
+        const frameR = el.style.borderRadius ? parseInt(el.style.borderRadius) : null;
+        const img = el.querySelector('img');
+        const imgR = img && img.style.borderRadius ? parseInt(img.style.borderRadius) : null;
+        const tilt = parseFloat(el.dataset.tilt || 0);
         positions[id] = {
           top: Math.round(parseFloat(top)),
           left: Math.round(parseFloat(left)),
           rotate: rotMatch ? parseFloat(rotMatch[1]).toFixed(2) + 'deg' : null,
           width: w,
-          height: h
+          height: h,
+          frameRadius: frameR,
+          imgRadius: imgR,
+          tilt: tilt !== 0 ? tilt : null
         };
       });
       const json = JSON.stringify(positions, null, 2);
@@ -2486,14 +2946,245 @@
             const p = positions[id];
             if (p.top != null) el.style.top = p.top + 'px';
             if (p.left != null) el.style.left = p.left + 'px';
-            if (p.rotate != null) el.style.transform = `rotate(${p.rotate}deg)`;
+            const tilt = (p.tilt != null ? p.tilt : 0) || (p.skew != null ? p.skew : 0);
+            const baseRot = p.rotate != null ? parseFloat(p.rotate) : 0;
+            if (tilt !== 0) {
+              el.dataset.tilt = tilt;
+              el.dataset.baseRotate = baseRot;
+              el.style.transform = `rotate(${baseRot + tilt}deg)`;
+            } else if (baseRot !== 0) {
+              el.dataset.baseRotate = baseRot;
+              el.style.transform = `rotate(${baseRot}deg)`;
+            }
             if (p.width != null) el.style.width = p.width + 'px';
             if (p.height != null) el.style.height = p.height + 'px';
+            if (p.frameRadius != null) {
+              el.style.borderRadius = p.frameRadius + 'px';
+              el.style.setProperty('--card-radius', p.frameRadius + 'px');
+            }
+            if (p.imgRadius != null) {
+              const img = el.querySelector('img');
+              if (img) img.style.borderRadius = p.imgRadius + 'px';
+            }
           }
         });
       } catch(e) {}
     }
     loadSavedPositions();
+
+    // ===== 11. ADMIN ENHANCEMENTS (inside EDIT MODE scope) =====
+
+    // --- Width/Height sliders ---
+    const propWidth = document.getElementById('propWidth');
+    const propWidthVal = document.getElementById('propWidthVal');
+    const propHeight = document.getElementById('propHeight');
+    const propHeightVal = document.getElementById('propHeightVal');
+    const propZUp = document.getElementById('propZUp');
+    const propZDown = document.getElementById('propZDown');
+    const propZVal = document.getElementById('propZVal');
+    const propGroupAdd = document.getElementById('propGroupAdd');
+    const propGroupClear = document.getElementById('propGroupClear');
+
+    if (propWidth) {
+      // Extend selectCard to populate new fields
+      const origSelectCard2 = selectCard;
+      selectCard = function(el) {
+        origSelectCard2(el);
+        if (!el.dataset.project) return;
+        const cs = getComputedStyle(el);
+        const w = parseInt(el.style.width) || parseInt(cs.width) || 400;
+        propWidth.value = w;
+        propWidthVal.textContent = w;
+
+        const h = parseInt(el.style.height) || parseInt(cs.height) || 400;
+        const hasAutoH = !el.style.height;
+        propHeight.value = hasAutoH ? 400 : h;
+        propHeightVal.textContent = hasAutoH ? 'auto' : h;
+
+        const z = parseInt(el.style.zIndex) || parseInt(cs.zIndex) || 3;
+        propZVal.textContent = z;
+      };
+
+      [propWidth, propHeight].forEach(sl => {
+        sl.addEventListener('mousedown', () => pushUndo());
+      });
+
+      propWidth.addEventListener('input', () => {
+        if (!selectedCard) return;
+        const v = propWidth.value;
+        propWidthVal.textContent = v;
+        selectedCard.style.width = v + 'px';
+      });
+
+      propHeight.addEventListener('input', () => {
+        if (!selectedCard) return;
+        const v = propHeight.value;
+        propHeightVal.textContent = v;
+        selectedCard.style.height = v + 'px';
+      });
+
+      propZUp.addEventListener('click', () => {
+        if (!selectedCard) return;
+        pushUndo();
+        const z = (parseInt(selectedCard.style.zIndex) || parseInt(getComputedStyle(selectedCard).zIndex) || 3) + 1;
+        selectedCard.style.zIndex = z;
+        propZVal.textContent = z;
+      });
+
+      propZDown.addEventListener('click', () => {
+        if (!selectedCard) return;
+        pushUndo();
+        const z = Math.max(1, (parseInt(selectedCard.style.zIndex) || parseInt(getComputedStyle(selectedCard).zIndex) || 3) - 1);
+        selectedCard.style.zIndex = z;
+        propZVal.textContent = z;
+      });
+
+      // --- GROUPING ---
+      const editGroup = new Set();
+
+      propGroupAdd.addEventListener('click', () => {
+        if (!selectedCard) return;
+        const id = getElementId(selectedCard);
+        editGroup.add(id);
+        selectedCard.classList.add('grouped');
+        if (!selectedCard.querySelector('.edit-group-indicator')) {
+          const ind = document.createElement('div');
+          ind.className = 'edit-group-indicator';
+          ind.textContent = 'G';
+          selectedCard.appendChild(ind);
+        }
+        showInfo(`Добавлено в группу (${editGroup.size} элементов)`, 1500);
+      });
+
+      propGroupClear.addEventListener('click', () => {
+        editGroup.forEach(id => {
+          const el = document.querySelector(`.${id}`) || document.querySelector(`[data-project]`);
+          if (el) {
+            el.classList.remove('grouped');
+            const ind = el.querySelector('.edit-group-indicator');
+            if (ind) ind.remove();
+          }
+        });
+        editGroup.clear();
+        showInfo('Группа очищена', 1500);
+      });
+    }
+
+    // --- UNDO/REDO ---
+    const undoStack = [];
+    const redoStack = [];
+
+    function captureState() {
+      const state = {};
+      document.querySelectorAll('[data-project]').forEach(el => {
+        const id = getElementId(el);
+        const img = el.querySelector('img');
+        state[id] = {
+          top: el.style.top,
+          left: el.style.left,
+          transform: el.style.transform,
+          width: el.style.width,
+          height: el.style.height,
+          borderRadius: el.style.borderRadius,
+          cardRadius: el.style.getPropertyValue('--card-radius'),
+          imgBorderRadius: img ? img.style.borderRadius : '',
+          zIndex: el.style.zIndex,
+          tilt: el.dataset.tilt || '',
+          baseRotate: el.dataset.baseRotate || ''
+        };
+      });
+      return JSON.stringify(state);
+    }
+
+    function restoreState(json) {
+      const state = JSON.parse(json);
+      Object.entries(state).forEach(([id, s]) => {
+        const el = document.querySelector(`.${CSS.escape(id)}`);
+        if (!el) return;
+        if (s.top != null) el.style.top = s.top;
+        if (s.left != null) el.style.left = s.left;
+        if (s.transform != null) el.style.transform = s.transform;
+        if (s.width != null) el.style.width = s.width;
+        if (s.height != null) el.style.height = s.height;
+        if (s.borderRadius != null) el.style.borderRadius = s.borderRadius;
+        if (s.cardRadius) el.style.setProperty('--card-radius', s.cardRadius);
+        if (s.imgBorderRadius != null) {
+          const img = el.querySelector('img');
+          if (img) img.style.borderRadius = s.imgBorderRadius;
+        }
+        if (s.zIndex != null) el.style.zIndex = s.zIndex;
+        if (s.tilt != null) el.dataset.tilt = s.tilt;
+        if (s.baseRotate != null) el.dataset.baseRotate = s.baseRotate;
+      });
+      if (selectedCard) selectCard(selectedCard);
+    }
+
+    function pushUndo() {
+      if (!editActive) return;
+      const state = captureState();
+      if (undoStack[undoStack.length - 1] !== state) {
+        undoStack.push(state);
+        if (undoStack.length > 50) undoStack.shift();
+        redoStack.length = 0;
+      }
+    }
+
+    // Capture undo before slider changes (frame/img radius, skew)
+    [propFrameRadius, propImgRadius, propSkew].forEach(sl => {
+      sl.addEventListener('mousedown', () => pushUndo());
+    });
+
+    // Capture state before drag/rotate/resize starts
+    document.addEventListener('mousedown', () => pushUndo());
+
+    document.addEventListener('keydown', (e) => {
+      if (!editActive) return;
+      if ((e.metaKey || e.ctrlKey) && e.key === 'z' && !e.shiftKey) {
+        e.preventDefault();
+        if (undoStack.length > 1) {
+          redoStack.push(undoStack.pop());
+          restoreState(undoStack[undoStack.length - 1]);
+          showInfo('↩ Отмена', 1000);
+        }
+      }
+      if ((e.metaKey || e.ctrlKey) && (e.key === 'Z' || (e.key === 'z' && e.shiftKey))) {
+        e.preventDefault();
+        if (redoStack.length) {
+          const state = redoStack.pop();
+          undoStack.push(state);
+          restoreState(state);
+          showInfo('↪ Повтор', 1000);
+        }
+      }
+    });
+
+    // --- INLINE TEXT EDITING (double-click on badges) ---
+    document.addEventListener('dblclick', (e) => {
+      if (!editActive) return;
+      const badge = e.target.closest('[class*="badge-"][data-project]');
+      if (!badge) return;
+      const editable = badge.querySelector('h4, p');
+      if (!editable) return;
+      editable.contentEditable = true;
+      editable.focus();
+      editable.style.outline = '1px dashed #00c8ff';
+      editable.style.padding = '2px 4px';
+
+      const done = () => {
+        editable.contentEditable = false;
+        editable.style.outline = '';
+        editable.style.padding = '';
+        editable.removeEventListener('blur', done);
+        editable.removeEventListener('keydown', onKey);
+      };
+      const onKey = (ev) => {
+        if (ev.key === 'Enter') { ev.preventDefault(); done(); }
+        if (ev.key === 'Escape') done();
+      };
+      editable.addEventListener('blur', done);
+      editable.addEventListener('keydown', onKey);
+    });
+
   })();
 
   // ===== TEXT ME TRAIL =====
@@ -2520,7 +3211,9 @@
         el.closest && el.closest('.badge-komdiz') ||
         el.closest && el.closest('.filters') ||
         el.closest && el.closest('.sidebar') ||
-        el.closest && el.closest('.detail-overlay')
+        el.closest && el.closest('.detail-overlay') ||
+        el.closest && el.closest('.settings-dropdown') ||
+        el.closest && el.closest('.settings-btn')
       );
     }
 
@@ -2951,7 +3644,355 @@
   // Hook gesture labels into language switch
   langRu.addEventListener('click', () => gestureController.updateLabels());
   langEn.addEventListener('click', () => gestureController.updateLabels());
-</script>
 
+  // ===== 5. TILT EFFECT ON CARD HOVER =====
+  (function() {
+    const TILT_MAX = 4; // degrees (subtle)
+    const LIFT = 4; // px
+    const LERP = 0.08; // smoothing factor
+
+    document.querySelectorAll('.project-card[data-project]').forEach(card => {
+      let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+      let hovering = false, rafId = null;
+
+      // Store base transform
+      const cs = getComputedStyle(card);
+      let baseT = card.style.transform || '';
+      if (!baseT) {
+        const m = cs.transform;
+        if (m && m !== 'none') {
+          const vals = m.match(/matrix\(([^)]+)\)/);
+          if (vals) {
+            const p = vals[1].split(',').map(Number);
+            baseT = `rotate(${(Math.atan2(p[1], p[0]) * 180 / Math.PI).toFixed(2)}deg)`;
+          }
+        }
+      }
+      card.dataset.baseTransform = baseT;
+
+      function tick() {
+        currentX += (targetX - currentX) * LERP;
+        currentY += (targetY - currentY) * LERP;
+        const bT = card.dataset.baseTransform || '';
+        card.style.transform = `${bT} perspective(800px) rotateY(${currentX * TILT_MAX}deg) rotateX(${-currentY * TILT_MAX}deg) translateZ(${LIFT * Math.max(Math.abs(currentX), Math.abs(currentY)) * 2}px)`;
+        card.style.transition = 'none';
+        if (hovering || Math.abs(currentX - targetX) > 0.001 || Math.abs(currentY - targetY) > 0.001) {
+          rafId = requestAnimationFrame(tick);
+        } else {
+          card.style.transform = card.dataset.baseTransform || '';
+          card.style.transition = 'transform 0.5s cubic-bezier(.4,0,.2,1)';
+          rafId = null;
+        }
+      }
+
+      card.addEventListener('mouseenter', () => {
+        if (document.body.classList.contains('edit-mode')) return;
+        hovering = true;
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      });
+
+      card.addEventListener('mousemove', (e) => {
+        if (document.body.classList.contains('edit-mode')) return;
+        const rect = card.getBoundingClientRect();
+        targetX = (e.clientX - rect.left) / rect.width - 0.5;
+        targetY = (e.clientY - rect.top) / rect.height - 0.5;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        hovering = false;
+        targetX = 0; targetY = 0;
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      });
+    });
+  })();
+
+  // ===== 6. ANIMATED COUNTER IN SIDEBAR =====
+  (function() {
+    let counted = false;
+    function animateCounters() {
+      if (counted) return;
+      counted = true;
+      document.querySelectorAll('.exp-num-unit').forEach(el => {
+        const html = el.innerHTML;
+        const numMatch = html.match(/^(\d+)/);
+        if (!numMatch) return;
+        const target = parseInt(numMatch[1]);
+        const rest = html.slice(numMatch[1].length);
+        let current = 0;
+        const duration = 1200;
+        const start = performance.now();
+        function tick(now) {
+          const t = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - t, 6); // steep ease-out — hits target fast then slows
+          current = Math.round(eased * target);
+          el.innerHTML = current + rest;
+          if (t < 1) requestAnimationFrame(tick);
+        }
+        el.innerHTML = '0' + rest;
+        requestAnimationFrame(tick);
+      });
+    }
+    // Trigger after a short delay on page load
+    setTimeout(animateCounters, 600);
+  })();
+
+  // ===== 7. THEME TOGGLE =====
+  (function() {
+    const toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+    const saved = localStorage.getItem('portfolio-theme');
+    if (saved === 'light') {
+      document.body.classList.add('light-theme');
+      toggle.classList.add('active');
+    }
+    toggle.addEventListener('click', () => {
+      const isLight = document.body.classList.toggle('light-theme');
+      toggle.classList.toggle('active', isLight);
+      localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
+    });
+  })();
+
+  // ===== 8. SOUND DESIGN =====
+  (function() {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let ctx = null;
+    let soundEnabled = false;
+    const soundToggle = document.getElementById('soundToggle');
+    const soundLabel = document.getElementById('soundLabel');
+
+    function ensureCtx() {
+      if (!ctx) ctx = new AudioCtx();
+      return ctx;
+    }
+
+    function playTone(freq, duration, vol, type) {
+      if (!soundEnabled) return;
+      try {
+        const c = ensureCtx();
+        const osc = c.createOscillator();
+        const gain = c.createGain();
+        osc.type = type || 'sine';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(vol || 0.04, c.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(c.destination);
+        osc.start();
+        osc.stop(c.currentTime + duration);
+      } catch(e) {}
+    }
+
+    window.sfx = {
+      click: () => { playTone(800, 0.08, 0.05, 'sine'); },
+      open: () => { playTone(520, 0.12, 0.04, 'sine'); setTimeout(() => playTone(780, 0.15, 0.03, 'sine'), 80); },
+      close: () => { playTone(600, 0.1, 0.03, 'sine'); setTimeout(() => playTone(400, 0.12, 0.02, 'sine'), 60); },
+      hover: () => { playTone(1200, 0.05, 0.015, 'sine'); },
+      toggle: () => { playTone(660, 0.06, 0.04, 'triangle'); }
+    };
+
+    if (soundToggle) {
+      const savedSound = localStorage.getItem('portfolio-sound');
+      if (savedSound === 'on') {
+        soundEnabled = true;
+        soundToggle.classList.add('active');
+      }
+      soundToggle.addEventListener('click', () => {
+        soundEnabled = !soundEnabled;
+        soundToggle.classList.toggle('active', soundEnabled);
+        localStorage.setItem('portfolio-sound', soundEnabled ? 'on' : 'off');
+        if (soundEnabled) window.sfx.toggle();
+      });
+    }
+
+    // Hook sounds into interactions
+    document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => window.sfx.click()));
+    document.querySelectorAll('.project-card').forEach(c => {
+      c.addEventListener('mouseenter', () => window.sfx.hover());
+    });
+  })();
+
+  // ===== 9. MORPHING DETAIL TRANSITION =====
+  (function() {
+    const detail = document.getElementById('projectDetail');
+    if (!detail) return;
+
+    // Override openDetail to add morphing
+    const _origOpenDetail = window.openDetail || null;
+
+    // Patch: wrap openDetail
+    const origOpen = openDetail;
+    openDetail = function(projectKey, clickEvent) {
+      // Find the clicked card to get morph origin
+      let originX = '50%', originY = '50%';
+
+      // Try to find the card element
+      const allCards = document.querySelectorAll(`[data-project="${projectKey}"]`);
+      let sourceCard = null;
+      allCards.forEach(c => {
+        if (c.classList.contains('project-card') || c.classList.contains('badge-vesh') || c.className.match(/badge-/)) {
+          if (!sourceCard) sourceCard = c;
+        }
+      });
+
+      if (sourceCard) {
+        const rect = sourceCard.getBoundingClientRect();
+        originX = ((rect.left + rect.width / 2) / window.innerWidth * 100) + '%';
+        originY = ((rect.top + rect.height / 2) / window.innerHeight * 100) + '%';
+      }
+
+      detail.style.setProperty('--morph-x', originX);
+      detail.style.setProperty('--morph-y', originY);
+
+      // Reset and trigger morph
+      detail.classList.remove('closing', 'morphing');
+      detail.style.clipPath = `circle(0% at ${originX} ${originY})`;
+
+      origOpen(projectKey);
+
+      // Trigger animation
+      requestAnimationFrame(() => {
+        detail.classList.add('morphing');
+        detail.style.clipPath = '';
+        if (window.sfx) window.sfx.open();
+      });
+    };
+
+    // Patch closeDetail for reverse morph
+    const origClose = closeDetail;
+    closeDetail = function() {
+      detail.classList.add('closing');
+      if (window.sfx) window.sfx.close();
+
+      const handler = (e) => {
+        if (e.propertyName !== 'clip-path') return;
+        detail.classList.remove('closing', 'morphing', 'open');
+        detail.style.clipPath = '';
+        currentOpenProject = null;
+        detail.removeEventListener('transitionend', handler);
+      };
+      detail.addEventListener('transitionend', handler);
+
+      // Fallback in case transitionend doesn't fire
+      setTimeout(() => {
+        if (detail.classList.contains('closing')) {
+          detail.classList.remove('closing', 'morphing', 'open');
+          detail.style.clipPath = '';
+          currentOpenProject = null;
+        }
+      }, 600);
+    };
+  })();
+
+  // ===== 10. AUTO-TOUR ON PAGE LOAD =====
+  // Smooth fly-through with ~2.5s dwell on each project
+  (function() {
+    const visCenterX = window.innerWidth * 0.35;
+    const visCenterY = window.innerHeight / 2;
+
+    function toStop(cardCenterX, cardCenterY) {
+      return { x: visCenterX - cardCenterX, y: visCenterY - cardCenterY };
+    }
+
+    // Keyframes: { x, y, t } where t is time in seconds
+    const MOVE = 1.2;   // seconds to fly between projects
+    const DWELL = 1.6;  // seconds to linger on each project
+    const keyframes = [];
+    const stops = [
+      { x: 0,          y: 0          },  // start
+      toStop(818,  804),                  // Вещь (center of card-qr)
+      toStop(1985, 576),                  // Бродский (center of card-ruf1)
+      toStop(2831, 608),                  // Ozon (center of card-ozon1)
+      toStop(2800, 1845),                 // Homigo (center of card-tbank1)
+      toStop(1746, 1816),                 // Redis Agency (center of card-afisha1)
+      toStop(674,  1805),                 // ACT (center of card-redis1)
+      { x: 0,          y: 0          },   // back
+    ];
+
+    // Build timeline: arrive → dwell → depart
+    let t = 0;
+    stops.forEach((s, i) => {
+      keyframes.push({ x: s.x, y: s.y, t: t });
+      if (i > 0 && i < stops.length - 1) {
+        // dwell: add second keyframe at same position
+        t += DWELL;
+        keyframes.push({ x: s.x, y: s.y, t: t });
+      }
+      if (i < stops.length - 1) t += MOVE;
+    });
+    const TOTAL = t;
+
+    let tourActive = false;
+
+    function runTour() {
+      tourActive = true;
+      const startTime = performance.now();
+
+      function tick(now) {
+        if (!tourActive) return;
+        const elapsed = (now - startTime) / 1000; // seconds
+        const time = Math.min(elapsed, TOTAL);
+
+        // Find the two keyframes we're between
+        let i = 0;
+        while (i < keyframes.length - 1 && keyframes[i + 1].t <= time) i++;
+
+        const kf0 = keyframes[i];
+        const kf1 = keyframes[Math.min(i + 1, keyframes.length - 1)];
+        const segDur = kf1.t - kf0.t;
+
+        let x, y;
+        if (segDur <= 0) {
+          x = kf1.x; y = kf1.y;
+        } else {
+          // Local progress 0→1 within this segment
+          const lt = (time - kf0.t) / segDur;
+          // Smooth ease in-out (sine)
+          const e = 0.5 - 0.5 * Math.cos(lt * Math.PI);
+          x = kf0.x + (kf1.x - kf0.x) * e;
+          y = kf0.y + (kf1.y - kf0.y) * e;
+        }
+
+        panX = x;
+        panY = y;
+        applyTransform();
+
+        if (time < TOTAL) {
+          requestAnimationFrame(tick);
+        } else {
+          tourActive = false;
+          panX = 0; panY = 0;
+          applyTransform();
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // Skip tour on any interaction — smooth snap back
+    function stopTour() {
+      if (!tourActive) return;
+      tourActive = false;
+      // Animate back to origin
+      const sx = panX, sy = panY;
+      const start = performance.now();
+      const dur = 400;
+      function snapBack(now) {
+        const t = Math.min((now - start) / dur, 1);
+        const e = 1 - Math.pow(1 - t, 3);
+        panX = sx * (1 - e);
+        panY = sy * (1 - e);
+        applyTransform();
+        if (t < 1) requestAnimationFrame(snapBack);
+      }
+      requestAnimationFrame(snapBack);
+    }
+    viewport.addEventListener('mousedown', stopTour);
+    viewport.addEventListener('wheel', stopTour);
+
+    // Auto-start on every page load after a brief delay
+    setTimeout(runTour, 400);
+    window.startTour = runTour;
+  })();
+
+</script>
 </body>
 </html>
