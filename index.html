@@ -1,0 +1,2495 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Марина Устиновская — Портфолио</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+
+  @font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('PPNeueMontreal-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --sidebar-w: 340px;
+    --font-heading: 'JetBrains Mono', monospace;
+    --font-body: 'PP Neue Montreal', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: #000;
+    color: #fff;
+  }
+
+  /* ===== LAYOUT ===== */
+  .page {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar {
+    width: var(--sidebar-w);
+    min-width: var(--sidebar-w);
+    height: 100vh;
+    padding: 5px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    z-index: 10;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: width 0.4s cubic-bezier(.4,0,.2,1),
+                min-width 0.4s cubic-bezier(.4,0,.2,1),
+                opacity 0.35s ease,
+                transform 0.4s cubic-bezier(.4,0,.2,1),
+                padding 0.4s cubic-bezier(.4,0,.2,1);
+  }
+
+  .page.collapsed .sidebar {
+    width: 0;
+    min-width: 0;
+    padding: 0;
+    opacity: 0;
+    transform: translateX(-100%);
+    overflow: hidden;
+  }
+
+  /* ===== MAIN AREA ===== */
+  .main {
+    flex: 1;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* ===== PANNABLE CANVAS ===== */
+  .canvas-viewport {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    cursor: grab;
+    /* Infinite dot grid lives here — CSS background tiles forever */
+    background-color: #000;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.25) 1px, transparent 1px);
+    background-size: 66px 57px;
+    /* background-position updated by JS to follow pan+zoom */
+  }
+  .canvas-viewport:active { cursor: grabbing; }
+  .canvas-world {
+    position: absolute;
+    /* no fixed size — children are absolutely positioned */
+    width: 0;
+    height: 0;
+    left: 0;
+    top: 0;
+    transition: none;
+    transform-origin: 0 0;
+    will-change: transform;
+  }
+
+  /* ===== COLLAPSE BUTTON (State 1: visible sidebar — small circle "−") ===== */
+  .collapse-btn {
+    position: fixed;
+    top: 10px;
+    left: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 12px;
+    background: #F7F9F9;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    z-index: 50;
+    transition: all 0.35s cubic-bezier(.4,0,.2,1);
+    color: #141414;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0;
+  }
+  .collapse-btn .btn-label { display: none; }
+  .collapse-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .collapse-btn:hover { background: #edf0f0; transform: scale(1.05); }
+
+  /* ===== COLLAPSE BUTTON (State 2: collapsed — pill "Обо мне +") ===== */
+  .page.collapsed .collapse-btn {
+    top: 18px;
+    left: 18px;
+    width: auto;
+    height: 38px;
+    padding: 8px 12px 8px 16px;
+    border-radius: 12px;
+    background: #F7F9F9;
+    color: #141414;
+  }
+  .page.collapsed .collapse-btn .btn-label {
+    display: inline;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    color: #141414;
+  }
+  .page.collapsed .collapse-btn svg {
+    stroke: #141414;
+  }
+
+  /* ===== AVATAR CARD ===== */
+  .avatar-card {
+    width: 316px;
+    height: 251px;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    background: #1a1a1a;
+    flex-shrink: 0;
+  }
+  .avatar-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .avatar-icons {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .av-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+  }
+  .av-icon:hover { transform: scale(1.12); }
+  .av-icon svg { width: 16px; height: 16px; fill: #fff; }
+  .av-icon.tg { background: #333; }
+  .av-icon.phone { background: #ff3b30; }
+  .av-icon.cam { background: rgba(255,255,255,0.18); backdrop-filter: blur(4px); }
+
+  /* ===== PROFILE CARD ===== */
+  .profile-card {
+    width: 316px;
+    background: #fff;
+    border-radius: 33px;
+    color: #000;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 36px 0 27px;
+    margin-top: -78px;
+    position: relative;
+    z-index: 2;
+    flex: 1;
+  }
+  .profile-card h1 {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 79.061%;
+    letter-spacing: -3.2px;
+    color: #141414;
+    margin-bottom: 10px;
+  }
+  .profile-subtitle {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    color: #141414;
+    opacity: 0.6;
+    line-height: 99%;
+    margin-bottom: 48px;
+  }
+
+  /* Experience row */
+  .exp-row {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 0 10px;
+  }
+  .exp-col { text-align: center; flex: 1; }
+  .exp-num-unit {
+    font-family: var(--font-heading);
+    font-size: 33px;
+    font-weight: 400;
+    line-height: 79.061%;
+    letter-spacing: -2.64px;
+    color: #141414;
+    text-align: center;
+  }
+  .exp-desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    color: #141414;
+    opacity: 0.6;
+    margin-top: 16px;
+    line-height: 99%;
+  }
+
+  /* ===== WORK / EDUCATION CARD ===== */
+  .info-card {
+    width: 316px;
+    background: #fff;
+    border-radius: 33px 33px 47px 47px;
+    color: #000;
+    padding: 27px 44px 27px 47px;
+    margin-top: 2px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 48px;
+  }
+  .info-section {
+    width: 100%;
+  }
+  .info-section + .info-section { margin-top: 0; }
+  .info-card h3 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 16px;
+    line-height: 79.061%;
+    letter-spacing: -1.92px;
+    color: #141414;
+  }
+  .logos-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    width: 67px;
+  }
+  .logo-circle {
+    width: 67px;
+    height: 67px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .logo-label {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 400;
+    color: #141414;
+    opacity: 0.6;
+    text-align: center;
+    line-height: 99%;
+  }
+
+  /* ===== FILTER CHIPS ===== */
+  .filters {
+    position: absolute;
+    z-index: 5;
+    top: 18px;
+    display: flex;
+    gap: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .chip {
+    background: #fff;
+    color: #000;
+    border: none;
+    border-radius: 999px;
+    height: 38px;
+    padding: 0 16px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .chip:hover { background: #eee; transform: translateY(-1px); }
+  .chip.active {
+    background: #141414;
+    color: #fff;
+  }
+  .chip.active:hover { background: #333; }
+  .chip .plus-icon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+  }
+  .chip .plus-icon svg { width: 16px; height: 16px; stroke: #000; }
+  .chip.active .plus-icon svg { stroke: #fff; }
+
+  /* ===== FILTER VISIBILITY ===== */
+  [data-project] {
+    transition: top 0.5s ease, left 0.5s ease, opacity 0.4s ease !important;
+  }
+  [data-project].filtered-out {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* ===== PROJECT CARDS ===== */
+  .project-card {
+    position: absolute;
+    border-radius: 43px;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 10px;
+    /* Liquid glass */
+    background: linear-gradient(
+      135deg,
+      rgba(255,255,255,0.22) 0%,
+      rgba(255,255,255,0.08) 40%,
+      rgba(255,255,255,0.03) 60%,
+      rgba(255,255,255,0.12) 100%
+    );
+    backdrop-filter: blur(40px) saturate(1.5);
+    -webkit-backdrop-filter: blur(40px) saturate(1.5);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    box-shadow:
+      0 16px 48px rgba(0,0,0,0.5),
+      0 4px 16px rgba(0,0,0,0.25),
+      inset 0 1px 1px rgba(255,255,255,0.3),
+      inset 0 -1px 1px rgba(0,0,0,0.15);
+    transition: box-shadow 0.35s ease;
+  }
+  /* Liquid glass highlight sheen on border area */
+  .project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 43px;
+    background: linear-gradient(
+      160deg,
+      rgba(255,255,255,0.25) 0%,
+      rgba(255,255,255,0.05) 30%,
+      transparent 55%,
+      rgba(255,255,255,0.08) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+  .project-card:hover {
+    box-shadow:
+      0 24px 64px rgba(0,0,0,0.6),
+      0 8px 24px rgba(0,0,0,0.35),
+      inset 0 1px 1px rgba(255,255,255,0.35),
+      inset 0 -1px 1px rgba(0,0,0,0.2);
+  }
+  .project-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 33px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Card 1 — QR Exhibition (large, left) */
+  .card-qr {
+    width: 421px;
+    height: 536px;
+    top: 536px;
+    left: 608px;
+    z-index: 3;
+    transform: rotate(-8deg);
+    transition: top 0.4s ease, left 0.4s ease;
+  }
+  .page.collapsed .card-qr {
+    top: 530px;
+    left: 748px;
+  }
+
+  /* Card 2 — Yuliawave (bottom-right overlap) */
+  .card-yulia {
+    width: 402px;
+    height: 415px;
+    top: 768px;
+    left: 835px;
+    z-index: 4;
+    transform: rotate(5deg);
+    transition: top 0.4s ease, left 0.4s ease;
+  }
+  .page.collapsed .card-yulia {
+    top: 762px;
+    left: 975px;
+  }
+
+  /* Badge — Вещь */
+  .badge-vesh {
+    position: absolute;
+    top: 697px;
+    left: 935px;
+    display: inline-flex;
+    padding: 11px 16px;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background: #fff;
+    border-radius: 24px;
+    color: #141414;
+    z-index: 10;
+    cursor: pointer;
+    transform: rotate(3.348deg);
+    transition: top 0.4s ease, left 0.4s ease;
+    white-space: nowrap;
+  }
+  .page.collapsed .badge-vesh {
+    top: 691px;
+    left: 1078px;
+  }
+  .badge-vesh h4 {
+    font-family: var(--font-heading);
+    font-size: 33px;
+    font-weight: 400;
+    line-height: 79.061%;
+    letter-spacing: -2.64px;
+    text-align: center;
+    color: #141414;
+  }
+  .badge-vesh p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 99%;
+    text-align: center;
+    color: #141414;
+    opacity: 0.6;
+  }
+
+  /* Badge — комдиз tag */
+  .badge-komdiz {
+    position: absolute;
+    top: 680px;
+    left: 1120px;
+    display: inline-flex;
+    padding: 6px 13px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background: #2A2A2A;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 400;
+    border-radius: 12px;
+    z-index: 11;
+    cursor: pointer;
+    transform: rotate(5deg);
+    transition: top 0.4s ease, left 0.4s ease;
+  }
+
+  /* ===== NEW PROJECT CARDS ===== */
+
+  /* Project 2 — Руфъ (row1, col2) */
+  .card-ruf1 { width: 648px; top: 300px; left: 1600px; z-index: 3; transform: rotate(3.664deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
+  .card-ruf1 img { height: auto; object-fit: contain; }
+  .card-ruf2 { display: none; }
+  .badge-ruf { position: absolute; top: 170px; left: 1550px; display: flex; width: 215px; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-9.042deg); transition: top 0.4s ease, left 0.4s ease; }
+  .badge-ruf h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
+  .badge-ruf p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
+  .tag-ruf { position: absolute; top: 175px; left: 1530px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 400; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(-3deg); transition: top 0.4s ease, left 0.4s ease; }
+
+  /* Project 3 — Ozon (row1, col3) */
+  .card-ozon1 { width: 421px; top: 340px; left: 2620px; z-index: 3; transform: rotate(-5.089deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
+  .card-ozon1 img { height: auto; object-fit: contain; }
+  .card-ozon2 { width: 290px; top: 180px; left: 2960px; z-index: 4; transform: rotate(5.327deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
+  .card-ozon2 img { height: auto; object-fit: contain; }
+  .badge-ozon { position: absolute; top: 240px; left: 2700px; display: flex; width: 215px; padding: 11px 28px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(4.987deg); transition: top 0.4s ease, left 0.4s ease; white-space: nowrap; }
+  .badge-ozon h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
+  .badge-ozon p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
+  .tag-ozon { position: absolute; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 400; border-radius: 12px; z-index: 11; cursor: pointer; transition: top 0.4s ease, left 0.4s ease; }
+  .tag-ozon-1 { top: 830px; left: 3100px; transform: rotate(22.046deg); }
+  .tag-ozon-2 { top: 810px; left: 3170px; transform: rotate(-6.461deg); }
+  .tag-ozon-3 { top: 850px; left: 3060px; transform: rotate(11.151deg); }
+
+  /* Project 4 — ACT (row2, col1) */
+  .card-redis1 { width: 648px; top: 1560px; left: 350px; z-index: 3; transform: rotate(-3.664deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
+  .card-redis1 img { height: auto; object-fit: contain; }
+  .card-redis2 { display: none; }
+  .badge-redis { position: absolute; top: 1530px; left: 200px; display: flex; width: 215px; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-9.042deg); transition: top 0.4s ease, left 0.4s ease; }
+  .badge-redis h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
+  .badge-redis p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
+  .tag-redis { position: absolute; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 500; border-radius: 12px; z-index: 11; cursor: pointer; transition: top 0.4s ease, left 0.4s ease; }
+  .tag-redis-1 { top: 1720px; left: 210px; transform: rotate(-4deg); }
+  .tag-redis-2 { top: 1755px; left: 185px; transform: rotate(3deg); }
+
+  /* Project 5 — Афиша (row2, col2) */
+  .card-afisha1 { width: 648px; top: 1550px; left: 1400px; z-index: 3; transform: rotate(4deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
+  .card-afisha1 img { height: auto; object-fit: contain; }
+  .card-afisha2 { display: none; }
+  .badge-afisha { position: absolute; top: 1480px; left: 1900px; display: flex; width: 215px; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(2.1deg); transition: top 0.4s ease, left 0.4s ease; }
+  .badge-afisha h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
+  .badge-afisha p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
+  .tag-afisha { position: absolute; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 400; border-radius: 12px; z-index: 11; cursor: pointer; transition: top 0.4s ease, left 0.4s ease; }
+  .tag-afisha-1 { top: 1480px; left: 2020px; transform: rotate(-5deg); }
+  .tag-afisha-2 { top: 1510px; left: 1990px; transform: rotate(3deg); }
+
+  /* Project 6 — Т-Банк (row2, col3) */
+  .card-tbank1 { width: 400px; height: 490px; top: 1600px; left: 2600px; z-index: 3; transform: rotate(-3deg); transition: top 0.4s ease, left 0.4s ease; }
+  .card-tbank2 { width: 370px; height: 400px; top: 1840px; left: 2830px; z-index: 4; transform: rotate(8deg); transition: top 0.4s ease, left 0.4s ease; }
+  .badge-tbank { position: absolute; top: 1880px; left: 2990px; display: inline-flex; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-5.5deg); transition: top 0.4s ease, left 0.4s ease; }
+  .badge-tbank h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
+  .badge-tbank p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
+  .tag-tbank { position: absolute; top: 1850px; left: 3060px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 500; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(9deg); transition: top 0.4s ease, left 0.4s ease; }
+
+  /* Project 7 — Нейро (row3, col1) */
+  .card-neuro1 { width: 420px; height: 500px; top: 2900px; left: 300px; z-index: 3; transform: rotate(5deg); transition: top 0.4s ease, left 0.4s ease; }
+  .card-neuro2 { width: 380px; height: 420px; top: 3150px; left: 540px; z-index: 4; transform: rotate(-7deg); transition: top 0.4s ease, left 0.4s ease; }
+  .badge-neuro { position: absolute; top: 3180px; left: 710px; display: inline-flex; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(3.7deg); transition: top 0.4s ease, left 0.4s ease; }
+  .badge-neuro h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
+  .badge-neuro p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
+  .tag-neuro { position: absolute; top: 3150px; left: 780px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 500; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(-10deg); transition: top 0.4s ease, left 0.4s ease; }
+
+  /* Project 8 — Плакат (row3, col2) */
+  .card-plakat1 { width: 390px; height: 520px; top: 2850px; left: 1500px; z-index: 3; transform: rotate(-6deg); transition: top 0.4s ease, left 0.4s ease; }
+  .card-plakat2 { width: 360px; height: 380px; top: 3110px; left: 1720px; z-index: 4; transform: rotate(4deg); transition: top 0.4s ease, left 0.4s ease; }
+  .badge-plakat { position: absolute; top: 3140px; left: 1880px; display: inline-flex; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-1.8deg); transition: top 0.4s ease, left 0.4s ease; }
+  .badge-plakat h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
+  .badge-plakat p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
+  .tag-plakat { position: absolute; top: 3110px; left: 1960px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 500; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(13deg); transition: top 0.4s ease, left 0.4s ease; }
+
+  /* Placeholder gradient cards (no real images yet) */
+  .placeholder-img {
+    width: 100%; height: 100%; border-radius: 16px; position: relative; z-index: 1;
+  }
+  .ph-1 { background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); }
+  .ph-2 { background: linear-gradient(135deg, #2d132c, #801336, #c72c41); }
+  .ph-3 { background: linear-gradient(135deg, #0a3d62, #3c6382, #60a3bc); }
+  .ph-4 { background: linear-gradient(135deg, #2c3e50, #4ca1af, #2c3e50); }
+  .ph-5 { background: linear-gradient(135deg, #1b1b2f, #162447, #1f4068); }
+  .ph-6 { background: linear-gradient(135deg, #0d0d0d, #1a1a2e, #16213e); }
+  .ph-7 { background: linear-gradient(135deg, #2b2d42, #8d99ae, #edf2f4); }
+  .ph-8 { background: linear-gradient(135deg, #1b262c, #0f4c75, #3282b8); }
+  .ph-9 { background: linear-gradient(135deg, #303841, #3a4750, #d72323); }
+  .ph-10 { background: linear-gradient(135deg, #212121, #323232, #0d7377); }
+  .ph-11 { background: linear-gradient(135deg, #1a1a2e, #e94560, #533483); }
+  .ph-12 { background: linear-gradient(135deg, #2d2d2d, #4a4a4a, #1a1a1a); }
+  .ph-13 { background: linear-gradient(135deg, #0c0c0c, #1c1c3d, #6c63ff); }
+  .ph-14 { background: linear-gradient(135deg, #141e30, #243b55, #141e30); }
+
+  /* ===== ENTRY ANIMATIONS ===== */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; translate: 0 24px; }
+    to { opacity: 1; translate: 0 0; }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .project-card { animation: fadeSlideUp 0.55s ease-out both; }
+  .card-qr { animation-delay: 0.1s; }
+  .card-yulia { animation-delay: 0.25s; }
+  .badge-vesh { animation: fadeSlideUp 0.45s ease-out 0.4s both; }
+  .badge-komdiz { animation: fadeSlideUp 0.4s ease-out 0.5s both; }
+  .filters { animation: fadeIn 0.5s ease-out 0.15s both; }
+
+  /* ===== SETTINGS BUTTON ===== */
+  .settings-btn {
+    position: absolute;
+    z-index: 6;
+    top: 18px;
+    right: 18px;
+    display: inline-flex;
+    padding: 8.84px;
+    justify-content: center;
+    align-items: center;
+    gap: 8.84px;
+    border-radius: 13.26px;
+    background: #F7F9F9;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    animation: fadeIn 0.5s ease-out 0.15s both;
+  }
+  .settings-btn:hover { background: #edf0f0; transform: scale(1.05); }
+  .settings-btn svg { width: 22.3px; height: 22.3px; display: block; }
+
+  /* ===== SETTINGS DROPDOWN ===== */
+  .settings-dropdown {
+    position: absolute;
+    z-index: 7;
+    top: 58px;
+    right: 18px;
+    background: #F7F9F9;
+    border-radius: 12px;
+    padding: 10px 14px 10px 16px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .settings-dropdown.open {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+  .lang-switch {
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 400;
+    color: #222;
+    white-space: nowrap;
+    line-height: 1;
+    cursor: default;
+  }
+  .lang-option {
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .lang-option:hover { opacity: 0.7; }
+  .lang-option.active {
+    text-decoration: underline;
+    color: #222;
+  }
+  .lang-option.inactive {
+    color: #c8c8c8;
+    text-decoration: none;
+  }
+
+  /* Hand control toggle in settings */
+  .settings-divider {
+    height: 1px;
+    background: #ddd;
+    margin: 8px 0;
+  }
+  .hand-control-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: #222;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 2px 0;
+    user-select: none;
+  }
+  .hand-control-toggle svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .hand-control-toggle .toggle-pill {
+    width: 36px; height: 20px; border-radius: 10px;
+    background: #ccc; position: relative; transition: background 0.25s;
+    flex-shrink: 0;
+  }
+  .hand-control-toggle .toggle-pill::after {
+    content: ''; position: absolute; top: 2px; left: 2px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: #fff; transition: transform 0.25s;
+  }
+  .hand-control-toggle.active .toggle-pill { background: #141414; }
+  .hand-control-toggle.active .toggle-pill::after { transform: translateX(16px); }
+
+  /* Hand tracking indicator */
+  .hand-indicator {
+    position: absolute; z-index: 100;
+    top: 18px; right: 62px;
+    display: none; align-items: center; gap: 6px;
+    padding: 6px 12px;
+    background: rgba(20,20,20,0.85); color: #fff;
+    border-radius: 10px; font-family: var(--font-body);
+    font-size: 13px; backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease-out;
+  }
+  .hand-indicator.visible { display: inline-flex; }
+  .hand-indicator .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #4ade80; animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .hand-indicator .gesture-icon {
+    font-size: 15px; min-width: 18px; text-align: center;
+  }
+
+  /* Camera video (hidden, used by MediaPipe) */
+  .hand-video {
+    position: fixed; top: -9999px; left: -9999px;
+    width: 320px; height: 240px;
+    pointer-events: none; opacity: 0;
+  }
+
+  /* ===== DETAIL TAGS ===== */
+  .detail-tags {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  .detail-tag {
+    display: inline-flex;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: #333;
+    color: #fff;
+    font-family: 'PP Neue Montreal', var(--font-body);
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1100px) {
+    :root { --sidebar-w: 300px; }
+    .avatar-card, .profile-card, .info-card { width: 292px; }
+    .card-qr { width: 340px; height: 450px; left: 140px; }
+    .card-yulia { width: 340px; height: 350px; left: 340px; }
+    .badge-vesh { left: 420px; }
+    .badge-komdiz { left: 540px; }
+  }
+  @media (max-width: 768px) {
+    .page { flex-direction: column; }
+    html, body { overflow: auto; }
+    .sidebar {
+      width: 100% !important;
+      min-width: 100% !important;
+      height: auto;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 8px;
+      justify-content: center;
+    }
+    .page.collapsed .sidebar {
+      height: 0;
+      width: 100% !important;
+      min-width: 100% !important;
+      padding: 0;
+      transform: translateY(-100%);
+    }
+    .avatar-card { width: 100%; height: 200px; }
+    .profile-card { width: 100%; margin-top: -60px; }
+    .info-card { width: 100%; padding: 20px; margin-top: 0; }
+    .main { height: 70vh; min-height: 500px; }
+    .card-qr { width: 55%; height: 400px; left: 5%; top: 100px; }
+    .card-yulia { width: 50%; height: 300px; left: 35%; top: 300px; }
+    .badge-vesh { left: 50%; top: 240px; }
+    .badge-komdiz { left: 65%; top: 230px; }
+  }
+
+  /* Scrollbar for sidebar */
+  .sidebar::-webkit-scrollbar { width: 0; }
+
+  /* ========================================
+     PROJECT DETAIL VIEW
+     ======================================== */
+  .project-detail {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: #1c1c1c;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    overflow: hidden;
+  }
+  .project-detail.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Back button */
+  .detail-back {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 210;
+    height: 38px;
+    padding: 0 16px;
+    border-radius: 12px;
+    background: #F7F9F9;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 400;
+    color: #141414;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s;
+  }
+  .detail-back:hover { background: #edf0f0; }
+
+  /* Detail layout */
+  .detail-body {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding-top: 73px;
+    padding-left: 18px;
+    padding-right: 18px;
+    gap: 2px;
+    overflow: hidden;
+  }
+
+  /* Detail sidebar */
+  .detail-sidebar {
+    width: 319px;
+    min-width: 319px;
+    height: 741px;
+    background: #242424;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+  }
+  .detail-project-info {
+    padding: 34px 22px 0;
+    text-align: center;
+  }
+  .detail-project-info h2 {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: -3.2px;
+    line-height: 79.061%;
+    text-align: center;
+    margin-bottom: 13px;
+  }
+  .detail-project-info p {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    opacity: 0.6;
+    line-height: 99%;
+    text-align: center;
+  }
+
+  /* Accordion sections */
+  .detail-accordions {
+    margin-top: auto;
+    padding: 0 12px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .accordion-wrap {
+    border-radius: 12px;
+    background: #F7F9F9;
+    overflow: hidden;
+  }
+  .accordion-btn {
+    width: 100%;
+    min-height: 38px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 400;
+    color: #242424;
+    line-height: 99%;
+    transition: opacity 0.2s;
+  }
+  .accordion-btn:hover { opacity: 0.7; }
+  .accordion-btn .acc-icon {
+    font-size: 20px;
+    font-weight: 300;
+    color: #242424;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+    padding: 0 16px;
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 400;
+    color: #242424;
+    line-height: 110%;
+    opacity: 0.6;
+  }
+  .accordion-content.expanded {
+    max-height: 500px;
+    padding: 0 16px 14px;
+  }
+
+  /* ===== TEXT ME TRAIL ===== */
+  .trail-pill {
+    position: fixed;
+    z-index: 999;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    cursor: pointer;
+    pointer-events: auto;
+    text-decoration: none;
+    white-space: nowrap;
+    opacity: 0;
+    transform: scale(0.5) translateY(8px);
+    animation: trailIn 0.3s ease forwards;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .trail-pill.fading {
+    opacity: 0 !important;
+    transform: scale(0.4) translateY(-10px) !important;
+    pointer-events: none;
+  }
+  @keyframes trailIn {
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  /* Detail image gallery (scrollable) */
+  .detail-gallery {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: #242424;
+    border-radius: 24px;
+    scroll-behavior: smooth;
+  }
+  .detail-gallery::-webkit-scrollbar { width: 0; }
+  .detail-gallery img {
+    width: 100%;
+    display: block;
+    height: auto;
+    flex-shrink: 0;
+  }
+  /* placeholder colored blocks for gallery */
+  .gallery-placeholder {
+    width: 100%;
+    aspect-ratio: 922 / 519;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .gallery-placeholder:nth-child(odd) { background: #2e2e2e; }
+  .gallery-placeholder:nth-child(even) { background: #242424; }
+</style>
+</head>
+<body>
+
+<div class="page" id="page">
+
+  <!-- Collapse btn (outside sidebar so it persists when collapsed) -->
+  <button class="collapse-btn" id="collapseBtn" title="Свернуть">
+    <span class="btn-label">Обо мне</span>
+    <svg viewBox="0 0 16 16" fill="none" stroke="#141414" stroke-width="2" stroke-linecap="round"><line x1="4" y1="8" x2="12" y2="8"/></svg>
+  </button>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+
+    <!-- Avatar -->
+    <div class="avatar-card">
+      <img src="telegram-cloud-photo-size-2-2980514266578881289-c.jpg" alt="Марина Устиновская">
+      <div class="avatar-icons">
+        <button class="av-icon tg" title="Telegram">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.57 8.15l-1.77 8.36c-.13.6-.48.74-.98.46l-2.72-2.01-1.31 1.27c-.15.15-.27.27-.55.27l.2-2.76 5.05-4.56c.22-.2-.05-.3-.34-.12L8.6 13.4l-2.68-.84c-.58-.18-.6-.58.12-.86l10.49-4.04c.49-.18.91.12.75.86l.29-.37z"/></svg>
+        </button>
+        <button class="av-icon phone" title="Позвонить">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </button>
+        <button class="av-icon cam" title="Камера">
+          <svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4z"/><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Profile -->
+    <div class="profile-card">
+      <h1>Марина<br>Устиновская</h1>
+      <p class="profile-subtitle">мультидисциплинарный<br>дизайнер from Moscow</p>
+      <div class="exp-row">
+        <div class="exp-col">
+          <div class="exp-num-unit">3<br>года</div>
+          <div class="exp-desc">дизайн<br>коммуникаций</div>
+        </div>
+        <div class="exp-col">
+          <div class="exp-num-unit">2<br>года</div>
+          <div class="exp-desc">продуктовый<br>дизайн + UX/UI</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Work & Education -->
+    <div class="info-card">
+      <div class="info-section">
+        <h3>Работала тут</h3>
+        <div class="logos-row">
+          <div class="logo-item">
+            <div class="logo-circle">
+              <img src="Logo/icon_rgb-2 1.png" alt="Ozon">
+            </div>
+            <span class="logo-label">Ozon<br>Tech</span>
+          </div>
+          <div class="logo-item">
+            <div class="logo-circle">
+              <img src="Logo/icon_rgb-2 1-1.png" alt="Redis Agency">
+            </div>
+            <span class="logo-label">Redis<br>Agency</span>
+          </div>
+          <div class="logo-item">
+            <div class="logo-circle">
+              <img src="Logo/icon_rgb-2 1-2.png" alt="Red Collar">
+            </div>
+            <span class="logo-label">Red<br>Collar</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h3>Училась тут</h3>
+        <div class="logos-row">
+          <div class="logo-item">
+            <div class="logo-circle">
+              <img src="Logo/icon_rgb-2 1-3.png" alt="Дизайн ВШЭ">
+            </div>
+            <span class="logo-label">Дизайн<br>ВШЭ</span>
+          </div>
+          <div class="logo-item">
+            <div class="logo-circle">
+              <img src="Logo/icon_rgb-2 1-4.png" alt="Школа Т-Банка">
+            </div>
+            <span class="logo-label">Школа<br>Т-Банка</span>
+          </div>
+          <div class="logo-item">
+            <div class="logo-circle">
+              <img src="Logo/icon_rgb-2 1-5.png" alt="ЛШ + ШК Яндекс">
+            </div>
+            <span class="logo-label">ЛШ + ШК<br>Яндекс</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ===== MAIN CANVAS ===== -->
+  <main class="main">
+
+    <!-- Filters (fixed, not pannable) -->
+    <div class="filters">
+      <button class="chip" data-filter="komdiz">Комдиз <span class="plus-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round"><line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/></svg></span></button>
+      <button class="chip" data-filter="interfaces">Интерфейсы <span class="plus-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round"><line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/></svg></span></button>
+      <button class="chip" data-filter="web">Веб <span class="plus-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round"><line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/></svg></span></button>
+      <button class="chip" data-filter="ai">AI <span class="plus-icon"><svg viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round"><line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/></svg></span></button>
+    </div>
+
+    <!-- Settings button -->
+    <button class="settings-btn" id="settingsBtn" title="Настройки">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="#222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-1.415 3.417 2 2 0 01-1.415-.587l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="#222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <!-- Settings dropdown -->
+    <div class="settings-dropdown" id="settingsDropdown">
+      <div class="lang-switch">
+        <span class="lang-option active" id="langRu" data-lang="ru">Русский</span>
+        <span> / </span>
+        <span class="lang-option inactive" id="langEn" data-lang="en">English</span>
+      </div>
+      <div class="settings-divider"></div>
+      <div class="hand-control-toggle" id="handControlToggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 00-4 0v5"/><path d="M14 10V4a2 2 0 00-4 0v7"/><path d="M10 10.5V6a2 2 0 00-4 0v8a8 8 0 0016 0v-3a2 2 0 00-4 0"/></svg>
+        <span id="handControlLabel">Управление рукой</span>
+        <div class="toggle-pill"></div>
+      </div>
+    </div>
+
+    <!-- Hand tracking indicator -->
+    <div class="hand-indicator" id="handIndicator">
+      <div class="dot"></div>
+      <span class="gesture-icon" id="gestureIcon">✋</span>
+      <span id="handStatusText">Рука</span>
+    </div>
+
+    <!-- Hidden video for camera -->
+    <video class="hand-video" id="handVideo" playsinline autoplay></video>
+
+    <!-- Pannable Canvas -->
+    <div class="canvas-viewport" id="canvasViewport">
+      <div class="canvas-world" id="canvasWorld">
+
+        <!-- Card 1 — QR Exhibition -->
+        <div class="project-card card-qr" data-project="vesh">
+          <img src="Vesh/059f76be07f84d6bbd88948c3fef72252880x1620 (1).png" alt="Вещь — QR выставка">
+        </div>
+
+        <!-- Card 2 — Yuliawave -->
+        <div class="project-card card-yulia" data-project="vesh">
+          <img src="Vesh/Screenshot 2026-04-08 at 20.48.54.png" alt="Вещь — Твоё пространство моды">
+        </div>
+
+        <!-- Badge: Вещь -->
+        <div class="badge-vesh" data-project="vesh">
+          <h4>Вещь</h4>
+          <p>айдентика для поп-ап<br>маркета моды</p>
+        </div>
+
+        <!-- Badge: комдиз -->
+        <div class="badge-komdiz" data-project="vesh">комдиз</div>
+
+        <!-- ===== Project 2 — Книга о Бродском ===== -->
+        <div class="project-card card-ruf1" data-project="ruf"><img src="Brod/image 1926988946.png" alt="Книга о Бродском"></div>
+        <div class="project-card card-ruf2" data-project="ruf" style="display:none"></div>
+        <div class="badge-ruf" data-project="ruf"><h4>Книга<br>о Бродском</h4><p>верстка многостраничного<br>издания и печать</p></div>
+        <div class="tag-ruf" data-project="ruf">комдиз</div>
+
+        <!-- ===== Project 3 — Ozon ===== -->
+        <div class="project-card card-ozon1" data-project="ozon"><img src="Ozon/image 1926988942.png" alt="Ozon — telegram"></div>
+        <div class="project-card card-ozon2" data-project="ozon"><img src="Ozon/appstore-1.png" alt="Ozon — app store"></div>
+        <div class="badge-ozon" data-project="ozon"><h4>Ozon</h4><p>комдиз + продуктовый дизайн<br>в компании</p></div>
+        <div class="tag-ozon tag-ozon-1" data-project="ozon">AI</div>
+        <div class="tag-ozon tag-ozon-2" data-project="ozon">комдиз</div>
+        <div class="tag-ozon tag-ozon-3" data-project="ozon">интерфейсы</div>
+
+        <!-- ===== Project 4 — ACT ===== -->
+        <div class="project-card card-redis1" data-project="redis"><img src="ACT/image 1926988943.png" alt="ACT"></div>
+        <div class="project-card card-redis2" data-project="redis" style="display:none"></div>
+        <div class="badge-redis" data-project="redis"><h4>ACT</h4><p>медиа-сервис о моушене<br>и VFX</p></div>
+        <div class="tag-redis tag-redis-1" data-project="redis">интерфейсы</div>
+        <div class="tag-redis tag-redis-2" data-project="redis">веб</div>
+
+        <!-- ===== Project 5 — Redis Agency ===== -->
+        <div class="project-card card-afisha1" data-project="afisha"><img src="Redis/6x33.png" alt="Redis Agency"></div>
+        <div class="project-card card-afisha2" data-project="afisha" style="display:none"></div>
+        <div class="badge-afisha" data-project="afisha"><h4>Redis Agency</h4><p>коммуникационный дизайн<br>для Купера и Мираторга</p></div>
+        <div class="tag-afisha tag-afisha-1" data-project="afisha">комдиз</div>
+        <div class="tag-afisha tag-afisha-2" data-project="afisha">AI</div>
+
+        <!-- ===== Project 6 — Homigo ===== -->
+        <div class="project-card card-tbank1" data-project="tbank"><img src="Homigo/image 1926988951.png" alt="Homigo"></div>
+        <div class="project-card card-tbank2" data-project="tbank"><img src="Homigo/image 1926988954.png" alt="Homigo"></div>
+        <div class="badge-tbank" data-project="tbank"><h4>Homigo</h4><p>сервис обмена жильём<br>для путешествий P2P</p></div>
+        <div class="tag-tbank" data-project="tbank">интерфейсы</div>
+
+        <!-- ===== Project 7 — Нейро ===== -->
+        <div class="project-card card-neuro1" data-project="neuro"><div class="placeholder-img ph-11"></div></div>
+        <div class="project-card card-neuro2" data-project="neuro"><div class="placeholder-img ph-12"></div></div>
+        <div class="badge-neuro" data-project="neuro"><h4>Нейро</h4><p>генеративный арт<br>и AI-эксперименты</p></div>
+        <div class="tag-neuro" data-project="neuro">AI</div>
+
+        <!-- ===== Project 8 — Плакат ===== -->
+        <div class="project-card card-plakat1" data-project="plakat"><div class="placeholder-img ph-13"></div></div>
+        <div class="project-card card-plakat2" data-project="plakat"><div class="placeholder-img ph-14"></div></div>
+        <div class="badge-plakat" data-project="plakat"><h4>Плакат</h4><p>серия социальных<br>плакатов</p></div>
+        <div class="tag-plakat" data-project="plakat">комдиз</div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== PROJECT DETAIL VIEW ===== -->
+  <div class="project-detail" id="projectDetail">
+    <button class="detail-back" id="detailBack">К проектам</button>
+    <div class="detail-body">
+
+      <!-- Detail Sidebar -->
+      <div class="detail-sidebar">
+        <div class="detail-project-info">
+          <h2 id="detailTitle">Вещь</h2>
+          <p id="detailDesc">сезонный маркет локальных брендов, объединяющий продажу, лекции и показы в одном пространстве</p>
+          <div class="detail-tags" id="detailTags"></div>
+        </div>
+        <div class="detail-accordions">
+          <!-- Accordions are generated dynamically by openDetail() -->
+        </div>
+      </div>
+
+      <!-- Detail Gallery -->
+      <div class="detail-gallery" id="detailGallery">
+        <img src="Vesh/fe8988188f1145b399d30325c42f68d3_orig.gif" alt="Вещь — 1">
+        <img src="Vesh/image 1926988943.png" alt="Вещь — 2">
+        <img src="Vesh/image 1926988944.png" alt="Вещь — 3">
+        <img src="Vesh/image 1926988945.png" alt="Вещь — 4">
+        <div class="gallery-placeholder"></div>
+        <img src="Vesh/image 1926988948.png" alt="Вещь — 6">
+        <img src="Vesh/412658cc3222418e939a47d4b88bf922_orig.gif" alt="Вещь — 7">
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Collapse toggle
+  const btn = document.getElementById('collapseBtn');
+  const page = document.getElementById('page');
+
+  btn.addEventListener('click', () => {
+    page.classList.toggle('collapsed');
+    const isCollapsed = page.classList.contains('collapsed');
+    const svg = btn.querySelector('svg');
+    if (isCollapsed) {
+      svg.innerHTML = '<line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/>';
+    } else {
+      svg.innerHTML = '<line x1="4" y1="8" x2="12" y2="8"/>';
+    }
+    btn.title = isCollapsed ? 'Развернуть' : 'Свернуть';
+  });
+
+  // ===== PAN + ZOOM =====
+  const viewport = document.getElementById('canvasViewport');
+  const world = document.getElementById('canvasWorld');
+  let isPanning = false;
+  let didPan = false;
+  let startX, startY;
+  let panX = 0, panY = 0;
+  let scale = 1;
+  const MIN_SCALE = 0.3;
+  const MAX_SCALE = 3;
+
+  function applyTransform() {
+    world.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+    // Sync infinite dot grid on viewport background
+    const dotW = 66 * scale;
+    const dotH = 57 * scale;
+    viewport.style.backgroundSize = `${dotW}px ${dotH}px`;
+    viewport.style.backgroundPosition = `${panX % dotW}px ${(panY + 16 * scale) % dotH}px`;
+  }
+
+  // --- Mouse drag to pan ---
+  viewport.addEventListener('mousedown', (e) => {
+    // Always reset didPan so clicks on cards work
+    didPan = false;
+    if (e.target.closest('.chip, .collapse-btn')) return;
+    isPanning = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    viewport.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isPanning) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didPan = true;
+    panX += dx;
+    panY += dy;
+    startX = e.clientX;
+    startY = e.clientY;
+    applyTransform();
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (isPanning) {
+      isPanning = false;
+      viewport.style.cursor = 'grab';
+    }
+  });
+
+  // --- Scroll wheel to zoom (toward cursor) ---
+  viewport.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const rect = viewport.getBoundingClientRect();
+    // Cursor position relative to viewport
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+
+    // Point in world-space under cursor before zoom
+    const wx = (mx - panX) / scale;
+    const wy = (my - panY) / scale;
+
+    // Zoom step
+    const delta = -e.deltaY * 0.001;
+    const newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * (1 + delta)));
+
+    // Adjust pan so the world-point stays under cursor
+    panX = mx - wx * newScale;
+    panY = my - wy * newScale;
+    scale = newScale;
+
+    applyTransform();
+  }, { passive: false });
+
+  // --- Touch: 1-finger pan, 2-finger pinch zoom ---
+  let lastTouchDist = 0;
+  let lastTouchMid = { x: 0, y: 0 };
+
+  function touchDist(t) {
+    const dx = t[0].clientX - t[1].clientX;
+    const dy = t[0].clientY - t[1].clientY;
+    return Math.hypot(dx, dy);
+  }
+  function touchMid(t) {
+    return {
+      x: (t[0].clientX + t[1].clientX) / 2,
+      y: (t[0].clientY + t[1].clientY) / 2
+    };
+  }
+
+  viewport.addEventListener('touchstart', (e) => {
+    didPan = false;
+    if (e.touches.length === 1) {
+      isPanning = true;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    } else if (e.touches.length === 2) {
+      isPanning = false;
+      lastTouchDist = touchDist(e.touches);
+      lastTouchMid = touchMid(e.touches);
+    }
+  }, { passive: true });
+
+  viewport.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 1 && isPanning) {
+      panX += e.touches[0].clientX - startX;
+      panY += e.touches[0].clientY - startY;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      applyTransform();
+    } else if (e.touches.length === 2) {
+      e.preventDefault();
+      const dist = touchDist(e.touches);
+      const mid = touchMid(e.touches);
+      const rect = viewport.getBoundingClientRect();
+
+      // Pinch zoom
+      const zoomFactor = dist / lastTouchDist;
+      const mx = mid.x - rect.left;
+      const my = mid.y - rect.top;
+      const wx = (mx - panX) / scale;
+      const wy = (my - panY) / scale;
+      const newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * zoomFactor));
+      panX = mx - wx * newScale;
+      panY = my - wy * newScale;
+
+      // Also pan with mid-point drift
+      panX += mid.x - lastTouchMid.x;
+      panY += mid.y - lastTouchMid.y;
+
+      scale = newScale;
+      lastTouchDist = dist;
+      lastTouchMid = mid;
+      applyTransform();
+    }
+  }, { passive: false });
+
+  viewport.addEventListener('touchend', () => { isPanning = false; });
+
+  // ===== CHIP FILTER =====
+  const projectFilterTags = {
+    vesh: ['komdiz', 'ai'],
+    ruf: ['komdiz'],
+    ozon: ['komdiz', 'interfaces', 'ai'],
+    redis: ['web', 'interfaces'],
+    afisha: ['komdiz', 'ai'],
+    tbank: ['web', 'interfaces'],
+    neuro: ['ai'],
+    plakat: ['komdiz']
+  };
+
+  // Original anchor positions (card1 top/left) per project
+  const projectAnchors = {
+    vesh:   { top: 536,  left: 608  },
+    ruf:    { top: 300,  left: 1600 },
+    ozon:   { top: 340,  left: 2620 },
+    redis:  { top: 1560, left: 350  },
+    afisha: { top: 1550, left: 1400 },
+    tbank:  { top: 1600, left: 2600 },
+    neuro:  { top: 2900, left: 300  },
+    plakat: { top: 2850, left: 1500 }
+  };
+
+  // Compact slot grid — projects get assigned here when filtered
+  const slotGrid = [
+    { top: 300, left: 500  },
+    { top: 300, left: 1500 },
+    { top: 300, left: 2500 },
+    { top: 1200, left: 500  },
+    { top: 1200, left: 1500 },
+    { top: 1200, left: 2500 },
+    { top: 2100, left: 500  },
+    { top: 2100, left: 1500 }
+  ];
+
+  const projectOrder = ['vesh','ruf','ozon','redis','afisha','tbank','neuro','plakat'];
+  const allProjectEls = document.querySelectorAll('[data-project]');
+  const chips = document.querySelectorAll('.chip');
+
+  // Store each element's original top/left from CSS (not animated values)
+  // Parse from stylesheets to avoid animation interference
+  const origPositions = new Map();
+  allProjectEls.forEach(el => {
+    // offsetTop/offsetLeft give the layout position (CSS value, not animated)
+    origPositions.set(el, { top: el.offsetTop, left: el.offsetLeft });
+  });
+
+  function applyFilters() {
+    const activeFilters = [];
+    chips.forEach(c => {
+      if (c.classList.contains('active')) activeFilters.push(c.dataset.filter);
+    });
+
+    if (activeFilters.length === 0) {
+      // No filters — show all, restore original positions
+      allProjectEls.forEach(el => {
+        el.classList.remove('filtered-out');
+        el.style.top = '';
+        el.style.left = '';
+      });
+      return;
+    }
+
+    // Determine which projects are visible
+    const visibleKeys = projectOrder.filter(key => {
+      const tags = projectFilterTags[key] || [];
+      return activeFilters.some(f => tags.includes(f));
+    });
+
+    // Compute delta for each visible project to move it into the compact grid
+    const deltas = {};
+    visibleKeys.forEach((key, i) => {
+      const slot = slotGrid[i] || slotGrid[slotGrid.length - 1];
+      const anchor = projectAnchors[key];
+      deltas[key] = { top: slot.top - anchor.top, left: slot.left - anchor.left };
+    });
+
+    // Apply visibility and repositioning
+    allProjectEls.forEach(el => {
+      const key = el.dataset.project;
+      const isVisible = visibleKeys.includes(key);
+      el.classList.toggle('filtered-out', !isVisible);
+
+      if (isVisible && deltas[key]) {
+        const orig = origPositions.get(el);
+        el.style.top = (orig.top + deltas[key].top) + 'px';
+        el.style.left = (orig.left + deltas[key].left) + 'px';
+      } else {
+        el.style.top = '';
+        el.style.left = '';
+      }
+    });
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chip.classList.toggle('active');
+      // Toggle plus/minus icon
+      const icon = chip.querySelector('.plus-icon svg');
+      if (chip.classList.contains('active')) {
+        icon.innerHTML = '<line x1="4" y1="8" x2="12" y2="8"/>';
+      } else {
+        icon.innerHTML = '<line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/>';
+      }
+      applyFilters();
+    });
+  });
+
+  // ===== PROJECT DETAIL VIEW =====
+  const projectDetail = document.getElementById('projectDetail');
+  const detailBack = document.getElementById('detailBack');
+  const detailTitle = document.getElementById('detailTitle');
+  const detailDesc = document.getElementById('detailDesc');
+
+  // Project data
+  const projects = {
+    vesh: {
+      title: 'Вещь',
+      desc: 'сезонный маркет локальных брендов, объединяющий продажу, лекции и показы в одном пространстве',
+      tags: [],
+      accordions: [
+        { label: 'Проблема / Решение', content: 'Поп-ап маркет моды нуждался в узнаваемой визуальной системе, которая объединит разных дизайнеров под одним брендом. Решение — гибкая айдентика с модульной сеткой и динамической типографикой.' },
+        { label: 'Что сделала?', content: 'Логотип, фирменный стиль, модульная сетка, типографика, носители (баннеры, бейджи, пакеты, навигация), социальные сети, сайт.' }
+      ],
+      gallery: [
+        'Vesh/fe8988188f1145b399d30325c42f68d3_orig.gif',
+        'Vesh/image 1926988943.png',
+        'Vesh/image 1926988944.png',
+        'Vesh/image 1926988945.png',
+        null,
+        'Vesh/image 1926988948.png',
+        'Vesh/412658cc3222418e939a47d4b88bf922_orig.gif'
+      ]
+    },
+    ozon: {
+      title: 'Ozon',
+      desc: 'комдиз + продуктовый\nдизайн в компании',
+      tags: ['комдиз', 'интерфейсы', 'AI'],
+      accordions: [
+        { label: 'Что из комдиза?', content: '— Разрабатывала визуальные материалы для внутренних и внешних коммуникаций (баннеры, посты, дайджесты, лендинги, сторис)\n\n— Формировала и поддерживала визуальный стиль продуктов и инициатив внутри Ozon Tech\n\n— Работала с DevRel и комьюнити: оформление постов, коллаборации, спецпроекты\n\n— Создавала мерч и промо-материалы для мероприятий и внутренних активностей\n\n— Участвовала в развитии дизайн-системы коммуникаций и улучшении качества визуала' },
+        { label: 'Что из продуктового?', content: '— Участвовала в доработке продуктовых интерфейсов и отдельных фич\n\n— Проводила анализ и улучшение пользовательского опыта через гипотезы и визуальные решения\n\n— Взаимодействовала с продуктовой командой и внедряла решения в прод' }
+      ],
+      gallery: [
+        'Ozon/Frame 2087327238.png',
+        'Ozon/telegram-cloud-photo-size-2-5233277660471957113-y 2.png',
+        'Ozon/telegram-cloud-photo-size-2-5233277660471957113-y 1.png',
+        'Ozon/telegram-cloud-photo-size-2-5233277660471957113-y 3.png',
+        'Ozon/telegram-cloud-photo-size-2-5206665334432594139-y 1.png',
+        'Ozon/cover_ozon.png'
+      ]
+    },
+    ruf: {
+      title: 'Книга\nо Бродском',
+      desc: 'Книга про Бродского\nкак про состояние между\nприсутствием и отсутствием.\nИзгнание как непрерывный\nмаршрут — через города,\nдокументы и память',
+      tags: ['комдиз'],
+      accordions: [
+        { label: 'Что сделала?', content: '— Настроила композицию разворотов и визуальную систему\n\n— Сверстала книгу целиком\n\n— Подобрала бумагу и протестировала эффект просвечивания\n\n— Подготовила файл к печати' }
+      ],
+      gallery: [
+        'Brod/source/image.png',
+        'Brod/image 1926988943.png',
+        'Brod/image 1926988944.png',
+        'Brod/image 1926988945.png',
+        'Brod/image 1926988946.png',
+        'Brod/image 1926988948.png'
+      ]
+    },
+    redis: {
+      title: 'ACT',
+      desc: 'медиа-платформа о моушен-дизайне и VFX, объединяющая визуальные исследования, кейсы и референсы с фокусом на экспериментальные эстетики и технологии постпродакшена',
+      tags: ['веб', 'интерфейсы'],
+      accordions: [
+        { label: 'Что сделала?', content: '— Проведены количественные и качественные исследования аудитории\n\n— Спроектирована структура и логика медиа-платформы\n\n— Разработан сайт (UX/UI) с адаптацией под web и mWeb\n\n— Собрана дизайн-система (компоненты, правила, структура)\n\n— Проведено тестирование интерфейса и итеративные доработки на основе фидбека' }
+      ],
+      gallery: [
+        'ACT/source/image.png',
+        'ACT/image 1926988945.png',
+        'ACT/image 1926988946.png',
+        'ACT/image 1926988944.png'
+      ]
+    },
+    afisha: {
+      title: 'Redis Agency',
+      desc: 'работала коммуникационным дизайнером в студии на проектах с Купером и Мираторгом',
+      tags: ['комдиз', 'AI'],
+      accordions: [
+        { label: 'Что сделала?', content: '— Разрабатывала баннеры и промо-материалы для Купера и Мираторга\n\n— Работала с digital-кампаниями: соцсети, рекламные креативы, раскадровки моушена, немножко интерфейсов, занималась презентациями\n\n— Адаптировала визуалы под разные форматы и площадки (web, mobile, performance)\n\n— Генерировала фото для рекламных кампаний, когда нейросети выдавали по 6 пальцев. Потом ретушировала, гг\n\n— Взаимодействовала с маркетинговой командой и участвовала в реализации кампаний' }
+      ],
+      gallery: [
+        'Redis/Frame 2087327242.png',
+        'Redis/6x3.png',
+        'Redis/Frame 2087327243.png'
+      ]
+    },
+    tbank: {
+      title: 'Homigo',
+      desc: 'сервис обмена жильём для путешествий в формате P2P (шеринг без аренды), где пользователи обмениваются квартирами напрямую',
+      tags: ['веб', 'интерфейсы'],
+      accordions: [
+        { label: 'Что сделала?', content: '— С нуля спроектирована продуктовая логика (user flows, сценарии, структура сервиса)\n\n— Разработаны интерфейсы для web, mobile web и нативных приложений (iOS / Android)\n\n— Собрана полноценная дизайн-система (компоненты, состояния, токены)\n\n— Проработаны ключевые пользовательские сценарии: поиск, заявки, чат, профили, настройки\n\n— Сделаны все состояния интерфейса (loading, empty, error, success)\n\n— Разработаны коммуникационные материалы и визуал для соцсетей' }
+      ],
+      gallery: [
+        'Homigo/source/image.png',
+        'Homigo/image 1926988951.png',
+        'Homigo/image 1926988950.png',
+        'Homigo/image 1926988954.png',
+        'Homigo/image 1926988952.png',
+        'Homigo/image 1926988953.png'
+      ]
+    },
+    neuro: { title: 'Нейро', desc: 'серия генеративных арт-экспериментов с использованием нейросетей', tags: [], accordions: [], gallery: [] },
+    plakat: { title: 'Плакат', desc: 'серия социальных плакатов — типографика, композиция, визуальное высказывание', tags: [], accordions: [], gallery: [] }
+  };
+
+  const detailGallery = document.getElementById('detailGallery');
+  const detailTags = document.getElementById('detailTags');
+  const detailAccordions = document.querySelector('.detail-accordions');
+  let currentOpenProject = null;
+
+  // Fix dangling prepositions — replace space after short words with non-breaking space
+  function fixPrep(text) {
+    return text.replace(/(^|[\s>])(в|на|с|и|о|к|у|за|от|по|из|для|без|до|при|об|не|ни|но|а|же|бы|во|ко|со|is|a|an|the|in|on|at|of|for|to|by|or|and|В|На|С|И|О|К|У|За|От|По|Из|Для|Без|До|При|Об|Не|Ни|Но|А|Же|Бы|Во|Ко|Со)\s/g, '$1$2\u00A0');
+  }
+
+  function openDetail(projectKey) {
+    currentOpenProject = projectKey;
+    const data = projects[projectKey] || projects.vesh;
+    detailTitle.innerHTML = fixPrep(data.title);
+    // Support line breaks in description
+    detailDesc.innerHTML = fixPrep(data.desc.replace(/\n/g, '<br>'));
+
+    // Render tags
+    if (data.tags && data.tags.length > 0) {
+      detailTags.innerHTML = data.tags.map(t => `<span class="detail-tag">${fixPrep(t)}</span>`).join('');
+      detailTags.style.display = 'flex';
+    } else {
+      detailTags.innerHTML = '';
+      detailTags.style.display = 'none';
+    }
+
+    // Render accordions
+    if (data.accordions && data.accordions.length > 0) {
+      detailAccordions.innerHTML = data.accordions.map((acc, i) => `
+        <div class="accordion-wrap">
+          <button class="accordion-btn" data-accordion="acc${i}">
+            <span>${fixPrep(acc.label)}</span>
+            <span class="acc-icon">+</span>
+          </button>
+          <div class="accordion-content" data-accordion-content="acc${i}">${fixPrep(acc.content.replace(/\n/g, '<br>'))}</div>
+        </div>
+      `).join('');
+      // Rebind accordion click handlers
+      detailAccordions.querySelectorAll('.accordion-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.dataset.accordion;
+          const content = document.querySelector(`.accordion-content[data-accordion-content="${key}"]`);
+          const isOpen = btn.classList.contains('expanded');
+          detailAccordions.querySelectorAll('.accordion-btn').forEach(b => {
+            b.classList.remove('expanded');
+            b.querySelector('.acc-icon').textContent = '+';
+          });
+          detailAccordions.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('expanded'));
+          if (!isOpen) {
+            btn.classList.add('expanded');
+            btn.querySelector('.acc-icon').textContent = '\u2212';
+            content.classList.add('expanded');
+          }
+        });
+      });
+    } else {
+      detailAccordions.innerHTML = '';
+    }
+
+    // Render gallery
+    if (data.gallery && data.gallery.length > 0) {
+      detailGallery.innerHTML = data.gallery.map(src => {
+        if (src === null) return '<div class="gallery-placeholder"></div>';
+        return `<img src="${src}" alt="${data.title}">`;
+      }).join('');
+    } else {
+      let html = '';
+      for (let i = 0; i < 5; i++) html += '<div class="gallery-placeholder"></div>';
+      detailGallery.innerHTML = html;
+    }
+
+    projectDetail.classList.add('open');
+  }
+
+  function closeDetail() {
+    projectDetail.classList.remove('open');
+    currentOpenProject = null;
+  }
+
+  // Click handlers — Vesh
+  document.querySelector('.badge-vesh').addEventListener('click', () => { if (!didPan) openDetail('vesh'); });
+  document.querySelector('.badge-komdiz').addEventListener('click', () => { if (!didPan) openDetail('vesh'); });
+  document.querySelector('.card-qr').addEventListener('click', () => { if (!didPan) openDetail('vesh'); });
+  document.querySelector('.card-yulia').addEventListener('click', () => { if (!didPan) openDetail('vesh'); });
+
+  // Click handlers — all new projects (badges, tags, cards)
+  const projectConfigs = [
+    { key: 'ruf', cards: ['.card-ruf1', '.card-ruf2'], badge: '.badge-ruf', tag: '.tag-ruf' },
+    { key: 'ozon', cards: ['.card-ozon1', '.card-ozon2'], badge: '.badge-ozon', tags: ['.tag-ozon-1', '.tag-ozon-2', '.tag-ozon-3'] },
+    { key: 'redis', cards: ['.card-redis1'], badge: '.badge-redis', tags: ['.tag-redis-1', '.tag-redis-2'] },
+    { key: 'afisha', cards: ['.card-afisha1', '.card-afisha2'], badge: '.badge-afisha', tags: ['.tag-afisha-1', '.tag-afisha-2'] },
+    { key: 'tbank', cards: ['.card-tbank1', '.card-tbank2'], badge: '.badge-tbank', tag: '.tag-tbank' },
+    { key: 'neuro', cards: ['.card-neuro1', '.card-neuro2'], badge: '.badge-neuro', tag: '.tag-neuro' },
+    { key: 'plakat', cards: ['.card-plakat1', '.card-plakat2'], badge: '.badge-plakat', tag: '.tag-plakat' },
+  ];
+  projectConfigs.forEach(({ key, cards, badge, tag, tags }) => {
+    cards.forEach(sel => {
+      document.querySelector(sel).addEventListener('click', () => { if (!didPan) openDetail(key); });
+    });
+    document.querySelector(badge).addEventListener('click', () => { if (!didPan) openDetail(key); });
+    // Support single tag or multiple tags
+    const tagSels = tags || [tag];
+    tagSels.forEach(sel => {
+      document.querySelector(sel).addEventListener('click', () => { if (!didPan) openDetail(key); });
+    });
+  });
+
+  // Back button
+  detailBack.addEventListener('click', closeDetail);
+
+  // Accordion toggle is now handled dynamically inside openDetail()
+
+  // ===== SETTINGS DROPDOWN =====
+  const settingsBtn = document.getElementById('settingsBtn');
+  const settingsDropdown = document.getElementById('settingsDropdown');
+
+  settingsBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    settingsDropdown.classList.toggle('open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!settingsDropdown.contains(e.target) && e.target !== settingsBtn) {
+      settingsDropdown.classList.remove('open');
+    }
+  });
+
+  // ===== LANGUAGE SWITCHING =====
+  let currentLang = 'ru';
+  const langRu = document.getElementById('langRu');
+  const langEn = document.getElementById('langEn');
+
+  const i18n = {
+    ru: {
+      pageTitle: 'Марина Устиновская — Портфолио',
+      aboutBtn: 'Обо мне',
+      collapseTitle: 'Свернуть',
+      expandTitle: 'Развернуть',
+      name: 'Марина<br>Устиновская',
+      subtitle: 'мультидисциплинарный<br>дизайнер from Moscow',
+      exp1num: '3<br>года',
+      exp1desc: 'дизайн<br>коммуникаций',
+      exp2num: '2<br>года',
+      exp2desc: 'продуктовый<br>дизайн + UX/UI',
+      workTitle: 'Работала тут',
+      eduTitle: 'Училась тут',
+      logoLabels: ['Ozon<br>Tech', 'Redis<br>Agency', 'Red<br>Collar', 'Дизайн<br>ВШЭ', 'Школа<br>Т-Банка', 'ЛШ + ШК<br>Яндекс'],
+      chips: ['Комдиз', 'Интерфейсы', 'Веб', 'AI'],
+      backBtn: 'К проектам',
+      settingsTitle: 'Настройки',
+      canvasBadges: {
+        vesh: { title: 'Вещь', badge: 'айдентика для поп-ап<br>маркета моды' },
+        ruf: { title: 'Книга<br>о Бродском', badge: 'верстка многостраничного<br>издания и печать' },
+        ozon: { title: 'Ozon', badge: 'комдиз + продуктовый дизайн<br>в компании' },
+        redis: { title: 'ACT', badge: 'медиа-сервис о моушене<br>и VFX' },
+        afisha: { title: 'Redis Agency', badge: 'коммуникационный дизайн<br>для Купера и Мираторга' },
+        tbank: { title: 'Homigo', badge: 'сервис обмена жильём<br>для путешествий P2P' },
+        neuro: { title: 'Нейро', badge: 'генеративный арт<br>и AI-эксперименты' },
+        plakat: { title: 'Плакат', badge: 'серия социальных<br>плакатов' }
+      },
+      canvasTags: { vesh: 'комдиз', ruf: 'комдиз', ozon: ['AI', 'комдиз', 'интерфейсы'], redis: ['интерфейсы', 'веб'], afisha: ['комдиз', 'AI'], tbank: 'интерфейсы', neuro: 'AI', plakat: 'комдиз' },
+      projectOverrides: {
+        vesh: {
+          title: 'Вещь',
+          desc: 'сезонный маркет локальных брендов, объединяющий продажу, лекции и показы в одном пространстве',
+          tags: [],
+          accordions: [
+            { label: 'Проблема / Решение', content: 'Поп-ап маркет моды нуждался в узнаваемой визуальной системе, которая объединит разных дизайнеров под одним брендом. Решение — гибкая айдентика с модульной сеткой и динамической типографикой.' },
+            { label: 'Что сделала?', content: 'Логотип, фирменный стиль, модульная сетка, типографика, носители (баннеры, бейджи, пакеты, навигация), социальные сети, сайт.' }
+          ]
+        },
+        ruf: {
+          title: 'Книга\nо Бродском',
+          desc: 'Книга про Бродского\nкак про состояние между\nприсутствием и отсутствием.\nИзгнание как непрерывный\nмаршрут — через города,\nдокументы и память',
+          tags: ['комдиз'],
+          accordions: [
+            { label: 'Что сделала?', content: '— Настроила композицию разворотов и визуальную систему\n\n— Сверстала книгу целиком\n\n— Подобрала бумагу и протестировала эффект просвечивания\n\n— Подготовила файл к печати' }
+          ]
+        },
+        ozon: {
+          title: 'Ozon',
+          desc: 'комдиз + продуктовый\nдизайн в компании',
+          tags: ['комдиз', 'интерфейсы', 'AI'],
+          accordions: [
+            { label: 'Что из комдиза?', content: '— Разрабатывала визуальные материалы для внутренних и внешних коммуникаций (баннеры, посты, дайджесты, лендинги, сторис)\n\n— Формировала и поддерживала визуальный стиль продуктов и инициатив внутри Ozon Tech\n\n— Работала с DevRel и комьюнити: оформление постов, коллаборации, спецпроекты\n\n— Создавала мерч и промо-материалы для мероприятий и внутренних активностей\n\n— Участвовала в развитии дизайн-системы коммуникаций и улучшении качества визуала' },
+            { label: 'Что из продуктового?', content: '— Участвовала в доработке продуктовых интерфейсов и отдельных фич\n\n— Проводила анализ и улучшение пользовательского опыта через гипотезы и визуальные решения\n\n— Взаимодействовала с продуктовой командой и внедряла решения в прод' }
+          ]
+        },
+        redis: {
+          title: 'ACT',
+          desc: 'медиа-платформа о моушен-дизайне и VFX, объединяющая визуальные исследования, кейсы и референсы с фокусом на экспериментальные эстетики и технологии постпродакшена',
+          tags: ['веб', 'интерфейсы'],
+          accordions: [
+            { label: 'Что сделала?', content: '— Проведены количественные и качественные исследования аудитории\n\n— Спроектирована структура и логика медиа-платформы\n\n— Разработан сайт (UX/UI) с адаптацией под web и mWeb\n\n— Собрана дизайн-система (компоненты, правила, структура)\n\n— Проведено тестирование интерфейса и итеративные доработки на основе фидбека' }
+          ]
+        },
+        afisha: {
+          title: 'Redis Agency',
+          desc: 'работала коммуникационным дизайнером в студии на проектах с Купером и Мираторгом',
+          tags: ['комдиз', 'AI'],
+          accordions: [
+            { label: 'Что сделала?', content: '— Разрабатывала баннеры и промо-материалы для Купера и Мираторга\n\n— Работала с digital-кампаниями: соцсети, рекламные креативы, раскадровки моушена, немножко интерфейсов, занималась презентациями\n\n— Адаптировала визуалы под разные форматы и площадки (web, mobile, performance)\n\n— Генерировала фото для рекламных кампаний, когда нейросети выдавали по 6 пальцев. Потом ретушировала, гг\n\n— Взаимодействовала с маркетинговой командой и участвовала в реализации кампаний' }
+          ]
+        },
+        tbank: {
+          title: 'Homigo',
+          desc: 'сервис обмена жильём для путешествий в формате P2P (шеринг без аренды), где пользователи обмениваются квартирами напрямую',
+          tags: ['веб', 'интерфейсы'],
+          accordions: [
+            { label: 'Что сделала?', content: '— С нуля спроектирована продуктовая логика (user flows, сценарии, структура сервиса)\n\n— Разработаны интерфейсы для web, mobile web и нативных приложений (iOS / Android)\n\n— Собрана полноценная дизайн-система (компоненты, состояния, токены)\n\n— Проработаны ключевые пользовательские сценарии: поиск, заявки, чат, профили, настройки\n\n— Сделаны все состояния интерфейса (loading, empty, error, success)\n\n— Разработаны коммуникационные материалы и визуал для соцсетей' }
+          ]
+        }
+      }
+    },
+    en: {
+      pageTitle: 'Marina Ustinovskaya — Portfolio',
+      aboutBtn: 'About me',
+      collapseTitle: 'Collapse',
+      expandTitle: 'Expand',
+      name: 'Marina<br>Ustinovskaya',
+      subtitle: 'multidisciplinary<br>designer from Moscow',
+      exp1num: '3<br>years',
+      exp1desc: 'communication<br>design',
+      exp2num: '2<br>years',
+      exp2desc: 'product<br>design + UX/UI',
+      workTitle: 'Work experience',
+      eduTitle: 'Education',
+      logoLabels: ['Ozon<br>Tech', 'Redis<br>Agency', 'Red<br>Collar', 'Design<br>HSE', 'T-Bank<br>School', 'YS + DS<br>Yandex'],
+      chips: ['ComDes', 'Interfaces', 'Web', 'AI'],
+      backBtn: 'Back to projects',
+      settingsTitle: 'Settings',
+      canvasBadges: {
+        vesh: { title: 'Vesh', badge: 'identity for a pop-up<br>fashion market' },
+        ruf: { title: 'Book on<br>Brodsky', badge: 'multi-page publication<br>layout and print' },
+        ozon: { title: 'Ozon', badge: 'comdes + product design<br>in-house' },
+        redis: { title: 'ACT', badge: 'media service about motion<br>and VFX' },
+        afisha: { title: 'Redis Agency', badge: 'communication design<br>for Kuper and Miratorg' },
+        tbank: { title: 'Homigo', badge: 'P2P home exchange<br>service for travelers' },
+        neuro: { title: 'Neuro', badge: 'generative art<br>& AI experiments' },
+        plakat: { title: 'Poster', badge: 'a series of<br>social posters' }
+      },
+      canvasTags: { vesh: 'comdes', ruf: 'comdes', ozon: ['AI', 'comdes', 'interfaces'], redis: ['interfaces', 'web'], afisha: ['comdes', 'AI'], tbank: 'interfaces', neuro: 'AI', plakat: 'comdes' },
+      projectOverrides: {
+        vesh: {
+          title: 'Vesh',
+          desc: 'seasonal market of local brands combining retail, lectures and shows in one space',
+          tags: [],
+          accordions: [
+            { label: 'Problem / Solution', content: 'The pop-up fashion market needed a recognizable visual system to unite different designers under one brand. The solution is a flexible identity with a modular grid and dynamic typography.' },
+            { label: 'What I did', content: 'Logo, brand identity, modular grid, typography, media (banners, badges, bags, wayfinding), social media, website.' }
+          ]
+        },
+        ruf: {
+          title: 'Book on\nBrodsky',
+          desc: 'A book about Brodsky\nas a state between\npresence and absence.\nExile as a continuous\nroute — through cities,\ndocuments and memory',
+          tags: ['comdes'],
+          accordions: [
+            { label: 'What I did', content: '— Designed the spread composition and visual system\n\n— Typeset the entire book\n\n— Selected paper and tested the see-through effect\n\n— Prepared the file for print' }
+          ]
+        },
+        ozon: {
+          title: 'Ozon',
+          desc: 'comdes + product\ndesign in-house',
+          tags: ['comdes', 'interfaces', 'AI'],
+          accordions: [
+            { label: 'Communication design', content: '— Developed visual materials for internal and external communications (banners, posts, digests, landings, stories)\n\n— Formed and maintained the visual style of products and initiatives within Ozon Tech\n\n— Worked with DevRel and the community: post design, collaborations, special projects\n\n— Created merch and promo materials for events and internal activities\n\n— Contributed to the development of the communication design system and visual quality improvement' },
+            { label: 'Product design', content: '— Participated in refining product interfaces and individual features\n\n— Conducted UX analysis and improvements through hypotheses and visual solutions\n\n— Collaborated with the product team and shipped solutions to production' }
+          ]
+        },
+        redis: {
+          title: 'ACT',
+          desc: 'a media platform about motion design and VFX, combining visual research, case studies and references with a focus on experimental aesthetics and post-production technologies',
+          tags: ['web', 'interfaces'],
+          accordions: [
+            { label: 'What I did', content: '— Conducted quantitative and qualitative audience research\n\n— Designed the structure and logic of the media platform\n\n— Developed the website (UX/UI) adapted for web and mWeb\n\n— Built a design system (components, rules, structure)\n\n— Conducted interface testing and iterative improvements based on feedback' }
+          ]
+        },
+        afisha: {
+          title: 'Redis Agency',
+          desc: 'worked as a communication designer at the studio on projects with Kuper and Miratorg',
+          tags: ['comdes', 'AI'],
+          accordions: [
+            { label: 'What I did', content: '— Developed banners and promo materials for Kuper and Miratorg\n\n— Worked on digital campaigns: social media, ad creatives, motion storyboards, some interfaces, presentations\n\n— Adapted visuals for different formats and platforms (web, mobile, performance)\n\n— Generated photos for ad campaigns when neural networks still gave 6 fingers. Then retouched them, lol\n\n— Collaborated with the marketing team and participated in campaign execution' }
+          ]
+        },
+        tbank: {
+          title: 'Homigo',
+          desc: 'a P2P home exchange service for travelers (sharing without rent), where users swap apartments directly',
+          tags: ['web', 'interfaces'],
+          accordions: [
+            { label: 'What I did', content: '— Designed the product logic from scratch (user flows, scenarios, service structure)\n\n— Developed interfaces for web, mobile web and native apps (iOS / Android)\n\n— Built a complete design system (components, states, tokens)\n\n— Worked through key user scenarios: search, requests, chat, profiles, settings\n\n— Created all interface states (loading, empty, error, success)\n\n— Developed communication materials and social media visuals' }
+          ]
+        }
+      }
+    }
+  };
+
+  function applyLang(lang) {
+    currentLang = lang;
+    const t = i18n[lang];
+    document.title = t.pageTitle;
+
+    // Update lang switch UI
+    if (lang === 'ru') {
+      langRu.classList.add('active'); langRu.classList.remove('inactive');
+      langEn.classList.remove('active'); langEn.classList.add('inactive');
+    } else {
+      langEn.classList.add('active'); langEn.classList.remove('inactive');
+      langRu.classList.remove('active'); langRu.classList.add('inactive');
+    }
+
+    // Collapse button
+    const btnLabel = document.querySelector('.collapse-btn .btn-label');
+    btnLabel.textContent = t.aboutBtn;
+    const isCollapsed = page.classList.contains('collapsed');
+    document.getElementById('collapseBtn').title = isCollapsed ? t.expandTitle : t.collapseTitle;
+
+    // Settings button
+    settingsBtn.title = t.settingsTitle;
+
+    // Sidebar profile
+    document.querySelector('.profile-card h1').innerHTML = fixPrep(t.name);
+    document.querySelector('.profile-subtitle').innerHTML = fixPrep(t.subtitle);
+    const expCols = document.querySelectorAll('.exp-col');
+    expCols[0].querySelector('.exp-num-unit').innerHTML = fixPrep(t.exp1num);
+    expCols[0].querySelector('.exp-desc').innerHTML = fixPrep(t.exp1desc);
+    expCols[1].querySelector('.exp-num-unit').innerHTML = fixPrep(t.exp2num);
+    expCols[1].querySelector('.exp-desc').innerHTML = fixPrep(t.exp2desc);
+
+    // Work & Education titles
+    const sections = document.querySelectorAll('.info-section h3');
+    sections[0].textContent = t.workTitle;
+    sections[1].textContent = t.eduTitle;
+
+    // Logo labels
+    document.querySelectorAll('.logo-label').forEach((lbl, i) => {
+      if (t.logoLabels[i]) lbl.innerHTML = fixPrep(t.logoLabels[i]);
+    });
+
+    // Chips
+    document.querySelectorAll('.chip').forEach((chip, i) => {
+      const plusIcon = chip.querySelector('.plus-icon');
+      chip.childNodes[0].textContent = t.chips[i] + ' ';
+    });
+
+    // Detail back button
+    detailBack.textContent = t.backBtn;
+
+    // Update project data with translations
+    Object.keys(t.projectOverrides).forEach(key => {
+      const override = t.projectOverrides[key];
+      projects[key].title = override.title;
+      projects[key].desc = override.desc;
+      projects[key].tags = override.tags;
+      projects[key].accordions = override.accordions;
+    });
+
+    // Update canvas badges
+    document.querySelector('.badge-vesh h4').innerHTML = fixPrep(t.canvasBadges.vesh.title);
+    document.querySelector('.badge-vesh p').innerHTML = fixPrep(t.canvasBadges.vesh.badge);
+    document.querySelector('.badge-komdiz').textContent = t.canvasTags.vesh;
+
+    const projectKeys = ['ruf','ozon','redis','afisha','tbank','neuro','plakat'];
+    projectKeys.forEach(key => {
+      const badge = document.querySelector('.badge-' + key);
+      if (badge) {
+        badge.querySelector('h4').innerHTML = fixPrep(t.canvasBadges[key].title);
+        badge.querySelector('p').innerHTML = fixPrep(t.canvasBadges[key].badge);
+      }
+      const tagVal = t.canvasTags[key];
+      if (Array.isArray(tagVal)) {
+        document.querySelectorAll('.tag-' + key).forEach((tag, i) => {
+          if (tagVal[i]) tag.textContent = tagVal[i];
+        });
+      } else {
+        const tag = document.querySelector('.tag-' + key);
+        if (tag) tag.textContent = tagVal;
+      }
+    });
+
+    // Re-render detail view if open, preserving scroll position
+    if (projectDetail.classList.contains('open') && currentOpenProject) {
+      const scrollTop = detailGallery.scrollTop;
+      openDetail(currentOpenProject);
+      requestAnimationFrame(() => { detailGallery.scrollTop = scrollTop; });
+    }
+
+    // Update html lang attribute
+    document.documentElement.lang = lang;
+  }
+
+  langRu.addEventListener('click', () => applyLang('ru'));
+  langEn.addEventListener('click', () => applyLang('en'));
+
+  // Apply fixPrep to initial static content
+  applyLang('ru');
+
+  // ===== TEXT ME TRAIL =====
+  (function() {
+    const TRAIL_COLORS = [
+      '#C8FF00', '#FF6BFF', '#6BFF6B', '#FFD600',
+      '#00D4FF', '#FF4D6A', '#B388FF', '#69F0AE'
+    ];
+    const MAX_PILLS = 4;
+    const MIN_DISTANCE = 120; // px between spawns
+    const PILL_LIFETIME = 3000; // ms before fade
+    const LINK = 'https://t.me/kezend';
+
+    const pills = [];
+    let lastX = 0, lastY = 0;
+    let colorIdx = 0;
+
+    function isOverProject(x, y) {
+      const els = document.elementsFromPoint(x, y);
+      return els.some(el =>
+        el.dataset && el.dataset.project ||
+        el.closest && el.closest('[data-project]') ||
+        el.closest && el.closest('.badge-vesh') ||
+        el.closest && el.closest('.badge-komdiz') ||
+        el.closest && el.closest('.filters') ||
+        el.closest && el.closest('.sidebar') ||
+        el.closest && el.closest('.detail-overlay')
+      );
+    }
+
+    function spawnPill(x, y) {
+      const pill = document.createElement('a');
+      pill.href = LINK;
+      pill.target = '_blank';
+      pill.rel = 'noopener';
+      pill.className = 'trail-pill';
+      pill.textContent = 'text me';
+      pill.style.background = TRAIL_COLORS[colorIdx % TRAIL_COLORS.length];
+      // Slight random offset and rotation
+      const offsetX = (Math.random() - 0.5) * 30;
+      const offsetY = (Math.random() - 0.5) * 20;
+      const rot = (Math.random() - 0.5) * 24;
+      pill.style.left = (x + offsetX) + 'px';
+      pill.style.top = (y + offsetY) + 'px';
+      pill.style.setProperty('--rot', rot + 'deg');
+      pill.style.transform = `scale(0.5) translateY(8px) rotate(${rot}deg)`;
+      pill.addEventListener('animationend', () => {
+        pill.style.transform = `scale(1) translateY(0) rotate(${rot}deg)`;
+      });
+      document.body.appendChild(pill);
+      colorIdx++;
+
+      const entry = { el: pill, timer: null };
+
+      // Auto-remove after lifetime
+      entry.timer = setTimeout(() => {
+        removePill(entry);
+      }, PILL_LIFETIME);
+
+      pills.push(entry);
+
+      // If over max, remove oldest
+      while (pills.length > MAX_PILLS) {
+        removePill(pills[0]);
+      }
+    }
+
+    function removePill(entry) {
+      const idx = pills.indexOf(entry);
+      if (idx === -1) return;
+      clearTimeout(entry.timer);
+      entry.el.classList.add('fading');
+      pills.splice(idx, 1);
+      setTimeout(() => {
+        if (entry.el.parentNode) entry.el.parentNode.removeChild(entry.el);
+      }, 400);
+    }
+
+    function clearAllPills() {
+      while (pills.length > 0) removePill(pills[0]);
+    }
+
+    document.querySelector('.main').addEventListener('mousemove', (e) => {
+      // Don't spawn when detail view is open
+      if (document.querySelector('.project-detail.open')) return;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      if (Math.hypot(dx, dy) < MIN_DISTANCE) return;
+      if (isOverProject(e.clientX, e.clientY)) return;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      spawnPill(e.clientX, e.clientY);
+    });
+
+    // Clear pills when project detail opens
+    const observer = new MutationObserver(() => {
+      if (document.querySelector('.project-detail.open')) clearAllPills();
+    });
+    const detailEl = document.querySelector('.project-detail');
+    if (detailEl) observer.observe(detailEl, { attributes: true, attributeFilter: ['class'] });
+  })();
+
+  // ===== GESTURE CONTROLLER (Hand Tracking) =====
+  const gestureController = (() => {
+    let active = false;
+    let camera = null;
+    let hands = null;
+    const video = document.getElementById('handVideo');
+    const indicator = document.getElementById('handIndicator');
+    const gestureIcon = document.getElementById('gestureIcon');
+    const statusText = document.getElementById('handStatusText');
+    const toggle = document.getElementById('handControlToggle');
+
+    // Smoothing state
+    let prevPalmX = null, prevPalmY = null;
+    let smoothDX = 0, smoothDY = 0;
+    let prevPinchDist = null;
+    let smoothZoom = 1;
+    let confirmedGesture = 'none';
+    let pendingGesture = 'none';
+    let pendingFrames = 0;
+    const CONFIRM_FRAMES = 3;
+    const LERP = 0.18;
+    const PAN_SPEED = 3.0;
+    const ZOOM_SPEED = 2.5;
+    let openPalmStableFrames = 0;
+    let palmLostFrames = 0;
+    const OPEN_PALM_TRIGGER = 25;
+    let lastSelectTime = 0;
+    let animFrameId = null;
+
+    // i18n labels
+    const labels = {
+      ru: { hand: 'Рука', fist: 'Пауза', palm: 'Навигация', pinch: 'Зум', open: 'Выбор..', label: 'Управление рукой', noCamera: 'Камера недоступна' },
+      en: { hand: 'Hand', fist: 'Paused', palm: 'Navigate', pinch: 'Zoom', open: 'Select..', label: 'Hand control', noCamera: 'Camera unavailable' }
+    };
+
+    function getLabel(key) {
+      return (labels[currentLang] || labels.ru)[key];
+    }
+
+    function updateIndicator(gesture, emoji) {
+      gestureIcon.textContent = emoji;
+      statusText.textContent = getLabel(gesture);
+    }
+
+    // --- Finger detection utilities ---
+    function fingerIsExtended(landmarks, finger) {
+      // finger: 0=thumb, 1=index, 2=middle, 3=ring, 4=pinky
+      const tips = [4, 8, 12, 16, 20];
+      const pips = [3, 6, 10, 14, 18];
+      const mcps = [2, 5, 9, 13, 17];
+      if (finger === 0) {
+        // Thumb: compare tip x distance from palm center
+        return Math.abs(landmarks[tips[0]].x - landmarks[mcps[0]].x) > 0.06;
+      }
+      // Other fingers: tip above pip (y is inverted, lower y = higher on screen)
+      return landmarks[tips[finger]].y < landmarks[pips[finger]].y;
+    }
+
+    function countExtendedFingers(landmarks) {
+      let count = 0;
+      for (let i = 0; i < 5; i++) {
+        if (fingerIsExtended(landmarks, i)) count++;
+      }
+      return count;
+    }
+
+    function pinchDistance(landmarks) {
+      const thumb = landmarks[4];
+      const index = landmarks[8];
+      return Math.hypot(thumb.x - index.x, thumb.y - index.y);
+    }
+
+    function palmCenter(landmarks) {
+      // Average of wrist and MCP joints
+      const pts = [0, 5, 9, 13, 17];
+      let x = 0, y = 0;
+      pts.forEach(i => { x += landmarks[i].x; y += landmarks[i].y; });
+      return { x: x / pts.length, y: y / pts.length };
+    }
+
+    // --- Gesture classification ---
+    function classifyGesture(landmarks) {
+      const extended = countExtendedFingers(landmarks);
+      const thumbOut = fingerIsExtended(landmarks, 0);
+      const indexOut = fingerIsExtended(landmarks, 1);
+      const ringOut = fingerIsExtended(landmarks, 3);
+      const pinkyOut = fingerIsExtended(landmarks, 4);
+
+      if (extended <= 1) return 'fist';
+      // Pinch-zoom: thumb + index only, others curled
+      if (thumbOut && indexOut && !ringOut && !pinkyOut) return 'pinch';
+      // 3+ fingers = palm (panning). open5 detected separately via stillness check.
+      if (extended >= 3) return 'palm';
+      return 'palm';
+    }
+
+    // --- Main processing callback ---
+    function onResults(results) {
+      if (!active) return;
+      if (!results.multiHandLandmarks || results.multiHandLandmarks.length === 0) {
+        updateIndicator('hand', '✋');
+        // Don't reset prevPalmX/Y on brief tracking loss — avoids jump on re-detect
+        prevPinchDist = null;
+        openPalmStableFrames = 0;
+        // Only reset palm tracking after several missing frames
+        if (prevPalmX !== null) {
+          palmLostFrames = (palmLostFrames || 0) + 1;
+          if (palmLostFrames > 6) { prevPalmX = null; prevPalmY = null; palmLostFrames = 0; }
+        }
+        return;
+      }
+      palmLostFrames = 0;
+
+      const landmarks = results.multiHandLandmarks[0];
+      const newGesture = classifyGesture(landmarks);
+
+      // Stabilize gesture: require CONFIRM_FRAMES consecutive same-gesture frames
+      if (newGesture !== pendingGesture) {
+        pendingGesture = newGesture;
+        pendingFrames = 1;
+      } else {
+        pendingFrames++;
+      }
+      if (pendingFrames >= CONFIRM_FRAMES && confirmedGesture !== pendingGesture) {
+        // Gesture changed — reset tracking for clean transition
+        if (pendingGesture !== 'palm' && confirmedGesture === 'palm') {
+          // Leaving palm mode — keep prevPalmX/Y so re-entering is smooth
+        } else if (pendingGesture === 'palm' && confirmedGesture !== 'palm') {
+          // Entering palm mode — reset so first frame doesn't jump
+          prevPalmX = null; prevPalmY = null;
+          smoothDX = 0; smoothDY = 0;
+        }
+        if (pendingGesture !== 'pinch') { prevPinchDist = null; }
+        confirmedGesture = pendingGesture;
+        openPalmStableFrames = 0;
+      }
+
+      const palm = palmCenter(landmarks);
+
+      switch (confirmedGesture) {
+        case 'fist':
+          updateIndicator('fist', '✊');
+          prevPalmX = null; prevPalmY = null;
+          prevPinchDist = null;
+          smoothDX = 0; smoothDY = 0;
+          openPalmStableFrames = 0;
+          break;
+
+        case 'pinch': {
+          updateIndicator('pinch', '🤏');
+          openPalmStableFrames = 0;
+          const pDist = pinchDistance(landmarks);
+          if (prevPinchDist !== null && prevPinchDist > 0.01) {
+            const ratio = pDist / prevPinchDist;
+            const zoomFactor = 1 + (ratio - 1) * ZOOM_SPEED * LERP;
+            const rect = viewport.getBoundingClientRect();
+            const cx = rect.width / 2;
+            const cy = rect.height / 2;
+            const wx = (cx - panX) / scale;
+            const wy = (cy - panY) / scale;
+            const newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * zoomFactor));
+            panX = cx - wx * newScale;
+            panY = cy - wy * newScale;
+            scale = newScale;
+            applyTransform();
+          }
+          prevPinchDist = pDist;
+          prevPalmX = null; prevPalmY = null;
+          smoothDX = 0; smoothDY = 0;
+          break;
+        }
+
+        case 'palm': {
+          prevPinchDist = null;
+          // Count extended fingers for open5 detection
+          const extCount = countExtendedFingers(landmarks);
+          if (extCount === 5) {
+            openPalmStableFrames++;
+            updateIndicator('open', '🖐️');
+            // Trigger "select" after sustained open5 (all 5 fingers spread & still)
+            if (openPalmStableFrames >= OPEN_PALM_TRIGGER) {
+              const now = Date.now();
+              if (now - lastSelectTime > 2000) {
+                lastSelectTime = now;
+                openPalmStableFrames = 0;
+                triggerNearestProject();
+              }
+            }
+          } else {
+            openPalmStableFrames = 0;
+            updateIndicator('palm', '🖐️');
+          }
+
+          // Pan regardless of 3/4/5 fingers — unified palm panning
+          if (prevPalmX !== null) {
+            // Invert: hand moves right → canvas pans left (drag feel)
+            const rawDX = (palm.x - prevPalmX) * -PAN_SPEED * viewport.clientWidth;
+            const rawDY = (palm.y - prevPalmY) * -PAN_SPEED * viewport.clientHeight;
+            // Clamp max delta to prevent wild jumps from tracking glitches
+            const MAX_DELTA = 60;
+            const dx = Math.max(-MAX_DELTA, Math.min(MAX_DELTA, rawDX));
+            const dy = Math.max(-MAX_DELTA, Math.min(MAX_DELTA, rawDY));
+            // Exponential smoothing: smoothDX chases dx
+            smoothDX += (dx - smoothDX) * LERP;
+            smoothDY += (dy - smoothDY) * LERP;
+            panX += smoothDX;
+            panY += smoothDY;
+            applyTransform();
+          }
+          prevPalmX = palm.x;
+          prevPalmY = palm.y;
+          break;
+        }
+      }
+    }
+
+    function triggerNearestProject() {
+      const rect = viewport.getBoundingClientRect();
+      const cx = rect.width / 2;
+      const cy = rect.height / 2;
+      // Point in world space at viewport center
+      const wx = (cx - panX) / scale;
+      const wy = (cy - panY) / scale;
+
+      let nearest = null;
+      let minDist = Infinity;
+
+      document.querySelectorAll('[data-project]').forEach(el => {
+        if (el.classList.contains('filtered-out')) return;
+        const elCx = el.offsetLeft + el.offsetWidth / 2;
+        const elCy = el.offsetTop + el.offsetHeight / 2;
+        const d = Math.hypot(elCx - wx, elCy - wy);
+        if (d < minDist) { minDist = d; nearest = el; }
+      });
+
+      if (nearest && minDist < 800) {
+        const key = nearest.dataset.project;
+        openDetail(key);
+      }
+    }
+
+    // --- Start / Stop ---
+    // Dynamically load a script and return a promise
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        if (document.querySelector(`script[src="${src}"]`)) { resolve(); return; }
+        const s = document.createElement('script');
+        s.src = src;
+        s.crossOrigin = 'anonymous';
+        s.onload = resolve;
+        s.onerror = reject;
+        document.head.appendChild(s);
+      });
+    }
+
+    async function start() {
+      try {
+        // Show loading state
+        indicator.classList.add('visible');
+        gestureIcon.textContent = '⏳';
+        statusText.textContent = '...';
+
+        // Load MediaPipe scripts on demand
+        await loadScript('https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.min.js');
+        await loadScript('https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.min.js');
+
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { width: 320, height: 240, facingMode: 'user' } });
+        video.srcObject = stream;
+        await video.play();
+
+        hands = new window.Hands({
+          locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/${file}`
+        });
+        hands.setOptions({
+          maxNumHands: 1,
+          modelComplexity: 0,
+          minDetectionConfidence: 0.6,
+          minTrackingConfidence: 0.5
+        });
+        hands.onResults(onResults);
+
+        camera = new window.Camera(video, {
+          onFrame: async () => { if (active) await hands.send({ image: video }); },
+          width: 320,
+          height: 240
+        });
+        await camera.start();
+
+        active = true;
+        toggle.classList.add('active');
+        indicator.classList.add('visible');
+        updateIndicator('hand', '✋');
+      } catch (err) {
+        console.warn('Hand tracking error:', err);
+        const msg = getLabel('noCamera');
+        indicator.classList.add('visible');
+        gestureIcon.textContent = '⚠️';
+        statusText.textContent = msg;
+        setTimeout(() => { indicator.classList.remove('visible'); }, 3000);
+        toggle.classList.remove('active');
+        active = false;
+      }
+    }
+
+    function stop() {
+      active = false;
+      if (camera) { camera.stop(); camera = null; }
+      if (video.srcObject) {
+        video.srcObject.getTracks().forEach(t => t.stop());
+        video.srcObject = null;
+      }
+      hands = null;
+      toggle.classList.remove('active');
+      indicator.classList.remove('visible');
+      prevPalmX = null; prevPalmY = null; prevPinchDist = null;
+      smoothDX = 0; smoothDY = 0;
+      confirmedGesture = 'none'; pendingGesture = 'none'; pendingFrames = 0;
+      openPalmStableFrames = 0;
+    }
+
+    // Toggle handler
+    toggle.addEventListener('click', () => {
+      if (active) { stop(); } else { start(); }
+    });
+
+    // Update labels on language switch
+    function updateLabels() {
+      document.getElementById('handControlLabel').textContent = getLabel('label');
+      if (active) {
+        statusText.textContent = getLabel('hand');
+      }
+    }
+
+    return { updateLabels, isActive: () => active };
+  })();
+
+  // Hook gesture labels into language switch
+  langRu.addEventListener('click', () => gestureController.updateLabels());
+  langEn.addEventListener('click', () => gestureController.updateLabels());
+</script>
+
+</body>
+</html>
