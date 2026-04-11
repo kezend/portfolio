@@ -425,12 +425,17 @@
     pointer-events: none;
     z-index: 0;
   }
-  .project-card:hover {
+  .project-card:hover, .project-card:focus-visible {
     box-shadow:
       0 24px 64px rgba(0,0,0,0.6),
       0 8px 24px rgba(0,0,0,0.35),
       inset 0 1px 1px rgba(255,255,255,0.35),
       inset 0 -1px 1px rgba(0,0,0,0.2);
+  }
+  [data-project]:focus-visible {
+    outline: 2px solid rgba(255,255,255,0.6);
+    outline-offset: 4px;
+    border-radius: inherit;
   }
   .project-card img {
     width: 100%;
@@ -449,7 +454,7 @@
     top: 536px;
     left: 608px;
     z-index: 3;
-    transform: rotate(-8deg);
+    transform: rotate(-8.00deg);
     transition: top 0.4s ease, left 0.4s ease;
   }
   .page.collapsed .card-qr {
@@ -464,7 +469,7 @@
     top: 768px;
     left: 835px;
     z-index: 4;
-    transform: rotate(5deg);
+    transform: rotate(5.00deg);
     transition: top 0.4s ease, left 0.4s ease;
   }
   .page.collapsed .card-yulia {
@@ -548,11 +553,11 @@
   .tag-ruf { position: absolute; top: 333px; left: 1593px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 400; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(-3deg); transition: top 0.4s ease, left 0.4s ease; }
 
   /* Project 3 — Ozon (row1, col3) */
-  .card-ozon1 { width: 421px; top: 340px; left: 2620px; z-index: 3; transform: rotate(-5.089deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
+  .card-ozon1 { width: 421px; top: 340px; left: 2620px; z-index: 3; transform: rotate(-5.09deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
   .card-ozon1 img { height: auto; object-fit: contain; }
   .card-ozon2 { width: 290px; top: 180px; left: 2960px; z-index: 4; transform: rotate(5.33deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; border-radius: 56px; }
   .card-ozon2 img { height: auto; object-fit: contain; }
-  .badge-ozon { position: absolute; top: 222px; left: 2699px; display: flex; width: 240px; padding: 11px 28px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-5deg); transition: top 0.4s ease, left 0.4s ease; white-space: nowrap; }
+  .badge-ozon { position: absolute; top: 222px; left: 2699px; display: flex; width: 240px; padding: 11px 28px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-10.00deg); transition: top 0.4s ease, left 0.4s ease; white-space: nowrap; }
   .badge-ozon h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
   .badge-ozon p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
   .tag-ozon { position: absolute; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 400; border-radius: 12px; z-index: 11; cursor: pointer; transition: top 0.4s ease, left 0.4s ease; }
@@ -561,7 +566,7 @@
   .tag-ozon-3 { top: 872px; left: 3126px; transform: rotate(11.151deg); }
 
   /* Project 4 — ACT (row2, col1) */
-  .card-redis1 { width: 648px; top: 1560px; left: 350px; z-index: 3; transform: rotate(-3.664deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
+  .card-redis1 { width: 648px; top: 1560px; left: 350px; z-index: 3; transform: rotate(-3.66deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
   .card-redis1 img { height: auto; object-fit: contain; }
   .card-redis2 { display: none; }
   .badge-redis { position: absolute; top: 1530px; left: 200px; display: flex; width: 215px; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-9.042deg); transition: top 0.4s ease, left 0.4s ease; } /* frameRadius not specified in JSON */
@@ -572,7 +577,7 @@
   .tag-redis-2 { top: 1522px; left: 431px; transform: rotate(3deg); }
 
   /* Project 5 — Афиша (row2, col2) */
-  .card-afisha1 { width: 648px; top: 1571px; left: 1422px; z-index: 3; transform: rotate(4deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; } /* frameRadius not specified in JSON */
+  .card-afisha1 { width: 648px; top: 1571px; left: 1422px; z-index: 3; transform: rotate(4.00deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; } /* frameRadius not specified in JSON */
   .card-afisha1 img { height: auto; object-fit: contain; }
   .card-afisha2 { display: none; }
   .badge-afisha { position: absolute; top: 1491px; left: 1878px; display: flex; width: 232px; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(4.13deg); transition: top 0.4s ease, left 0.4s ease; }
@@ -583,8 +588,8 @@
   .tag-afisha-2 { top: 1533px; left: 1821px; transform: rotate(3deg); } /* no changes from JSON */
 
   /* Project 6 — Т-Банк (row2, col3) */
-  .card-tbank1 { width: 400px; height: 490px; top: 1600px; left: 2600px; z-index: 3; transform: rotate(-3deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
-  .card-tbank2 { width: 370px; height: 400px; top: 1841px; left: 2875px; z-index: 4; transform: rotate(8deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
+  .card-tbank1 { width: 400px; height: 490px; top: 1600px; left: 2600px; z-index: 3; transform: rotate(-3.00deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
+  .card-tbank2 { width: 370px; height: 400px; top: 1841px; left: 2875px; z-index: 4; transform: rotate(8.00deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
   .badge-tbank { position: absolute; top: 1712px; left: 3030px; display: inline-flex; width: 216px; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-5.5deg); transition: top 0.4s ease, left 0.4s ease; }
   .badge-tbank h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
   .badge-tbank p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
@@ -1037,6 +1042,12 @@
   .edit-vis-toggle input { accent-color: #00c8ff; width: 14px; height: 14px; cursor: pointer; }
   .edit-vis-toggle span { opacity: 0.8; }
   .edit-vis-toggle input:not(:checked) + span { opacity: 0.35; text-decoration: line-through; }
+  .edit-vis-open {
+    background: none; border: none; color: rgba(255,255,255,0.5);
+    font-size: 11px; cursor: pointer; padding: 0 4px;
+    font-family: var(--font-body); text-decoration: underline;
+  }
+  .edit-vis-open:hover { color: #fff; }
 
   /* Edit mode active state */
   body.edit-mode [data-project] {
@@ -1277,17 +1288,23 @@
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 8px;
     background: #242424;
     border-radius: 24px;
     scroll-behavior: smooth;
   }
   .detail-gallery::-webkit-scrollbar { width: 0; }
-  .detail-gallery img {
+  .detail-gallery img, .detail-gallery .gallery-img-wrap {
     width: 100%;
     display: block;
     height: auto;
     flex-shrink: 0;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: galleryStagger 0.4s ease forwards;
+  }
+  @keyframes galleryStagger {
+    to { opacity: 1; transform: translateY(0); }
   }
   /* placeholder colored blocks for gallery */
   .gallery-placeholder {
@@ -1302,9 +1319,217 @@
   }
   .gallery-placeholder:nth-child(odd) { background: #2e2e2e; }
   .gallery-placeholder:nth-child(even) { background: #242424; }
+
+  /* ===== SIDEBAR LOAD ANIMATION ===== */
+  .sidebar > * {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .sidebar.animate-in > * {
+    animation: sidebarFadeIn 0.5s ease forwards;
+  }
+  .sidebar.animate-in > *:nth-child(1) { animation-delay: 0.1s; }
+  .sidebar.animate-in > *:nth-child(2) { animation-delay: 0.25s; }
+  .sidebar.animate-in > *:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes sidebarFadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== CUSTOM CURSOR ===== */
+  .custom-cursor {
+    position: fixed; top: 0; left: 0;
+    width: 8px; height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: width 0.2s, height 0.2s, margin 0.2s, opacity 0.2s;
+    mix-blend-mode: difference;
+    margin: -4px 0 0 -4px;
+  }
+  .custom-cursor.hover {
+    width: 40px; height: 40px;
+    margin: -20px 0 0 -20px;
+    opacity: 0.5;
+  }
+  .custom-cursor.hidden { opacity: 0; }
+  body { cursor: none !important; }
+  body * { cursor: none !important; }
+
+  /* ===== LOADER ===== */
+  .loader-screen {
+    position: fixed; inset: 0; z-index: 10000;
+    background: #0F0F0F;
+    display: flex; align-items: flex-end; justify-content: flex-start;
+    padding: 32px 40px;
+    transition: opacity 0.6s ease;
+  }
+  .loader-screen.fade-out { opacity: 0; pointer-events: none; }
+  .loader-percent {
+    font-family: var(--font-heading);
+    font-size: 28vw; color: #fff;
+    letter-spacing: -0.04em;
+    line-height: 0.85;
+    opacity: 0.9;
+  }
+  /* ===== THEME MORPH ===== */
+  .theme-morph {
+    position: fixed;
+    border-radius: 50%;
+    z-index: 9998;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
+  /* ===== INLINE EDIT ===== */
+  body.edit-mode .detail-project-info h2[contenteditable],
+  body.edit-mode .detail-project-info p[contenteditable] {
+    outline: 1px dashed rgba(255,255,255,0.3);
+    outline-offset: 4px;
+    cursor: text;
+  }
+  body.edit-mode .detail-project-info h2[contenteditable]:focus,
+  body.edit-mode .detail-project-info p[contenteditable]:focus {
+    outline: 1px solid rgba(255,255,255,0.6);
+  }
+  body.edit-mode .detail-tag[contenteditable] {
+    outline: 1px dashed rgba(255,255,255,0.3);
+    outline-offset: 2px;
+    cursor: text;
+  }
+  /* ===== RESPONSIVE PREVIEW ===== */
+  .preview-overlay {
+    position: fixed; inset: 0; z-index: 9990;
+    background: rgba(0,0,0,0.85);
+    display: none; align-items: center; justify-content: center;
+    flex-direction: column; gap: 16px;
+  }
+  .preview-overlay.active { display: flex; }
+  .preview-bar {
+    display: flex; gap: 8px; align-items: center;
+  }
+  .preview-bar button {
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; padding: 8px 16px; border-radius: 8px;
+    font-family: var(--font-body); font-size: 13px; cursor: pointer;
+  }
+  .preview-bar button.active { background: #fff; color: #000; }
+  .preview-close {
+    position: absolute; top: 20px; right: 20px;
+    background: rgba(255,255,255,0.15); border: none;
+    color: #fff; width: 36px; height: 36px; border-radius: 50%;
+    font-size: 18px; cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+  }
+  .preview-frame {
+    background: #fff; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    transition: width 0.3s ease, height 0.3s ease;
+  }
+  .preview-frame iframe {
+    width: 100%; height: 100%; border: none;
+  }
+  /* ===== PHOTO MANAGEMENT ===== */
+  .gallery-edit-bar {
+    display: none; position: sticky; top: 0; z-index: 5;
+    padding: 8px; background: rgba(20,20,20,0.9);
+    backdrop-filter: blur(8px); border-radius: 12px;
+    margin-bottom: 8px; gap: 8px; align-items: center;
+  }
+  body.edit-mode .gallery-edit-bar { display: flex; }
+  .gallery-edit-bar button {
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; padding: 6px 14px; border-radius: 8px;
+    font-family: var(--font-body); font-size: 13px; cursor: pointer;
+  }
+  .gallery-edit-bar button:hover { background: rgba(255,255,255,0.25); }
+  .gallery-img-wrap {
+    position: relative; display: inline-block;
+  }
+  body.edit-mode .gallery-img-wrap { cursor: grab; }
+  body.edit-mode .gallery-img-wrap:active { cursor: grabbing; }
+  .gallery-img-remove {
+    display: none; position: absolute; top: 8px; right: 8px;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(255,0,0,0.8); color: #fff; border: none;
+    font-size: 16px; cursor: pointer; z-index: 3;
+    align-items: center; justify-content: center;
+  }
+  body.edit-mode .gallery-img-remove { display: flex; }
+  /* ===== DELETE PROJECT ===== */
+  .detail-delete-btn {
+    display: none; margin-top: 16px; padding: 10px 20px;
+    background: #ff3b30; color: #fff; border: none;
+    border-radius: 12px; font-family: var(--font-body);
+    font-size: 14px; cursor: pointer; width: 100%;
+  }
+  body.edit-mode .detail-delete-btn { display: block; }
+  .detail-delete-btn:hover { background: #e0332b; }
+  .confirm-modal {
+    position: fixed; inset: 0; z-index: 10001;
+    background: rgba(0,0,0,0.7); display: none;
+    align-items: center; justify-content: center;
+  }
+  .confirm-modal.active { display: flex; }
+  .confirm-box {
+    background: #1a1a1a; border-radius: 16px; padding: 24px;
+    text-align: center; color: #fff; max-width: 320px;
+    font-family: var(--font-body);
+  }
+  .confirm-box h3 { margin-bottom: 8px; font-size: 18px; }
+  .confirm-box p { margin-bottom: 20px; opacity: 0.7; font-size: 14px; }
+  .confirm-box .confirm-btns { display: flex; gap: 8px; }
+  .confirm-box .confirm-btns button {
+    flex: 1; padding: 10px; border: none; border-radius: 10px;
+    font-family: var(--font-body); font-size: 14px; cursor: pointer;
+  }
+  .confirm-cancel { background: #333; color: #fff; }
+  .confirm-delete { background: #ff3b30; color: #fff; }
+  /* ===== ANALYTICS ===== */
+  .analytics-panel {
+    display: none; margin-top: 8px;
+    background: rgba(255,255,255,0.05); border-radius: 12px;
+    padding: 12px; font-size: 13px;
+  }
+  body.edit-mode .analytics-panel { display: block; }
+  .analytics-panel h4 {
+    font-size: 14px; margin-bottom: 8px; opacity: 0.7;
+    font-family: var(--font-body);
+  }
+  .analytics-stat {
+    display: flex; justify-content: space-between;
+    padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-family: var(--font-body); font-size: 13px; color: #ccc;
+  }
+  .analytics-stat:last-child { border-bottom: none; }
+  .analytics-stat .count { color: #fff; font-weight: 500; }
+  /* ===== TOUR ORDER ===== */
+  .tour-order-panel {
+    display: none; margin-top: 8px;
+  }
+  body.edit-mode .tour-order-panel { display: block; }
+  .tour-order-title {
+    font-size: 14px; opacity: 0.7; margin-bottom: 6px;
+    font-family: var(--font-body);
+  }
+  .tour-order-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 10px; background: rgba(255,255,255,0.08);
+    border-radius: 8px; margin-bottom: 4px;
+    cursor: grab; font-family: var(--font-body);
+    font-size: 13px; color: #ccc; user-select: none;
+  }
+  .tour-order-item:active { cursor: grabbing; background: rgba(255,255,255,0.15); }
+  .tour-order-item .drag-handle { opacity: 0.4; }
+  .tour-order-item.drag-over { border-top: 2px solid #fff; }
 </style>
 </head>
 <body>
+
+<div class="custom-cursor" id="customCursor"></div>
+
+<div class="loader-screen" id="loaderScreen">
+  <div class="loader-percent" id="loaderPercent">0%</div>
+</div>
 
 <div class="page" id="page">
 
@@ -1436,17 +1661,27 @@
       <div class="edit-toolbar" id="editToolbar" style="display:none;">
         <button class="edit-tool-btn" id="editSaveBtn">💾 Сохранить</button>
         <button class="edit-tool-btn" id="editExportBtn">📋 Экспорт</button>
+        <button class="edit-tool-btn" id="editPreviewBtn">📱 Превью</button>
+        <button class="edit-tool-btn" id="editNewProjectBtn">+ Новый проект</button>
         <button class="edit-tool-btn edit-exit-btn" id="editExitBtn">✕ Выйти</button>
         <div class="edit-visibility-section" id="editVisibilitySection">
           <div class="edit-vis-title">Видимость проектов</div>
-          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="vesh"><span>Вещь</span></label>
-          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="ruf"><span>Бродский</span></label>
-          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="ozon"><span>Ozon</span></label>
-          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="redis"><span>ACT</span></label>
-          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="afisha"><span>Redis Agency</span></label>
-          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="tbank"><span>Homigo</span></label>
-          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="neuro"><span>Нейро</span></label>
-          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="plakat"><span>Плакат</span></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="vesh"><span>Вещь</span><button class="edit-vis-open" data-edit-open="vesh">открыть</button></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="ruf"><span>Бродский</span><button class="edit-vis-open" data-edit-open="ruf">открыть</button></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="ozon"><span>Ozon</span><button class="edit-vis-open" data-edit-open="ozon">открыть</button></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="redis"><span>ACT</span><button class="edit-vis-open" data-edit-open="redis">открыть</button></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="afisha"><span>Redis Agency</span><button class="edit-vis-open" data-edit-open="afisha">открыть</button></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="tbank"><span>Homigo</span><button class="edit-vis-open" data-edit-open="tbank">открыть</button></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="neuro"><span>Нейро</span><button class="edit-vis-open" data-edit-open="neuro">открыть</button></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="plakat"><span>Плакат</span><button class="edit-vis-open" data-edit-open="plakat">открыть</button></label>
+        </div>
+        <div class="tour-order-panel" id="tourOrderPanel">
+          <div class="tour-order-title">Порядок тура</div>
+          <div id="tourOrderList"></div>
+        </div>
+        <div class="analytics-panel" id="analyticsPanel">
+          <h4>Аналитика</h4>
+          <div id="analyticsContent"></div>
         </div>
       </div>
       <div class="settings-divider"></div>
@@ -1605,6 +1840,7 @@
           <h2 id="detailTitle">Вещь</h2>
           <p id="detailDesc">сезонный маркет локальных брендов, объединяющий продажу, лекции и показы в одном пространстве</p>
           <div class="detail-tags" id="detailTags"></div>
+          <button class="detail-delete-btn" id="detailDeleteBtn">Удалить проект</button>
         </div>
         <div class="detail-accordions">
           <!-- Accordions are generated dynamically by openDetail() -->
@@ -1625,6 +1861,31 @@
     </div>
   </div>
 
+</div>
+
+<!-- Responsive Preview -->
+<div class="preview-overlay" id="previewOverlay">
+  <button class="preview-close" id="previewClose">✕</button>
+  <div class="preview-bar">
+    <button data-preview-size="375x812" class="active">iPhone</button>
+    <button data-preview-size="768x1024">iPad</button>
+    <button data-preview-size="1280x800">Laptop</button>
+  </div>
+  <div class="preview-frame" id="previewFrame" style="width:375px;height:812px;">
+    <iframe id="previewIframe"></iframe>
+  </div>
+</div>
+
+<!-- Confirm Modal -->
+<div class="confirm-modal" id="confirmModal">
+  <div class="confirm-box">
+    <h3 id="confirmTitle">Удалить проект?</h3>
+    <p id="confirmText">Это действие нельзя отменить</p>
+    <div class="confirm-btns">
+      <button class="confirm-cancel" id="confirmCancel">Отмена</button>
+      <button class="confirm-delete" id="confirmOk">Удалить</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -2001,10 +2262,18 @@
     plakat: { title: 'Плакат', desc: 'серия социальных плакатов — типографика, композиция, визуальное высказывание', tags: [], accordions: [], gallery: [] }
   };
 
+  // Expose projects for inline editing
+  window.__projects = projects;
+
   const detailGallery = document.getElementById('detailGallery');
   const detailTags = document.getElementById('detailTags');
   const detailAccordions = document.querySelector('.detail-accordions');
   let currentOpenProject = null;
+
+  // Expose for inline editing
+  Object.defineProperty(window, '__currentOpenProject', {
+    get() { return currentOpenProject; }
+  });
 
   // Fix dangling prepositions — replace space after short words with non-breaking space
   function fixPrep(text) {
@@ -2095,7 +2364,15 @@
     }
 
     projectDetail.classList.add('open');
+
+    // Stagger gallery items
+    requestAnimationFrame(() => {
+      detailGallery.querySelectorAll('img, .gallery-img-wrap, .gallery-placeholder').forEach((el, i) => {
+        el.style.animationDelay = (i * 70) + 'ms';
+      });
+    });
   }
+  window.openDetail = openDetail;
 
   function closeDetail() {
     projectDetail.classList.remove('open');
@@ -2471,6 +2748,7 @@
       editActive = true;
       document.body.classList.add('edit-mode');
       editToolbar.style.display = 'flex';
+      captureInitialPositions();
       showInfo('Режим редактирования включён. Перетаскивай, крути ⟳, тяни за углы', 3000);
       // Add rotate handles to all data-project elements
       document.querySelectorAll('[data-project]').forEach(el => {
@@ -2879,43 +3157,73 @@
     });
 
     // --- EXPORT ---
+    // Snapshot initial state on edit-mode enter for diff export
+    let initialPositions = {};
+    function snapshotElement(el) {
+      const cs = getComputedStyle(el);
+      const top = el.style.top || cs.top;
+      const left = el.style.left || cs.left;
+      const rotMatch = (el.style.transform || cs.transform || '').match(/rotate\(([-\d.]+)deg\)/);
+      const w = el.style.width ? Math.round(parseFloat(el.style.width)) : null;
+      const h = el.style.height ? Math.round(parseFloat(el.style.height)) : null;
+      const frameR = el.style.borderRadius ? parseInt(el.style.borderRadius) : null;
+      const img = el.querySelector('img');
+      const imgR = img && img.style.borderRadius ? parseInt(img.style.borderRadius) : null;
+      const tilt = parseFloat(el.dataset.tilt || 0);
+      return {
+        top: Math.round(parseFloat(top)),
+        left: Math.round(parseFloat(left)),
+        rotate: rotMatch ? parseFloat(rotMatch[1]).toFixed(2) + 'deg' : null,
+        width: w,
+        height: h,
+        frameRadius: frameR,
+        imgRadius: imgR,
+        tilt: tilt !== 0 ? tilt : null
+      };
+    }
+
+    function captureInitialPositions() {
+      initialPositions = {};
+      document.querySelectorAll('[data-project]').forEach(el => {
+        initialPositions[getElementId(el)] = snapshotElement(el);
+      });
+    }
+
     editExportBtn.addEventListener('click', () => {
-      const positions = {};
+      const changed = {};
       document.querySelectorAll('[data-project]').forEach(el => {
         const id = getElementId(el);
-        const cs = getComputedStyle(el);
-        const top = el.style.top || cs.top;
-        const left = el.style.left || cs.left;
-        const rotMatch = (el.style.transform || '').match(/rotate\(([-\d.]+)deg\)/);
-        const w = el.style.width ? Math.round(parseFloat(el.style.width)) : null;
-        const h = el.style.height ? Math.round(parseFloat(el.style.height)) : null;
-        const frameR = el.style.borderRadius ? parseInt(el.style.borderRadius) : null;
-        const img = el.querySelector('img');
-        const imgR = img && img.style.borderRadius ? parseInt(img.style.borderRadius) : null;
-        const tilt = parseFloat(el.dataset.tilt || 0);
-        positions[id] = {
-          top: Math.round(parseFloat(top)),
-          left: Math.round(parseFloat(left)),
-          rotate: rotMatch ? parseFloat(rotMatch[1]).toFixed(2) + 'deg' : null,
-          width: w,
-          height: h,
-          frameRadius: frameR,
-          imgRadius: imgR,
-          tilt: tilt !== 0 ? tilt : null
-        };
+        const current = snapshotElement(el);
+        const initial = initialPositions[id];
+        if (!initial) {
+          // New element — export everything
+          changed[id] = current;
+          return;
+        }
+        // Compare each field
+        const diff = {};
+        let hasDiff = false;
+        for (const key of Object.keys(current)) {
+          if (JSON.stringify(current[key]) !== JSON.stringify(initial[key])) {
+            diff[key] = current[key];
+            hasDiff = true;
+          }
+        }
+        if (hasDiff) changed[id] = diff;
       });
-      const json = JSON.stringify(positions, null, 2);
+
+      const count = Object.keys(changed).length;
+      const json = JSON.stringify(changed, null, 2);
       navigator.clipboard.writeText(json).then(() => {
-        showInfo('📋 Скопировано! Скинь мне этот JSON', 3000);
+        showInfo(count > 0 ? `📋 ${count} изменений скопировано` : '✅ Нет изменений', 3000);
       }).catch(() => {
-        // Fallback
         const ta = document.createElement('textarea');
         ta.value = json;
         document.body.appendChild(ta);
         ta.select();
         document.execCommand('copy');
         ta.remove();
-        showInfo('📋 Скопировано! Скинь мне этот JSON', 3000);
+        showInfo(count > 0 ? `📋 ${count} изменений скопировано` : '✅ Нет изменений', 3000);
       });
     });
 
@@ -3746,11 +4054,41 @@
       document.body.classList.add('light-theme');
       toggle.classList.add('active');
     }
-    toggle.addEventListener('click', () => {
-      const isLight = document.body.classList.toggle('light-theme');
-      toggle.classList.toggle('active', isLight);
-      localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
-    });
+
+    function morphTheme(e) {
+      const rect = toggle.getBoundingClientRect();
+      const cx = rect.right - 18;  // center of pill
+      const cy = rect.top + rect.height / 2;
+      const maxR = Math.hypot(Math.max(cx, window.innerWidth - cx), Math.max(cy, window.innerHeight - cy));
+
+      const isLight = document.body.classList.contains('light-theme');
+      const circle = document.createElement('div');
+      circle.className = 'theme-morph';
+      circle.style.left = cx + 'px';
+      circle.style.top = cy + 'px';
+      circle.style.width = '0px';
+      circle.style.height = '0px';
+      circle.style.background = isLight ? '#0F0F0F' : '#f0f0f0';
+      circle.style.transition = `width 0.6s cubic-bezier(.4,0,.2,1), height 0.6s cubic-bezier(.4,0,.2,1)`;
+      document.body.appendChild(circle);
+
+      requestAnimationFrame(() => {
+        const d = maxR * 2;
+        circle.style.width = d + 'px';
+        circle.style.height = d + 'px';
+      });
+
+      setTimeout(() => {
+        document.body.classList.toggle('light-theme');
+        toggle.classList.toggle('active');
+        localStorage.setItem('portfolio-theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        circle.style.transition = 'opacity 0.3s ease';
+        circle.style.opacity = '0';
+        setTimeout(() => circle.remove(), 300);
+      }, 350);
+    }
+
+    toggle.addEventListener('click', morphTheme);
   })();
 
   // ===== 8. SOUND DESIGN =====
@@ -3899,22 +4237,20 @@
     const DWELL = 1.6;  // seconds to linger on each project
     const keyframes = [];
     const stops = [
-      { x: 0,          y: 0          },  // start
       toStop(818,  804),                  // Вещь (center of card-qr)
       toStop(1985, 576),                  // Бродский (center of card-ruf1)
       toStop(2831, 608),                  // Ozon (center of card-ozon1)
       toStop(2800, 1845),                 // Homigo (center of card-tbank1)
       toStop(1746, 1816),                 // Redis Agency (center of card-afisha1)
       toStop(674,  1805),                 // ACT (center of card-redis1)
-      { x: 0,          y: 0          },   // back
+      toStop(818,  804),                  // back to Вещь
     ];
 
     // Build timeline: arrive → dwell → depart
     let t = 0;
     stops.forEach((s, i) => {
       keyframes.push({ x: s.x, y: s.y, t: t });
-      if (i > 0 && i < stops.length - 1) {
-        // dwell: add second keyframe at same position
+      if (i < stops.length - 1) {
         t += DWELL;
         keyframes.push({ x: s.x, y: s.y, t: t });
       }
@@ -3926,6 +4262,9 @@
 
     function runTour() {
       tourActive = true;
+      scale = 1;
+      panX = 0; panY = 0;
+      applyTransform();
       const startTime = performance.now();
 
       function tick(now) {
@@ -3945,9 +4284,7 @@
         if (segDur <= 0) {
           x = kf1.x; y = kf1.y;
         } else {
-          // Local progress 0→1 within this segment
           const lt = (time - kf0.t) / segDur;
-          // Smooth ease in-out (sine)
           const e = 0.5 - 0.5 * Math.cos(lt * Math.PI);
           x = kf0.x + (kf1.x - kf0.x) * e;
           y = kf0.y + (kf1.y - kf0.y) * e;
@@ -3961,7 +4298,7 @@
           requestAnimationFrame(tick);
         } else {
           tourActive = false;
-          panX = 0; panY = 0;
+          // Stay on last stop (Вещь)
           applyTransform();
         }
       }
@@ -3972,26 +4309,862 @@
     function stopTour() {
       if (!tourActive) return;
       tourActive = false;
-      // Animate back to origin
-      const sx = panX, sy = panY;
-      const start = performance.now();
-      const dur = 400;
-      function snapBack(now) {
-        const t = Math.min((now - start) / dur, 1);
-        const e = 1 - Math.pow(1 - t, 3);
-        panX = sx * (1 - e);
-        panY = sy * (1 - e);
-        applyTransform();
-        if (t < 1) requestAnimationFrame(snapBack);
-      }
-      requestAnimationFrame(snapBack);
+      // Stay where we are — just stop the animation
     }
     viewport.addEventListener('mousedown', stopTour);
     viewport.addEventListener('wheel', stopTour);
 
-    // Auto-start on every page load after a brief delay
-    setTimeout(runTour, 400);
+    // Tour is now started by the loader after it finishes
     window.startTour = runTour;
+  })();
+
+  // ===== CUSTOM CURSOR =====
+  (function() {
+    const cur = document.getElementById('customCursor');
+    if (!cur) return;
+    document.addEventListener('mousemove', e => {
+      cur.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
+    const hoverSelectors = 'a, button, [data-project], .chip, .logo-item, .settings-row, .collapse-btn, .detail-back, .tour-skip, .lang-option, input';
+    document.addEventListener('mouseover', e => {
+      if (e.target.closest(hoverSelectors)) cur.classList.add('hover');
+    });
+    document.addEventListener('mouseout', e => {
+      if (e.target.closest(hoverSelectors)) cur.classList.remove('hover');
+    });
+    document.addEventListener('mouseleave', () => cur.classList.add('hidden'));
+    document.addEventListener('mouseenter', () => cur.classList.remove('hidden'));
+  })();
+
+  // ===== LOADER =====
+  (function() {
+    const loader = document.getElementById('loaderScreen');
+    const pct = document.getElementById('loaderPercent');
+    if (!loader) return;
+    const imgs = Array.from(document.images);
+    const total = imgs.length || 1;
+    let loaded = 0;
+    let displayedPct = 0;
+    let targetPct = 0;
+    let countFrame;
+
+    // Animate counter from current to target
+    function animateCounter() {
+      if (displayedPct < targetPct) {
+        displayedPct++;
+        if (pct) pct.textContent = displayedPct + '%';
+        countFrame = requestAnimationFrame(animateCounter);
+      } else if (targetPct >= 100 && displayedPct >= 100) {
+        finish();
+      }
+    }
+
+    function progress() {
+      loaded++;
+      targetPct = Math.min(100, Math.round((loaded / total) * 100));
+      if (!countFrame || displayedPct >= targetPct) {
+        cancelAnimationFrame(countFrame);
+        countFrame = requestAnimationFrame(animateCounter);
+      }
+    }
+
+    let finished = false;
+    function finish() {
+      if (finished) return;
+      finished = true;
+      if (pct) pct.textContent = '100%';
+      setTimeout(() => {
+        loader.classList.add('fade-out');
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) sidebar.classList.add('animate-in');
+        setTimeout(() => {
+          if (typeof window.startTour === 'function') window.startTour();
+        }, 600);
+        setTimeout(() => loader.remove(), 600);
+      }, 300);
+    }
+    imgs.forEach(img => {
+      if (img.complete) { progress(); return; }
+      img.addEventListener('load', progress);
+      img.addEventListener('error', progress);
+    });
+    // Fallback
+    setTimeout(() => { targetPct = 100; animateCounter(); }, 4000);
+  })();
+
+  // ===== OPEN PROJECTS FROM ADMIN =====
+  (function() {
+    // "открыть" buttons in visibility section
+    document.querySelectorAll('.edit-vis-open[data-edit-open]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        const key = btn.dataset.editOpen;
+        if (key && window.openDetail) window.openDetail(key);
+      });
+    });
+    // Double-click on project card in edit mode opens detail
+    document.querySelectorAll('[data-project]').forEach(el => {
+      el.addEventListener('dblclick', () => {
+        if (!document.body.classList.contains('edit-mode')) return;
+        const key = el.dataset.project;
+        if (key && window.openDetail) window.openDetail(key);
+      });
+    });
+  })();
+
+  // ===== INLINE EDITING =====
+  (function() {
+    const EDIT_DATA_KEY = 'portfolio-project-edits';
+
+    function getEdits() {
+      try { return JSON.parse(localStorage.getItem(EDIT_DATA_KEY)) || {}; }
+      catch { return {}; }
+    }
+
+    function saveEdit(projectKey, field, value) {
+      const edits = getEdits();
+      if (!edits[projectKey]) edits[projectKey] = {};
+      edits[projectKey][field] = value;
+      localStorage.setItem(EDIT_DATA_KEY, JSON.stringify(edits));
+    }
+
+    // Apply saved edits to projects object on load
+    function applyEdits() {
+      const edits = getEdits();
+      const projects = window.__projects;
+      if (!projects) return;
+      Object.keys(edits).forEach(key => {
+        if (!projects[key]) return;
+        const e = edits[key];
+        if (e.title) projects[key].title = e.title;
+        if (e.desc) projects[key].desc = e.desc;
+        if (e.tags) projects[key].tags = e.tags;
+        if (e.gallery) projects[key].gallery = e.gallery;
+      });
+    }
+
+    // Make detail fields editable when in edit mode
+    const detailTitle = document.getElementById('detailTitle');
+    const detailDesc = document.getElementById('detailDesc');
+    const detailTags = document.getElementById('detailTags');
+
+    // Observer to watch for edit-mode class changes
+    const observer = new MutationObserver(() => {
+      const inEdit = document.body.classList.contains('edit-mode');
+      if (detailTitle) detailTitle.contentEditable = inEdit ? 'true' : 'false';
+      if (detailDesc) detailDesc.contentEditable = inEdit ? 'true' : 'false';
+      // Make tags editable too
+      if (detailTags) {
+        detailTags.querySelectorAll('.detail-tag').forEach(tag => {
+          tag.contentEditable = inEdit ? 'true' : 'false';
+        });
+      }
+    });
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    // Save on blur
+    if (detailTitle) {
+      detailTitle.addEventListener('blur', () => {
+        const key = window.__currentOpenProject;
+        if (!key || !document.body.classList.contains('edit-mode')) return;
+        const val = detailTitle.textContent.trim();
+        if (window.__projects && window.__projects[key]) {
+          window.__projects[key].title = val;
+        }
+        saveEdit(key, 'title', val);
+      });
+    }
+
+    if (detailDesc) {
+      detailDesc.addEventListener('blur', () => {
+        const key = window.__currentOpenProject;
+        if (!key || !document.body.classList.contains('edit-mode')) return;
+        const val = detailDesc.innerHTML.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, '').trim();
+        if (window.__projects && window.__projects[key]) {
+          window.__projects[key].desc = val;
+        }
+        saveEdit(key, 'desc', val);
+      });
+    }
+
+    // Apply saved edits on page load
+    applyEdits();
+  })();
+
+  // ===== RESPONSIVE PREVIEW =====
+  (function() {
+    const previewBtn = document.getElementById('editPreviewBtn');
+    const overlay = document.getElementById('previewOverlay');
+    const frame = document.getElementById('previewFrame');
+    const iframe = document.getElementById('previewIframe');
+    const closeBtn = document.getElementById('previewClose');
+    if (!previewBtn || !overlay) return;
+
+    previewBtn.addEventListener('click', () => {
+      overlay.classList.add('active');
+      iframe.src = window.location.href;
+    });
+
+    closeBtn.addEventListener('click', () => {
+      overlay.classList.remove('active');
+      iframe.src = '';
+    });
+
+    overlay.querySelectorAll('[data-preview-size]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        overlay.querySelectorAll('[data-preview-size]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const [w, h] = btn.dataset.previewSize.split('x');
+        frame.style.width = w + 'px';
+        frame.style.height = h + 'px';
+      });
+    });
+  })();
+
+  // ===== KINETIC SCROLL =====
+  (function() {
+    const gallery = document.getElementById('detailGallery');
+    if (!gallery) return;
+
+    let isDown = false, startY, scrollTop, velocity = 0, lastY, lastTime, animFrame;
+    const friction = 0.95;
+    const bounce = 0.3;
+
+    gallery.addEventListener('mousedown', e => {
+      isDown = true;
+      startY = e.pageY;
+      scrollTop = gallery.scrollTop;
+      velocity = 0;
+      lastY = e.pageY;
+      lastTime = Date.now();
+      cancelAnimationFrame(animFrame);
+      gallery.style.scrollBehavior = 'auto';
+    });
+
+    gallery.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const y = e.pageY;
+      const now = Date.now();
+      const dt = now - lastTime;
+      if (dt > 0) {
+        velocity = (lastY - y) / dt * 16;
+      }
+      lastY = y;
+      lastTime = now;
+      gallery.scrollTop = scrollTop - (y - startY);
+    });
+
+    function release() {
+      if (!isDown) return;
+      isDown = false;
+      function coast() {
+        if (Math.abs(velocity) < 0.5) return;
+        gallery.scrollTop += velocity;
+
+        // Bounce at edges
+        const maxScroll = gallery.scrollHeight - gallery.clientHeight;
+        if (gallery.scrollTop <= 0) {
+          velocity *= -bounce;
+          gallery.scrollTop = 0;
+        } else if (gallery.scrollTop >= maxScroll) {
+          velocity *= -bounce;
+          gallery.scrollTop = maxScroll;
+        }
+
+        velocity *= friction;
+        animFrame = requestAnimationFrame(coast);
+      }
+      coast();
+    }
+
+    gallery.addEventListener('mouseup', release);
+    gallery.addEventListener('mouseleave', release);
+
+    // Touch support
+    gallery.addEventListener('touchstart', e => {
+      isDown = true;
+      startY = e.touches[0].pageY;
+      scrollTop = gallery.scrollTop;
+      velocity = 0;
+      lastY = e.touches[0].pageY;
+      lastTime = Date.now();
+      cancelAnimationFrame(animFrame);
+    }, { passive: true });
+
+    gallery.addEventListener('touchmove', e => {
+      if (!isDown) return;
+      const y = e.touches[0].pageY;
+      const now = Date.now();
+      const dt = now - lastTime;
+      if (dt > 0) velocity = (lastY - y) / dt * 16;
+      lastY = y;
+      lastTime = now;
+      gallery.scrollTop = scrollTop - (y - startY);
+    }, { passive: true });
+
+    gallery.addEventListener('touchend', release);
+  })();
+
+  // ===== PHOTO MANAGEMENT IN GALLERY =====
+  (function() {
+    const gallery = document.getElementById('detailGallery');
+    if (!gallery) return;
+
+    // Intercept openDetail to add edit controls
+    const origRender = gallery.innerHTML;
+
+    function initGalleryEdit() {
+      if (!document.body.classList.contains('edit-mode')) return;
+      if (!gallery.querySelector('.gallery-edit-bar')) {
+        addGalleryEditBar();
+      }
+      wrapGalleryImages();
+    }
+
+    // When gallery content changes (openDetail renders new images)
+    const observer = new MutationObserver(initGalleryEdit);
+    observer.observe(gallery, { childList: true });
+
+    // When edit-mode is toggled while project is already open
+    const bodyObs = new MutationObserver(initGalleryEdit);
+    bodyObs.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    function addGalleryEditBar() {
+      const bar = document.createElement('div');
+      bar.className = 'gallery-edit-bar';
+      bar.innerHTML = `<button id="galleryAddBtn">+ Добавить фото</button>`;
+      gallery.prepend(bar);
+
+      bar.querySelector('#galleryAddBtn').addEventListener('click', () => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.multiple = true;
+        input.addEventListener('change', () => {
+          Array.from(input.files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = e => {
+              const key = window.__currentOpenProject;
+              if (!key || !window.__projects[key]) return;
+              if (!window.__projects[key].gallery) window.__projects[key].gallery = [];
+              window.__projects[key].gallery.push(e.target.result);
+              // Re-render
+              const img = document.createElement('div');
+              img.className = 'gallery-img-wrap';
+              img.innerHTML = `<img src="${e.target.result}" alt="new" loading="lazy"><button class="gallery-img-remove">✕</button>`;
+              gallery.appendChild(img);
+              bindRemove(img);
+              bindDrag(img);
+              saveGalleryEdits(key);
+            };
+            reader.readAsDataURL(file);
+          });
+        });
+        input.click();
+      });
+    }
+
+    function wrapGalleryImages() {
+      gallery.querySelectorAll(':scope > img, :scope > .gallery-placeholder').forEach(el => {
+        if (el.parentElement.classList.contains('gallery-img-wrap')) return;
+        const wrap = document.createElement('div');
+        wrap.className = 'gallery-img-wrap';
+        el.parentElement.insertBefore(wrap, el);
+        wrap.appendChild(el);
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'gallery-img-remove';
+        removeBtn.textContent = '✕';
+        wrap.appendChild(removeBtn);
+        bindRemove(wrap);
+        bindDrag(wrap);
+      });
+    }
+
+    function bindRemove(wrap) {
+      wrap.querySelector('.gallery-img-remove').addEventListener('click', () => {
+        const key = window.__currentOpenProject;
+        wrap.remove();
+        if (key && window.__projects[key]) {
+          rebuildGalleryFromDom(key);
+        }
+      });
+    }
+
+    let dragItem = null;
+    function bindDrag(wrap) {
+      wrap.draggable = true;
+      wrap.addEventListener('dragstart', e => {
+        dragItem = wrap;
+        wrap.style.opacity = '0.4';
+        e.dataTransfer.effectAllowed = 'move';
+      });
+      wrap.addEventListener('dragend', () => {
+        wrap.style.opacity = '';
+        dragItem = null;
+      });
+      wrap.addEventListener('dragover', e => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+      });
+      wrap.addEventListener('drop', e => {
+        e.preventDefault();
+        if (dragItem && dragItem !== wrap) {
+          const items = Array.from(gallery.querySelectorAll('.gallery-img-wrap'));
+          const fromIdx = items.indexOf(dragItem);
+          const toIdx = items.indexOf(wrap);
+          if (fromIdx < toIdx) {
+            wrap.parentNode.insertBefore(dragItem, wrap.nextSibling);
+          } else {
+            wrap.parentNode.insertBefore(dragItem, wrap);
+          }
+          const key = window.__currentOpenProject;
+          if (key) rebuildGalleryFromDom(key);
+        }
+      });
+    }
+
+    function rebuildGalleryFromDom(key) {
+      const srcs = [];
+      gallery.querySelectorAll('.gallery-img-wrap').forEach(wrap => {
+        const img = wrap.querySelector('img');
+        if (img) {
+          // Keep relative path if possible, otherwise full src (e.g. data: URLs)
+          const src = img.getAttribute('src') || img.src;
+          srcs.push(src);
+        } else {
+          srcs.push(null);
+        }
+      });
+      if (window.__projects[key]) {
+        window.__projects[key].gallery = srcs;
+      }
+      saveGalleryEdits(key);
+    }
+
+    function saveGalleryEdits(key) {
+      try {
+        const edits = JSON.parse(localStorage.getItem('portfolio-project-edits') || '{}');
+        if (!edits[key]) edits[key] = {};
+        edits[key].gallery = window.__projects[key].gallery;
+        localStorage.setItem('portfolio-project-edits', JSON.stringify(edits));
+      } catch(e) {}
+    }
+  })();
+
+  // ===== NEW PROJECT =====
+  (function() {
+    const btn = document.getElementById('editNewProjectBtn');
+    if (!btn) return;
+
+    let newCounter = 0;
+    btn.addEventListener('click', () => {
+      newCounter++;
+      const key = 'custom_' + Date.now();
+      const name = prompt('Название проекта:');
+      if (!name) return;
+
+      // Add to projects
+      if (window.__projects) {
+        window.__projects[key] = {
+          title: name,
+          desc: 'Описание проекта',
+          tags: [],
+          accordions: [],
+          gallery: []
+        };
+      }
+
+      // Create card on canvas
+      const world = document.getElementById('canvasWorld');
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.dataset.project = key;
+      card.style.cssText = `position:absolute; left:${400 + newCounter*100}px; top:${400 + newCounter*100}px; width:300px; height:200px; background:#2a2a2a; border-radius:24px; display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--font-body); font-size:18px; cursor:pointer;`;
+      card.textContent = name;
+      world.appendChild(card);
+
+      // Click to open detail
+      card.addEventListener('click', () => {
+        if (!document.body.classList.contains('edit-mode')) {
+          if (typeof openDetail === 'function') openDetail(key);
+          else if (window.openDetail) window.openDetail(key);
+        }
+      });
+
+      // Save to localStorage
+      try {
+        const edits = JSON.parse(localStorage.getItem('portfolio-project-edits') || '{}');
+        edits[key] = window.__projects[key];
+        edits[key]._isNew = true;
+        edits[key]._style = card.style.cssText;
+        localStorage.setItem('portfolio-project-edits', JSON.stringify(edits));
+      } catch(e) {}
+    });
+  })();
+
+  // ===== DELETE PROJECT =====
+  (function() {
+    const deleteBtn = document.getElementById('detailDeleteBtn');
+    const modal = document.getElementById('confirmModal');
+    const cancelBtn = document.getElementById('confirmCancel');
+    const okBtn = document.getElementById('confirmOk');
+    if (!deleteBtn || !modal) return;
+
+    deleteBtn.addEventListener('click', () => {
+      modal.classList.add('active');
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    modal.addEventListener('click', e => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+
+    okBtn.addEventListener('click', () => {
+      const key = window.__currentOpenProject;
+      if (!key) { modal.classList.remove('active'); return; }
+
+      // Remove from DOM
+      document.querySelectorAll(`[data-project="${key}"]`).forEach(el => el.remove());
+
+      // Remove from projects object
+      if (window.__projects) delete window.__projects[key];
+
+      // Save deletion
+      try {
+        const hidden = JSON.parse(localStorage.getItem('portfolio-hidden-projects') || '[]');
+        if (!hidden.includes(key)) hidden.push(key);
+        localStorage.setItem('portfolio-hidden-projects', JSON.stringify(hidden));
+
+        const edits = JSON.parse(localStorage.getItem('portfolio-project-edits') || '{}');
+        if (edits[key]) edits[key]._deleted = true;
+        else edits[key] = { _deleted: true };
+        localStorage.setItem('portfolio-project-edits', JSON.stringify(edits));
+      } catch(e) {}
+
+      // Close detail
+      const detail = document.getElementById('projectDetail');
+      if (detail) detail.classList.remove('open');
+      modal.classList.remove('active');
+    });
+  })();
+
+  // ===== ANALYTICS =====
+  (function() {
+    const ANALYTICS_KEY = 'portfolio-analytics';
+
+    function getAnalytics() {
+      try { return JSON.parse(localStorage.getItem(ANALYTICS_KEY)) || { views: 0, projects: {}, clicks: [] }; }
+      catch { return { views: 0, projects: {}, clicks: [] }; }
+    }
+
+    function saveAnalytics(data) {
+      try { localStorage.setItem(ANALYTICS_KEY, JSON.stringify(data)); } catch(e) {}
+    }
+
+    // Track page view
+    const data = getAnalytics();
+    data.views = (data.views || 0) + 1;
+    saveAnalytics(data);
+
+    // Track project opens
+    const origOpen = window.openDetail;
+    if (origOpen) {
+      window.openDetail = function(key) {
+        const d = getAnalytics();
+        if (!d.projects) d.projects = {};
+        d.projects[key] = (d.projects[key] || 0) + 1;
+        saveAnalytics(d);
+        return origOpen.call(this, key);
+      };
+    }
+
+    // Track clicks for heatmap
+    document.addEventListener('click', e => {
+      const d = getAnalytics();
+      if (!d.clicks) d.clicks = [];
+      // Keep last 500 clicks
+      if (d.clicks.length > 500) d.clicks = d.clicks.slice(-250);
+      d.clicks.push({
+        x: Math.round(e.clientX / window.innerWidth * 100),
+        y: Math.round(e.clientY / window.innerHeight * 100),
+        t: Date.now()
+      });
+      saveAnalytics(d);
+    });
+
+    // Render analytics panel
+    function renderAnalytics() {
+      const container = document.getElementById('analyticsContent');
+      if (!container) return;
+      const d = getAnalytics();
+
+      let html = `<div class="analytics-stat"><span>Просмотры страницы</span><span class="count">${d.views || 0}</span></div>`;
+
+      // Sort projects by popularity
+      const projects = d.projects || {};
+      const sorted = Object.entries(projects).sort((a, b) => b[1] - a[1]);
+      if (sorted.length > 0) {
+        html += `<div style="margin-top:8px;opacity:0.5;font-size:12px;margin-bottom:4px;">Открытия проектов</div>`;
+        sorted.forEach(([key, count]) => {
+          const name = (window.__projects && window.__projects[key]) ? window.__projects[key].title : key;
+          html += `<div class="analytics-stat"><span>${name}</span><span class="count">${count}</span></div>`;
+        });
+      }
+
+      // Click density summary
+      const clicks = d.clicks || [];
+      html += `<div class="analytics-stat" style="margin-top:8px;"><span>Кликов записано</span><span class="count">${clicks.length}</span></div>`;
+
+      // Reset button
+      html += `<button style="margin-top:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer;width:100%;" id="analyticsResetBtn">Сбросить аналитику</button>`;
+
+      container.innerHTML = html;
+
+      const resetBtn = document.getElementById('analyticsResetBtn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          localStorage.removeItem(ANALYTICS_KEY);
+          renderAnalytics();
+        });
+      }
+    }
+
+    // Re-render when edit mode activates
+    const obs = new MutationObserver(() => {
+      if (document.body.classList.contains('edit-mode')) renderAnalytics();
+    });
+    obs.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+  })();
+
+  // ===== TOUR ORDER =====
+  (function() {
+    const list = document.getElementById('tourOrderList');
+    if (!list) return;
+
+    const TOUR_ORDER_KEY = 'portfolio-tour-order';
+    const defaultOrder = ['vesh', 'ruf', 'ozon', 'tbank', 'afisha', 'redis'];
+
+    function getOrder() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(TOUR_ORDER_KEY));
+        if (saved && saved.length) return saved;
+      } catch {}
+      return [...defaultOrder];
+    }
+
+    function saveOrder(order) {
+      localStorage.setItem(TOUR_ORDER_KEY, JSON.stringify(order));
+    }
+
+    function getProjectName(key) {
+      if (window.__projects && window.__projects[key]) return window.__projects[key].title;
+      return key;
+    }
+
+    function render() {
+      const order = getOrder();
+      list.innerHTML = '';
+      order.forEach(key => {
+        const item = document.createElement('div');
+        item.className = 'tour-order-item';
+        item.draggable = true;
+        item.dataset.tourKey = key;
+        item.innerHTML = `<span class="drag-handle">⠿</span><span>${getProjectName(key)}</span>`;
+        list.appendChild(item);
+      });
+      bindDrag();
+    }
+
+    let dragItem = null;
+    function bindDrag() {
+      list.querySelectorAll('.tour-order-item').forEach(item => {
+        item.addEventListener('dragstart', e => {
+          dragItem = item;
+          item.style.opacity = '0.4';
+          e.dataTransfer.effectAllowed = 'move';
+        });
+        item.addEventListener('dragend', () => {
+          item.style.opacity = '';
+          list.querySelectorAll('.tour-order-item').forEach(i => i.classList.remove('drag-over'));
+          dragItem = null;
+          // Save new order
+          const newOrder = Array.from(list.querySelectorAll('.tour-order-item')).map(i => i.dataset.tourKey);
+          saveOrder(newOrder);
+        });
+        item.addEventListener('dragover', e => {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          list.querySelectorAll('.tour-order-item').forEach(i => i.classList.remove('drag-over'));
+          item.classList.add('drag-over');
+        });
+        item.addEventListener('drop', e => {
+          e.preventDefault();
+          if (dragItem && dragItem !== item) {
+            const items = Array.from(list.querySelectorAll('.tour-order-item'));
+            const fromIdx = items.indexOf(dragItem);
+            const toIdx = items.indexOf(item);
+            if (fromIdx < toIdx) {
+              item.parentNode.insertBefore(dragItem, item.nextSibling);
+            } else {
+              item.parentNode.insertBefore(dragItem, item);
+            }
+          }
+        });
+      });
+    }
+
+    // Render on edit mode activation
+    const obs = new MutationObserver(() => {
+      if (document.body.classList.contains('edit-mode')) render();
+    });
+    obs.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    render();
+  })();
+
+  // ===== KEYBOARD NAVIGATION =====
+  (function() {
+    const projectKeys = ['vesh', 'ruf', 'ozon', 'redis', 'afisha', 'tbank', 'neuro', 'plakat'];
+    let focusIdx = -1;
+
+    // Make primary project cards focusable
+    projectKeys.forEach((key, i) => {
+      const el = document.querySelector(`[data-project="${key}"]`);
+      if (el) {
+        el.setAttribute('tabindex', '0');
+        el.setAttribute('role', 'button');
+        el.setAttribute('aria-label', (window.__projects && window.__projects[key]) ? window.__projects[key].title : key);
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      const detail = document.getElementById('projectDetail');
+      const isDetailOpen = detail && detail.classList.contains('open');
+
+      // Escape — close detail
+      if (e.key === 'Escape' && isDetailOpen) {
+        e.preventDefault();
+        detail.classList.remove('open');
+        if (window.__currentOpenProject) {
+          // Update hash
+          history.replaceState(null, '', window.location.pathname);
+        }
+        // Focus the card we came from
+        const card = document.querySelector(`[data-project="${projectKeys[focusIdx]}"]`);
+        if (card) card.focus();
+        return;
+      }
+
+      // Enter — open focused project
+      if (e.key === 'Enter' && !isDetailOpen && document.activeElement) {
+        const proj = document.activeElement.dataset?.project;
+        if (proj && window.openDetail) {
+          e.preventDefault();
+          focusIdx = projectKeys.indexOf(proj);
+          window.openDetail(proj);
+          return;
+        }
+      }
+
+      // Tab / Shift+Tab — cycle through project cards (only when detail is closed)
+      if (e.key === 'Tab' && !isDetailOpen) {
+        const visibleKeys = projectKeys.filter(key => {
+          const el = document.querySelector(`[data-project="${key}"]`);
+          return el && el.style.display !== 'none';
+        });
+        if (visibleKeys.length === 0) return;
+
+        e.preventDefault();
+        if (e.shiftKey) {
+          focusIdx = focusIdx <= 0 ? visibleKeys.length - 1 : focusIdx - 1;
+        } else {
+          focusIdx = focusIdx >= visibleKeys.length - 1 ? 0 : focusIdx + 1;
+        }
+        const key = visibleKeys[focusIdx];
+        const el = document.querySelector(`[data-project="${key}"]`);
+        if (el) el.focus();
+      }
+    });
+  })();
+
+  // ===== REMEMBER CANVAS POSITION =====
+  (function() {
+    const POS_KEY = 'portfolio-canvas-pos';
+
+    // Restore on load — only if deep link (tour won't run)
+    try {
+      if (window.location.hash) {
+        const saved = JSON.parse(sessionStorage.getItem(POS_KEY));
+        if (saved && typeof saved.x === 'number') {
+          panX = saved.x;
+          panY = saved.y;
+          scale = saved.s || 1;
+          applyTransform();
+        }
+      }
+    } catch(e) {}
+
+    // Save periodically (after pan/zoom settles)
+    let saveTimer;
+    function scheduleSave() {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => {
+        try {
+          sessionStorage.setItem(POS_KEY, JSON.stringify({ x: panX, y: panY, s: scale }));
+        } catch(e) {}
+      }, 500);
+    }
+
+    // Hook into applyTransform
+    const origApply = applyTransform;
+    applyTransform = function() {
+      origApply();
+      scheduleSave();
+    };
+  })();
+
+  // ===== DEEP LINKS =====
+  (function() {
+    function handleHash() {
+      const hash = window.location.hash.slice(1); // remove #
+      if (!hash) return;
+      // Check if it's a valid project key
+      if (window.__projects && window.__projects[hash] && window.openDetail) {
+        // Small delay to let page settle
+        setTimeout(() => window.openDetail(hash), 800);
+      }
+    }
+
+    // On page load
+    handleHash();
+
+    // On hash change (e.g. user edits URL)
+    window.addEventListener('hashchange', handleHash);
+
+    // Update hash when opening/closing projects
+    const origOpen = window.openDetail;
+    if (origOpen) {
+      window.openDetail = function(key) {
+        history.replaceState(null, '', '#' + key);
+        return origOpen.call(this, key);
+      };
+    }
+
+    const detail = document.getElementById('projectDetail');
+    if (detail) {
+      const origClose = detail.classList.remove.bind(detail.classList);
+      // Watch for close
+      const obs = new MutationObserver(() => {
+        if (!detail.classList.contains('open') && window.location.hash) {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+      });
+      obs.observe(detail, { attributes: true, attributeFilter: ['class'] });
+    }
   })();
 
 </script>
