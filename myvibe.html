@@ -101,6 +101,8 @@
     opacity: 0;
     transition: opacity 0.5s ease;
     pointer-events: none;
+    will-change: opacity;
+    contain: layout style;
   }
   .ft-slide.active { opacity: 1; pointer-events: auto; }
 
@@ -229,6 +231,7 @@
     transform-style: preserve-3d;
     will-change: transform, opacity;
     backface-visibility: hidden;
+    contain: layout style;
   }
   .v-card {
     border-radius: 10px; overflow: hidden;
@@ -339,7 +342,7 @@
      =========================================================== -->
 <section class="ft-section" id="ftSection">
   <div class="ft-sticky">
-    <div class="ft-bg"><video src="IMG_1362.MOV" autoplay muted loop playsinline></video></div>
+    <div class="ft-bg"><video src="IMG_1362.MOV" autoplay muted loop playsinline preload="auto"></video></div>
     <div class="ft-overlay"></div>
     <div class="ft-grid"></div>
 
@@ -521,15 +524,15 @@
 
   const projects = [
     { name:'Фоткаю на проф. камеру', imgs:[
-      {src:'Фото/photo_2026-04-12 22.49.18.jpeg',sz:'sz-a'},
-      {src:'Фото/photo_2026-04-12 22.49.20.jpeg',sz:'sz-b'},
-      {src:'Фото/photo_2026-04-12 22.49.21.jpeg',sz:'sz-w'},
-      {src:'Фото/photo_2026-04-12 22.49.23.jpeg',sz:'sz-c'},
-      {src:'Фото/photo_2026-04-12 22.49.25.jpeg',sz:'sz-d'},
-      {src:'Фото/photo_2026-04-12 22.49.26.jpeg',sz:'sz-s'},
-      {src:'Фото/photo_2026-04-12 22.49.32.jpeg',sz:'sz-b'},
-      {src:'Фото/photo_2026-04-12 22.49.33.jpeg',sz:'sz-c'},
-      {src:'Фото/photo_2026-04-12 22.49.37.jpeg',sz:'sz-w'},
+      {src:'Фото/photo_2026-04-12 22.49.18.webp',sz:'sz-a'},
+      {src:'Фото/photo_2026-04-12 22.49.20.webp',sz:'sz-b'},
+      {src:'Фото/photo_2026-04-12 22.49.21.webp',sz:'sz-w'},
+      {src:'Фото/photo_2026-04-12 22.49.23.webp',sz:'sz-c'},
+      {src:'Фото/photo_2026-04-12 22.49.25.webp',sz:'sz-d'},
+      {src:'Фото/photo_2026-04-12 22.49.26.webp',sz:'sz-s'},
+      {src:'Фото/photo_2026-04-12 22.49.32.webp',sz:'sz-b'},
+      {src:'Фото/photo_2026-04-12 22.49.33.webp',sz:'sz-c'},
+      {src:'Фото/photo_2026-04-12 22.49.37.webp',sz:'sz-w'},
     ]},
     { name:'Занимаюсь генеративкой', imgs:[
       {src:'Генератив/video1.mp4',sz:'sz-circle',video:true,circle:true},
@@ -539,48 +542,48 @@
       {src:'Генератив/IMG_8665.MP4',sz:'sz-b',video:true},
     ]},
     { name:'Рисую интерфейсики', imgs:[
-      {src:'Интерфейсы/Desktop - 19.png',sz:'sz-a'},
-      {src:'Интерфейсы/Frame 1.png',sz:'sz-w'},
-      {src:'Интерфейсы/Two tickets.png',sz:'sz-b'},
-      {src:'Интерфейсы/image 7.png',sz:'sz-c'},
-      {src:'Интерфейсы/image 8.png',sz:'sz-d'},
-      {src:'Интерфейсы/2026-04-12 23.10.47.jpg',sz:'sz-s'},
-      {src:'Интерфейсы/2026-04-12 23.13.59.jpg',sz:'sz-w'},
+      {src:'Интерфейсы/Desktop - 19.webp',sz:'sz-a'},
+      {src:'Интерфейсы/Frame 1.webp',sz:'sz-w'},
+      {src:'Интерфейсы/Two tickets.webp',sz:'sz-b'},
+      {src:'Интерфейсы/image 7.webp',sz:'sz-c'},
+      {src:'Интерфейсы/image 8.webp',sz:'sz-d'},
+      {src:'Интерфейсы/2026-04-12 23.10.47.webp',sz:'sz-s'},
+      {src:'Интерфейсы/2026-04-12 23.13.59.webp',sz:'sz-w'},
     ]},
     { name:'Рисую графику', imgs:[
-      {src:'Графика/2026-04-12 23.11.38.jpg',sz:'sz-a'},
-      {src:'Графика/2026-04-12 23.12.40.jpg',sz:'sz-b'},
-      {src:'Графика/2026-04-12 23.12.44.jpg',sz:'sz-w'},
-      {src:'Графика/2026-04-12 23.12.47.jpg',sz:'sz-c'},
-      {src:'Графика/2026-04-12 23.12.53.jpg',sz:'sz-d'},
-      {src:'Графика/2026-04-12 23.12.56.jpg',sz:'sz-s'},
-      {src:'Графика/2026-04-12 23.13.05.jpg',sz:'sz-b'},
+      {src:'Графика/2026-04-12 23.11.38.webp',sz:'sz-a'},
+      {src:'Графика/2026-04-12 23.12.40.webp',sz:'sz-b'},
+      {src:'Графика/2026-04-12 23.12.44.webp',sz:'sz-w'},
+      {src:'Графика/2026-04-12 23.12.47.webp',sz:'sz-c'},
+      {src:'Графика/2026-04-12 23.12.53.webp',sz:'sz-d'},
+      {src:'Графика/2026-04-12 23.12.56.webp',sz:'sz-s'},
+      {src:'Графика/2026-04-12 23.13.05.webp',sz:'sz-b'},
       {src:'Графика/2026-04-12 23.13.25.mp4',sz:'sz-a',video:true},
-      {src:'Графика/2026-04-12 23.13.50.jpg',sz:'sz-w'},
-      {src:'Графика/2026-04-12 23.14.15.jpg',sz:'sz-c'},
-      {src:'Графика/2026-04-12 23.14.23.jpg',sz:'sz-d'},
-      {src:'Графика/2026-04-12 23.14.30.jpg',sz:'sz-s'},
+      {src:'Графика/2026-04-12 23.13.50.webp',sz:'sz-w'},
+      {src:'Графика/2026-04-12 23.14.15.webp',sz:'sz-c'},
+      {src:'Графика/2026-04-12 23.14.23.webp',sz:'sz-d'},
+      {src:'Графика/2026-04-12 23.14.30.webp',sz:'sz-s'},
     ]},
     { name:'Вайбую', imgs:[
-      {src:'Вайбую/2026-04-12 23.50.41.jpg',sz:'sz-a'},
-      {src:'Вайбую/2026-04-12 23.50.43.jpg',sz:'sz-b'},
-      {src:'Вайбую/2026-04-12 23.50.46.jpg',sz:'sz-w'},
-      {src:'Вайбую/2026-04-12 23.50.48.jpg',sz:'sz-c'},
-      {src:'Вайбую/2026-04-12 23.50.51.jpg',sz:'sz-d'},
-      {src:'Вайбую/2026-04-12 23.50.55.jpg',sz:'sz-s'},
-      {src:'Вайбую/2026-04-12 23.50.57.jpg',sz:'sz-b'},
-      {src:'Вайбую/2026-04-12 23.50.59.jpg',sz:'sz-w'},
-      {src:'Вайбую/2026-04-12 23.51.03.jpg',sz:'sz-c'},
-      {src:'Вайбую/2026-04-12 23.51.05.jpg',sz:'sz-a'},
-      {src:'Вайбую/2026-04-12 23.51.09.jpg',sz:'sz-d'},
-      {src:'Вайбую/2026-04-12 23.51.11.jpg',sz:'sz-b'},
-      {src:'Вайбую/2026-04-12 23.51.14.jpg',sz:'sz-c'},
-      {src:'Вайбую/2026-04-12 23.51.17.jpg',sz:'sz-w'},
-      {src:'Вайбую/2026-04-12 23.51.20.jpg',sz:'sz-s'},
-      {src:'Вайбую/2026-04-12 23.51.22.jpg',sz:'sz-d'},
-      {src:'Вайбую/2026-04-12 23.51.25.jpg',sz:'sz-a'},
+      {src:'Вайбую/2026-04-12 23.50.41.webp',sz:'sz-a'},
+      {src:'Вайбую/2026-04-12 23.50.43.webp',sz:'sz-b'},
+      {src:'Вайбую/2026-04-12 23.50.46.webp',sz:'sz-w'},
+      {src:'Вайбую/2026-04-12 23.50.48.webp',sz:'sz-c'},
+      {src:'Вайбую/2026-04-12 23.50.51.webp',sz:'sz-d'},
+      {src:'Вайбую/2026-04-12 23.50.55.webp',sz:'sz-s'},
+      {src:'Вайбую/2026-04-12 23.50.57.webp',sz:'sz-b'},
+      {src:'Вайбую/2026-04-12 23.50.59.webp',sz:'sz-w'},
+      {src:'Вайбую/2026-04-12 23.51.03.webp',sz:'sz-c'},
+      {src:'Вайбую/2026-04-12 23.51.05.webp',sz:'sz-a'},
+      {src:'Вайбую/2026-04-12 23.51.09.webp',sz:'sz-d'},
+      {src:'Вайбую/2026-04-12 23.51.11.webp',sz:'sz-b'},
+      {src:'Вайбую/2026-04-12 23.51.14.webp',sz:'sz-c'},
+      {src:'Вайбую/2026-04-12 23.51.17.webp',sz:'sz-w'},
+      {src:'Вайбую/2026-04-12 23.51.20.webp',sz:'sz-s'},
+      {src:'Вайбую/2026-04-12 23.51.22.webp',sz:'sz-d'},
+      {src:'Вайбую/2026-04-12 23.51.25.webp',sz:'sz-a'},
       {src:'Вайбую/IMG_7571.MP4',sz:'sz-circle',video:true,circle:true},
-      {src:'Вайбую/photo_2026-04-12 23.31.56.jpeg',sz:'sz-b'},
+      {src:'Вайбую/photo_2026-04-12 23.31.56.webp',sz:'sz-b'},
     ]},
   ];
 
@@ -621,7 +624,10 @@
       el.className='v-item';
       const circleClass = item.circle ? ' v-circle' : '';
       if(item.video){
-        el.innerHTML=`<div class="v-card ${item.sz}${circleClass}"><video src="${item.src}" muted autoplay loop playsinline></video></div>`;
+        // Lazy video: just placeholder div, load video when near camera
+        el.innerHTML=`<div class="v-card ${item.sz}${circleClass}"></div>`;
+        el._videoSrc=item.src;
+        el._videoLoaded=false;
       } else {
         el.innerHTML=`<div class="v-card ${item.sz}"><img src="${item.src}" alt="" loading="lazy"></div>`;
       }
@@ -633,6 +639,7 @@
     el._nx=sp.x; el._ny=sp.y; el._nz=sp.z;
     el._tx=item.tx; el._ty=item.ty; el._tz=item.tz;
     el._ry=(Math.random()-0.5)*6; el._rx=(Math.random()-0.5)*3;
+    el._lastOp=-1; // track last opacity to skip unchanged
     scene.appendChild(el);
     els.push(el);
   });
@@ -669,9 +676,10 @@
   const SCATTER_PHASE=500;
   const MAX_Z=SCATTER_PHASE+projects.length*SECTOR_GAP+800;
 
+  const sphereSec=document.getElementById('sphereSection');
   window.addEventListener('wheel',e=>{
     if(!viewport.classList.contains('active'))return;
-    const rect=document.getElementById('sphereSection').getBoundingClientRect();
+    const rect=sphereSec.getBoundingClientRect();
     if(rect.top<=10){
       // If at the top of sphere and scrolling up — exit back to intro
       if(targetZ<=0 && currentZ<5 && e.deltaY<0){
@@ -709,22 +717,37 @@
     const ry=totalRotY*Math.PI/180,rx=totalRotX*Math.PI/180;
     const cRY=Math.cos(ry),sRY=Math.sin(ry),cRX=Math.cos(rx),sRX=Math.sin(rx);
 
-    els.forEach(el=>{
+    const rs=1-scatter*0.7;
+    for(let i=0,len=els.length;i<len;i++){
+      const el=els[i];
       const bsx=el._nx*SPHERE_R,bsy=el._ny*SPHERE_R,bsz=el._nz*SPHERE_R;
       let sx=bsx*cRY-bsz*sRY,sz=bsx*sRY+bsz*cRY,sy=bsy;
       const sy2=sy*cRX-sz*sRX,sz2=sy*sRX+sz*cRX;sy=sy2;sz=sz2;
       const x=sx+(el._tx-sx)*scatter;
       const y=sy+(el._ty-sy)*scatter;
-      const z=sz+(el._tz-sz)*scatter;
-      const labelBoost = el._isLabel ? 200 : 0;
-      const fz=z+camZ+labelBoost;
+      const z_base=sz+(el._tz-sz)*scatter;
+      const fz=z_base+camZ+(el._isLabel?200:0);
       let op=1;
       if(fz>1100)op=Math.max(0,1-(fz-1100)/400);
       else if(fz<-1000)op=Math.max(0,1-(-1000-fz)/600);
+      // Skip fully hidden elements
+      const opR=Math.round(op*100);
+      if(opR===0 && el._lastOp===0){continue;}
+      el._lastOp=opR;
+      if(opR===0){el.style.opacity='0';el.style.display='none';continue;}
+      el.style.display='';
       el.style.opacity=op;
-      const rs=1-scatter*0.7;
       el.style.transform=`translate(-50%,-50%) translate3d(${x}px,${y}px,${fz}px) rotateY(${el._ry*rs}deg) rotateX(${el._rx*rs}deg)`;
-    });
+      // Lazy load video when element is visible
+      if(el._videoSrc&&!el._videoLoaded&&op>0.1){
+        const v=document.createElement('video');
+        v.src=el._videoSrc;v.muted=true;v.autoplay=true;v.loop=true;v.playsInline=true;
+        v.setAttribute('playsinline','');
+        el.firstChild.appendChild(v);
+        el._videoLoaded=true;
+      }
+    }
+    checkTextMe();
     requestAnimationFrame(renderSphere);
   }
   renderSphere();
@@ -787,7 +810,7 @@
       textmeScreen.classList.remove('active');
     }
   }
-  (function tmLoop(){ checkTextMe(); requestAnimationFrame(tmLoop); })();
+  // checkTextMe called inside renderSphere instead of separate rAF
 
   // Scroll back from textme
   window.addEventListener('wheel', e => {
