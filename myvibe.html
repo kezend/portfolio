@@ -341,13 +341,13 @@
   /* =========== MOBILE (max 600px) =========== */
   @media (max-width: 600px) {
     .ft-text { font-size: 26px !important; letter-spacing: -1.8px; }
-    .fc { max-width: calc(100vw - 24px); width: auto !important; }
-    .fc-img { width: 70px; height: 76px; margin: 8px 0 8px 8px; }
-    .fc-title { font-size: 13px; line-height: 1.1; }
-    .fc-sub { font-size: 11px; line-height: 1.1; }
-    .fc-body { padding: 8px 10px 8px 8px; min-height: 70px; }
-    .fc.wide { width: calc(100vw - 24px) !important; }
-    .fc.wide .fc-img { height: 70px; }
+    .fc { max-width: 220px; width: auto !important; }
+    .fc-img { width: 54px; height: 60px; margin: 6px 0 6px 6px; }
+    .fc-title { font-size: 11px; line-height: 1.1; }
+    .fc-sub { font-size: 10px; line-height: 1.1; }
+    .fc-body { padding: 6px 8px 6px 6px; min-height: 56px; }
+    .fc.wide { width: 220px !important; }
+    .fc.wide .fc-img { height: 56px; }
     .fc-chip img { width: 22px; height: 22px; }
     .fc-chip span { font-size: 9px; }
     .fc-chips { gap: 1px; margin: 4px 8px 8px; }
@@ -365,22 +365,22 @@
     .ft-slide[data-slide="0"] .ft-text:nth-child(6) { top: 57% !important; left: 8% !important; }
 
     /* Slide 1 cards */
-    .ft-slide[data-slide="0"] .fc:nth-of-type(1) { top: 5% !important; left: 4% !important; right: auto !important; max-width: 280px; }
-    .ft-slide[data-slide="0"] .fc:nth-of-type(2) { top: 36% !important; left: 4% !important; max-width: 260px; }
-    .ft-slide[data-slide="0"] .fc:nth-of-type(3) { bottom: 10% !important; right: 4% !important; left: auto !important; max-width: 280px; }
+    .ft-slide[data-slide="0"] .fc:nth-of-type(1) { top: 5% !important; left: 4% !important; right: auto !important; }
+    .ft-slide[data-slide="0"] .fc:nth-of-type(2) { top: 36% !important; left: 4% !important; }
+    .ft-slide[data-slide="0"] .fc:nth-of-type(3) { bottom: 10% !important; right: 4% !important; left: auto !important; }
 
     /* Slide 2 cards */
-    .ft-slide[data-slide="1"] .fc:nth-of-type(1) { top: 8% !important; right: 4% !important; left: auto !important; max-width: 280px; }
-    .ft-slide[data-slide="1"] .fc:nth-of-type(2) { top: 36% !important; left: 4% !important; max-width: 260px; }
-    .ft-slide[data-slide="1"] .fc:nth-of-type(3) { bottom: 12% !important; left: 10% !important; max-width: 280px; }
+    .ft-slide[data-slide="1"] .fc:nth-of-type(1) { top: 8% !important; right: 4% !important; left: auto !important; }
+    .ft-slide[data-slide="1"] .fc:nth-of-type(2) { top: 36% !important; left: 4% !important; }
+    .ft-slide[data-slide="1"] .fc:nth-of-type(3) { bottom: 12% !important; left: 10% !important; }
 
     /* Slide 3 cards */
     .ft-slide[data-slide="2"] .fc:nth-of-type(1) { top: 8% !important; right: 4% !important; left: auto !important; }
-    .ft-slide[data-slide="2"] .fc:nth-of-type(2) { bottom: 14% !important; left: 4% !important; max-width: 260px; }
+    .ft-slide[data-slide="2"] .fc:nth-of-type(2) { bottom: 14% !important; left: 4% !important; }
 
     /* Slide 4 */
-    .ft-slide[data-slide="3"] .fc:nth-of-type(1) { top: 8% !important; left: 4% !important; max-width: 280px; }
-    .ft-slide[data-slide="3"] .fc:nth-of-type(2) { top: 36% !important; right: 4% !important; left: auto !important; max-width: 260px; }
+    .ft-slide[data-slide="3"] .fc:nth-of-type(1) { top: 8% !important; left: 4% !important; }
+    .ft-slide[data-slide="3"] .fc:nth-of-type(2) { top: 36% !important; right: 4% !important; left: auto !important; }
     .ft-slide[data-slide="3"] .ft-text { font-size: 28px !important; bottom: 10% !important; }
 
     /* Sphere */
@@ -802,7 +802,7 @@
     // Also handle Z-scroll via vertical swipe
     const dy=touchStartY-t.clientY;
     if(Math.abs(dy)>10){
-      targetZ+=dy*2.0;
+      targetZ+=dy*0.6;
       targetZ=Math.max(0,Math.min(MAX_Z,targetZ));
       touchStartY=t.clientY;
       // If scrolling back to 0, exit sphere

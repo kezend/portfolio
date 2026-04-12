@@ -814,21 +814,27 @@
     .about-circle-photo { width: 62px; height: 62px; left: 9px; bottom: -24px; }
 
     /* Project detail — mobile: stack vertically, full-width photos */
+    .project-detail { overflow-y: auto !important; overflow-x: hidden !important; }
     .detail-body {
       flex-direction: column !important;
       padding-top: 60px !important;
       padding-left: 8px !important;
       padding-right: 8px !important;
+      padding-bottom: 40px !important;
       gap: 8px !important;
-      overflow-y: auto !important;
+      overflow: visible !important;
+      height: auto !important;
+      min-height: 100%;
     }
     .detail-sidebar {
       width: 100% !important;
       min-width: 100% !important;
       height: auto !important;
+      min-height: auto !important;
       border-radius: 16px !important;
+      flex-shrink: 0 !important;
     }
-    .detail-project-info { padding: 20px 16px 0 !important; }
+    .detail-project-info { padding: 20px 16px 12px !important; }
     .detail-project-info h2 { font-size: 30px !important; }
     .detail-project-info p { font-size: 15px !important; }
     .detail-accordions { padding: 0 8px 8px !important; }
@@ -836,49 +842,55 @@
       flex: none !important;
       overflow: visible !important;
       border-radius: 16px !important;
+      height: auto !important;
     }
     .detail-gallery img, .detail-gallery .gallery-img-wrap {
       width: 100% !important;
       border-radius: 12px;
     }
-    .detail-back { top: 12px; left: 12px; font-size: 14px; height: 34px; }
+    .detail-back { top: 12px; left: 12px; font-size: 14px; height: 34px; z-index: 220 !important; position: fixed !important; }
 
     /* Reflow all projects into a single column for mobile */
-    .card-ruf1 { width: 85%; left: 30px !important; top: 900px !important; transform: rotate(2deg); }
-    .badge-ruf { left: 40px !important; top: 780px !important; transform: rotate(-5deg); }
+    .card-qr { width: 340px !important; height: 430px !important; left: 30px !important; top: 100px !important; }
+    .card-yulia { width: 320px !important; height: 330px !important; left: 200px !important; top: 320px !important; }
+    .badge-vesh { left: 380px !important; top: 240px !important; }
+    .badge-komdiz { left: 400px !important; top: 200px !important; }
+
+    .card-ruf1 { width: 500px !important; left: 30px !important; top: 900px !important; transform: rotate(2deg) !important; }
+    .badge-ruf { left: 40px !important; top: 780px !important; transform: rotate(-5deg) !important; }
     .tag-ruf { left: 60px !important; top: 870px !important; }
 
-    .card-ozon1 { width: 75%; left: 30px !important; top: 1650px !important; transform: rotate(-3deg); }
-    .card-ozon2 { width: 55%; left: 160px !important; top: 1500px !important; transform: rotate(4deg); }
-    .badge-ozon { left: 40px !important; top: 1440px !important; transform: rotate(-6deg); }
-    .tag-ozon-1 { left: 50px !important; top: 2150px !important; }
-    .tag-ozon-2 { left: 120px !important; top: 2150px !important; }
-    .tag-ozon-3 { left: 190px !important; top: 2150px !important; }
+    .card-ozon1 { width: 400px !important; left: 30px !important; top: 1600px !important; transform: rotate(-3deg) !important; }
+    .card-ozon2 { width: 280px !important; left: 280px !important; top: 1450px !important; transform: rotate(4deg) !important; }
+    .badge-ozon { left: 40px !important; top: 1400px !important; transform: rotate(-6deg) !important; }
+    .tag-ozon-1 { left: 50px !important; top: 2050px !important; }
+    .tag-ozon-2 { left: 120px !important; top: 2050px !important; }
+    .tag-ozon-3 { left: 200px !important; top: 2050px !important; }
 
-    .card-redis1 { width: 85%; left: 30px !important; top: 2450px !important; transform: rotate(-2deg); }
-    .badge-redis { left: 40px !important; top: 2330px !important; }
-    .tag-redis-1 { left: 50px !important; top: 2420px !important; }
-    .tag-redis-2 { left: 150px !important; top: 2420px !important; }
+    .card-redis1 { width: 500px !important; left: 30px !important; top: 2350px !important; transform: rotate(-2deg) !important; }
+    .badge-redis { left: 40px !important; top: 2230px !important; }
+    .tag-redis-1 { left: 50px !important; top: 2320px !important; }
+    .tag-redis-2 { left: 150px !important; top: 2320px !important; }
 
-    .card-afisha1 { width: 85%; left: 30px !important; top: 3250px !important; transform: rotate(2deg); }
-    .badge-afisha { left: 40px !important; top: 3130px !important; }
-    .tag-afisha-1 { left: 50px !important; top: 3220px !important; }
-    .tag-afisha-2 { left: 130px !important; top: 3220px !important; }
+    .card-afisha1 { width: 500px !important; left: 30px !important; top: 3100px !important; transform: rotate(2deg) !important; }
+    .badge-afisha { left: 40px !important; top: 2980px !important; }
+    .tag-afisha-1 { left: 50px !important; top: 3070px !important; }
+    .tag-afisha-2 { left: 130px !important; top: 3070px !important; }
 
-    .card-tbank1 { width: 70%; height: auto; left: 30px !important; top: 4000px !important; transform: rotate(-2deg); }
-    .card-tbank2 { width: 60%; height: auto; left: 120px !important; top: 4350px !important; transform: rotate(5deg); }
-    .badge-tbank { left: 40px !important; top: 3900px !important; }
-    .tag-tbank { left: 50px !important; top: 3870px !important; }
+    .card-tbank1 { width: 380px !important; height: auto !important; left: 30px !important; top: 3800px !important; transform: rotate(-2deg) !important; }
+    .card-tbank2 { width: 340px !important; height: auto !important; left: 250px !important; top: 4100px !important; transform: rotate(5deg) !important; }
+    .badge-tbank { left: 40px !important; top: 3700px !important; }
+    .tag-tbank { left: 50px !important; top: 3670px !important; }
 
-    .card-neuro1 { width: 70%; height: auto; left: 30px !important; top: 4900px !important; transform: rotate(3deg); }
-    .card-neuro2 { width: 65%; height: auto; left: 100px !important; top: 5200px !important; transform: rotate(-4deg); }
-    .badge-neuro { left: 40px !important; top: 5430px !important; }
-    .tag-neuro { left: 50px !important; top: 5400px !important; }
+    .card-neuro1 { width: 380px !important; height: auto !important; left: 30px !important; top: 4600px !important; transform: rotate(3deg) !important; }
+    .card-neuro2 { width: 340px !important; height: auto !important; left: 200px !important; top: 4900px !important; transform: rotate(-4deg) !important; }
+    .badge-neuro { left: 40px !important; top: 5120px !important; }
+    .tag-neuro { left: 50px !important; top: 5100px !important; }
 
-    .card-plakat1 { width: 68%; height: auto; left: 30px !important; top: 5750px !important; transform: rotate(-3deg); }
-    .card-plakat2 { width: 60%; height: auto; left: 120px !important; top: 6050px !important; transform: rotate(3deg); }
-    .badge-plakat { left: 40px !important; top: 6280px !important; }
-    .tag-plakat { left: 50px !important; top: 6250px !important; }
+    .card-plakat1 { width: 360px !important; height: auto !important; left: 30px !important; top: 5400px !important; transform: rotate(-3deg) !important; }
+    .card-plakat2 { width: 320px !important; height: auto !important; left: 220px !important; top: 5700px !important; transform: rotate(3deg) !important; }
+    .badge-plakat { left: 40px !important; top: 5920px !important; }
+    .tag-plakat { left: 50px !important; top: 5900px !important; }
   }
 
   /* Scrollbar for sidebar */
