@@ -778,17 +778,20 @@
     .badge-komdiz { left: 540px; }
   }
   @media (max-width: 768px) {
-    .page { flex-direction: column; }
+    .page { flex-direction: column; overflow-y: auto; overflow-x: hidden; }
     html, body { overflow: auto; }
     .sidebar {
+      position: relative;
       width: 100% !important;
       min-width: 100% !important;
       height: auto;
-      flex-direction: row;
-      flex-wrap: wrap;
+      flex-direction: column;
+      flex-wrap: nowrap;
       gap: 8px;
-      padding: 8px;
-      justify-content: center;
+      padding: 16px;
+      justify-content: flex-start;
+      align-items: center;
+      overflow: visible;
     }
     .page.collapsed .sidebar {
       height: 0;
@@ -797,14 +800,18 @@
       padding: 0;
       transform: translateY(-100%);
     }
+    .collapse-btn { display: none; }
     .avatar-card { width: 100%; height: 200px; }
     .profile-card { width: 100%; margin-top: -60px; }
     .info-card { width: 100%; padding: 20px; margin-top: 0; }
-    .main { height: 70vh; min-height: 500px; }
+    .main { height: 80vh; min-height: 500px; width: 100%; }
     .card-qr { width: 55%; height: 400px; left: 5%; top: 100px; }
     .card-yulia { width: 50%; height: 300px; left: 35%; top: 300px; }
     .badge-vesh { left: 50%; top: 240px; }
     .badge-komdiz { left: 65%; top: 230px; }
+    .about-circle { width: 80px; height: 80px; bottom: 16px; right: 16px; }
+    .about-circle-text { font-size: 14px; }
+    .about-circle-photo { width: 62px; height: 62px; left: 9px; bottom: -24px; }
   }
 
   /* Scrollbar for sidebar */
@@ -1954,7 +1961,7 @@
   let didPan = false;
   let startX, startY;
   let panX = 0, panY = 0;
-  let scale = 1;
+  let scale = window.innerWidth <= 768 ? 0.45 : 1;
   const MIN_SCALE = 0.3;
   const MAX_SCALE = 3;
 
@@ -1966,6 +1973,7 @@
     viewport.style.backgroundSize = `${dotW}px ${dotH}px`;
     viewport.style.backgroundPosition = `${panX % dotW}px ${(panY + 16 * scale) % dotH}px`;
   }
+  applyTransform();
 
   // --- Mouse drag to pan ---
   viewport.addEventListener('mousedown', (e) => {
@@ -4420,7 +4428,7 @@
         const sidebar = document.querySelector('.sidebar');
         if (sidebar) sidebar.classList.add('animate-in');
         setTimeout(() => {
-          if (typeof window.startTour === 'function') window.startTour();
+          if (window.innerWidth > 768 && typeof window.startTour === 'function') window.startTour();
         }, 600);
         setTimeout(() => loader.remove(), 600);
       }, 300);

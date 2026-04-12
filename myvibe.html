@@ -245,10 +245,10 @@
   .v-card img, .v-card video { display: block; width: 100%; height: auto; pointer-events: none; }
   .v-card.v-circle { border-radius: 50%; overflow: hidden; }
   .v-card.v-circle video { border-radius: 50%; width: 100%; height: 100%; object-fit: cover; }
-  .sz-a{width:200px} .sz-b{width:165px}
-  .sz-c{width:135px} .sz-d{width:105px}
-  .sz-w{width:210px} .sz-s{width:120px}
-  .sz-circle{width:160px;height:160px}
+  .sz-a{width:380px} .sz-b{width:320px}
+  .sz-c{width:280px} .sz-d{width:240px}
+  .sz-w{width:420px} .sz-s{width:200px}
+  .sz-circle{width:260px;height:260px}
   .v-label {
     position: absolute; transform-style: preserve-3d;
     white-space: nowrap; font-family: var(--font-body); font-weight: 400;
@@ -330,10 +330,10 @@
     .ft-back { font-size: 15px; padding: 7px 10px 7px 14px; }
     .ft-btn { width: 44px; height: 44px; }
     .ft-btn svg { width: 18px; height: 18px; }
-    .sz-a{width:150px} .sz-b{width:125px}
-    .sz-c{width:105px} .sz-d{width:82px}
-    .sz-w{width:160px} .sz-s{width:92px}
-    .sz-circle{width:120px;height:120px}
+    .sz-a{width:300px} .sz-b{width:260px}
+    .sz-c{width:220px} .sz-d{width:190px}
+    .sz-w{width:340px} .sz-s{width:160px}
+    .sz-circle{width:200px;height:200px}
     .lb-lg{font-size:30px} .lb-md{font-size:20px}
     .viewport { perspective: 800px; }
   }
@@ -385,10 +385,10 @@
 
     /* Sphere */
     .viewport { perspective: 500px; }
-    .sz-a{width:120px} .sz-b{width:100px}
-    .sz-c{width:85px} .sz-d{width:68px}
-    .sz-w{width:130px} .sz-s{width:72px}
-    .sz-circle{width:90px;height:90px}
+    .sz-a{width:240px} .sz-b{width:200px}
+    .sz-c{width:170px} .sz-d{width:140px}
+    .sz-w{width:270px} .sz-s{width:120px}
+    .sz-circle{width:160px;height:160px}
     .lb-lg { font-size: 22px; letter-spacing: -0.01em; }
     .lb-md { font-size: 16px; }
     .lb-lg .dot { width: 8px; height: 8px; }
@@ -409,10 +409,10 @@
     .fc-img { width: 56px; height: 62px; }
     .fc-title { font-size: 12px; }
     .fc-sub { font-size: 10px; }
-    .sz-a{width:100px} .sz-b{width:85px}
-    .sz-c{width:72px} .sz-d{width:58px}
-    .sz-w{width:110px} .sz-s{width:62px}
-    .sz-circle{width:76px;height:76px}
+    .sz-a{width:180px} .sz-b{width:150px}
+    .sz-c{width:130px} .sz-d{width:110px}
+    .sz-w{width:200px} .sz-s{width:95px}
+    .sz-circle{width:120px;height:120px}
     .lb-lg{font-size:18px} .lb-md{font-size:14px}
   }
 </style>
@@ -595,9 +595,14 @@
     slides.forEach((s, i) => s.classList.toggle('active', i === slideIndex));
 
     const pastIntro = scrolled >= sectionH - 50;
+    const wasActive = viewport.classList.contains('active');
     viewport.classList.toggle('active', pastIntro);
     cur.classList.toggle('show', pastIntro);
     hint.style.display = pastIntro ? '' : 'none';
+    // Lock body scroll when sphere is active
+    if(pastIntro && !wasActive){
+      document.body.style.overflow = 'hidden';
+    }
   }
 
   window.addEventListener('scroll', updateSlides, { passive: true });
@@ -673,16 +678,26 @@
   ];
 
   const allData = [];
-  const SECTOR_GAP = 1600;
+  const SECTOR_GAP = 2800;
   projects.forEach((proj, pi) => {
     const sZ = -(pi * SECTOR_GAP + 800);
-    allData.push({t:'label',text:proj.name,lb:'lb-lg',tx:0,ty:-30,tz:sZ});
+    // Label at top of sector
+    allData.push({t:'label',text:proj.name,lb:'lb-lg',tx:0,ty:-320,tz:sZ});
+    // Arrange images in a grid below the label
     const c = proj.imgs.length;
+    const isMob = window.innerWidth <= 600;
+    const isMed = window.innerWidth <= 900;
+    const cols = isMob ? 2 : Math.min(3, c);
+    const gapX = isMob ? 220 : isMed ? 340 : 460;
+    const gapY = isMob ? 260 : isMed ? 340 : 420;
     proj.imgs.forEach((img,ci) => {
-      const a = (ci/c)*Math.PI*2 - Math.PI/2;
-      const rR = 280+(ci%2)*80;
-      const zO = (ci%3-1)*150;
-      allData.push({t:'card',src:img.src,sz:img.sz,video:img.video,circle:img.circle,tx:Math.cos(a)*rR,ty:Math.sin(a)*rR*0.55,tz:sZ+zO});
+      const col = ci % cols;
+      const row = Math.floor(ci / cols);
+      const totalCols = Math.min(cols, c - row * cols);
+      const offsetX = (col - (totalCols - 1) / 2) * gapX;
+      const offsetY = row * gapY + 60;
+      const zO = (ci % 3 - 1) * 80;
+      allData.push({t:'card',src:img.src,sz:img.sz,video:img.video,circle:img.circle,tx:offsetX,ty:offsetY,tz:sZ+zO});
     });
   });
 
@@ -792,6 +807,7 @@
         viewport.classList.remove('active');
         cur.classList.remove('show');
         hint.style.display='none';
+        document.body.style.overflow='';
         targetZ=0;currentZ=0;
       }
     }
@@ -810,20 +826,18 @@
   const sphereSec=document.getElementById('sphereSection');
   window.addEventListener('wheel',e=>{
     if(!viewport.classList.contains('active'))return;
-    const rect=sphereSec.getBoundingClientRect();
-    if(rect.top<=10){
-      // If at the top of sphere and scrolling up — exit back to intro
-      if(targetZ<=0 && currentZ<5 && e.deltaY<0){
-        viewport.classList.remove('active');
-        cur.classList.remove('show');
-        hint.style.display='none';
-        targetZ=0; currentZ=0;
-        return; // let normal scroll happen
-      }
-      e.preventDefault();
-      targetZ+=e.deltaY*1.4;
-      targetZ=Math.max(0,Math.min(MAX_Z,targetZ));
+    // If at the top of sphere and scrolling up — exit back to intro
+    if(targetZ<=0 && currentZ<5 && e.deltaY<0){
+      viewport.classList.remove('active');
+      cur.classList.remove('show');
+      hint.style.display='none';
+      document.body.style.overflow = '';
+      targetZ=0; currentZ=0;
+      return; // let normal scroll happen
     }
+    e.preventDefault();
+    targetZ+=e.deltaY*1.4;
+    targetZ=Math.max(0,Math.min(MAX_Z,targetZ));
   },{passive:false});
 
   function smoothstep(x){x=Math.max(0,Math.min(1,x));return x*x*(3-2*x);}
@@ -859,8 +873,8 @@
       const z_base=sz+(el._tz-sz)*scatter;
       const fz=z_base+camZ+(el._isLabel?200:0);
       let op=1;
-      if(fz>1100)op=Math.max(0,1-(fz-1100)/400);
-      else if(fz<-1000)op=Math.max(0,1-(-1000-fz)/600);
+      if(fz>1400)op=Math.max(0,1-(fz-1400)/600);
+      else if(fz<-1400)op=Math.max(0,1-(-1400-fz)/800);
       // Skip fully hidden elements
       const opR=Math.round(op*100);
       if(opR===0 && el._lastOp===0){continue;}
