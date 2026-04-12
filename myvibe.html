@@ -316,19 +316,104 @@
     100% { opacity: 0; transform: scale(0.9) rotate(4deg); }
   }
 
+  /* =========== TABLET (max 900px) =========== */
   @media (max-width: 900px) {
-    .fc { max-width: 300px; }
-    .fc-img { width: 80px; height: 90px; }
-    .fc-title { font-size: 14px; }
-    .fc-sub { font-size: 12px; }
-    .ft-text { font-size: 30px !important; letter-spacing: -2px; }
-    .fc.wide { width: 300px; }
-    .sz-a{width:145px} .sz-b{width:120px}
-    .sz-c{width:100px} .sz-d{width:78px}
-    .sz-w{width:152px} .sz-s{width:88px}
-    .sz-circle{width:110px;height:110px}
-    .lb-lg{font-size:28px} .lb-md{font-size:19px}
-    .viewport{perspective:700px}
+    .ft-text { font-size: 34px !important; letter-spacing: -2.4px; }
+    .fc { max-width: 320px; }
+    .fc-img { width: 90px; height: 96px; }
+    .fc-title { font-size: 15px; }
+    .fc-sub { font-size: 13px; }
+    .fc-body { padding: 10px 12px 10px 10px; min-height: 90px; }
+    .fc.wide { width: 310px; }
+    .fc-chip img { width: 26px; height: 26px; }
+    .fc-chip span { font-size: 10px; }
+    .ft-back { font-size: 15px; padding: 7px 10px 7px 14px; }
+    .ft-btn { width: 44px; height: 44px; }
+    .ft-btn svg { width: 18px; height: 18px; }
+    .sz-a{width:150px} .sz-b{width:125px}
+    .sz-c{width:105px} .sz-d{width:82px}
+    .sz-w{width:160px} .sz-s{width:92px}
+    .sz-circle{width:120px;height:120px}
+    .lb-lg{font-size:30px} .lb-md{font-size:20px}
+    .viewport { perspective: 800px; }
+  }
+
+  /* =========== MOBILE (max 600px) =========== */
+  @media (max-width: 600px) {
+    .ft-text { font-size: 26px !important; letter-spacing: -1.8px; }
+    .fc { max-width: calc(100vw - 24px); width: auto !important; }
+    .fc-img { width: 70px; height: 76px; margin: 8px 0 8px 8px; }
+    .fc-title { font-size: 13px; line-height: 1.1; }
+    .fc-sub { font-size: 11px; line-height: 1.1; }
+    .fc-body { padding: 8px 10px 8px 8px; min-height: 70px; }
+    .fc.wide { width: calc(100vw - 24px) !important; }
+    .fc.wide .fc-img { height: 70px; }
+    .fc-chip img { width: 22px; height: 22px; }
+    .fc-chip span { font-size: 9px; }
+    .fc-chips { gap: 1px; margin: 4px 8px 8px; }
+    .ft-back { top: 12px; left: 12px; font-size: 14px; padding: 6px 10px 6px 12px; border-radius: 10px; }
+    .ft-controls { bottom: 16px; gap: 14px; }
+    .ft-btn { width: 40px; height: 40px; }
+    .ft-btn svg { width: 16px; height: 16px; }
+
+    /* Slide 1 text: stack tighter */
+    .ft-slide[data-slide="0"] .ft-text:nth-child(1) { top: 20% !important; left: 8% !important; }
+    .ft-slide[data-slide="0"] .ft-text:nth-child(2) { top: 23.5% !important; left: 16% !important; }
+    .ft-slide[data-slide="0"] .ft-text:nth-child(3) { top: 27% !important; left: 32% !important; }
+    .ft-slide[data-slide="0"] .ft-text:nth-child(4) { top: 50% !important; left: 8% !important; }
+    .ft-slide[data-slide="0"] .ft-text:nth-child(5) { top: 53.5% !important; left: 8% !important; }
+    .ft-slide[data-slide="0"] .ft-text:nth-child(6) { top: 57% !important; left: 8% !important; }
+
+    /* Slide 1 cards */
+    .ft-slide[data-slide="0"] .fc:nth-of-type(1) { top: 5% !important; left: 4% !important; right: auto !important; max-width: 280px; }
+    .ft-slide[data-slide="0"] .fc:nth-of-type(2) { top: 36% !important; left: 4% !important; max-width: 260px; }
+    .ft-slide[data-slide="0"] .fc:nth-of-type(3) { bottom: 10% !important; right: 4% !important; left: auto !important; max-width: 280px; }
+
+    /* Slide 2 cards */
+    .ft-slide[data-slide="1"] .fc:nth-of-type(1) { top: 8% !important; right: 4% !important; left: auto !important; max-width: 280px; }
+    .ft-slide[data-slide="1"] .fc:nth-of-type(2) { top: 36% !important; left: 4% !important; max-width: 260px; }
+    .ft-slide[data-slide="1"] .fc:nth-of-type(3) { bottom: 12% !important; left: 10% !important; max-width: 280px; }
+
+    /* Slide 3 cards */
+    .ft-slide[data-slide="2"] .fc:nth-of-type(1) { top: 8% !important; right: 4% !important; left: auto !important; }
+    .ft-slide[data-slide="2"] .fc:nth-of-type(2) { bottom: 14% !important; left: 4% !important; max-width: 260px; }
+
+    /* Slide 4 */
+    .ft-slide[data-slide="3"] .fc:nth-of-type(1) { top: 8% !important; left: 4% !important; max-width: 280px; }
+    .ft-slide[data-slide="3"] .fc:nth-of-type(2) { top: 36% !important; right: 4% !important; left: auto !important; max-width: 260px; }
+    .ft-slide[data-slide="3"] .ft-text { font-size: 28px !important; bottom: 10% !important; }
+
+    /* Sphere */
+    .viewport { perspective: 500px; }
+    .sz-a{width:120px} .sz-b{width:100px}
+    .sz-c{width:85px} .sz-d{width:68px}
+    .sz-w{width:130px} .sz-s{width:72px}
+    .sz-circle{width:90px;height:90px}
+    .lb-lg { font-size: 22px; letter-spacing: -0.01em; }
+    .lb-md { font-size: 16px; }
+    .lb-lg .dot { width: 8px; height: 8px; }
+    .lb-md .dot { width: 6px; height: 6px; }
+    .v-label { gap: 8px; }
+    .scroll-hint { font-size: 9px; bottom: 20px; }
+
+    /* Text-me pills */
+    .tm-pill { padding: 8px 16px; font-size: 13px; }
+
+    /* Hide custom cursor on mobile */
+    .cursor-dot { display: none !important; }
+  }
+
+  /* =========== SMALL MOBILE (max 380px) =========== */
+  @media (max-width: 380px) {
+    .ft-text { font-size: 22px !important; letter-spacing: -1.4px; }
+    .fc-img { width: 56px; height: 62px; }
+    .fc-title { font-size: 12px; }
+    .fc-sub { font-size: 10px; }
+    .sz-a{width:100px} .sz-b{width:85px}
+    .sz-c{width:72px} .sz-d{width:58px}
+    .sz-w{width:110px} .sz-s{width:62px}
+    .sz-circle{width:76px;height:76px}
+    .lb-lg{font-size:18px} .lb-md{font-size:14px}
   }
 </style>
 </head>
@@ -669,6 +754,52 @@
   window.addEventListener('mouseup',()=>{
     if(!isDrag)return;isDrag=false;viewport.style.cursor='';
     tDRY+=vRY*8;tDRX=Math.max(-60,Math.min(60,tDRX+vRX*5));
+  });
+
+  // Touch drag rotation + scroll for mobile
+  let touchStartY=0, touchMode='none'; // 'rotate' or 'scroll'
+  viewport.addEventListener('touchstart',e=>{
+    if(!viewport.classList.contains('active'))return;
+    const t=e.touches[0];
+    touchStartY=t.clientY;
+    if(currentZ<=SCATTER_PHASE){
+      isDrag=true;dSX=t.clientX;dSY=t.clientY;
+      dBRX=tDRX;dBRY=tDRY;vRX=0;vRY=0;
+      lMX=t.clientX;lMY=t.clientY;lMT=performance.now();
+      touchMode='rotate';
+    } else {
+      touchMode='scroll';
+    }
+  },{passive:true});
+  viewport.addEventListener('touchmove',e=>{
+    if(!viewport.classList.contains('active'))return;
+    const t=e.touches[0];
+    if(touchMode==='rotate'&&isDrag){
+      tDRY=dBRY+(t.clientX-dSX)*0.3;
+      tDRX=Math.max(-60,Math.min(60,dBRX-(t.clientY-dSY)*0.2));
+      const now=performance.now(),dt=now-lMT;
+      if(dt>0){vRY=(t.clientX-lMX)/dt*16;vRX=-(t.clientY-lMY)/dt*16;}
+      lMX=t.clientX;lMY=t.clientY;lMT=now;
+    }
+    // Also handle Z-scroll via vertical swipe
+    const dy=touchStartY-t.clientY;
+    if(Math.abs(dy)>10){
+      targetZ+=dy*0.8;
+      targetZ=Math.max(0,Math.min(MAX_Z,targetZ));
+      touchStartY=t.clientY;
+      // If scrolling back to 0, exit sphere
+      if(targetZ<=0&&currentZ<5&&dy<0){
+        viewport.classList.remove('active');
+        cur.classList.remove('show');
+        hint.style.display='none';
+        targetZ=0;currentZ=0;
+      }
+    }
+    e.preventDefault();
+  },{passive:false});
+  viewport.addEventListener('touchend',()=>{
+    if(isDrag){isDrag=false;tDRY+=vRY*8;tDRX=Math.max(-60,Math.min(60,tDRX+vRX*5));}
+    touchMode='none';
   });
 
   // Scroll
