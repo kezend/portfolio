@@ -678,27 +678,30 @@
   ];
 
   const allData = [];
-  const SECTOR_GAP = 2800;
+  const isMob = window.innerWidth <= 600;
+  const cols = isMob ? 1 : 2;
+  const gapX = isMob ? 0 : 440;
+  const gapZ = 500; // depth between rows
+  const GAP_BETWEEN = 800; // padding between sectors
+  let runningZ = -800; // start offset
+
   projects.forEach((proj, pi) => {
-    const sZ = -(pi * SECTOR_GAP + 800);
+    const sZ = runningZ;
     // Label at top of sector
-    allData.push({t:'label',text:proj.name,lb:'lb-lg',tx:0,ty:-320,tz:sZ});
-    // Arrange images in a grid below the label
+    allData.push({t:'label',text:proj.name,lb:'lb-lg',tx:0,ty:-260,tz:sZ + 200});
+    // Spread images along Z axis — like a gallery corridor
     const c = proj.imgs.length;
-    const isMob = window.innerWidth <= 600;
-    const isMed = window.innerWidth <= 900;
-    const cols = isMob ? 2 : Math.min(3, c);
-    const gapX = isMob ? 220 : isMed ? 340 : 460;
-    const gapY = isMob ? 260 : isMed ? 340 : 420;
+    const totalRows = Math.ceil(c / cols);
     proj.imgs.forEach((img,ci) => {
       const col = ci % cols;
       const row = Math.floor(ci / cols);
-      const totalCols = Math.min(cols, c - row * cols);
-      const offsetX = (col - (totalCols - 1) / 2) * gapX;
-      const offsetY = row * gapY + 60;
-      const zO = (ci % 3 - 1) * 80;
-      allData.push({t:'card',src:img.src,sz:img.sz,video:img.video,circle:img.circle,tx:offsetX,ty:offsetY,tz:sZ+zO});
+      const offsetX = (col - (cols - 1) / 2) * gapX;
+      const offsetY = (ci % 2 === 0 ? -1 : 1) * (20 + Math.random() * 30);
+      const zOffset = -(row * gapZ);
+      allData.push({t:'card',src:img.src,sz:img.sz,video:img.video,circle:img.circle,tx:offsetX,ty:offsetY,tz:sZ + zOffset});
     });
+    // Move running Z past this sector
+    runningZ -= (totalRows * gapZ + GAP_BETWEEN);
   });
 
   const N = allData.length;
@@ -799,7 +802,7 @@
     // Also handle Z-scroll via vertical swipe
     const dy=touchStartY-t.clientY;
     if(Math.abs(dy)>10){
-      targetZ+=dy*0.8;
+      targetZ+=dy*2.0;
       targetZ=Math.max(0,Math.min(MAX_Z,targetZ));
       touchStartY=t.clientY;
       // If scrolling back to 0, exit sphere
@@ -821,7 +824,7 @@
   // Scroll
   let targetZ=0,currentZ=0;
   const SCATTER_PHASE=500;
-  const MAX_Z=SCATTER_PHASE+projects.length*SECTOR_GAP+800;
+  const MAX_Z=SCATTER_PHASE+Math.abs(runningZ)+800;
 
   const sphereSec=document.getElementById('sphereSection');
   window.addEventListener('wheel',e=>{
@@ -836,7 +839,7 @@
       return; // let normal scroll happen
     }
     e.preventDefault();
-    targetZ+=e.deltaY*1.4;
+    targetZ+=e.deltaY*3.0;
     targetZ=Math.max(0,Math.min(MAX_Z,targetZ));
   },{passive:false});
 
@@ -846,7 +849,7 @@
   function renderSphere(){
     if(!viewport.classList.contains('active')){requestAnimationFrame(renderSphere);return;}
     sphereTime += 0.008;
-    currentZ+=(targetZ-currentZ)*0.06;
+    currentZ+=(targetZ-currentZ)*0.12;
     dragRotX+=(tDRX-dragRotX)*0.08;
     dragRotY+=(tDRY-dragRotY)*0.08;
     hint.style.opacity=currentZ>25?'0':'1';

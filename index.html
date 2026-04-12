@@ -812,6 +812,73 @@
     .about-circle { width: 80px; height: 80px; bottom: 16px; right: 16px; }
     .about-circle-text { font-size: 14px; }
     .about-circle-photo { width: 62px; height: 62px; left: 9px; bottom: -24px; }
+
+    /* Project detail — mobile: stack vertically, full-width photos */
+    .detail-body {
+      flex-direction: column !important;
+      padding-top: 60px !important;
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+      gap: 8px !important;
+      overflow-y: auto !important;
+    }
+    .detail-sidebar {
+      width: 100% !important;
+      min-width: 100% !important;
+      height: auto !important;
+      border-radius: 16px !important;
+    }
+    .detail-project-info { padding: 20px 16px 0 !important; }
+    .detail-project-info h2 { font-size: 30px !important; }
+    .detail-project-info p { font-size: 15px !important; }
+    .detail-accordions { padding: 0 8px 8px !important; }
+    .detail-gallery {
+      flex: none !important;
+      overflow: visible !important;
+      border-radius: 16px !important;
+    }
+    .detail-gallery img, .detail-gallery .gallery-img-wrap {
+      width: 100% !important;
+      border-radius: 12px;
+    }
+    .detail-back { top: 12px; left: 12px; font-size: 14px; height: 34px; }
+
+    /* Reflow all projects into a single column for mobile */
+    .card-ruf1 { width: 85%; left: 30px !important; top: 900px !important; transform: rotate(2deg); }
+    .badge-ruf { left: 40px !important; top: 780px !important; transform: rotate(-5deg); }
+    .tag-ruf { left: 60px !important; top: 870px !important; }
+
+    .card-ozon1 { width: 75%; left: 30px !important; top: 1650px !important; transform: rotate(-3deg); }
+    .card-ozon2 { width: 55%; left: 160px !important; top: 1500px !important; transform: rotate(4deg); }
+    .badge-ozon { left: 40px !important; top: 1440px !important; transform: rotate(-6deg); }
+    .tag-ozon-1 { left: 50px !important; top: 2150px !important; }
+    .tag-ozon-2 { left: 120px !important; top: 2150px !important; }
+    .tag-ozon-3 { left: 190px !important; top: 2150px !important; }
+
+    .card-redis1 { width: 85%; left: 30px !important; top: 2450px !important; transform: rotate(-2deg); }
+    .badge-redis { left: 40px !important; top: 2330px !important; }
+    .tag-redis-1 { left: 50px !important; top: 2420px !important; }
+    .tag-redis-2 { left: 150px !important; top: 2420px !important; }
+
+    .card-afisha1 { width: 85%; left: 30px !important; top: 3250px !important; transform: rotate(2deg); }
+    .badge-afisha { left: 40px !important; top: 3130px !important; }
+    .tag-afisha-1 { left: 50px !important; top: 3220px !important; }
+    .tag-afisha-2 { left: 130px !important; top: 3220px !important; }
+
+    .card-tbank1 { width: 70%; height: auto; left: 30px !important; top: 4000px !important; transform: rotate(-2deg); }
+    .card-tbank2 { width: 60%; height: auto; left: 120px !important; top: 4350px !important; transform: rotate(5deg); }
+    .badge-tbank { left: 40px !important; top: 3900px !important; }
+    .tag-tbank { left: 50px !important; top: 3870px !important; }
+
+    .card-neuro1 { width: 70%; height: auto; left: 30px !important; top: 4900px !important; transform: rotate(3deg); }
+    .card-neuro2 { width: 65%; height: auto; left: 100px !important; top: 5200px !important; transform: rotate(-4deg); }
+    .badge-neuro { left: 40px !important; top: 5430px !important; }
+    .tag-neuro { left: 50px !important; top: 5400px !important; }
+
+    .card-plakat1 { width: 68%; height: auto; left: 30px !important; top: 5750px !important; transform: rotate(-3deg); }
+    .card-plakat2 { width: 60%; height: auto; left: 120px !important; top: 6050px !important; transform: rotate(3deg); }
+    .badge-plakat { left: 40px !important; top: 6280px !important; }
+    .tag-plakat { left: 50px !important; top: 6250px !important; }
   }
 
   /* Scrollbar for sidebar */
@@ -1961,7 +2028,7 @@
   let didPan = false;
   let startX, startY;
   let panX = 0, panY = 0;
-  let scale = window.innerWidth <= 768 ? 0.45 : 1;
+  let scale = window.innerWidth <= 768 ? 0.6 : 1;
   const MIN_SCALE = 0.3;
   const MAX_SCALE = 3;
 
