@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Vibe — Марина Устиновская</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Onest:wght@400;500&display=swap');
+  @font-face {
+    font-family: 'PP Neue Montreal';
+    src: url('PPNeueMontreal-Regular.ttf') format('truetype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  :root {
+    --font-heading: 'JetBrains Mono', monospace;
+    --font-body: 'PP Neue Montreal', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #0f0f0f; color: #fff;
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+  ::selection { background: #D4FF00; color: #000; }
+
+  /* =========================================================
+     FACETIME INTRO
+     ========================================================= */
+  .ft-section {
+    position: relative;
+    height: 500vh;
+  }
+  .ft-sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Background video */
+  .ft-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: #000;
+  }
+  .ft-bg video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  /* Dark overlay 30% */
+  .ft-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: rgba(0,0,0,0.6);
+    pointer-events: none;
+  }
+  /* Subtle dot grid overlay */
+  .ft-grid {
+    position: absolute; inset: 0; z-index: 2;
+    opacity: 0.08;
+    background-size: 66px 57px;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px);
+    pointer-events: none;
+  }
+
+  /* "К проектам" button — fixed on all stages */
+  .ft-back {
+    position: fixed;
+    top: 20px; left: 20px; z-index: 500;
+    background: #f7f9f9; color: #222;
+    font-family: 'Onest', var(--font-body);
+    font-size: 17px; font-weight: 400;
+    padding: 8px 12px 8px 16px;
+    border-radius: 12px; border: none;
+    cursor: pointer; text-decoration: none;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .ft-back:hover { transform: scale(1.04); }
+
+  /* FaceTime bottom bar */
+  .ft-controls {
+    position: absolute;
+    bottom: 24px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; gap: 20px; z-index: 50;
+  }
+  .ft-btn {
+    width: 52px; height: 52px;
+    border-radius: 50%; border: none;
+    display: flex; align-items: center; justify-content: center;
+    cursor: default;
+  }
+  .ft-btn.cam  { background: rgba(255,255,255,0.22); backdrop-filter: blur(8px); }
+  .ft-btn.end  { background: #FF3B30; }
+  .ft-btn.mic  { background: rgba(255,255,255,0.22); backdrop-filter: blur(8px); }
+  .ft-btn svg { width: 22px; height: 22px; fill: #fff; }
+
+  /* Slides */
+  .ft-slide {
+    position: absolute; inset: 0; z-index: 10;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .ft-slide.active { opacity: 1; pointer-events: auto; }
+
+  /* === INFO CARD — exact Figma spec === */
+  .fc {
+    position: absolute;
+    background: #fff;
+    border-radius: 6px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    color: #141414;
+    cursor: grab;
+    user-select: none;
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+  .fc.dragging {
+    cursor: grabbing;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    transform: scale(1.03);
+    z-index: 60;
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+  .fc-img {
+    width: 112px; height: 118px;
+    flex-shrink: 0;
+    margin: 10px 0 10px 10px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .fc-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .fc-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 14px 16px 14px 14px;
+    min-height: 110px;
+    flex: 1;
+  }
+  .fc-title {
+    font-family: var(--font-body);
+    font-size: 18px; font-weight: 400;
+    line-height: 1.0; color: #141414;
+  }
+  .fc-sub {
+    font-family: var(--font-body);
+    font-size: 15px; font-weight: 400;
+    line-height: 1.0; color: #141414;
+    opacity: 0.6;
+  }
+
+  /* Wide card (telegram channels) */
+  .fc.wide {
+    flex-direction: column;
+    width: 400px;
+  }
+  .fc.wide .fc-img {
+    width: calc(100% - 20px); height: 100px;
+    margin: 10px 10px 0 10px;
+  }
+  .fc.wide .fc-body {
+    padding: 10px 14px 6px;
+  }
+  .fc-chips {
+    display: flex; gap: 2px;
+    margin: 6px 10px 10px;
+  }
+  .fc-chip {
+    flex: 1;
+    display: flex; align-items: center; gap: 6px;
+    background: #f5f5f5;
+    border-radius: 6px;
+    padding: 6px 8px;
+  }
+  .fc-chip img {
+    width: 32px; height: 32px;
+    border-radius: 6px; object-fit: cover;
+  }
+  .fc-chip span {
+    font-size: 11px; font-weight: 500;
+    line-height: 1.2; color: #333;
+  }
+
+  /* Big decorative text */
+  .ft-text {
+    position: absolute;
+    font-family: var(--font-heading);
+    font-size: 46.48px;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: -3.72px;
+    line-height: 0.79;
+    pointer-events: none;
+    user-select: none;
+    z-index: 10;
+  }
+
+  /* =========================================================
+     3D SPHERE
+     ========================================================= */
+  .viewport {
+    position: fixed; inset: 0;
+    perspective: 1100px;
+    perspective-origin: 50% 50%;
+    overflow: hidden;
+    cursor: grab;
+    z-index: 5;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+    background: #0a0a0a;
+  }
+  .viewport.active { opacity: 1; pointer-events: auto; z-index: 100; }
+  .viewport:active { cursor: grabbing; }
+  .scene {
+    position: absolute; left: 50%; top: 50%;
+    width: 0; height: 0;
+    transform-style: preserve-3d;
+  }
+  .v-item {
+    position: absolute;
+    left: 0; top: 0;
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+  .v-card {
+    border-radius: 10px; overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.45);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .v-card:hover {
+    box-shadow: 0 6px 40px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08);
+    transform: scale(1.03);
+  }
+  .v-card img, .v-card video { display: block; width: 100%; height: auto; pointer-events: none; }
+  .v-card.v-circle { border-radius: 50%; overflow: hidden; }
+  .v-card.v-circle video { border-radius: 50%; width: 100%; height: 100%; object-fit: cover; }
+  .sz-a{width:200px} .sz-b{width:165px}
+  .sz-c{width:135px} .sz-d{width:105px}
+  .sz-w{width:210px} .sz-s{width:120px}
+  .sz-circle{width:160px;height:160px}
+  .v-label {
+    position: absolute; transform-style: preserve-3d;
+    white-space: nowrap; font-family: var(--font-body); font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    display: flex; align-items: center; gap: 12px;
+    user-select: none; pointer-events: none; backface-visibility: hidden;
+  }
+  .v-label .dot {
+    width: 10px; height: 10px;
+    background: rgba(255,255,255,0.6); border-radius: 50%; flex-shrink: 0;
+  }
+  .lb-lg{font-size:44px;letter-spacing:-0.02em} .lb-lg .dot{width:12px;height:12px}
+  .lb-md{font-size:28px} .lb-md .dot{width:10px;height:10px}
+
+  .scroll-hint {
+    position: fixed; bottom: 36px; left: 50%; transform: translateX(-50%);
+    z-index: 1000; font-family: var(--font-heading);
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.2); transition: opacity 0.5s;
+  }
+  .scroll-hint .arr { display: inline-block; animation: bob 1.4s ease infinite; }
+  @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+
+  .cursor-dot {
+    position: fixed; width: 10px; height: 10px;
+    background: #fff; border-radius: 50%;
+    pointer-events: none; z-index: 9999;
+    mix-blend-mode: difference; transition: transform 0.12s;
+    display: none;
+  }
+  .cursor-dot.show { display: block; }
+  .cursor-dot.hov { transform: scale(2.8); }
+
+  /* TEXT ME end screen */
+  .textme-screen {
+    position: fixed; inset: 0;
+    background: #0a0a0a;
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+    overflow: hidden;
+    cursor: crosshair;
+  }
+  .textme-screen.active { opacity: 1; pointer-events: auto; }
+  .tm-pill {
+    position: absolute;
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    color: #fff;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+    animation: tmFade 3s ease forwards;
+  }
+  @keyframes tmFade {
+    0% { opacity: 0; transform: scale(0.5) rotate(-8deg); }
+    10% { opacity: 1; transform: scale(1) rotate(0deg); }
+    70% { opacity: 1; }
+    100% { opacity: 0; transform: scale(0.9) rotate(4deg); }
+  }
+
+  @media (max-width: 900px) {
+    .fc { max-width: 300px; }
+    .fc-img { width: 80px; height: 90px; }
+    .fc-title { font-size: 14px; }
+    .fc-sub { font-size: 12px; }
+    .ft-text { font-size: 30px !important; letter-spacing: -2px; }
+    .fc.wide { width: 300px; }
+    .sz-a{width:145px} .sz-b{width:120px}
+    .sz-c{width:100px} .sz-d{width:78px}
+    .sz-w{width:152px} .sz-s{width:88px}
+    .sz-circle{width:110px;height:110px}
+    .lb-lg{font-size:28px} .lb-md{font-size:19px}
+    .viewport{perspective:700px}
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cur"></div>
+<a href="index.html" class="ft-back">К проектам</a>
+
+<!-- ===========================================================
+     SECTION 1: FACETIME INTRO
+     =========================================================== -->
+<section class="ft-section" id="ftSection">
+  <div class="ft-sticky">
+    <div class="ft-bg"><video src="IMG_1362.MOV" autoplay muted loop playsinline></video></div>
+    <div class="ft-overlay"></div>
+    <div class="ft-grid"></div>
+
+    <div class="ft-controls">
+      <button class="ft-btn cam"><svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4z"/><path d="M9 2L7.17 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2h-3.17L15 2H9zm3 15a5 5 0 110-10 5 5 0 010 10z"/></svg></button>
+      <button class="ft-btn end"><svg viewBox="0 0 24 24"><path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08a.956.956 0 010-1.36C3.46 8.84 7.46 7 12 7s8.54 1.84 11.71 4.72c.18.18.29.43.29.71 0 .28-.11.53-.29.71l-2.48 2.48c-.18.18-.43.29-.71.29-.27 0-.52-.1-.7-.28-.79-.73-1.68-1.36-2.66-1.85a.993.993 0 01-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"/></svg></button>
+      <button class="ft-btn mic"><svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button>
+    </div>
+
+    <!-- SLIDE 1 -->
+    <div class="ft-slide active" data-slide="0">
+      <div class="ft-text" style="top:26.5%; left:21.5%;">привет,</div>
+      <div class="ft-text" style="top:29.8%; left:30.5%;">я 'Марина</div>
+      <div class="ft-text" style="top:33%; left:44.4%; opacity:0.5;">&lt;3</div>
+      <div class="ft-text" style="top:54%; left:44.4%;">читай</div>
+      <div class="ft-text" style="top:57.7%; left:44.4%;">и&nbsp;листай</div>
+      <div class="ft-text" style="top:61.4%; left:44.4%;">вниз</div>
+
+      <div class="fc" style="top:9%; left:37%; width:373px;">
+        <div class="fc-img"><img src="vibe-assets/096bb3bf9bafbd384535f724d13bbd5628c7b5bb.png" alt=""></div>
+        <div class="fc-body">
+          <div class="fc-title">мультидисциплинарный дизайнер в&nbsp;свои 22&nbsp;года</div>
+          <div class="fc-sub">люблю комдиз +&nbsp;продукт. не&nbsp;могу жить и&nbsp;без графики, и&nbsp;без интерфейсов</div>
+        </div>
+      </div>
+
+      <div class="fc" style="top:45%; left:11%; width:308px;">
+        <div class="fc-img"><img src="vibe-assets/8150cacfaac1fe749f8a0181c3f487caa935da06.png" alt=""></div>
+        <div class="fc-body">
+          <div class="fc-title">сейчас работаю в&nbsp;Ozon Tech</div>
+          <div class="fc-sub">до&nbsp;этого&nbsp;— в&nbsp;трёх студиях и&nbsp;в&nbsp;нескольких стартапах</div>
+        </div>
+      </div>
+
+      <div class="fc" style="bottom:12%; right:6%; width:354px;">
+        <div class="fc-img"><img src="vibe-assets/d37371e5e57b25674f29530c3a6f21c5309845f2.png" alt=""></div>
+        <div class="fc-body">
+          <div class="fc-title">учусь в&nbsp;НИУ ВШЭ на&nbsp;дизайне на&nbsp;3&nbsp;курсе</div>
+          <div class="fc-sub">успела побыть на&nbsp;программе UX/UI +&nbsp;код и&nbsp;на&nbsp;комдизе (сейчас тут)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="ft-slide" data-slide="1">
+      <div class="fc" style="top:18%; right:8%; width:354px;">
+        <div class="fc-img"><img src="vibe-assets/4fe3bc52a0c0f86c24dd9e3be4717eefcf74ee35.png" alt=""></div>
+        <div class="fc-body">
+          <div class="fc-title">помимо дизайна я&nbsp;— фотограф</div>
+          <div class="fc-sub">снимаю коммерческие и&nbsp;творческие кадры на&nbsp;Sony</div>
+        </div>
+      </div>
+
+      <div class="fc" style="top:40%; left:16%; width:325px;">
+        <div class="fc-img"><img src="vibe-assets/c7ee953df0e40c0d28962615b3a87c18ec40bfc4.png" alt=""></div>
+        <div class="fc-body">
+          <div class="fc-title">очень люблю генеративку</div>
+          <div class="fc-sub">расшифровывай как любитель TouchDesigner и&nbsp;Claude</div>
+        </div>
+      </div>
+
+      <div class="fc" style="bottom:18%; left:35%; width:354px;">
+        <div class="fc-img"><img src="vibe-assets/dde749b15e8fd0e7f903445b4926f51463c331c2.png" alt=""></div>
+        <div class="fc-body">
+          <div class="fc-title">сдавала ЕГЭ 3 раза ради бюджета НИУ ВШЭ</div>
+          <div class="fc-sub">295 баллов в&nbsp;сумме за&nbsp;3&nbsp;предмета и&nbsp;бесконечная любовь к&nbsp;учебе (почти)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="ft-slide" data-slide="2">
+      <div class="fc wide" style="top:18%; right:6%;">
+        <div class="fc-img"><img src="vibe-assets/b2d9f23cf77727e579642bc6f21520cee4426b17.png" alt=""></div>
+        <div class="fc-body">
+          <div class="fc-title">у&nbsp;меня 3&nbsp;телеграм-канала, в&nbsp;сумме около 2000&nbsp;подписчиков</div>
+          <div class="fc-sub">про комдиз, дизайн-митапы и&nbsp;my&nbsp;life</div>
+        </div>
+        <div class="fc-chips">
+          <a class="fc-chip" href="https://t.me/flux_meetups" target="_blank" style="text-decoration:none;color:#333;">
+            <img src="vibe-assets/95decd0f568ba27c076c0564d78a3036fed2dcb3.png" alt="">
+            <span>флюкс<br>митапы</span>
+          </a>
+          <a class="fc-chip" href="https://t.me/extracomdes" target="_blank" style="text-decoration:none;color:#333;">
+            <img src="vibe-assets/74b96438f9b422ab8f8084b952c420c1e95aad6b.png" alt="">
+            <span>комдиз<br>медиа</span>
+          </a>
+          <a class="fc-chip" href="https://t.me/sakelta" target="_blank" style="text-decoration:none;color:#333;">
+            <img src="vibe-assets/a3886b93f0f4e9c5e5e38675213933a0e8fc25b6.png" alt="">
+            <span>личный<br>ТГК</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="fc" style="bottom:22%; left:6%; width:340px;">
+        <div class="fc-img"><img src="Homigo/image 1926988950.webp" alt=""></div>
+        <div class="fc-body">
+          <div class="fc-title">ещё люблю детективы, VFX и&nbsp;видеоигры</div>
+          <div class="fc-sub">играю и&nbsp;анализирую, могла&nbsp;бы быть нарративным дизайнером в&nbsp;геймдеве</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4 -->
+    <div class="ft-slide" data-slide="3">
+      <div class="fc" style="top:15%; left:28%; width:370px;">
+        <div class="fc-img"><img src="vibe-assets/896fe669536b344ba53097c623b973f1227a0699.png" alt=""></div>
+        <div class="fc-body">
+          <div class="fc-title">выигрывала конкурсы и&nbsp;премии</div>
+          <div class="fc-sub">пока маленькие, но&nbsp;обо мне даже писали в&nbsp;газете родного города</div>
+        </div>
+      </div>
+
+      <div class="fc" style="top:40%; right:10%; width:340px;">
+        <div class="fc-img"><img src="vibe-assets/122456ecd0bafebb3064056ac00ee4032d545bcd.png" alt=""></div>
+        <div class="fc-body">
+          <div class="fc-title">а&nbsp;ещё люблю солнце, спорт и&nbsp;митапы</div>
+          <div class="fc-sub">если соизволю встать с&nbsp;кровати</div>
+        </div>
+      </div>
+
+      <div class="ft-text" style="bottom:14%; left:50%; transform:translateX(-50%); text-align:center; font-size:46px;">дальше фулл<br>погружение</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===========================================================
+     SECTION 2: 3D SPHERE
+     =========================================================== -->
+<section class="sphere-section" id="sphereSection" style="height:100vh;"></section>
+
+<div class="viewport" id="viewport">
+  <div class="scene" id="scene"></div>
+</div>
+<div class="scroll-hint" id="hint" style="display:none;">scroll <span class="arr">↓</span></div>
+
+<div class="textme-screen" id="textmeScreen"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* =============================================================
+     SHARED REFS
+     ============================================================= */
+  const scene = document.getElementById('scene');
+  const viewport = document.getElementById('viewport');
+  const hint = document.getElementById('hint');
+  const cur = document.getElementById('cur');
+
+  /* =============================================================
+     FACETIME INTRO — scroll-based slide transitions
+     ============================================================= */
+  const ftSection = document.getElementById('ftSection');
+  const slides = document.querySelectorAll('.ft-slide');
+  const totalSlides = slides.length;
+
+  function updateSlides() {
+    const rect = ftSection.getBoundingClientRect();
+    const scrolled = -rect.top;
+    const sectionH = ftSection.offsetHeight - window.innerHeight;
+    const progress = Math.max(0, Math.min(1, scrolled / sectionH));
+    const slideIndex = Math.min(totalSlides - 1, Math.floor(progress * totalSlides));
+    slides.forEach((s, i) => s.classList.toggle('active', i === slideIndex));
+
+    const pastIntro = scrolled >= sectionH - 50;
+    viewport.classList.toggle('active', pastIntro);
+    cur.classList.toggle('show', pastIntro);
+    hint.style.display = pastIntro ? '' : 'none';
+  }
+
+  window.addEventListener('scroll', updateSlides, { passive: true });
+  updateSlides();
+
+  /* =============================================================
+     3D SPHERE
+     ============================================================= */
+
+  const projects = [
+    { name:'Фоткаю на проф. камеру', imgs:[
+      {src:'Фото/photo_2026-04-12 22.49.18.jpeg',sz:'sz-a'},
+      {src:'Фото/photo_2026-04-12 22.49.20.jpeg',sz:'sz-b'},
+      {src:'Фото/photo_2026-04-12 22.49.21.jpeg',sz:'sz-w'},
+      {src:'Фото/photo_2026-04-12 22.49.23.jpeg',sz:'sz-c'},
+      {src:'Фото/photo_2026-04-12 22.49.25.jpeg',sz:'sz-d'},
+      {src:'Фото/photo_2026-04-12 22.49.26.jpeg',sz:'sz-s'},
+      {src:'Фото/photo_2026-04-12 22.49.32.jpeg',sz:'sz-b'},
+      {src:'Фото/photo_2026-04-12 22.49.33.jpeg',sz:'sz-c'},
+      {src:'Фото/photo_2026-04-12 22.49.37.jpeg',sz:'sz-w'},
+    ]},
+    { name:'Занимаюсь генеративкой', imgs:[
+      {src:'Генератив/video1.mp4',sz:'sz-circle',video:true,circle:true},
+      {src:'Генератив/video2.mp4',sz:'sz-circle',video:true,circle:true},
+      {src:'Генератив/video3.mp4',sz:'sz-circle',video:true,circle:true},
+      {src:'Генератив/IMG_7491.MOV',sz:'sz-a',video:true},
+      {src:'Генератив/IMG_8665.MP4',sz:'sz-b',video:true},
+    ]},
+    { name:'Рисую интерфейсики', imgs:[
+      {src:'Интерфейсы/Desktop - 19.png',sz:'sz-a'},
+      {src:'Интерфейсы/Frame 1.png',sz:'sz-w'},
+      {src:'Интерфейсы/Two tickets.png',sz:'sz-b'},
+      {src:'Интерфейсы/image 7.png',sz:'sz-c'},
+      {src:'Интерфейсы/image 8.png',sz:'sz-d'},
+      {src:'Интерфейсы/2026-04-12 23.10.47.jpg',sz:'sz-s'},
+      {src:'Интерфейсы/2026-04-12 23.13.59.jpg',sz:'sz-w'},
+    ]},
+    { name:'Рисую графику', imgs:[
+      {src:'Графика/2026-04-12 23.11.38.jpg',sz:'sz-a'},
+      {src:'Графика/2026-04-12 23.12.40.jpg',sz:'sz-b'},
+      {src:'Графика/2026-04-12 23.12.44.jpg',sz:'sz-w'},
+      {src:'Графика/2026-04-12 23.12.47.jpg',sz:'sz-c'},
+      {src:'Графика/2026-04-12 23.12.53.jpg',sz:'sz-d'},
+      {src:'Графика/2026-04-12 23.12.56.jpg',sz:'sz-s'},
+      {src:'Графика/2026-04-12 23.13.05.jpg',sz:'sz-b'},
+      {src:'Графика/2026-04-12 23.13.25.mp4',sz:'sz-a',video:true},
+      {src:'Графика/2026-04-12 23.13.50.jpg',sz:'sz-w'},
+      {src:'Графика/2026-04-12 23.14.15.jpg',sz:'sz-c'},
+      {src:'Графика/2026-04-12 23.14.23.jpg',sz:'sz-d'},
+      {src:'Графика/2026-04-12 23.14.30.jpg',sz:'sz-s'},
+    ]},
+    { name:'Вайбую', imgs:[
+      {src:'Вайбую/2026-04-12 23.50.41.jpg',sz:'sz-a'},
+      {src:'Вайбую/2026-04-12 23.50.43.jpg',sz:'sz-b'},
+      {src:'Вайбую/2026-04-12 23.50.46.jpg',sz:'sz-w'},
+      {src:'Вайбую/2026-04-12 23.50.48.jpg',sz:'sz-c'},
+      {src:'Вайбую/2026-04-12 23.50.51.jpg',sz:'sz-d'},
+      {src:'Вайбую/2026-04-12 23.50.55.jpg',sz:'sz-s'},
+      {src:'Вайбую/2026-04-12 23.50.57.jpg',sz:'sz-b'},
+      {src:'Вайбую/2026-04-12 23.50.59.jpg',sz:'sz-w'},
+      {src:'Вайбую/2026-04-12 23.51.03.jpg',sz:'sz-c'},
+      {src:'Вайбую/2026-04-12 23.51.05.jpg',sz:'sz-a'},
+      {src:'Вайбую/2026-04-12 23.51.09.jpg',sz:'sz-d'},
+      {src:'Вайбую/2026-04-12 23.51.11.jpg',sz:'sz-b'},
+      {src:'Вайбую/2026-04-12 23.51.14.jpg',sz:'sz-c'},
+      {src:'Вайбую/2026-04-12 23.51.17.jpg',sz:'sz-w'},
+      {src:'Вайбую/2026-04-12 23.51.20.jpg',sz:'sz-s'},
+      {src:'Вайбую/2026-04-12 23.51.22.jpg',sz:'sz-d'},
+      {src:'Вайбую/2026-04-12 23.51.25.jpg',sz:'sz-a'},
+      {src:'Вайбую/IMG_7571.MP4',sz:'sz-circle',video:true,circle:true},
+      {src:'Вайбую/photo_2026-04-12 23.31.56.jpeg',sz:'sz-b'},
+    ]},
+  ];
+
+  const allData = [];
+  const SECTOR_GAP = 1600;
+  projects.forEach((proj, pi) => {
+    const sZ = -(pi * SECTOR_GAP + 800);
+    allData.push({t:'label',text:proj.name,lb:'lb-lg',tx:0,ty:-30,tz:sZ});
+    const c = proj.imgs.length;
+    proj.imgs.forEach((img,ci) => {
+      const a = (ci/c)*Math.PI*2 - Math.PI/2;
+      const rR = 280+(ci%2)*80;
+      const zO = (ci%3-1)*150;
+      allData.push({t:'card',src:img.src,sz:img.sz,video:img.video,circle:img.circle,tx:Math.cos(a)*rR,ty:Math.sin(a)*rR*0.55,tz:sZ+zO});
+    });
+  });
+
+  const N = allData.length;
+  function getSphereR(){ return Math.min(window.innerWidth, window.innerHeight)*0.32; }
+  let SPHERE_R = getSphereR();
+
+  function fibSphere(i,total){
+    const g=Math.PI*(3-Math.sqrt(5));
+    const y=1-(i/(total-1))*2;
+    const r=Math.sqrt(1-y*y);
+    const th=g*i;
+    return {x:Math.cos(th)*r, y, z:Math.sin(th)*r};
+  }
+
+  const sphereNorm = [];
+  for(let i=0;i<N;i++) sphereNorm.push(fibSphere(i,N));
+
+  const els = [];
+  allData.forEach((item,i) => {
+    const sp = sphereNorm[i];
+    const el = document.createElement('div');
+    if(item.t==='card'){
+      el.className='v-item';
+      const circleClass = item.circle ? ' v-circle' : '';
+      if(item.video){
+        el.innerHTML=`<div class="v-card ${item.sz}${circleClass}"><video src="${item.src}" muted autoplay loop playsinline></video></div>`;
+      } else {
+        el.innerHTML=`<div class="v-card ${item.sz}"><img src="${item.src}" alt="" loading="lazy"></div>`;
+      }
+    } else {
+      el.className='v-item v-label '+(item.lb||'lb-md');
+      el.innerHTML=`<span class="dot"></span>${item.text}`;
+      el._isLabel = true;
+    }
+    el._nx=sp.x; el._ny=sp.y; el._nz=sp.z;
+    el._tx=item.tx; el._ty=item.ty; el._tz=item.tz;
+    el._ry=(Math.random()-0.5)*6; el._rx=(Math.random()-0.5)*3;
+    scene.appendChild(el);
+    els.push(el);
+  });
+
+  window.addEventListener('resize',()=>{ SPHERE_R=getSphereR(); });
+
+  // Drag rotation
+  let dragRotX=0,dragRotY=0,tDRX=0,tDRY=0;
+  let isDrag=false,dSX=0,dSY=0,dBRX=0,dBRY=0;
+  let vRX=0,vRY=0,lMX=0,lMY=0,lMT=0;
+
+  viewport.addEventListener('mousedown',e=>{
+    if(currentZ>SCATTER_PHASE)return;
+    isDrag=true;dSX=e.clientX;dSY=e.clientY;
+    dBRX=tDRX;dBRY=tDRY;vRX=0;vRY=0;
+    lMX=e.clientX;lMY=e.clientY;lMT=performance.now();
+    viewport.style.cursor='grabbing';
+  });
+  window.addEventListener('mousemove',e=>{
+    if(!isDrag)return;
+    tDRY=dBRY+(e.clientX-dSX)*0.3;
+    tDRX=Math.max(-60,Math.min(60,dBRX-(e.clientY-dSY)*0.2));
+    const now=performance.now(),dt=now-lMT;
+    if(dt>0){vRY=(e.clientX-lMX)/dt*16;vRX=-(e.clientY-lMY)/dt*16;}
+    lMX=e.clientX;lMY=e.clientY;lMT=now;
+  });
+  window.addEventListener('mouseup',()=>{
+    if(!isDrag)return;isDrag=false;viewport.style.cursor='';
+    tDRY+=vRY*8;tDRX=Math.max(-60,Math.min(60,tDRX+vRX*5));
+  });
+
+  // Scroll
+  let targetZ=0,currentZ=0;
+  const SCATTER_PHASE=500;
+  const MAX_Z=SCATTER_PHASE+projects.length*SECTOR_GAP+800;
+
+  window.addEventListener('wheel',e=>{
+    if(!viewport.classList.contains('active'))return;
+    const rect=document.getElementById('sphereSection').getBoundingClientRect();
+    if(rect.top<=10){
+      // If at the top of sphere and scrolling up — exit back to intro
+      if(targetZ<=0 && currentZ<5 && e.deltaY<0){
+        viewport.classList.remove('active');
+        cur.classList.remove('show');
+        hint.style.display='none';
+        targetZ=0; currentZ=0;
+        return; // let normal scroll happen
+      }
+      e.preventDefault();
+      targetZ+=e.deltaY*1.4;
+      targetZ=Math.max(0,Math.min(MAX_Z,targetZ));
+    }
+  },{passive:false});
+
+  function smoothstep(x){x=Math.max(0,Math.min(1,x));return x*x*(3-2*x);}
+
+  let sphereTime = 0;
+  function renderSphere(){
+    if(!viewport.classList.contains('active')){requestAnimationFrame(renderSphere);return;}
+    sphereTime += 0.008;
+    currentZ+=(targetZ-currentZ)*0.06;
+    dragRotX+=(tDRX-dragRotX)*0.08;
+    dragRotY+=(tDRY-dragRotY)*0.08;
+    hint.style.opacity=currentZ>25?'0':'1';
+
+    const scatter=smoothstep(currentZ/SCATTER_PHASE);
+    const camZ=currentZ>SCATTER_PHASE?(currentZ-SCATTER_PHASE):0;
+    // Idle auto-rotation when not dragging and not scrolled
+    const idleRot = (1-scatter) * (!isDrag ? sphereTime * 12 : 0);
+    const autoRotY=(1-scatter)*currentZ*0.012 + idleRot;
+    const totalRotY=(dragRotY+autoRotY)*(1-scatter);
+    const totalRotX=dragRotX*(1-scatter);
+
+    const ry=totalRotY*Math.PI/180,rx=totalRotX*Math.PI/180;
+    const cRY=Math.cos(ry),sRY=Math.sin(ry),cRX=Math.cos(rx),sRX=Math.sin(rx);
+
+    els.forEach(el=>{
+      const bsx=el._nx*SPHERE_R,bsy=el._ny*SPHERE_R,bsz=el._nz*SPHERE_R;
+      let sx=bsx*cRY-bsz*sRY,sz=bsx*sRY+bsz*cRY,sy=bsy;
+      const sy2=sy*cRX-sz*sRX,sz2=sy*sRX+sz*cRX;sy=sy2;sz=sz2;
+      const x=sx+(el._tx-sx)*scatter;
+      const y=sy+(el._ty-sy)*scatter;
+      const z=sz+(el._tz-sz)*scatter;
+      const labelBoost = el._isLabel ? 200 : 0;
+      const fz=z+camZ+labelBoost;
+      let op=1;
+      if(fz>1100)op=Math.max(0,1-(fz-1100)/400);
+      else if(fz<-1000)op=Math.max(0,1-(-1000-fz)/600);
+      el.style.opacity=op;
+      const rs=1-scatter*0.7;
+      el.style.transform=`translate(-50%,-50%) translate3d(${x}px,${y}px,${fz}px) rotateY(${el._ry*rs}deg) rotateX(${el._rx*rs}deg)`;
+    });
+    requestAnimationFrame(renderSphere);
+  }
+  renderSphere();
+
+  /* TEXT ME END SCREEN */
+  const textmeScreen = document.getElementById('textmeScreen');
+  const tmColors = [
+    '#FF3B30','#FF9500','#FFCC00','#34C759','#00C7BE',
+    '#007AFF','#5856D6','#AF52DE','#FF2D55','#A2845E',
+    '#5AC8FA','#64D2FF','#BF5AF2','#FF6482','#30D158',
+  ];
+  const tmTexts = ['text me','напиши мне','write me','ping me','hey!','давай общаться','let\'s talk','свяжись','контакт','hello'];
+  let tmIdx = 0, lastSpawn = 0;
+
+  textmeScreen.addEventListener('mousemove', e => {
+    const now = performance.now();
+    if (now - lastSpawn < 80) return; // throttle
+    lastSpawn = now;
+    const pill = document.createElement('a');
+    pill.className = 'tm-pill';
+    pill.href = 'https://t.me/kezend';
+    pill.target = '_blank';
+    pill.textContent = tmTexts[tmIdx % tmTexts.length];
+    pill.style.background = tmColors[tmIdx % tmColors.length];
+    const rx = (Math.random() - 0.5) * 40;
+    const ry = (Math.random() - 0.5) * 20;
+    pill.style.left = (e.clientX - 50 + rx) + 'px';
+    pill.style.top = (e.clientY - 18 + ry) + 'px';
+    pill.style.pointerEvents = 'auto';
+    textmeScreen.appendChild(pill);
+    tmIdx++;
+    setTimeout(() => pill.remove(), 3000);
+  });
+
+  // Touch support
+  textmeScreen.addEventListener('touchmove', e => {
+    const t = e.touches[0];
+    const now = performance.now();
+    if (now - lastSpawn < 80) return;
+    lastSpawn = now;
+    const pill = document.createElement('a');
+    pill.className = 'tm-pill';
+    pill.href = 'https://t.me/kezend';
+    pill.target = '_blank';
+    pill.textContent = tmTexts[tmIdx % tmTexts.length];
+    pill.style.background = tmColors[tmIdx % tmColors.length];
+    pill.style.left = (t.clientX - 50 + (Math.random()-0.5)*40) + 'px';
+    pill.style.top = (t.clientY - 18 + (Math.random()-0.5)*20) + 'px';
+    pill.style.pointerEvents = 'auto';
+    textmeScreen.appendChild(pill);
+    tmIdx++;
+    setTimeout(() => pill.remove(), 3000);
+  }, {passive: true});
+
+  // Show/hide based on sphere scroll
+  function checkTextMe(){
+    if(currentZ >= MAX_Z - 100){
+      textmeScreen.classList.add('active');
+    } else {
+      textmeScreen.classList.remove('active');
+    }
+  }
+  (function tmLoop(){ checkTextMe(); requestAnimationFrame(tmLoop); })();
+
+  // Scroll back from textme
+  window.addEventListener('wheel', e => {
+    if(textmeScreen.classList.contains('active') && e.deltaY < 0){
+      textmeScreen.classList.remove('active');
+      targetZ = MAX_Z - 200;
+    }
+  }, {passive: true});
+
+  /* DRAGGABLE CARDS */
+  (function(){
+    let dragEl=null, offX=0, offY=0;
+    document.addEventListener('mousedown',e=>{
+      const card=e.target.closest('.fc');
+      if(!card)return;
+      e.preventDefault();
+      dragEl=card;
+      dragEl.classList.add('dragging');
+      const r=card.getBoundingClientRect();
+      offX=e.clientX-r.left;
+      offY=e.clientY-r.top;
+      // switch to left/top positioning
+      card.style.left=r.left+'px';
+      card.style.top=r.top+'px';
+      card.style.right='auto';
+      card.style.bottom='auto';
+      card.style.position='fixed';
+    });
+    document.addEventListener('mousemove',e=>{
+      if(!dragEl)return;
+      dragEl.style.left=(e.clientX-offX)+'px';
+      dragEl.style.top=(e.clientY-offY)+'px';
+    });
+    document.addEventListener('mouseup',()=>{
+      if(!dragEl)return;
+      dragEl.classList.remove('dragging');
+      dragEl=null;
+    });
+    // Touch support
+    document.addEventListener('touchstart',e=>{
+      const card=e.target.closest('.fc');
+      if(!card)return;
+      dragEl=card;
+      dragEl.classList.add('dragging');
+      const t=e.touches[0], r=card.getBoundingClientRect();
+      offX=t.clientX-r.left;
+      offY=t.clientY-r.top;
+      card.style.left=r.left+'px';
+      card.style.top=r.top+'px';
+      card.style.right='auto';
+      card.style.bottom='auto';
+      card.style.position='fixed';
+    },{passive:true});
+    document.addEventListener('touchmove',e=>{
+      if(!dragEl)return;
+      e.preventDefault();
+      const t=e.touches[0];
+      dragEl.style.left=(t.clientX-offX)+'px';
+      dragEl.style.top=(t.clientY-offY)+'px';
+    },{passive:false});
+    document.addEventListener('touchend',()=>{
+      if(!dragEl)return;
+      dragEl.classList.remove('dragging');
+      dragEl=null;
+    });
+  })();
+
+  /* CURSOR */
+  let mx=0,my=0,cx=0,cy=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  (function loop(){cx+=(mx-cx)*0.15;cy+=(my-cy)*0.15;cur.style.left=cx-5+'px';cur.style.top=cy-5+'px';requestAnimationFrame(loop);})();
+  document.addEventListener('mouseover',e=>{if(e.target.closest('.v-card,a'))cur.classList.add('hov');});
+  document.addEventListener('mouseout',e=>{if(e.target.closest('.v-card,a'))cur.classList.remove('hov');});
+  if('ontouchstart' in window)cur.style.display='none';
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')location.href='index.html';});
+})();
+</script>
+</body>
+</html>

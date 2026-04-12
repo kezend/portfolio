@@ -810,6 +810,51 @@
   /* Scrollbar for sidebar */
   .sidebar::-webkit-scrollbar { width: 0; }
 
+  /* My Vibe link card */
+  .vibe-link-card {
+    width: 100%;
+    margin-top: 2px;
+    display: block;
+    text-decoration: none;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 33px 33px 47px 47px;
+    padding: 20px 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .vibe-link-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(212, 255, 0, 0.08);
+  }
+  .vibe-link-card .vibe-link-label {
+    font-family: var(--font-heading);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 8px;
+  }
+  .vibe-link-card .vibe-link-title {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .vibe-link-card .vibe-link-title .arr {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+    opacity: 0.5;
+  }
+  .vibe-link-card:hover .vibe-link-title .arr {
+    transform: translateX(4px);
+    opacity: 1;
+  }
+
   /* ========================================
      PROJECT DETAIL VIEW
      ======================================== */
@@ -1624,6 +1669,12 @@
         </div>
       </div>
     </div>
+
+    <!-- My Vibe link -->
+    <a href="myvibe.html" class="vibe-link-card">
+      <div class="vibe-link-label">Scroll experience</div>
+      <div class="vibe-link-title">My Vibe <span class="arr">→</span></div>
+    </a>
 
   </aside>
 
