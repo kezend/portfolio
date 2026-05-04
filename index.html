@@ -1448,6 +1448,482 @@
   .gallery-placeholder:nth-child(odd) { background: #2e2e2e; }
   .gallery-placeholder:nth-child(even) { background: #242424; }
 
+  /* =========================================================
+     VESH PROJECT — ArtCircles-style DARK layout + edit mode
+     ========================================================= */
+  .vesh-layout-container { display: none; }
+  .project-detail[data-layout="vesh"] .detail-sidebar,
+  .project-detail[data-layout="vesh"] .detail-gallery { display: none; }
+  .project-detail[data-layout="vesh"] {
+    background: #0f0f0f;
+  }
+  .project-detail[data-layout="vesh"] .detail-body {
+    display: block;
+    padding: 0;
+    gap: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    scroll-behavior: smooth;
+    background: #0f0f0f;
+  }
+  .project-detail[data-layout="vesh"] .detail-body::-webkit-scrollbar { width: 0; }
+  .project-detail[data-layout="vesh"] .vesh-layout-container { display: block; }
+
+  /* ───────── HERO — dark, ring of tilted photos + central triad ───────── */
+  .vesh-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0f0f0f;
+    overflow: hidden;
+    padding: 80px 72px 40px;
+  }
+  .vesh-ring {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .vesh-float {
+    position: absolute;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #262626;
+    transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(0.55);
+    opacity: 0;
+    transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--delay, 0ms);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.4);
+    pointer-events: auto;
+    will-change: transform;
+  }
+  .vesh-float.s-sm { width: 74px;  height: 86px;  }
+  .vesh-float.s-md { width: 96px;  height: 114px; }
+  .vesh-float.s-lg { width: 120px; height: 138px; }
+  .project-detail[data-layout="vesh"].open .vesh-float {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1);
+    animation: veshBob 7s ease-in-out infinite;
+    animation-delay: calc(var(--delay, 0ms) + 1.2s);
+  }
+  .vesh-float img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+  @keyframes veshBob {
+    0%, 100% { transform: translate(-50%, calc(-50% + 0px)) rotate(var(--rot, 0deg)) scale(1); }
+    50%      { transform: translate(-50%, calc(-50% - 6px)) rotate(var(--rot, 0deg)) scale(1); }
+  }
+
+  /* Vertical side labels */
+  .vesh-side-label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.35em;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 4;
+    opacity: 0;
+    transition: opacity 0.8s ease 1.2s;
+  }
+  .project-detail[data-layout="vesh"].open .vesh-side-label { opacity: 1; }
+  .vesh-side-left  { left: 14px;  transform-origin: left center;  transform: translateY(-50%) rotate(-90deg); left: 30px; }
+  .vesh-side-right { right: 14px; transform-origin: right center; transform: translateY(-50%) rotate(90deg);  right: 30px; }
+
+  /* Central triad — left photo | middle text | right photo */
+  .vesh-triad {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: auto minmax(auto, 360px) auto;
+    gap: 34px;
+    align-items: center;
+    max-width: 920px;
+    width: 100%;
+  }
+  .vesh-card {
+    position: relative;
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+    transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .project-detail[data-layout="vesh"].open .vesh-card {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  .vesh-card.left  { transition-delay: 0.45s; }
+  .vesh-card.mid   { transition-delay: 0.55s; }
+  .vesh-card.right { transition-delay: 0.65s; }
+
+  .vesh-card-img {
+    width: 200px;
+    height: 240px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #262626;
+    box-shadow: 0 18px 42px rgba(0,0,0,0.5);
+  }
+  .vesh-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vesh-card-caption {
+    margin-top: 18px;
+    text-align: center;
+    font-family: var(--font-body);
+    color: #fff;
+    line-height: 1.25;
+  }
+  .vesh-card-caption strong { display: block; font-size: 14px; font-weight: 500; }
+  .vesh-card-caption span   { font-size: 12px; opacity: 0.5; }
+
+  /* Middle text card */
+  .vesh-middle {
+    text-align: center;
+    color: #fff;
+    font-family: var(--font-body);
+    padding: 0 4px;
+  }
+  .vesh-middle-brand {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    font-weight: 500;
+    color: #fff;
+    margin: 0 0 10px;
+  }
+  .vesh-middle-brand .tiny {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    font-weight: 400;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-top: 6px;
+  }
+  .vesh-middle-rule {
+    height: 1px;
+    background: rgba(255,255,255,0.25);
+    width: 64%;
+    margin: 18px auto 16px;
+  }
+  .vesh-title {
+    font-family: 'PP Neue Montreal', var(--font-body);
+    font-size: 36px;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: #fff;
+    margin: 0 0 10px;
+  }
+  .vesh-curated {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin: 0 0 14px;
+  }
+  .vesh-desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.4;
+    color: #fff;
+    margin: 0 auto 22px;
+    max-width: 300px;
+    opacity: 0.75;
+  }
+  .vesh-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    color: #0f0f0f;
+    border: none;
+    border-radius: 100px;
+    padding: 14px 26px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  }
+  .vesh-cta:hover  { background: #dcdcdc; }
+  .vesh-cta:active { background: #bfbfbf; transform: translateY(2px) scale(0.97); box-shadow: inset 0 2px 6px rgba(0,0,0,0.3); }
+
+  /* ───────── Scroll sections — cinematic ───────── */
+  .vesh-cine {
+    position: relative;
+    background: #0f0f0f;
+    padding: 120px 0 0;
+  }
+  .vesh-section-num {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 24px;
+  }
+  .vesh-section-head {
+    font-family: 'PP Neue Montreal', var(--font-body);
+    font-size: 40px;
+    letter-spacing: -0.8px;
+    color: #fff;
+    text-align: center;
+    margin: 0 0 48px;
+    line-height: 1;
+  }
+
+  /* Full-bleed cinematic shot */
+  .vesh-bleed {
+    width: 100%;
+    max-height: 86vh;
+    overflow: hidden;
+    margin: 0 0 120px;
+  }
+  .vesh-bleed img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transform: scale(1.04);
+    transition: opacity 1s ease, transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .vesh-bleed img.in-view { opacity: 1; transform: scale(1); }
+
+  /* Asymmetric collage — absolute-positioned items within a canvas */
+  .vesh-collage {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 120px;
+    padding: 0 24px;
+    aspect-ratio: 11 / 8;
+  }
+  .vesh-collage-item {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #262626;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.5);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .vesh-collage-item.in-view { opacity: 1; transform: translateY(0); }
+  .vesh-collage-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .vesh-collage-item.k1 { left: 4%;  top: 6%;  width: 28%; aspect-ratio: 3/4; }
+  .vesh-collage-item.k2 { left: 36%; top: 0%;  width: 36%; aspect-ratio: 16/10; }
+  .vesh-collage-item.k3 { left: 75%; top: 14%; width: 22%; aspect-ratio: 3/4; }
+  .vesh-collage-item.k4 { left: 10%; top: 56%; width: 30%; aspect-ratio: 16/10; }
+  .vesh-collage-item.k5 { left: 44%; top: 54%; width: 24%; aspect-ratio: 1/1; }
+  .vesh-collage-item.k6 { left: 70%; top: 60%; width: 26%; aspect-ratio: 4/3; }
+
+  /* Infinite horizontal marquee of photos */
+  .vesh-marquee {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin-bottom: 120px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  }
+  .vesh-marquee-track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    animation: veshMarquee 42s linear infinite;
+  }
+  .vesh-marquee-track:hover { animation-play-state: paused; }
+  .vesh-marquee-track img {
+    height: 260px;
+    width: auto;
+    border-radius: 4px;
+    display: block;
+    flex-shrink: 0;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+  }
+  @keyframes veshMarquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* Closing section */
+  .vesh-closing {
+    text-align: center;
+    padding: 80px 24px 120px;
+    background: #0f0f0f;
+  }
+  .vesh-closing-big {
+    width: 100%;
+    max-width: 900px;
+    aspect-ratio: 16/9;
+    margin: 0 auto 40px;
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.55);
+  }
+  .vesh-closing-big img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    opacity: 0;
+    transform: scale(1.04);
+    transition: opacity 1s ease, transform 1.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .vesh-closing-big img.in-view { opacity: 1; transform: scale(1); }
+  .vesh-closing-text {
+    font-family: 'PP Neue Montreal', var(--font-body);
+    font-size: 42px;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -1px;
+    margin: 0 0 24px;
+  }
+  .vesh-closing-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+  }
+
+  /* ───────── EDIT MODE — Vesh ───────── */
+  /* Inline editable text fields */
+  body.edit-mode [data-vesh-edit] {
+    outline: 1px dashed rgba(255,255,255,0.28);
+    outline-offset: 4px;
+    cursor: text;
+    transition: outline-color 0.15s;
+  }
+  body.edit-mode [data-vesh-edit]:hover { outline-color: rgba(255,255,255,0.55); }
+  body.edit-mode [data-vesh-edit]:focus { outline: 1px solid #D4FF00; }
+
+  /* Removable blocks get a wrapper with a corner "×" button */
+  .vesh-block-wrap { position: relative; }
+  .vesh-remove-btn {
+    display: none;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #ff3b30;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 5;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+    transition: transform 0.15s, background 0.15s;
+  }
+  .vesh-remove-btn:hover { background: #e0332b; transform: scale(1.08); }
+  body.edit-mode .vesh-remove-btn { display: flex; }
+  body.edit-mode .vesh-float .vesh-remove-btn,
+  body.edit-mode .vesh-collage-item .vesh-remove-btn {
+    display: flex;
+    top: 4px; right: 4px;
+    width: 22px; height: 22px;
+    font-size: 12px;
+  }
+  body.edit-mode .vesh-float { outline: 1px dashed rgba(255,59,48,0.5); outline-offset: 2px; }
+  body.edit-mode .vesh-collage-item { outline: 1px dashed rgba(255,59,48,0.5); outline-offset: 2px; }
+  body.edit-mode .vesh-card  { outline: 1px dashed rgba(255,59,48,0.3); outline-offset: 8px; }
+  body.edit-mode .vesh-bleed,
+  body.edit-mode .vesh-marquee,
+  body.edit-mode .vesh-closing { outline: 1px dashed rgba(255,59,48,0.25); outline-offset: -4px; }
+
+  /* Edit toolbar shown only when body has .edit-mode AND data-layout="vesh" */
+  .vesh-edit-toolbar {
+    display: none;
+    position: fixed;
+    top: 72px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 260;
+    gap: 10px;
+    align-items: center;
+    background: rgba(20,20,20,0.92);
+    border: 1px solid rgba(212,255,0,0.35);
+    backdrop-filter: blur(8px);
+    padding: 8px 14px;
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: #D4FF00;
+    text-transform: uppercase;
+    pointer-events: auto;
+  }
+  body.edit-mode .project-detail[data-layout="vesh"] ~ .vesh-edit-toolbar,
+  body.edit-mode .project-detail[data-layout="vesh"].open .vesh-edit-toolbar {
+    display: flex;
+  }
+  .vesh-edit-toolbar .sep {
+    opacity: 0.35;
+    padding: 0 4px;
+  }
+  .vesh-edit-toolbar .btn {
+    background: transparent;
+    border: 1px solid rgba(212,255,0,0.4);
+    color: #D4FF00;
+    padding: 5px 10px;
+    border-radius: 100px;
+    font: inherit;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .vesh-edit-toolbar .btn:hover { background: #D4FF00; color: #0f0f0f; }
+
+  @media (max-width: 1024px) {
+    .vesh-hero { padding: 70px 48px 40px; }
+    .vesh-triad { grid-template-columns: 1fr 1fr 1fr; gap: 18px; max-width: none; }
+    .vesh-card-img { width: 100%; height: auto; aspect-ratio: 5/6; }
+    .vesh-middle-brand { font-size: 36px; }
+    .vesh-section-head, .vesh-closing-text { font-size: 32px; }
+  }
+  @media (max-width: 768px) {
+    .vesh-hero { padding: 80px 16px 40px; min-height: auto; }
+    .vesh-side-label { display: none; }
+    .vesh-triad {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      max-width: 320px;
+    }
+    .vesh-card.left, .vesh-card.right { display: none; }
+    .vesh-middle-brand { font-size: 32px; }
+    .vesh-title { font-size: 28px; }
+    .vesh-float.s-sm { width: 56px; height: 66px; }
+    .vesh-float.s-md { width: 68px; height: 82px; }
+    .vesh-float.s-lg { width: 82px; height: 96px; }
+    .vesh-cine { padding: 60px 0 0; }
+    .vesh-bleed { margin-bottom: 60px; }
+    .vesh-collage { aspect-ratio: 3/4; margin-bottom: 60px; padding: 0 12px; }
+    .vesh-collage-item.k1 { left: 2%;  top: 2%;  width: 45%; }
+    .vesh-collage-item.k2 { left: 50%; top: 6%;  width: 48%; }
+    .vesh-collage-item.k3 { left: 8%;  top: 36%; width: 40%; }
+    .vesh-collage-item.k4 { left: 52%; top: 34%; width: 44%; }
+    .vesh-collage-item.k5 { left: 4%;  top: 68%; width: 44%; }
+    .vesh-collage-item.k6 { left: 52%; top: 66%; width: 44%; }
+    .vesh-marquee { margin-bottom: 60px; }
+    .vesh-marquee-track img { height: 160px; }
+    .vesh-closing { padding: 40px 16px 80px; }
+    .vesh-closing-text { font-size: 28px; }
+  }
+
   /* ===== SIDEBAR LOAD ANIMATION ===== */
   .sidebar > * {
     opacity: 0;
@@ -1470,7 +1946,7 @@
     background: #fff;
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10050;       /* above loader (10000) AND intro (10001) */
     transition: width 0.2s, height 0.2s, margin 0.2s, opacity 0.2s;
     mix-blend-mode: difference;
     margin: -4px 0 0 -4px;
@@ -1478,7 +1954,8 @@
   .custom-cursor.hover {
     width: 40px; height: 40px;
     margin: -20px 0 0 -20px;
-    opacity: 0.5;
+    background: #9a9a9a;   /* gray fill (difference blend keeps it subtle) */
+    opacity: 0.2;          /* 20% as requested */
   }
   .custom-cursor.hidden { opacity: 0; }
   body { cursor: none !important; }
@@ -1488,17 +1965,63 @@
   .loader-screen {
     position: fixed; inset: 0; z-index: 10000;
     background: #0F0F0F;
-    display: flex; align-items: flex-end; justify-content: flex-start;
-    padding: 32px 40px;
     transition: opacity 0.6s ease;
+    overflow: hidden;
+    cursor: grab;
+    user-select: none;
   }
+  .loader-screen.dragging { cursor: grabbing; }
   .loader-screen.fade-out { opacity: 0; pointer-events: none; }
-  .loader-percent {
-    font-family: var(--font-heading);
-    font-size: 28vw; color: #fff;
-    letter-spacing: -0.04em;
-    line-height: 0.85;
-    opacity: 0.9;
+  .loader-canvas {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  .loader-scene {
+    position: absolute; inset: 0;
+    perspective: 1600px;
+    perspective-origin: 50% 50%;
+    pointer-events: none;
+  }
+  .loader-ring {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 0; height: 0;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .loader-card {
+    position: absolute;
+    left: 0; top: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 14px 50px rgba(0,0,0,0.55), 0 2px 10px rgba(0,0,0,0.35);
+    opacity: 0;
+    backface-visibility: hidden;
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  /* ===== LOADER — FILM GRAIN OVERLAY ===== */
+  .loader-grain {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.18;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
+    background-size: 240px 240px;
+    animation: grainShift 0.6s steps(6) infinite;
+  }
+  @keyframes grainShift {
+    0%   { background-position:    0    0; }
+    16%  { background-position:  -30px -60px; }
+    33%  { background-position:   40px -20px; }
+    50%  { background-position:  -50px  30px; }
+    66%  { background-position:   20px  60px; }
+    83%  { background-position:  -40px -30px; }
+    100% { background-position:    0    0; }
+  }
+  .loader-card img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    pointer-events: none;
   }
   /* ===== THEME MORPH ===== */
   .theme-morph {
@@ -1508,6 +2031,255 @@
     pointer-events: none;
     transform: translate(-50%, -50%);
   }
+
+  /* =========================================================
+     INTRO SCREEN — после лоадера, перед главной
+     ========================================================= */
+  .intro-screen {
+    position: fixed; inset: 0;
+    z-index: 10001;           /* above the loader so main never flashes */
+    background: #0f0f0f;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+  .intro-screen.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .intro-screen.leaving {
+    opacity: 0;
+    transition: opacity 0.45s ease;
+  }
+
+  /* Technical top & bottom meta bars */
+  .intro-meta {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    display: flex;
+    gap: 24px;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .intro-meta.tl { top: 22px; left: 24px; }
+  .intro-meta.tr { top: 22px; right: 24px; }
+  .intro-meta.bl { bottom: 22px; left: 24px; transform: translateY(8px); }
+  .intro-meta.br { bottom: 22px; right: 24px; transform: translateY(8px); }
+  .intro-screen.visible .intro-meta { opacity: 1; transform: translateY(0); }
+
+  /* Horizontal scan line */
+  .intro-scan {
+    position: absolute;
+    left: 0; right: 0;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%);
+    opacity: 0;
+    transform: translateY(0);
+    pointer-events: none;
+  }
+  .intro-screen.visible .intro-scan {
+    animation: introScan 1.4s cubic-bezier(0.7, 0, 0.3, 1) 0.05s forwards;
+  }
+  @keyframes introScan {
+    0%   { opacity: 0; top: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { opacity: 0; top: 100%; }
+  }
+
+  /* Central stack */
+  .intro-stack {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(340px, 92vw);
+  }
+
+  /* Title — exact Figma spec: 70px condensed */
+  .intro-title {
+    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 70px;
+    line-height: 0.82;
+    letter-spacing: -0.05em;
+    text-align: center;
+    color: #fff;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .intro-title .row {
+    display: block;
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(28px);
+    transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                filter   0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .intro-screen.visible .intro-title .row {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+  .intro-screen.visible .intro-title .row.r1 { transition-delay: 0.35s; }
+  .intro-screen.visible .intro-title .row.r2 { transition-delay: 0.55s; }
+
+  /* Polaroid — Figma spec: 112x118 cells, 10px padding, 14px gap */
+  .intro-photos {
+    margin-top: 10px;
+    margin-bottom: 14px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    display: flex;
+    gap: 14px;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transform: scale(0.86) translateY(8px) rotate(-1deg);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.32);
+  }
+  .intro-screen.visible .intro-photos {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotate(0deg);
+    transition-delay: 0.85s;
+  }
+  .intro-photos .cell {
+    width:  112px;
+    height: 118px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #222;
+  }
+  .intro-photos .cell img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Subtitle under photos — Figma: 20px, line-height 0.71, opacity 0.6 */
+  .intro-sub {
+    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
+    font-size: 20px;
+    line-height: 1.05;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    max-width: 273px;
+    margin: 0 0 40px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .intro-screen.visible .intro-sub {
+    opacity: 1; transform: translateY(0);
+    transition-delay: 1.15s;
+  }
+
+  /* Question — Figma: 20px, width 165px (natural wrap to 3 lines) */
+  .intro-q {
+    font-family: 'PP Neue Montreal', 'Inter', sans-serif;
+    font-size: 20px;
+    line-height: 1.1;
+    color: #fff;
+    text-align: center;
+    max-width: 165px;
+    margin: 0 0 18px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .intro-screen.visible .intro-q {
+    opacity: 1; transform: translateY(0);
+    transition-delay: 1.4s;
+  }
+
+  /* Pills — stacked, zero gap (touching each other) */
+  .intro-pills {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .intro-pill {
+    background: #383838;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: -0.07em;
+    text-transform: uppercase;
+    padding: 16px 15px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+                background 0.22s ease,
+                color 0.22s ease,
+                box-shadow 0.22s ease;
+  }
+  .intro-pill:hover {
+    background: #242424;          /* a bit darker on hover */
+  }
+  .intro-pill:active {
+    background: #1a1a1a;          /* noticeably darker on press */
+    transform: translateY(2px) scale(0.96);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+  }
+  .intro-screen.visible .intro-pill { opacity: 1; transform: translateY(0); }
+  /* Per-property delays: only the entrance (opacity+transform) is delayed;
+     hover/active transitions (background/box-shadow) stay instant. */
+  .intro-screen.visible .intro-pill.p1 { transition-delay: 1.65s, 1.65s, 0s, 0s, 0s; }
+  .intro-screen.visible .intro-pill.p2 { transition-delay: 1.75s, 1.75s, 0s, 0s, 0s; }
+  .intro-screen.visible .intro-pill.p3 { transition-delay: 1.85s, 1.85s, 0s, 0s, 0s; }
+  .intro-screen.visible .intro-pill.p4 { transition-delay: 1.95s, 1.95s, 0s, 0s, 0s; }
+  .intro-screen.leaving .intro-pill.picked {
+    background: #fff; color: #000;
+  }
+
+  /* Small grain layer on intro */
+  .intro-grain {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    opacity: 0.1;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    animation: grainShift 0.6s steps(6) infinite;
+  }
+
+  @media (max-width: 640px) {
+    .intro-title { font-size: 54px; }
+    .intro-photos { padding: 8px; gap: 10px; }
+    .intro-photos .cell { width: 92px; height: 98px; }
+    .intro-sub  { font-size: 17px; margin-bottom: 28px; }
+    .intro-q    { font-size: 17px; margin-bottom: 14px; }
+    .intro-pill { font-size: 13px; padding: 14px 14px; }
+    .intro-meta { font-size: 10px; gap: 12px; }
+    .intro-meta.tl, .intro-meta.tr { top: 12px; }
+    .intro-meta.bl, .intro-meta.br { bottom: 12px; }
+  }
+
   /* ===== INLINE EDIT ===== */
   body.edit-mode .detail-project-info h2[contenteditable],
   body.edit-mode .detail-project-info p[contenteditable] {
@@ -1656,7 +2428,36 @@
 <div class="custom-cursor" id="customCursor"></div>
 
 <div class="loader-screen" id="loaderScreen">
-  <div class="loader-percent" id="loaderPercent">0%</div>
+  <canvas class="loader-canvas" id="loaderCanvas"></canvas>
+  <div class="loader-scene">
+    <div class="loader-ring" id="loaderRing"></div>
+  </div>
+  <div class="loader-grain" aria-hidden="true"></div>
+</div>
+
+<div class="intro-screen" id="introScreen" aria-hidden="true">
+  <div class="intro-scan"></div>
+
+  <div class="intro-stack">
+    <h1 class="intro-title">
+      <span class="row r1">привет!</span>
+      <span class="row r2">я марина</span>
+    </h1>
+    <div class="intro-photos">
+      <div class="cell"><img src="vibe-assets/4fe3bc52a0c0f86c24dd9e3be4717eefcf74ee35.png" alt="Марина"></div>
+      <div class="cell"><img src="vibe-assets/5aec1eab53757152308ad39163dac61610d561fd.png" alt="Кот"></div>
+    </div>
+    <p class="intro-sub">мультидисциплинарный дизайнер</p>
+    <p class="intro-q">расскажи, какого дизайнера ты ищешь?</p>
+    <div class="intro-pills">
+      <button class="intro-pill p1" data-intro-filter="komdiz">коммуникационного</button>
+      <button class="intro-pill p2" data-intro-filter="interfaces">продуктового</button>
+      <button class="intro-pill p3" data-intro-filter="web">веб-дизайнера</button>
+      <button class="intro-pill p4" data-intro-filter="all">всё вместе</button>
+    </div>
+  </div>
+
+  <div class="intro-grain" aria-hidden="true"></div>
 </div>
 
 <div class="page" id="page">
@@ -1906,8 +2707,8 @@
         <!-- ===== Project 8 — Плакат ===== -->
         <div class="project-card card-plakat1" data-project="plakat"><div class="placeholder-img ph-13"></div></div>
         <div class="project-card card-plakat2" data-project="plakat"><div class="placeholder-img ph-14"></div></div>
-        <div class="badge-plakat" data-project="plakat"><h4>Плакат</h4><p>серия социальных<br>плакатов</p></div>
-        <div class="tag-plakat" data-project="plakat">комдиз</div>
+        <div class="badge-plakat" data-project="plakat"><h4>Этот сайт</h4><p>вайбкодинг портфолио<br>с помощью AI</p></div>
+        <div class="tag-plakat" data-project="plakat">вайбкодинг</div>
 
 
       </div>
@@ -1987,6 +2788,9 @@
         <img loading="lazy" src="Vesh/image 1926988948.webp" alt="Вещь — 6">
         <img loading="lazy" src="Vesh/412658cc3222418e939a47d4b88bf922_orig.gif" alt="Вещь — 7">
       </div>
+
+      <!-- Special layout container — populated for specific projects (e.g. Vesh) -->
+      <div class="vesh-layout-container" id="veshLayoutContainer"></div>
 
     </div>
   </div>
@@ -2184,7 +2988,7 @@
     afisha: ['komdiz', 'ai'],
     tbank: ['web', 'interfaces'],
     kalendar: ['komdiz'],
-    plakat: ['komdiz']
+    plakat: ['ai']
   };
 
   // Original anchor positions (card1 top/left) per project
@@ -2421,7 +3225,11 @@
         'Календари/8.webp','Календари/9.webp','Календари/10.webp','Календари/11.webp',
         'Календари/12.webp','Календари/13.webp','Календари/14.webp','Календари/15.webp','Календари/16.webp'
       ] },
-    plakat: { title: 'Плакат', desc: 'серия социальных плакатов — типографика, композиция, визуальное высказывание', tags: [], accordions: [], gallery: [] }
+    plakat: { title: 'Этот сайт', desc: 'портфолио-сайт, который ты сейчас смотришь — полностью сделан вайбкодингом с помощью AI', tags: ['вайбкодинг'], accordions: [
+        { label: 'Как это было?', content: '— Весь сайт написан через диалог с Claude — без ручного кода\n— Начала с идеи: интерактивное поле с карточками проектов, которые можно зумить и панить\n— Каждый экран, анимация и взаимодействие описывала текстом — AI генерировал код\n— Итеративный процесс: показывала скриншоты, говорила что не так, получала фиксы\n— Figma → текстовое описание → рабочий код за минуты' },
+        { label: 'Что внутри?', content: '— Canvas с pan & zoom и раскиданными карточками проектов\n— 3D-сфера с проектами на отдельной странице (CSS 3D transforms + Fibonacci)\n— FaceTime-стилистика: видеофон, плавающие карточки, scroll-driven слайды\n— Загрузочный экран с точечным дисплеем и орбитирующими фрагментами\n— Автооткрытие проекта при зуме\n— Полная мобильная адаптация\n— Оптимизация: lazy-load видео, WebP-конвертация, GPU-ускорение' },
+        { label: 'Стек', content: '— Чистый HTML + CSS + JavaScript, без фреймворков\n— CSS 3D transforms для сферы\n— Canvas API для загрузочного экрана\n— Деплой на GitHub Pages' }
+      ], gallery: [] }
   };
 
   // Expose projects for inline editing
@@ -2442,9 +3250,313 @@
     return text.replace(/(^|[\s>])(в|на|с|и|о|к|у|за|от|по|из|для|без|до|при|об|не|ни|но|а|же|бы|во|ко|со|is|a|an|the|in|on|at|of|for|to|by|or|and|В|На|С|И|О|К|У|За|От|По|Из|Для|Без|До|При|Об|Не|Ни|Но|А|Же|Бы|Во|Ко|Со)\s/g, '$1$2\u00A0');
   }
 
+  // ---- Vesh special ArtCircles-style layout -------------------------------
+  const VESH_POOL = [
+    'Vesh/059f76be07f84d6bbd88948c3fef72252880x1620 (1).webp',
+    'Vesh/image 1926988943.webp',
+    'Vesh/image 1926988944.webp',
+    'Vesh/image 1926988945.webp',
+    'Vesh/image 1926988948.webp',
+    'Vesh/fe8988188f1145b399d30325c42f68d3_orig.gif',
+    'Vesh/412658cc3222418e939a47d4b88bf922_orig.gif',
+    'Vesh/Screenshot 2026-04-08 at 20.48.54.webp'
+  ];
+  // Vesh persistent edits (text overrides + removed block ids)
+  const VESH_EDIT_KEY = 'portfolio-vesh-layout-edits';
+  function getVeshEdits() {
+    try { return JSON.parse(localStorage.getItem(VESH_EDIT_KEY)) || { texts: {}, removed: [] }; }
+    catch { return { texts: {}, removed: [] }; }
+  }
+  function saveVeshEdits(edits) {
+    try { localStorage.setItem(VESH_EDIT_KEY, JSON.stringify(edits)); } catch {}
+  }
+  window.resetVeshLayout = function() {
+    try { localStorage.removeItem(VESH_EDIT_KEY); } catch {}
+    if (document.querySelector('.project-detail[data-layout="vesh"]')) {
+      openDetail('vesh');
+    }
+  };
+  function isVeshBlockRemoved(id) {
+    return getVeshEdits().removed.includes(id);
+  }
+  function markVeshBlockRemoved(id) {
+    const edits = getVeshEdits();
+    if (!edits.removed.includes(id)) edits.removed.push(id);
+    saveVeshEdits(edits);
+  }
+
+  function renderVeshSpecial(data) {
+    const container = document.getElementById('veshLayoutContainer');
+    if (!container) return false;
+    const edits = getVeshEdits();
+    // Helper: content from edits or fallback
+    const txt = (id, fallback) => {
+      const v = edits.texts[id];
+      return (v != null) ? v : fallback;
+    };
+    // Helper: skip removed blocks
+    const alive = (id) => !edits.removed.includes(id);
+
+    // ── Ring of tilted photos around the hero perimeter (ArtCircles style)
+    // 16 positions distributed around an ellipse with varied sizes and tilts.
+    const ringPositions = [
+      // [angle (deg), radiusX%, radiusY%, size, delay ms]
+      [  0, 46, 38, 'md',  300],
+      [ 23, 46, 42, 'sm',  360],
+      [ 50, 44, 44, 'lg',  420],
+      [ 72, 42, 46, 'md',  480],
+      [100, 40, 44, 'sm',  540],
+      [130, 42, 42, 'md',  600],
+      [158, 44, 40, 'sm',  660],
+      [180, 46, 38, 'md',  720],
+      [203, 46, 42, 'sm',  780],
+      [230, 44, 44, 'md',  840],
+      [252, 42, 46, 'lg',  900],
+      [278, 40, 44, 'md',  960],
+      [306, 42, 42, 'sm', 1020],
+      [332, 44, 40, 'md', 1080]
+    ];
+    const ringItems = ringPositions.map((p, i) => {
+      const blockId = 'float-' + i;
+      if (!alive(blockId)) return '';
+      const [angleDeg, rxPc, ryPc, size, delay] = p;
+      const rad  = angleDeg * Math.PI / 180;
+      const xPct = 50 + Math.cos(rad) * rxPc;
+      const yPct = 50 + Math.sin(rad) * ryPc;
+      const rot  = ((i * 131) % 41) - 20; // deterministic tilt -20..20
+      const src  = VESH_POOL[i % VESH_POOL.length];
+      return `<div class="vesh-float s-${size}" data-vesh-block="${blockId}" style="left:${xPct}%;top:${yPct}%;--rot:${rot}deg;--delay:${delay}ms">`
+           + `<img src="${src}" alt="" loading="lazy">`
+           + `<button class="vesh-remove-btn" type="button" title="Удалить">×</button>`
+           + `</div>`;
+    }).join('');
+
+    // ── Cards flanking the middle text
+    const leftSrc  = VESH_POOL[0]; // hero photo of the project
+    const rightSrc = VESH_POOL[1]; // artwork / key shot
+
+    // ── Collage images (section 2)
+    const col1 = VESH_POOL[2];
+    const col2 = VESH_POOL[3];
+    const col3 = VESH_POOL[4];
+    const col4 = VESH_POOL[5];
+    const col5 = VESH_POOL[6];
+    const col6 = VESH_POOL[7] || VESH_POOL[0];
+
+    // ── Marquee: duplicate the pool so the keyframe -50% loop is seamless
+    const marqueeImgs = VESH_POOL.concat(VESH_POOL)
+      .map(src => `<img src="${src}" loading="lazy" alt="">`).join('');
+
+    // X-button html (only shown in edit mode via CSS)
+    const xBtn = '<button class="vesh-remove-btn" type="button" title="Удалить">×</button>';
+
+    // Gather fragments, skipping removed ones
+    const leftCardHTML = alive('card-left') ? `
+      <div class="vesh-card left" data-vesh-block="card-left">
+        ${xBtn}
+        <div class="vesh-card-img"><img src="${leftSrc}" loading="lazy" alt=""></div>
+        <div class="vesh-card-caption">
+          <strong data-vesh-edit="cap-left-name">${txt('cap-left-name', 'Марина Устиновская')}</strong>
+          <span   data-vesh-edit="cap-left-role">${txt('cap-left-role', 'art director')}</span>
+        </div>
+      </div>` : '';
+
+    const rightCardHTML = alive('card-right') ? `
+      <div class="vesh-card right" data-vesh-block="card-right">
+        ${xBtn}
+        <div class="vesh-card-img"><img src="${rightSrc}" loading="lazy" alt=""></div>
+        <div class="vesh-card-caption">
+          <strong data-vesh-edit="cap-right-name">${txt('cap-right-name', 'Вещь')}</strong>
+          <span   data-vesh-edit="cap-right-role">${txt('cap-right-role', 'айдентика · 2024')}</span>
+        </div>
+      </div>` : '';
+
+    const midCardHTML = alive('card-mid') ? `
+      <div class="vesh-card mid" data-vesh-block="card-mid">
+        ${xBtn}
+        <div class="vesh-middle">
+          <div class="vesh-middle-brand">
+            <span data-vesh-edit="brand-main">${txt('brand-main', 'вещь')}</span>
+            <span class="tiny" data-vesh-edit="brand-tiny">${txt('brand-tiny', 'pop-up market')}</span>
+          </div>
+          <div class="vesh-middle-rule"></div>
+          <h1 class="vesh-title" data-vesh-edit="title">${txt('title', fixPrep(data.title))}</h1>
+          <p class="vesh-curated" data-vesh-edit="curated">${txt('curated', 'curated by marina')}</p>
+          <p class="vesh-desc" data-vesh-edit="desc">${txt('desc', fixPrep(data.desc))}</p>
+          <button class="vesh-cta" type="button"><span data-vesh-edit="cta">${txt('cta', 'view collection ↓')}</span></button>
+        </div>
+      </div>` : '';
+
+    const sideLeftHTML  = alive('side-left')  ? `<span class="vesh-side-label vesh-side-left"  data-vesh-edit="side-left">${txt('side-left',  'ПРОЕКТ — 2024')}</span>` : '';
+    const sideRightHTML = alive('side-right') ? `<span class="vesh-side-label vesh-side-right" data-vesh-edit="side-right">${txt('side-right', 'АЙДЕНТИКА / ПРИНТ')}</span>` : '';
+
+    // Collage items — skip if removed
+    const collageHTML = [
+      ['k1', col1], ['k2', col2], ['k3', col3],
+      ['k4', col4], ['k5', col5], ['k6', col6]
+    ].filter(([k]) => alive('collage-' + k))
+     .map(([k, src]) => `<div class="vesh-collage-item ${k}" data-vesh-block="collage-${k}">${xBtn}<img src="${src}" loading="lazy" alt=""></div>`).join('');
+
+    // Full section blocks
+    const sec1HTML = alive('section-bleed') ? `
+      <section class="vesh-cine" data-vesh-block="section-bleed">
+        ${xBtn}
+        <span class="vesh-section-num" data-vesh-edit="sec1-num">${txt('sec1-num', '— I / Кадр —')}</span>
+        <div class="vesh-bleed"><img src="${VESH_POOL[0]}" loading="lazy" alt=""></div>
+      </section>` : '';
+
+    const sec2HTML = alive('section-collage') ? `
+      <section class="vesh-cine" data-vesh-block="section-collage">
+        ${xBtn}
+        <span class="vesh-section-num" data-vesh-edit="sec2-num">${txt('sec2-num', '— II / Коллаж —')}</span>
+        <h2 class="vesh-section-head" data-vesh-edit="sec2-head">${txt('sec2-head', 'носители айдентики')}</h2>
+        <div class="vesh-collage">${collageHTML}</div>
+      </section>` : '';
+
+    const sec3HTML = alive('section-marquee') ? `
+      <section class="vesh-cine" data-vesh-block="section-marquee" style="padding-top: 40px;">
+        ${xBtn}
+        <span class="vesh-section-num" data-vesh-edit="sec3-num">${txt('sec3-num', '— III / Поток —')}</span>
+        <div class="vesh-marquee"><div class="vesh-marquee-track">${marqueeImgs}</div></div>
+      </section>` : '';
+
+    const sec4HTML = alive('section-closing') ? `
+      <section class="vesh-closing" data-vesh-block="section-closing">
+        ${xBtn}
+        <span class="vesh-section-num" data-vesh-edit="sec4-num">${txt('sec4-num', '— IV / Финал —')}</span>
+        <div class="vesh-closing-big"><img src="${VESH_POOL[1]}" loading="lazy" alt=""></div>
+        <h2 class="vesh-closing-text" data-vesh-edit="sec4-text">${txt('sec4-text', 'спасибо за&nbsp;внимание.')}</h2>
+        <div class="vesh-closing-sub" data-vesh-edit="sec4-sub">${txt('sec4-sub', 'next project →')}</div>
+      </section>` : '';
+
+    container.innerHTML = `
+      <section class="vesh-hero">
+        ${sideLeftHTML}
+        ${sideRightHTML}
+        <div class="vesh-ring">${ringItems}</div>
+        <div class="vesh-triad">
+          ${leftCardHTML}
+          ${midCardHTML}
+          ${rightCardHTML}
+        </div>
+      </section>
+      ${sec1HTML}
+      ${sec2HTML}
+      ${sec3HTML}
+      ${sec4HTML}
+      <div class="vesh-edit-toolbar">
+        <span>tap text to edit · × to remove blocks</span>
+        <span class="sep">|</span>
+        <button class="btn" type="button" id="veshEditResetBtn">reset layout</button>
+      </div>
+    `;
+
+    // CTA → smooth-scroll to the first cinematic section
+    const body = document.querySelector('.detail-body');
+    const cta  = container.querySelector('.vesh-cta');
+    if (cta && body) {
+      cta.addEventListener('click', () => {
+        const firstCine = container.querySelector('.vesh-cine');
+        if (firstCine) body.scrollTo({ top: firstCine.offsetTop - 30, behavior: 'smooth' });
+      });
+    }
+
+    // Scroll-triggered reveal for bleeds / collage / closing
+    const reveal = container.querySelectorAll(
+      '.vesh-bleed img, .vesh-collage-item, .vesh-closing-big img'
+    );
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in-view');
+            io.unobserve(e.target);
+          }
+        });
+      }, { root: body, threshold: 0.12 });
+      reveal.forEach(el => io.observe(el));
+    } else {
+      reveal.forEach(el => el.classList.add('in-view'));
+    }
+
+    // ── EDIT MODE wiring ──────────────────────────────────────
+    // 1) Toggle contenteditable on all [data-vesh-edit] when body.edit-mode changes
+    function syncEditable() {
+      const isEdit = document.body.classList.contains('edit-mode');
+      container.querySelectorAll('[data-vesh-edit]').forEach(el => {
+        if (isEdit) el.setAttribute('contenteditable', 'true');
+        else el.removeAttribute('contenteditable');
+      });
+    }
+    syncEditable();
+    // Observe body class toggle so we respond live to the existing edit-mode button
+    if (!window.__veshEditObs) {
+      window.__veshEditObs = new MutationObserver(() => {
+        if (document.getElementById('veshLayoutContainer'))  syncEditable();
+      });
+      window.__veshEditObs.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    // 2) Persist text edits on blur (or after typing pause)
+    container.querySelectorAll('[data-vesh-edit]').forEach(el => {
+      el.addEventListener('blur', () => {
+        if (!document.body.classList.contains('edit-mode')) return;
+        const id = el.dataset.veshEdit;
+        const newVal = el.innerHTML.trim();
+        const edits = getVeshEdits();
+        edits.texts[id] = newVal;
+        saveVeshEdits(edits);
+      });
+      // Prevent Enter from inserting a new line in inline fields (insert <br> instead)
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          el.blur();
+        }
+      });
+    });
+
+    // 3) "×" buttons — delete block, save id to removed list, re-render
+    container.querySelectorAll('.vesh-remove-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const block = btn.closest('[data-vesh-block]');
+        if (!block) return;
+        const id = block.dataset.veshBlock;
+        markVeshBlockRemoved(id);
+        // Smooth fade before actual re-render
+        block.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+        block.style.opacity = '0';
+        block.style.transform = (block.style.transform || '') + ' scale(0.9)';
+        setTimeout(() => renderVeshSpecial(data), 220);
+      });
+    });
+
+    // 4) Reset-layout button in the edit toolbar
+    const resetBtn = container.querySelector('#veshEditResetBtn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        if (confirm('Сбросить все изменения этой страницы?')) {
+          try { localStorage.removeItem(VESH_EDIT_KEY); } catch {}
+          renderVeshSpecial(data);
+        }
+      });
+    }
+
+    projectDetail.setAttribute('data-layout', 'vesh');
+    return true;
+  }
+
   function openDetail(projectKey) {
     currentOpenProject = projectKey;
     const data = projects[projectKey] || projects.vesh;
+
+    // (Special ArtCircles-style Vesh layout is currently disabled — Vesh uses
+    // the standard sidebar + gallery view like every other project.)
+    projectDetail.removeAttribute('data-layout');
+    const veshC = document.getElementById('veshLayoutContainer');
+    if (veshC) veshC.innerHTML = '';
+
     detailTitle.innerHTML = fixPrep(data.title);
     // Support line breaks in description
     detailDesc.innerHTML = fixPrep(data.desc.replace(/\n/g, '<br>'));
@@ -2539,6 +3651,8 @@
   function closeDetail() {
     projectDetail.classList.remove('open');
     currentOpenProject = null;
+    // Clear Vesh special layout state so a subsequent open starts fresh
+    projectDetail.removeAttribute('data-layout');
   }
 
   // Click handlers — Vesh
@@ -2627,9 +3741,9 @@
         afisha: { title: 'Redis Agency', badge: 'коммуникационный дизайн<br>для Купера и Мираторга' },
         tbank: { title: 'Homigo', badge: 'сервис обмена жильём<br>для путешествий P2P' },
         kalendar: { title: 'Календари', badge: 'авторские календари<br>о дереализации и СДВГ' },
-        plakat: { title: 'Плакат', badge: 'серия социальных<br>плакатов' }
+        plakat: { title: 'Этот сайт', badge: 'вайбкодинг портфолио<br>с помощью AI' }
       },
-      canvasTags: { vesh: 'комдиз', ruf: 'комдиз', ozon: ['AI', 'комдиз', 'интерфейсы'], redis: ['интерфейсы', 'веб'], afisha: ['комдиз', 'AI'], tbank: 'интерфейсы', kalendar: 'комдиз', plakat: 'комдиз' },
+      canvasTags: { vesh: 'комдиз', ruf: 'комдиз', ozon: ['AI', 'комдиз', 'интерфейсы'], redis: ['интерфейсы', 'веб'], afisha: ['комдиз', 'AI'], tbank: 'интерфейсы', kalendar: 'комдиз', plakat: 'вайбкодинг' },
       projectOverrides: {
         vesh: {
           title: 'Вещь',
@@ -2708,9 +3822,9 @@
         afisha: { title: 'Redis Agency', badge: 'communication design<br>for Kuper and Miratorg' },
         tbank: { title: 'Homigo', badge: 'P2P home exchange<br>service for travelers' },
         kalendar: { title: 'Calendars', badge: 'author calendars<br>on derealization & ADHD' },
-        plakat: { title: 'Poster', badge: 'a series of<br>social posters' }
+        plakat: { title: 'This website', badge: 'vibecoded portfolio<br>built with AI' }
       },
-      canvasTags: { vesh: 'comdes', ruf: 'comdes', ozon: ['AI', 'comdes', 'interfaces'], redis: ['interfaces', 'web'], afisha: ['comdes', 'AI'], tbank: 'interfaces', kalendar: 'comdes', plakat: 'comdes' },
+      canvasTags: { vesh: 'comdes', ruf: 'comdes', ozon: ['AI', 'comdes', 'interfaces'], redis: ['interfaces', 'web'], afisha: ['comdes', 'AI'], tbank: 'interfaces', kalendar: 'comdes', plakat: 'vibecoding' },
       projectOverrides: {
         vesh: {
           title: 'Vesh',
@@ -4501,57 +5615,438 @@
   // ===== LOADER =====
   (function() {
     const loader = document.getElementById('loaderScreen');
-    const pct = document.getElementById('loaderPercent');
-    if (!loader) return;
-    const imgs = Array.from(document.images);
-    const total = imgs.length || 1;
-    let loaded = 0;
+    const cvs = document.getElementById('loaderCanvas');
+    const ring = document.getElementById('loaderRing');
+    if (!loader || !cvs || !ring) return;
+    const ctx = cvs.getContext('2d');
+
+    let W, H, dpr;
+    function resizeCanvas() {
+      dpr = window.devicePixelRatio || 1;
+      W = loader.clientWidth; H = loader.clientHeight;
+      cvs.width = W * dpr; cvs.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Offscreen canvas — render the % text with a real font, then sample it
+    // on a dense grid to get "many small dots that form big numbers".
+    const textCvs = document.createElement('canvas');
+    const textCtx = textCvs.getContext('2d');
+    let lastTextKey = '';
+    let cachedRelDots = [];
+
+    function getDotPositions(text, cx, cy) {
+      const small = Math.min(W, H) < 600;
+      const fontPx = small ? 150 : 210;    // text height
+      const step   = small ? 16  : 22;     // big step → few sparse dots
+      const key = text + '|' + fontPx + '|' + step;
+
+      if (key !== lastTextKey) {
+        lastTextKey = key;
+        const fontSpec = '500 ' + fontPx + 'px "SF Mono", "JetBrains Mono", "Menlo", monospace';
+        // Measure widths of individual chars with default spacing
+        textCtx.font = fontSpec;
+        const chars = text.split('');
+        const widths = chars.map(ch => textCtx.measureText(ch).width);
+        // Compression factor — cuts inter-letter distance
+        const COMP = 0.72;
+        const compressedWidth = widths.reduce((a, b) => a + b, 0) * COMP;
+        const tw = Math.ceil(compressedWidth) + 10;
+        const th = Math.ceil(fontPx * 1.15) + 8;
+        // Resizing the canvas resets all 2d context state — reapply it
+        textCvs.width  = tw;
+        textCvs.height = th;
+        textCtx.font = fontSpec;
+        textCtx.fillStyle = '#fff';
+        textCtx.textBaseline = 'middle';
+        textCtx.textAlign = 'left';
+        // Manually place each char with compressed advance width
+        let xCursor = 5;
+        for (let i = 0; i < chars.length; i++) {
+          textCtx.fillText(chars[i], xCursor, th / 2);
+          xCursor += widths[i] * COMP;
+        }
+
+        const data = textCtx.getImageData(0, 0, tw, th).data;
+        const rels = [];
+        for (let y = 0; y < th; y += step) {
+          for (let x = 0; x < tw; x += step) {
+            if (data[(y * tw + x) * 4 + 3] > 120) {
+              rels.push({ rx: x - tw / 2, ry: y - th / 2 });
+            }
+          }
+        }
+        cachedRelDots = rels;
+      }
+      const out = new Array(cachedRelDots.length);
+      for (let i = 0; i < cachedRelDots.length; i++) {
+        out[i] = { x: cachedRelDots[i].rx + cx, y: cachedRelDots[i].ry + cy };
+      }
+      return out;
+    }
+
+    const thumbs = [
+      { src: 'Vesh/059f76be07f84d6bbd88948c3fef72252880x1620 (1).webp', w: 150, h: 100, label: 'ВЕЩЬ' },
+      { src: 'Brod/image 1926988946.webp',                              w: 130, h: 95,  label: 'БРОДСКИЙ' },
+      { src: 'Ozon/image 1926988942.webp',                              w: 140, h: 95,  label: 'OZON' },
+      { src: 'Ozon/appstore-1.webp',                                    w: 110, h: 110, label: 'OZON' },
+      { src: 'ACT/image 1926988943.webp',                               w: 145, h: 92,  label: 'ACT' },
+      { src: 'Redis/6x33.webp',                                         w: 138, h: 100, label: 'REDIS' },
+      { src: 'Homigo/image 1926988951.webp',                            w: 120, h: 105, label: 'HOMIGO' },
+      { src: 'Homigo/image 1926988954.webp',                            w: 125, h: 90,  label: 'HOMIGO' },
+      { src: 'Календари/обложка 1.webp',                                w: 120, h: 110, label: 'КАЛЕНДАРЬ' },
+      { src: 'Календари/обложка 2.webp',                                w: 125, h: 105, label: 'КАЛЕНДАРЬ' },
+      { src: 'Vesh/Screenshot 2026-04-08 at 20.48.54.webp',             w: 145, h: 95,  label: 'ВЕЩЬ' },
+      { src: 'Brod/image 1926988944.webp',                              w: 130, h: 100, label: 'БРОДСКИЙ' },
+      { src: 'ACT/image 1926988945.webp',                               w: 135, h: 95,  label: 'ACT' },
+      { src: 'Ozon/cover_ozon.webp',                                    w: 142, h: 92,  label: 'OZON' }
+    ];
+
+    // Tilt of the 3D ring (how much it's tipped forward toward viewer).
+    // Keep it small so the ring reads as a CIRCLE, not a flat ellipse.
+    const TILT_X = 32;
+    const PERSPECTIVE = 1600;
+    // Radius of the ring in 3D space — noticeably bigger than the % text.
+    function ringRadius() { return Math.min(W, H) * 0.44; }
+
+    // When the ring is tilted, the bottom comes toward the viewer (bigger) and
+    // the top goes away (smaller). That asymmetry pulls the VISUAL center
+    // below the geometric center. Compute the screen-space offset so we can
+    // translate the ring up and land its visual center dead center.
+    function ringVisualOffsetY() {
+      const R = ringRadius();
+      const cosT = Math.cos(TILT_X * Math.PI / 180);
+      const sinT = Math.sin(TILT_X * Math.PI / 180);
+      const topY = -R * cosT * PERSPECTIVE / (PERSPECTIVE + R * sinT);
+      const botY =  R * cosT * PERSPECTIVE / (PERSPECTIVE - R * sinT);
+      return (topY + botY) / 2; // positive → ring sits visually below center
+    }
+
+    const ringCards = [];
+    thumbs.forEach((th, i) => {
+      const el = document.createElement('div');
+      el.className = 'loader-card';
+      el.style.width = th.w + 'px';
+      el.style.height = th.h + 'px';
+      el.style.marginLeft = (-th.w / 2) + 'px';
+      el.style.marginTop = (-th.h / 2) + 'px';
+      // Staggered reveal: later cards wait longer before fading in.
+      // Base delay 240ms gives the loader a moment to settle before cards pop in.
+      el.style.transitionDelay = (240 + i * 70) + 'ms';
+      const img = document.createElement('img');
+      img.src = th.src;
+      img.onload = () => { el.style.opacity = 1; };
+      img.onerror = () => { el.style.opacity = 0.6; };
+      // Safety: if image is cached and fires onload before handler is attached,
+      // or fails silently — ensure the card still reveals after a timeout.
+      setTimeout(() => { if (!el.style.opacity || el.style.opacity === '0') el.style.opacity = 1; }, 1500);
+      el.appendChild(img);
+      ring.appendChild(el);
+      ringCards.push({
+        el, w: th.w, h: th.h,
+        angle: (i / thumbs.length) * 360,
+        tilt: (Math.random() - 0.5) * 14,
+        bob: Math.random() * Math.PI * 2,
+        label: th.label || '',
+        // scramble state: phase 'scramble' → 'reveal' → 'hold' → loop
+        scrambleStart: Math.random() * -2000, // stagger initial cycles
+        cycleLen: 2600 + Math.random() * 800,
+      });
+    });
+
+    // Charset used by the scramble effect
+    const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩ0123456789/_#';
+    function scrambledLabel(target, tMs, card) {
+      // Each cycle: 0..35% scramble, 35..70% reveal letter-by-letter, 70..100% hold
+      const cycle = ((tMs - card.scrambleStart) % card.cycleLen) / card.cycleLen;
+      const len = target.length;
+      if (cycle < 0.35) {
+        let s = '';
+        for (let i = 0; i < len; i++) {
+          s += target[i] === ' ' ? ' ' : SCRAMBLE_CHARS[(Math.random() * SCRAMBLE_CHARS.length) | 0];
+        }
+        return s;
+      }
+      if (cycle < 0.70) {
+        const p = (cycle - 0.35) / 0.35;   // 0..1 reveal progress
+        const revealed = Math.round(p * len);
+        let s = target.slice(0, revealed);
+        for (let i = revealed; i < len; i++) {
+          s += target[i] === ' ' ? ' ' : SCRAMBLE_CHARS[(Math.random() * SCRAMBLE_CHARS.length) | 0];
+        }
+        return s;
+      }
+      return target;
+    }
+
+    // Auto + drag rotation state
+    let rotY = 0;           // current ring spin
+    let rotVel = 0.18;      // auto-spin velocity (deg per frame)
+    let dragging = false;
+    let lastX = 0, lastY = 0;
+    let lastMoveTime = 0;
+    let dragVel = 0;
+
+    function onDown(e) {
+      dragging = true;
+      loader.classList.add('dragging');
+      const p = e.touches ? e.touches[0] : e;
+      lastX = p.clientX; lastY = p.clientY;
+      lastMoveTime = performance.now();
+      dragVel = 0;
+    }
+    function onMove(e) {
+      if (!dragging) return;
+      const p = e.touches ? e.touches[0] : e;
+      const dx = p.clientX - lastX;
+      lastX = p.clientX; lastY = p.clientY;
+      const now = performance.now();
+      const dt = Math.max(1, now - lastMoveTime);
+      lastMoveTime = now;
+      const delta = dx * 0.4;
+      rotY += delta;
+      dragVel = delta / dt * 16; // convert to per-frame velocity
+    }
+    function onUp() {
+      if (!dragging) return;
+      dragging = false;
+      loader.classList.remove('dragging');
+      // Carry inertia from the drag, but keep a gentle baseline auto-spin
+      rotVel = dragVel * 0.85;
+      if (Math.abs(rotVel) < 0.18) rotVel = rotVel >= 0 ? 0.18 : -0.18;
+    }
+
+    loader.addEventListener('mousedown', onDown);
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+    loader.addEventListener('touchstart', onDown, { passive: true });
+    window.addEventListener('touchmove', onMove, { passive: true });
+    window.addEventListener('touchend', onUp);
+
+    // Scroll wheel also spins the ring — deltaY becomes rotational velocity.
+    // Normalize across mouse vs trackpad vs "pixel/line/page" delta modes.
+    loader.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      let dy = e.deltaY;
+      if (e.deltaMode === 1) dy *= 16;        // lines → px
+      else if (e.deltaMode === 2) dy *= 400;  // pages → px
+      rotY    += dy * 0.18;
+      rotVel   = dy * 0.06;
+      // Cap runaway inertia from aggressive flicks
+      if (rotVel >  12) rotVel =  12;
+      if (rotVel < -12) rotVel = -12;
+    }, { passive: false });
+
+    const allImgs = Array.from(document.images);
+    const total = allImgs.length || 1;
+    let loadedCount = 0;
     let displayedPct = 0;
     let targetPct = 0;
-    let countFrame;
 
-    // Animate counter from current to target
-    function animateCounter() {
-      if (displayedPct < targetPct) {
-        displayedPct++;
-        if (pct) pct.textContent = displayedPct + '%';
-        countFrame = requestAnimationFrame(animateCounter);
-      } else if (targetPct >= 100 && displayedPct >= 100) {
-        finish();
-      }
+    function onProgress() {
+      loadedCount++;
+      targetPct = Math.min(100, Math.round((loadedCount / total) * 100));
     }
-
-    function progress() {
-      loaded++;
-      targetPct = Math.min(100, Math.round((loaded / total) * 100));
-      if (!countFrame || displayedPct >= targetPct) {
-        cancelAnimationFrame(countFrame);
-        countFrame = requestAnimationFrame(animateCounter);
-      }
-    }
+    allImgs.forEach(img => {
+      if (img.complete) { onProgress(); return; }
+      img.addEventListener('load', onProgress);
+      img.addEventListener('error', onProgress);
+    });
+    setTimeout(() => { targetPct = 100; }, 4000);
 
     let finished = false;
     function finish() {
       if (finished) return;
       finished = true;
-      if (pct) pct.textContent = '100%';
       setTimeout(() => {
+        // Show the intro FIRST (it's z-index 10001, above the loader) so the
+        // main portfolio never peeks through during the loader→intro swap.
+        if (typeof window.showIntroScreen === 'function') window.showIntroScreen();
+        // Now let the loader fade away underneath the intro, then remove it.
         loader.classList.add('fade-out');
+        setTimeout(() => loader.remove(), 600);
+      }, 400);
+    }
+
+    function renderLoader(now) {
+      if (finished) return;
+      if (displayedPct < targetPct) displayedPct++;
+      if (displayedPct >= 100) { finish(); }
+
+      ctx.clearRect(0, 0, W, H);
+
+      // ----- Big text made of few small dots -----
+      const text = String(displayedPct) + '%';
+      const dots = getDotPositions(text, W / 2, H / 2);
+      const dotR = Math.min(W, H) < 600 ? 2.6 : 3.2;
+      ctx.fillStyle = '#ffffff';
+      for (let i = 0; i < dots.length; i++) {
+        ctx.beginPath();
+        ctx.arc(dots[i].x, dots[i].y, dotR, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // ----- Ring rotation (auto + drag inertia) -----
+      if (!dragging) {
+        rotY += rotVel;
+        // ease inertia back toward baseline auto-spin
+        const baseline = 0.18;
+        if (rotVel > baseline) rotVel = Math.max(baseline, rotVel * 0.96);
+        else if (rotVel < -baseline) rotVel = Math.min(-baseline, rotVel * 0.96);
+      }
+
+      // translateY (applied last = in screen space) compensates for the
+      // perspective asymmetry so the ring is visually centered on the screen.
+      const vOff = ringVisualOffsetY();
+      ring.style.transform =
+        'translateY(' + (-vOff) + 'px) ' +
+        'rotateX(' + TILT_X + 'deg) rotateZ(' + rotY + 'deg)';
+
+      // Per-card placement on the ring
+      const R = ringRadius();
+      const t = now * 0.001;
+      ringCards.forEach(c => {
+        const bobZ = Math.sin(t * 0.9 + c.bob) * 6;
+        // Place card on the ring, then counter-tilt so it stands up facing the viewer
+        c.el.style.transform =
+          'rotateZ(' + c.angle + 'deg) ' +
+          'translateY(-' + R + 'px) ' +
+          'translateZ(' + bobZ + 'px) ' +
+          'rotateZ(' + (-c.angle - rotY) + 'deg) ' +
+          'rotateX(' + (-TILT_X) + 'deg) ' +
+          'rotateZ(' + c.tilt + 'deg)';
+      });
+
+      // ----- Lines + scrambling project labels (once CSS 3D has positioned cards) -----
+      const loaderRect = loader.getBoundingClientRect();
+      ctx.save();
+      ctx.font = '500 11px "SF Mono", "JetBrains Mono", Menlo, monospace';
+      ctx.textBaseline = 'middle';
+      ctx.lineWidth = 1;
+      ringCards.forEach(c => {
+        const r = c.el.getBoundingClientRect();
+        const w = r.right - r.left;
+        const h = r.bottom - r.top;
+        if (w < 6 || h < 6) return; // edge-on card
+        const cardCX = (r.left + r.right) / 2 - loaderRect.left;
+        const cardCY = (r.top  + r.bottom) / 2 - loaderRect.top;
+        const onRight  = cardCX > W / 2;
+        const edgeX    = onRight ? W - 32 : 32;
+        const cardSide = onRight
+          ? r.right - loaderRect.left + 8
+          : r.left  - loaderRect.left - 8;
+
+        // Horizontal connector line
+        ctx.strokeStyle = '#aaaaaa';
+        ctx.beginPath();
+        ctx.moveTo(cardSide, cardCY);
+        ctx.lineTo(edgeX, cardCY);
+        ctx.stroke();
+
+        // Terminator dot
+        ctx.beginPath();
+        ctx.arc(edgeX, cardCY, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#aaaaaa';
+        ctx.fill();
+
+        // Scrambling label
+        const txt = scrambledLabel(c.label, now, c);
+        ctx.textAlign = onRight ? 'right' : 'left';
+        const labelX = onRight ? edgeX - 10 : edgeX + 10;
+        ctx.fillStyle = '#aaaaaa';
+        ctx.fillText(txt, labelX, cardCY);
+      });
+      ctx.restore();
+
+      requestAnimationFrame(renderLoader);
+    }
+    requestAnimationFrame(renderLoader);
+  })();
+
+  // =========================================================
+  //  INTRO SCREEN — после лоадера, до показа главной
+  // =========================================================
+  (function() {
+    const intro = document.getElementById('introScreen');
+    if (!intro) return;
+    const pills = intro.querySelectorAll('.intro-pill');
+
+    // Pill → main portfolio filter(s). "all" = no filter
+    const FILTER_MAP = {
+      komdiz:    ['komdiz'],
+      interfaces:['interfaces'],
+      web:       ['web'],
+      all:       []
+    };
+
+    function revealMainAfterIntro() {
+      const sidebar = document.querySelector('.sidebar');
+      if (sidebar) sidebar.classList.add('animate-in');
+      // Tour only on desktop, and only if the user tapped "всё вместе"
+      // (specific filters already narrow the view, no need to tour)
+      setTimeout(() => {
+        if (window.innerWidth > 768 && typeof window.startTour === 'function') {
+          const pickedAll = intro.querySelector('.intro-pill.picked')?.dataset.introFilter === 'all';
+          if (pickedAll) window.startTour();
+        }
+      }, 650);
+    }
+
+    function applyChosenFilter(key) {
+      // Reconcile each chip with desired state via real click() — this reuses
+      // the portfolio's own chip handler (toggles active, swaps +/- icon, and
+      // calls applyFilters internally). Each click = one canonical transition.
+      const wanted = new Set(FILTER_MAP[key] || []);
+      const chips = document.querySelectorAll('.filters .chip');
+      chips.forEach(chip => {
+        const isActive = chip.classList.contains('active');
+        const shouldBeActive = wanted.has(chip.dataset.filter);
+        if (isActive !== shouldBeActive) chip.click();
+      });
+    }
+
+    pills.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (intro.classList.contains('leaving')) return;
+        const key = btn.dataset.introFilter;
+        btn.classList.add('picked');
+        applyChosenFilter(key);
+        // Fade intro out, then reveal main portfolio content
+        intro.classList.add('leaving');
+        intro.classList.remove('visible');
+        setTimeout(() => {
+          intro.remove();
+          revealMainAfterIntro();
+        }, 450);
+      });
+    });
+
+    // Exposed so the loader can trigger us when it finishes.
+    // Per-tab-session gating: intro plays on the FIRST page load of the tab.
+    // Refreshing keeps sessionStorage, so the intro is skipped. Closing the
+    // tab wipes sessionStorage, so next open plays it again.
+    window.showIntroScreen = function() {
+      let alreadySeen = false;
+      try { alreadySeen = sessionStorage.getItem('introShown') === '1'; } catch (e) {}
+
+      if (alreadySeen) {
+        // Returning within same tab — skip intro, reveal main directly.
+        intro.remove();
         const sidebar = document.querySelector('.sidebar');
         if (sidebar) sidebar.classList.add('animate-in');
-        setTimeout(() => {
-          if (window.innerWidth > 768 && typeof window.startTour === 'function') window.startTour();
-        }, 600);
-        setTimeout(() => loader.remove(), 600);
-      }, 300);
-    }
-    imgs.forEach(img => {
-      if (img.complete) { progress(); return; }
-      img.addEventListener('load', progress);
-      img.addEventListener('error', progress);
-    });
-    // Fallback
-    setTimeout(() => { targetPct = 100; animateCounter(); }, 4000);
+        return;
+      }
+
+      try { sessionStorage.setItem('introShown', '1'); } catch (e) {}
+
+      // Use rAF so the transition actually plays (element was display:flex but opacity 0)
+      requestAnimationFrame(() => {
+        intro.setAttribute('aria-hidden', 'false');
+        intro.classList.add('visible');
+      });
+    };
   })();
 
   // ===== OPEN PROJECTS FROM ADMIN =====
