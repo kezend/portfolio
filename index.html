@@ -14,11 +14,19 @@
     font-style: normal;
     font-display: swap;
   }
+  @font-face {
+    font-family: 'Zapus Sans';
+    src: local('Zapus Sans');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
 
   :root {
     --sidebar-w: 340px;
     --font-heading: 'JetBrains Mono', monospace;
     --font-body: 'PP Neue Montreal', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-loader: 'Zapus Sans', 'PP Neue Montreal', 'Inter', sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -2208,6 +2216,10 @@
   .intro-screen.visible .intro-q {
     opacity: 1; transform: translateY(0);
     transition-delay: 1.4s;
+  }
+  .intro-q,
+  .intro-pills {
+    display: none !important;
   }
 
   /* Pills — stacked, zero gap (touching each other) */
@@ -5877,16 +5889,16 @@
 
       ctx.clearRect(0, 0, W, H);
 
-      // ----- Big text made of few small dots -----
+      // ----- Big plain loading digits -----
       const text = String(displayedPct) + '%';
-      const dots = getDotPositions(text, W / 2, H / 2);
-      const dotR = Math.min(W, H) < 600 ? 2.6 : 3.2;
+      const fontPx = Math.min(W, H) < 600 ? 132 : 184;
+      ctx.save();
       ctx.fillStyle = '#ffffff';
-      for (let i = 0; i < dots.length; i++) {
-        ctx.beginPath();
-        ctx.arc(dots[i].x, dots[i].y, dotR, 0, Math.PI * 2);
-        ctx.fill();
-      }
+      ctx.font = '400 ' + fontPx + 'px "Zapus Sans", "PP Neue Montreal", "Inter", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(text, W / 2, H / 2);
+      ctx.restore();
 
       // ----- Ring rotation (auto + drag inertia) -----
       if (!dragging) {
@@ -5984,14 +5996,6 @@
     function revealMainAfterIntro() {
       const sidebar = document.querySelector('.sidebar');
       if (sidebar) sidebar.classList.add('animate-in');
-      // Tour only on desktop, and only if the user tapped "всё вместе"
-      // (specific filters already narrow the view, no need to tour)
-      setTimeout(() => {
-        if (window.innerWidth > 768 && typeof window.startTour === 'function') {
-          const pickedAll = intro.querySelector('.intro-pill.picked')?.dataset.introFilter === 'all';
-          if (pickedAll) window.startTour();
-        }
-      }, 650);
     }
 
     function applyChosenFilter(key) {
@@ -6007,45 +6011,29 @@
       });
     }
 
+    function leaveIntro(key, pickedButton) {
+      if (intro.classList.contains('leaving')) return;
+      if (pickedButton) pickedButton.classList.add('picked');
+      applyChosenFilter(key);
+      intro.classList.add('leaving');
+      intro.classList.remove('visible');
+      setTimeout(() => {
+        intro.remove();
+        revealMainAfterIntro();
+      }, 450);
+    }
+
     pills.forEach(btn => {
       btn.addEventListener('click', () => {
-        if (intro.classList.contains('leaving')) return;
-        const key = btn.dataset.introFilter;
-        btn.classList.add('picked');
-        applyChosenFilter(key);
-        // Fade intro out, then reveal main portfolio content
-        intro.classList.add('leaving');
-        intro.classList.remove('visible');
-        setTimeout(() => {
-          intro.remove();
-          revealMainAfterIntro();
-        }, 450);
+        leaveIntro(btn.dataset.introFilter, btn);
       });
     });
 
-    // Exposed so the loader can trigger us when it finishes.
-    // Per-tab-session gating: intro plays on the FIRST page load of the tab.
-    // Refreshing keeps sessionStorage, so the intro is skipped. Closing the
-    // tab wipes sessionStorage, so next open plays it again.
+    // Exposed so the loader can trigger the main page directly.
     window.showIntroScreen = function() {
-      let alreadySeen = false;
-      try { alreadySeen = sessionStorage.getItem('introShown') === '1'; } catch (e) {}
-
-      if (alreadySeen) {
-        // Returning within same tab — skip intro, reveal main directly.
-        intro.remove();
-        const sidebar = document.querySelector('.sidebar');
-        if (sidebar) sidebar.classList.add('animate-in');
-        return;
-      }
-
       try { sessionStorage.setItem('introShown', '1'); } catch (e) {}
-
-      // Use rAF so the transition actually plays (element was display:flex but opacity 0)
-      requestAnimationFrame(() => {
-        intro.setAttribute('aria-hidden', 'false');
-        intro.classList.add('visible');
-      });
+      intro.remove();
+      revealMainAfterIntro();
     };
   })();
 

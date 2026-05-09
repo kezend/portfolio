@@ -245,6 +245,318 @@
   .v-card img, .v-card video { display: block; width: 100%; height: auto; pointer-events: none; }
   .v-card.v-circle { border-radius: 50%; overflow: hidden; }
   .v-card.v-circle video { border-radius: 50%; width: 100%; height: 100%; object-fit: cover; }
+
+  /* ===== LIGHTBOX (zoom on click, card carousel / arrows / keys) ===== */
+  body.lb-locked { overflow: hidden; }
+  .lightbox {
+    position: fixed; inset: 0; z-index: 9000;
+    background: rgba(15,15,15,0);
+    display: none;
+    align-items: center; justify-content: center;
+    cursor: zoom-out;
+    transition: background 0.45s ease;
+  }
+  .lightbox.active   { display: flex; }
+  .lightbox.shown    { background: #0f0f0f; }
+
+  .lb-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1300px;
+    perspective-origin: 50% 50%;
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 0.38s ease, transform 0.48s cubic-bezier(0.22,1,0.36,1);
+    pointer-events: none;
+  }
+  .lightbox.shown .lb-carousel {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+
+  .lb-track {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    pointer-events: none;
+  }
+  .lb-card {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: var(--z, 1);
+    width: var(--card-w, clamp(148px, 28vw, 380px));
+    height: var(--card-h, min(62vh, 520px));
+    padding: 0;
+    border: 1px solid #d9d9d9;
+    border-radius: 18px;
+    background: transparent;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: var(--opacity, 1);
+    transform:
+      translate(-50%, -50%)
+      translateX(var(--x, 0px))
+      translateY(var(--y, 0px))
+      translateZ(var(--z3d, 0px))
+      rotateY(var(--rot, 0deg))
+      rotate(var(--tilt, 0deg))
+      scale(var(--scale, 1));
+    transform-style: preserve-3d;
+    filter: grayscale(var(--gray, 0)) brightness(var(--bright, 1));
+    box-shadow:
+      0 24px 70px rgba(0,0,0,0.42),
+      inset 0 0 0 1px rgba(0,0,0,0.04);
+    transition:
+      width 0.42s cubic-bezier(0.22,1,0.36,1),
+      height 0.42s cubic-bezier(0.22,1,0.36,1),
+      opacity 0.34s ease,
+      transform 0.54s cubic-bezier(0.22,1,0.36,1),
+      filter 0.34s ease,
+      box-shadow 0.34s ease,
+      border-color 0.34s ease;
+    pointer-events: auto;
+  }
+  .lb-card.is-wide {
+    width: var(--card-w, clamp(250px, 50vw, 760px));
+    height: var(--card-h, min(46vh, 430px));
+  }
+  .lb-card:not([data-current="true"]).is-wide {
+    width: var(--card-w, clamp(190px, 34vw, 520px));
+    height: var(--card-h, min(36vh, 330px));
+  }
+  .lb-card.is-square {
+    width: var(--card-w, min(44vh, 420px));
+    height: var(--card-h, min(44vh, 420px));
+  }
+  .lb-card[data-current="true"] {
+    cursor: default;
+    border-color: #efefef;
+    box-shadow:
+      0 34px 90px rgba(0,0,0,0.52),
+      inset 0 0 0 1px rgba(0,0,0,0.05);
+  }
+  .lb-card:not([data-current="true"]):hover,
+  .lb-card:not([data-current="true"]):focus-visible {
+    opacity: 1;
+    filter: grayscale(0.2) brightness(1);
+    border-color: #fff;
+    outline: none;
+  }
+  .lb-card-media {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    background: transparent;
+  }
+  .lb-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+    pointer-events: none;
+  }
+  .lb-arrow {
+    position: fixed;
+    top: 50%;
+    z-index: 9100;
+    width: 56px;
+    height: 56px;
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 50%;
+    background: #f7f9f9;
+    color: #141414;
+    font-size: 0;
+    line-height: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+    transform: translateY(-50%);
+    transition: opacity 0.42s ease, background 0.2s ease, transform 0.2s ease;
+  }
+  .lightbox.shown ~ .lb-arrow,
+  .lightbox.active .lb-arrow {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .lb-arrow:hover {
+    background: #fff;
+    transform: translateY(-50%) scale(1.06);
+  }
+  .lb-arrow:focus { outline: none; }
+  .lb-arrow:focus-visible {
+    outline: 1px solid rgba(255,255,255,0.72);
+    outline-offset: 4px;
+  }
+  .lb-arrow:active { transform: translateY(-50%) scale(0.94); }
+  .lb-prev { left: clamp(18px, 4vw, 56px); }
+  .lb-next { right: clamp(18px, 4vw, 56px); }
+  .lb-arrow::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    display: block;
+    border: solid currentColor;
+    border-width: 0 1.8px 1.8px 0;
+    transform-origin: center;
+  }
+  .lb-prev::before {
+    transform: rotate(135deg);
+    margin-left: 4px;
+  }
+  .lb-next::before {
+    transform: rotate(-45deg);
+    margin-right: 4px;
+  }
+
+  /* Back button — match the .ft-back used elsewhere in this file */
+  .lb-back {
+    position: fixed;
+    top: 20px; left: 20px;
+    z-index: 9100;
+    background: #f7f9f9; color: #222;
+    font-family: 'Onest', var(--font-body);
+    font-size: 17px; font-weight: 400;
+    padding: 8px 16px;
+    border-radius: 12px; border: none;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .lightbox.shown ~ .lb-back,
+  .lightbox.active .lb-back { opacity: 1; pointer-events: auto; }
+  .lb-back:hover { transform: scale(1.04); }
+
+  /* Counter */
+  .lb-counter {
+    position: fixed;
+    bottom: 28px; left: 50%; transform: translateX(-50%);
+    z-index: 9100;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.72);
+    opacity: 0;
+    transition: opacity 0.3s ease 0.15s;
+    pointer-events: none;
+  }
+  .lightbox.shown ~ .lb-counter,
+  .lightbox.active .lb-counter { opacity: 1; }
+
+  @media (max-width: 760px) {
+    .lb-carousel {
+      perspective: 1100px;
+      perspective-origin: 50% 48%;
+    }
+    .lb-card {
+      width: var(--card-w, 58vw);
+      height: var(--card-h, 54vh);
+      border-radius: 14px;
+    }
+    .lb-card[data-current="true"] {
+      border-color: rgba(255,255,255,0.78);
+    }
+    .lb-card.is-wide {
+      width: var(--card-w, 82vw);
+      height: var(--card-h, min(42vh, 330px));
+    }
+    .lb-card:not([data-current="true"]).is-wide {
+      width: var(--card-w, 66vw);
+      height: var(--card-h, min(34vh, 260px));
+    }
+    .lb-card.is-square {
+      width: var(--card-w, 64vw);
+      height: var(--card-h, 64vw);
+    }
+    .lb-card[data-offset="-2"] {
+      --x: -4vw !important;
+      --y: -44vh !important;
+      --z3d: -280px !important;
+      --rot: 0deg !important;
+      --tilt: -5deg !important;
+      --scale: 0.72 !important;
+      --opacity: 0.36 !important;
+    }
+    .lb-card[data-offset="-1"] {
+      --x: 3vw !important;
+      --y: -24vh !important;
+      --z3d: -90px !important;
+      --rot: 0deg !important;
+      --tilt: 5deg !important;
+      --scale: 0.88 !important;
+      --opacity: 0.86 !important;
+    }
+    .lb-card[data-offset="0"] {
+      --y: 0px !important;
+      --tilt: 0deg !important;
+    }
+    .lb-card[data-offset="1"] {
+      --x: -3vw !important;
+      --y: 24vh !important;
+      --z3d: -90px !important;
+      --rot: 0deg !important;
+      --tilt: -5deg !important;
+      --scale: 0.88 !important;
+      --opacity: 0.86 !important;
+    }
+    .lb-card[data-offset="2"] {
+      --x: 4vw !important;
+      --y: 44vh !important;
+      --z3d: -280px !important;
+      --rot: 0deg !important;
+      --tilt: 5deg !important;
+      --scale: 0.72 !important;
+      --opacity: 0.36 !important;
+    }
+    .lb-arrow {
+      display: none !important;
+      width: 44px;
+      height: 44px;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+    .lb-prev,
+    .lb-next {
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+    }
+    .lb-prev { top: 88px; }
+    .lb-next { top: auto; bottom: 48px; }
+    .lb-prev::before {
+      transform: rotate(-135deg);
+      margin: 3px 0 0;
+    }
+    .lb-next::before {
+      transform: rotate(45deg);
+      margin: 0 0 3px;
+    }
+    .lb-prev:hover,
+    .lb-next:hover {
+      transform: translateX(-50%) scale(1.06);
+    }
+    .lb-prev:active,
+    .lb-next:active {
+      transform: translateX(-50%) scale(0.94);
+    }
+    .lb-back { font-size: 14px; padding: 6px 12px; top: 12px; left: 12px; }
+    .lb-counter { font-size: 11px; bottom: 16px; }
+  }
   .sz-a{width:200px} .sz-b{width:165px}
   .sz-c{width:135px} .sz-d{width:105px}
   .sz-w{width:210px} .sz-s{width:120px}
@@ -567,6 +879,17 @@
 
 <div class="textme-screen" id="textmeScreen"></div>
 
+<!-- Lightbox: zoom on photo click, navigate with card carousel / arrows / keys -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lb-carousel" id="lbCarousel">
+    <div class="lb-track" id="lbTrack"></div>
+  </div>
+</div>
+<button class="lb-back"  id="lbBack" type="button">Назад</button>
+<button class="lb-arrow lb-prev" id="lbPrev" type="button" aria-label="Предыдущее">‹</button>
+<button class="lb-arrow lb-next" id="lbNext" type="button" aria-label="Следующее">›</button>
+<div class="lb-counter" id="lbCounter"></div>
+
 <script>
 (function(){
   'use strict';
@@ -585,6 +908,40 @@
   const ftSection = document.getElementById('ftSection');
   const slides = document.querySelectorAll('.ft-slide');
   const totalSlides = slides.length;
+  let sphereEntryUntil = 0;
+
+  function resetSphereOnEntry() {
+    window.__sphereNeedsReset = true;
+    if (typeof window.__resetSphereDepth === 'function') {
+      window.__resetSphereDepth();
+    }
+    [80, 220, 420].forEach(delay => {
+      setTimeout(() => {
+        if (viewport.classList.contains('active') && performance.now() < sphereEntryUntil) {
+          if (typeof window.__resetSphereDepth === 'function') {
+            window.__resetSphereDepth();
+          }
+        }
+      }, delay);
+    });
+  }
+
+  function setSphereActive(active, shouldReset) {
+    const wasActive = viewport.classList.contains('active');
+    viewport.classList.toggle('active', active);
+    cur.classList.toggle('show', active);
+    hint.style.display = active ? '' : 'none';
+
+    if (active) {
+      sphereEntryUntil = performance.now() + 850;
+      document.body.style.overflow = 'hidden';
+      if (shouldReset || !wasActive) {
+        resetSphereOnEntry();
+      }
+    } else if (wasActive) {
+      document.body.style.overflow = '';
+    }
+  }
 
   function updateSlides() {
     const rect = ftSection.getBoundingClientRect();
@@ -596,13 +953,8 @@
 
     const pastIntro = scrolled >= sectionH - 50;
     const wasActive = viewport.classList.contains('active');
-    viewport.classList.toggle('active', pastIntro);
-    cur.classList.toggle('show', pastIntro);
-    hint.style.display = pastIntro ? '' : 'none';
-    // Lock body scroll when sphere is active
-    if(pastIntro && !wasActive){
-      document.body.style.overflow = 'hidden';
-    }
+    if (pastIntro && !wasActive) setSphereActive(true, true);
+    else if (!pastIntro && wasActive) setSphereActive(false, false);
   }
 
   window.addEventListener('scroll', updateSlides, { passive: true });
@@ -726,6 +1078,23 @@
       el.innerHTML=item.text;
       el._isLabel = true;
     }
+    if (item.t === 'card') {
+      el._cardItem = item;          // expose for the lightbox
+      el.style.cursor = 'pointer';
+      let lastFired = 0;
+      // Bind on both mouseup AND click — first runs on desktop reliably,
+      // click is the safety net (tap on mobile, edge cases on desktop).
+      const onActivate = (ev) => {
+        if (ev.type === 'mouseup' && ev.button !== 0) return;
+        if (window.__veshLastDragMoved) return;
+        const now = performance.now();
+        if (now - lastFired < 350) return;   // debounce mouseup→click duplicate
+        lastFired = now;
+        if (window.openVibeLightbox) window.openVibeLightbox(item);
+      };
+      el.addEventListener('mouseup', onActivate);
+      el.addEventListener('click',   onActivate);
+    }
     el._nx=sp.x; el._ny=sp.y; el._nz=sp.z;
     el._tx=item.tx; el._ty=item.ty; el._tz=item.tz;
     el._ry=(Math.random()-0.5)*6; el._rx=(Math.random()-0.5)*3;
@@ -789,6 +1158,20 @@
     // Also handle Z-scroll via vertical swipe
     const dy=touchStartY-t.clientY;
     if(Math.abs(dy)>10){
+      if (performance.now() < sphereEntryUntil && dy > 0) {
+        e.preventDefault();
+        return;
+      }
+      // Accumulate intent before exiting sphere on upward swipe
+      if (targetZ<=0 && currentZ<5 && dy<0) {
+        upScrollAccum += -dy;
+        clearTimeout(upScrollResetTimer);
+        upScrollResetTimer = setTimeout(() => { upScrollAccum = 0; }, 220);
+        if (upScrollAccum < 250) { e.preventDefault(); return; }
+        upScrollAccum = 0;
+      } else {
+        upScrollAccum = 0;
+      }
       targetZ+=dy*0.6;
       targetZ=Math.max(0,Math.min(MAX_Z,targetZ));
       touchStartY=t.clientY;
@@ -814,17 +1197,48 @@
   const MAX_Z=SCATTER_PHASE+projects.length*SECTOR_GAP+800;
 
   const sphereSec=document.getElementById('sphereSection');
+  const textmeScreen = document.getElementById('textmeScreen');
+  // Accumulator for upward scroll while at sphere start — must exceed
+  // a threshold before we exit, so a stray wheel-bounce can't kick us out.
+  let upScrollAccum = 0;
+  let upScrollResetTimer = null;
+  window.__resetSphereDepth = function() {
+    targetZ = 0;
+    currentZ = 0;
+    upScrollAccum = 0;
+    clearTimeout(upScrollResetTimer);
+    window.__sphereNeedsReset = false;
+    if (textmeScreen) textmeScreen.classList.remove('active');
+  };
+  if (window.__sphereNeedsReset || viewport.classList.contains('active')) {
+    window.__resetSphereDepth();
+  }
   window.addEventListener('wheel',e=>{
     if(!viewport.classList.contains('active'))return;
-    // If at the top of sphere and scrolling up — exit back to intro
+    if (performance.now() < sphereEntryUntil && e.deltaY > 0) {
+      e.preventDefault();
+      return;
+    }
+    // If at the top of sphere and scrolling up — accumulate, exit only on intent
     if(targetZ<=0 && currentZ<5 && e.deltaY<0){
+      upScrollAccum += -e.deltaY;
+      clearTimeout(upScrollResetTimer);
+      upScrollResetTimer = setTimeout(() => { upScrollAccum = 0; }, 220);
+      if (upScrollAccum < 250) {
+        // Not enough sustained upward intent — keep sphere active, swallow event
+        e.preventDefault();
+        return;
+      }
+      // Real exit
+      upScrollAccum = 0;
       viewport.classList.remove('active');
       cur.classList.remove('show');
       hint.style.display='none';
       document.body.style.overflow = '';
       targetZ=0; currentZ=0;
-      return; // let normal scroll happen
+      return;
     }
+    upScrollAccum = 0;
     e.preventDefault();
     targetZ+=e.deltaY*3.0;
     targetZ=Math.max(0,Math.min(MAX_Z,targetZ));
@@ -836,6 +1250,12 @@
   function renderSphere(){
     if(!viewport.classList.contains('active')){requestAnimationFrame(renderSphere);return;}
     sphereTime += 0.008;
+    if (performance.now() < sphereEntryUntil) {
+      targetZ = 0;
+      currentZ = 0;
+      upScrollAccum = 0;
+      if (textmeScreen) textmeScreen.classList.remove('active');
+    }
     currentZ+=(targetZ-currentZ)*0.12;
     dragRotX+=(tDRX-dragRotX)*0.08;
     dragRotY+=(tDRY-dragRotY)*0.08;
@@ -865,6 +1285,12 @@
       let op=1;
       if(fz>1100)op=Math.max(0,1-(fz-1100)/400);
       else if(fz<-1000)op=Math.max(0,1-(-1000-fz)/600);
+      // Labels: invisible in pure-sphere phase, fade in as user zooms into sectors.
+      // 0..0.35 scatter → hidden; 0.35..0.85 → fade in; 0.85+ → full visible.
+      if (el._isLabel) {
+        const reveal = Math.max(0, Math.min(1, (scatter - 0.35) / 0.5));
+        op *= reveal;
+      }
       // Skip fully hidden elements
       const opR=Math.round(op*100);
       if(opR===0 && el._lastOp===0){continue;}
@@ -888,7 +1314,6 @@
   renderSphere();
 
   /* TEXT ME END SCREEN */
-  const textmeScreen = document.getElementById('textmeScreen');
   const tmColors = [
     '#FF3B30','#FF9500','#FFCC00','#34C759','#00C7BE',
     '#007AFF','#5856D6','#AF52DE','#FF2D55','#A2845E',
@@ -1020,7 +1445,294 @@
   document.addEventListener('mouseover',e=>{if(e.target.closest('.v-card,a'))cur.classList.add('hov');});
   document.addEventListener('mouseout',e=>{if(e.target.closest('.v-card,a'))cur.classList.remove('hov');});
   if('ontouchstart' in window)cur.style.display='none';
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')location.href='index.html';});
+  document.addEventListener('keydown',e=>{
+    // Don't let global Escape navigate while the lightbox is open — close it instead
+    const lb = document.getElementById('lightbox');
+    if (lb && lb.classList.contains('active')) return;
+    if (e.key === 'Escape') location.href = 'index.html';
+  });
+})();
+
+// =========================================================
+//  LIGHTBOX — click any v-card to zoom; card carousel / arrows / keys navigate
+// =========================================================
+(function() {
+  // Build a flat list of clickable card items by reading the rendered scene.
+  // Cards are .v-card descendants of .v-item, in DOM order; we re-derive on
+  // open so that any items added/removed dynamically still work.
+  function getCardList() {
+    return Array.from(document.querySelectorAll('.scene .v-item'))
+      .map(el => el._cardItem)
+      .filter(Boolean);
+  }
+
+  let cards = [];
+  let idx = 0;
+  let wheelLock = false;
+
+  const lb     = document.getElementById('lightbox');
+  const carousel = document.getElementById('lbCarousel');
+  const track  = document.getElementById('lbTrack');
+  const lbCnt  = document.getElementById('lbCounter');
+  const btnB   = document.getElementById('lbBack');
+  const btnP   = document.getElementById('lbPrev');
+  const btnN   = document.getElementById('lbNext');
+  if (!lb) return;
+
+  function isVideoSrc(src, item) {
+    return (item && item.video) || /\.(mp4|webm|mov|m4v)$/i.test(src);
+  }
+
+  function setCardSize(card, ratio, naturalWidth, naturalHeight) {
+    if (!card || !ratio) return;
+    const isSide = card.dataset.current !== 'true';
+    const isNarrow = window.innerWidth <= 760;
+    let maxW;
+    let maxH;
+
+    if (ratio >= 1.18) {
+      maxW = isNarrow ? window.innerWidth * (isSide ? 0.66 : 0.82) : window.innerWidth * (isSide ? 0.34 : 0.5);
+      maxH = isNarrow ? Math.min(window.innerHeight * (isSide ? 0.34 : 0.42), isSide ? 260 : 330) : Math.min(window.innerHeight * (isSide ? 0.36 : 0.46), isSide ? 330 : 430);
+      maxW = Math.min(maxW, isSide ? 520 : 760);
+    } else if (ratio <= 0.86) {
+      maxW = isNarrow ? window.innerWidth * 0.58 : Math.min(window.innerWidth * 0.28, 380);
+      maxH = isNarrow ? window.innerHeight * 0.54 : Math.min(window.innerHeight * 0.62, 520);
+    } else {
+      maxW = isNarrow ? window.innerWidth * 0.64 : Math.min(window.innerHeight * 0.44, 420);
+      maxH = maxW;
+    }
+
+    const sourceW = naturalWidth || Infinity;
+    const sourceH = naturalHeight || Infinity;
+    let w = Math.min(maxW, sourceW, maxH * ratio, sourceH * ratio);
+    let h = w / ratio;
+    card.style.setProperty('--card-w', Math.max(80, Math.round(w)) + 'px');
+    card.style.setProperty('--card-h', Math.max(80, Math.round(h)) + 'px');
+  }
+
+  function setCardOrientation(card, width, height) {
+    if (!card || !width || !height) return;
+    const ratio = width / height;
+    card.classList.remove('is-wide', 'is-square', 'is-tall');
+    if (ratio >= 1.18) {
+      card.classList.add('is-wide');
+    } else if (ratio <= 0.86) {
+      card.classList.add('is-tall');
+    } else {
+      card.classList.add('is-square');
+    }
+    setCardSize(card, ratio, width, height);
+  }
+
+  function setInitialCardOrientation(card, item) {
+    if (!card || !item) return;
+    if (item.circle || item.sz === 'sz-circle') {
+      card.classList.add('is-square');
+      setCardSize(card, 1);
+    } else if (item.sz === 'sz-w') {
+      card.classList.add('is-wide');
+      setCardSize(card, 16 / 10);
+    }
+  }
+
+  function imageDetailCandidates(src) {
+    if (!/\.webp$/i.test(src)) return [src];
+    const base = src.replace(/\.webp$/i, '');
+    let candidates;
+    if (/^Интерфейсы\//.test(src)) {
+      candidates = /(Desktop - 19|Frame 1|Two tickets|image 7|image 8)\.webp$/i.test(src)
+        ? [base + '.png', base + '.jpg', base + '.jpeg', src]
+        : [base + '.jpg', base + '.png', base + '.jpeg', src];
+    } else if (/^Фото\//.test(src) || /photo_/i.test(src)) {
+      candidates = [base + '.jpeg', base + '.jpg', base + '.png', src];
+    } else {
+      candidates = [base + '.jpg', base + '.jpeg', base + '.png', src];
+    }
+    return Array.from(new Set(candidates));
+  }
+
+  function setImageWithFallback(img, candidates) {
+    let next = 0;
+    img.addEventListener('error', () => {
+      next += 1;
+      if (next < candidates.length) img.src = candidates[next];
+    });
+    img.src = candidates[next];
+  }
+
+  function appendCardMedia(target, item) {
+    if (isVideoSrc(item.src, item)) {
+      const v = document.createElement('video');
+      v.className = 'lb-card-media';
+      v.muted = true;
+      v.loop = true;
+      v.playsInline = true;
+      v.preload = 'metadata';
+      v.setAttribute('playsinline', '');
+      v.addEventListener('loadedmetadata', () => {
+        setCardOrientation(target, v.videoWidth, v.videoHeight);
+      }, { once: true });
+      v.src = item.src;
+      target.appendChild(v);
+      try { v.play(); } catch (e) {}
+      return;
+    }
+
+    const img = document.createElement('img');
+    img.className = 'lb-card-media';
+    img.alt = '';
+    img.loading = 'eager';
+    img.decoding = 'async';
+    img.addEventListener('load', () => {
+      setCardOrientation(target, img.naturalWidth, img.naturalHeight);
+    }, { once: true });
+    setImageWithFallback(img, imageDetailCandidates(item.src));
+    if (img.complete) setCardOrientation(target, img.naturalWidth, img.naturalHeight);
+    target.appendChild(img);
+  }
+
+  function renderCarousel() {
+    if (!track) return;
+    track.innerHTML = '';
+    if (!cards.length) return;
+
+    const offsets = [-2, -1, 0, 1, 2].filter(offset => Math.abs(offset) < cards.length);
+    const layout = {
+      '-2': { x: '-43vw', z3d: '-300px', rot: '36deg',  scale: '0.72', opacity: '0.48', z: 1, gray: 1,   bright: 0.78 },
+      '-1': { x: '-21vw', z3d: '-90px',  rot: '18deg',  scale: '0.92', opacity: '0.82', z: 3, gray: 0.55, bright: 0.9  },
+      '0':  { x: '0px',   z3d: '80px',   rot: '0deg',   scale: '1',    opacity: '1',    z: 5, gray: 0,    bright: 1    },
+      '1':  { x: '21vw',  z3d: '-90px',  rot: '-18deg', scale: '0.92', opacity: '0.82', z: 3, gray: 0.55, bright: 0.9  },
+      '2':  { x: '43vw',  z3d: '-300px', rot: '-36deg', scale: '0.72', opacity: '0.48', z: 1, gray: 1,    bright: 0.78 }
+    };
+
+    offsets.forEach(offset => {
+      const item = cards[(idx + offset + cards.length) % cards.length];
+      const pos = layout[String(offset)];
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'lb-card';
+      card.dataset.current = offset === 0 ? 'true' : 'false';
+      card.dataset.offset = String(offset);
+      card.setAttribute('aria-label', offset === 0 ? 'Текущее медиа' : (offset < 0 ? 'Предыдущее медиа' : 'Следующее медиа'));
+      card.style.setProperty('--x', pos.x);
+      card.style.setProperty('--z3d', pos.z3d);
+      card.style.setProperty('--rot', pos.rot);
+      card.style.setProperty('--scale', pos.scale);
+      card.style.setProperty('--opacity', pos.opacity);
+      card.style.setProperty('--z', pos.z);
+      card.style.setProperty('--gray', pos.gray);
+      card.style.setProperty('--bright', pos.bright);
+      setInitialCardOrientation(card, item);
+      appendCardMedia(card, item);
+      card.addEventListener('click', e => {
+        e.stopPropagation();
+        if (offset === 0) return;
+        idx = (idx + offset + cards.length) % cards.length;
+        showCurrent();
+      });
+      track.appendChild(card);
+    });
+  }
+
+  function showCurrent() {
+    const item = cards[idx];
+    if (!item) return;
+    lbCnt.textContent = (idx + 1) + ' / ' + cards.length;
+    renderCarousel();
+  }
+
+  function open(startItem) {
+    cards = getCardList();
+    idx = Math.max(0, cards.indexOf(startItem));
+    lb.classList.add('active');
+    requestAnimationFrame(() => lb.classList.add('shown'));
+    showCurrent();
+    document.body.classList.add('lb-locked');
+  }
+  window.openVibeLightbox = open;  // exposed for direct card click handlers
+
+  // Global drag tracker — sets window.__veshLastDragMoved while a drag is
+  // in progress, then clears it after a tick so clicks/mouseups can read it.
+  (function setupDragTracker() {
+    let downX = 0, downY = 0, isDown = false, moved = false;
+    window.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      isDown = true; moved = false;
+      downX = e.clientX; downY = e.clientY;
+      window.__veshLastDragMoved = false;
+    }, true);
+    window.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      const dx = e.clientX - downX, dy = e.clientY - downY;
+      if (!moved && Math.sqrt(dx*dx + dy*dy) > 5) {
+        moved = true;
+        window.__veshLastDragMoved = true;
+      }
+    }, true);
+    window.addEventListener('mouseup', () => {
+      isDown = false;
+      // Keep the flag set during the same tick so card mouseup handlers can read it
+      setTimeout(() => { window.__veshLastDragMoved = false; }, 0);
+    }, true);
+  })();
+
+  function close() {
+    lb.classList.remove('shown');
+    setTimeout(() => {
+      lb.classList.remove('active');
+      if (track) track.innerHTML = '';
+      document.body.classList.remove('lb-locked');
+    }, 350);
+  }
+
+  function next() { if (!cards.length) return; idx = (idx + 1) % cards.length;            showCurrent(); }
+  function prev() { if (!cards.length) return; idx = (idx - 1 + cards.length) % cards.length; showCurrent(); }
+
+  btnB.addEventListener('click', close);
+  btnP.addEventListener('click', e => { e.stopPropagation(); prev(); });
+  btnN.addEventListener('click', e => { e.stopPropagation(); next(); });
+  // Click on dim background (not on stage) closes
+  lb.addEventListener('click', e => {
+    if (e.target === lb || e.target === carousel) close();
+  });
+
+  // Wheel navigation (with throttle so a single wheel tick doesn't skip many)
+  lb.addEventListener('wheel', e => {
+    if (!lb.classList.contains('active')) return;
+    e.preventDefault();
+    if (wheelLock) return;
+    wheelLock = true;
+    setTimeout(() => { wheelLock = false; }, 280);
+    if (e.deltaY > 0 || e.deltaX > 0) next(); else prev();
+  }, { passive: false });
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape')      { e.stopPropagation(); close(); }
+    else if (e.key === 'ArrowRight') next();
+    else if (e.key === 'ArrowLeft')  prev();
+  }, true);
+
+  // Touch swipe inside lightbox (mobile)
+  let tStartX = 0, tStartY = 0, tDx = 0, tDy = 0;
+  lb.addEventListener('touchstart', e => {
+    const t = e.touches[0];
+    tStartX = t.clientX; tStartY = t.clientY; tDx = 0; tDy = 0;
+  }, { passive: true });
+  lb.addEventListener('touchmove', e => {
+    const t = e.touches[0];
+    tDx = t.clientX - tStartX; tDy = t.clientY - tStartY;
+  }, { passive: true });
+  lb.addEventListener('touchend', () => {
+    if (window.innerWidth <= 760 && Math.abs(tDy) > 50 && Math.abs(tDy) > Math.abs(tDx)) {
+      if (tDy < 0) next(); else prev();
+    } else if (Math.abs(tDx) > 50 && Math.abs(tDx) > Math.abs(tDy)) {
+      if (tDx < 0) next(); else prev();
+    } else if (tDy > 80 && Math.abs(tDy) > Math.abs(tDx)) {
+      close();
+    }
+  });
 })();
 </script>
 </body>
