@@ -1060,6 +1060,7 @@
     clip-path: circle(0% at var(--morph-x, 50%) var(--morph-y, 50%));
     transition: clip-path 0.45s cubic-bezier(.4,0,.2,1);
   }
+  .project-detail.switching { clip-path: inset(0) !important; transition: none !important; }
   .project-detail.switching .detail-body { opacity: 0; transform: translateY(10px); }
   .project-detail .detail-body { transition: opacity 0.22s ease, transform 0.22s ease; }
 
@@ -1104,9 +1105,11 @@
     align-items: center;
     justify-content: center;
   }
+  .detail-next svg { width: 26px; height: 26px; }
   .detail-next:hover { background: #d4ff00; }
   @media (max-width: 1100px) {
     .detail-next { right: 14px; bottom: 14px; width: 46px; height: 46px; font-size: 26px; }
+    .detail-next svg { width: 22px; height: 22px; }
   }
   body:has(.project-detail.open) .about-circle { display: none !important; }
 
@@ -3766,7 +3769,9 @@
   <!-- ===== PROJECT DETAIL VIEW ===== -->
   <div class="project-detail" id="projectDetail">
     <button class="detail-back" id="detailBack">К проектам</button>
-    <button class="detail-next" id="detailNext" aria-label="Следующий проект" title="Следующий проект">→</button>
+    <button class="detail-next" id="detailNext" aria-label="Следующий проект" title="Следующий проект">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg>
+    </button>
     <div class="detail-body">
 
       <!-- Detail Sidebar -->
@@ -3922,8 +3927,11 @@
     const wx = (mx - panX) / scale;
     const wy = (my - panY) / scale;
 
-    const delta = -e.deltaY * 0.001;
-    const newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * (1 + delta)));
+    const pixelDelta = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? viewport.clientHeight : 1);
+    const highResolutionInput = e.deltaMode === 0 && Math.abs(pixelDelta) < 40;
+    const sensitivity = e.ctrlKey ? 0.012 : highResolutionInput ? 0.007 : 0.0022;
+    const zoomFactor = Math.max(0.72, Math.min(1.38, Math.exp(-pixelDelta * sensitivity)));
+    const newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale * zoomFactor));
 
     panX = mx - wx * newScale;
     panY = my - wy * newScale;
@@ -4645,7 +4653,6 @@
     const nextProjectKey = projectOrder[(currentIndex + 1) % projectOrder.length];
     detailNext.dataset.nextProject = nextProjectKey;
     const nextProjectTitle = projects[nextProjectKey]?.title || nextProjectKey;
-    detailNext.textContent = '→';
     detailNext.title = `Следующий проект: ${nextProjectTitle}`;
     detailNext.setAttribute('aria-label', `Следующий проект: ${nextProjectTitle}`);
 
@@ -4792,15 +4799,33 @@
 
   // Back button
   detailBack.addEventListener('click', () => closeDetail());
+  const renderDetailWithoutMorph = openDetail;
+  let isSwitchingDetail = false;
   detailNext.addEventListener('click', () => {
+    if (isSwitchingDetail) return;
     const nextProject = detailNext.dataset.nextProject;
     if (!nextProject) return;
+    isSwitchingDetail = true;
+    const firstImage = (projects[nextProject]?.gallery || []).find(Boolean);
+    if (firstImage) {
+      const preload = new Image();
+      preload.src = firstImage;
+    }
+    projectDetail.classList.remove('closing', 'morphing');
     projectDetail.classList.add('switching');
+    projectDetail.style.clipPath = 'inset(0)';
     setTimeout(() => {
-      openDetail(nextProject);
+      renderDetailWithoutMorph(nextProject);
+      history.replaceState(null, '', '#' + nextProject);
       detailGallery.scrollTop = 0;
-      requestAnimationFrame(() => projectDetail.classList.remove('switching'));
-    }, 210);
+      projectDetail.style.setProperty('--morph-x', '50%');
+      projectDetail.style.setProperty('--morph-y', '50%');
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        projectDetail.style.clipPath = '';
+        projectDetail.classList.remove('switching');
+        isSwitchingDetail = false;
+      }));
+    }, 180);
   });
 
   // Accordion toggle is now handled dynamically inside openDetail()
