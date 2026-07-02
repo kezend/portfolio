@@ -1090,20 +1090,25 @@
     right: 24px;
     bottom: 24px;
     z-index: 212;
-    min-height: 42px;
-    padding: 0 17px;
+    width: 54px;
+    height: 54px;
+    padding: 0;
     border: 0;
-    border-radius: 12px;
+    border-radius: 50%;
     background: #f7f9f9;
     color: #141414;
-    font: 16px var(--font-heading);
+    font: 30px/1 var(--font-heading);
     cursor: pointer;
     box-shadow: 0 12px 34px rgba(0,0,0,0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .detail-next:hover { background: #d4ff00; }
   @media (max-width: 1100px) {
-    .detail-next { right: 14px; bottom: 14px; min-height: 38px; font-size: 14px; }
+    .detail-next { right: 14px; bottom: 14px; width: 46px; height: 46px; font-size: 26px; }
   }
+  body:has(.project-detail.open) .about-circle { display: none !important; }
 
   /* Detail layout */
   .detail-body {
@@ -3761,7 +3766,7 @@
   <!-- ===== PROJECT DETAIL VIEW ===== -->
   <div class="project-detail" id="projectDetail">
     <button class="detail-back" id="detailBack">К проектам</button>
-    <button class="detail-next" id="detailNext">Следующий проект</button>
+    <button class="detail-next" id="detailNext" aria-label="Следующий проект" title="Следующий проект">→</button>
     <div class="detail-body">
 
       <!-- Detail Sidebar -->
@@ -4639,7 +4644,10 @@
     const currentIndex = Math.max(0, projectOrder.indexOf(projectKey));
     const nextProjectKey = projectOrder[(currentIndex + 1) % projectOrder.length];
     detailNext.dataset.nextProject = nextProjectKey;
-    detailNext.textContent = `Следующий: ${projects[nextProjectKey]?.title || nextProjectKey}`;
+    const nextProjectTitle = projects[nextProjectKey]?.title || nextProjectKey;
+    detailNext.textContent = '→';
+    detailNext.title = `Следующий проект: ${nextProjectTitle}`;
+    detailNext.setAttribute('aria-label', `Следующий проект: ${nextProjectTitle}`);
 
     // (Special ArtCircles-style Vesh layout is currently disabled — Vesh uses
     // the standard sidebar + gallery view like every other project.)
