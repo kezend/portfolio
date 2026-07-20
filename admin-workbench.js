@@ -1067,6 +1067,31 @@
     });
   }
 
+  function pinOzonGalleryAdditions() {
+    const project = projects.ozon;
+    if (!project || !Array.isArray(project.gallery)) return;
+    const additions = ['Ozon/Frame 20873272348.png', 'Ozon/Frame 2136138758.png'];
+    const reordered = project.gallery.filter(src => !additions.includes(src));
+    reordered.splice(2, 0, ...additions);
+    project.gallery = reordered;
+
+    const cases = readJSON(CASE_KEY, {});
+    if (cases.ozon) {
+      cases.ozon.gallery = clone(reordered);
+      writeJSON(CASE_KEY, cases);
+    }
+    const draft = readJSON(DRAFT_KEY, null);
+    if (draft?.cases?.ozon) {
+      draft.cases.ozon.gallery = clone(reordered);
+      writeJSON(DRAFT_KEY, draft);
+    }
+    const legacy = readJSON('portfolio-project-edits', {});
+    if (legacy.ozon) {
+      legacy.ozon.gallery = clone(reordered);
+      writeJSON('portfolio-project-edits', legacy);
+    }
+  }
+
   function persistCases() {
     const data = savedCases();
     writeJSON(CASE_KEY, data);
@@ -1631,6 +1656,7 @@
   }
   applyPositionMap(responsive.desktop || {});
   applyCases(readJSON(CASE_KEY, {}));
+  pinOzonGalleryAdditions();
   applyLayerMeta();
   setMobilePreset(document.getElementById('adminDevicePreset').value);
   renderAll();

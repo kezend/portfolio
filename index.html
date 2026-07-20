@@ -311,6 +311,8 @@
     align-items: center;
     gap: 6px;
     width: 60px;
+    cursor: pointer;
+    outline: none;
   }
   .logo-circle {
     width: 60px;
@@ -322,8 +324,12 @@
     justify-content: center;
     flex-shrink: 0;
   }
-  .logo-link { cursor: pointer; }
-  .logo-link:hover .logo-circle { box-shadow: 0 0 0 2px rgba(0,200,255,0.5); transition: box-shadow 0.2s; }
+  .logo-item:hover .logo-circle,
+  .logo-item:focus-visible .logo-circle {
+    box-shadow: 0 0 0 2px rgba(20,20,20,0.2);
+    transform: translateY(-2px);
+  }
+  .logo-circle { transition: transform 0.22s ease, box-shadow 0.22s ease; }
   .logo-circle img {
     width: 100%;
     height: 100%;
@@ -338,6 +344,165 @@
     text-align: center;
     line-height: 99%;
   }
+
+  /* ===== EXPERIENCE POPUP ===== */
+  .experience-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 10020;
+    width: auto;
+    height: auto;
+    color: #fff;
+    background: rgba(0,0,0,0.68);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.22s ease, visibility 0.22s ease;
+  }
+  .experience-popup.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .experience-popup-card {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 547px;
+    height: var(--experience-card-height, 578px);
+    overflow: hidden;
+    border-radius: 24px;
+    background: #242424;
+    box-shadow: 0 28px 90px rgba(0,0,0,0.38);
+    transform: translate(-50%, calc(-50% + 12px)) scale(0.98);
+    transition: transform 0.32s cubic-bezier(.2,.75,.25,1);
+  }
+  .experience-popup.open .experience-popup-card { transform: translate(-50%, -50%) scale(1); }
+  .experience-popup-close {
+    position: absolute;
+    left: calc(50% + 282.5px);
+    top: calc(50% - var(--experience-card-height, 578px) / 2);
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 12px;
+    background: #242424;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .experience-popup-close:hover { background: #303030; transform: scale(1.04); }
+  .experience-popup-close svg { width: 24px; height: 24px; }
+  .experience-popup-heading {
+    position: static;
+    width: 100%;
+    text-align: center;
+  }
+  .experience-popup-copy {
+    position: absolute;
+    top: 34px;
+    left: 48px;
+    width: 451px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+  }
+  .experience-popup-title {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 79.1%;
+    letter-spacing: -3.2px;
+  }
+  .experience-popup-description {
+    margin-top: 13px;
+    color: rgba(255,255,255,0.6);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1;
+  }
+  .experience-popup-metric {
+    position: static;
+    width: 220px;
+    text-align: center;
+  }
+  .experience-popup-metric-value {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    line-height: 79.1%;
+    letter-spacing: -3.2px;
+  }
+  .experience-popup-metric-label {
+    margin-top: 8px;
+    color: rgba(255,255,255,0.6);
+    font-size: 18px;
+    line-height: 0.99;
+  }
+  .experience-popup-visuals {
+    position: absolute;
+    top: 280px;
+    left: 50%;
+    width: 500px;
+    height: 230px;
+    transform: translateX(-50%);
+  }
+  .experience-popup-media {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 176px;
+    height: 176px;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.24);
+    transform: translateX(-50%);
+  }
+  .experience-popup-media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .experience-popup-visuals.has-three .experience-popup-media:nth-child(1) { left: calc(50% - 118px); transform: translateX(-50%) rotate(-6.27deg); }
+  .experience-popup-visuals.has-three .experience-popup-media:nth-child(2) { left: calc(50% + 118px); transform: translateX(-50%) rotate(6.27deg); }
+  .experience-popup-visuals.has-three .experience-popup-media:nth-child(3) { top: 51px; z-index: 2; }
+  .experience-popup-visuals.is-single .experience-popup-media {
+    top: 16px;
+    width: 194px;
+    height: 194px;
+    border-radius: 50%;
+  }
+  .experience-popup-case {
+    position: absolute;
+    left: 32px;
+    bottom: 19px;
+    width: 483px;
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255,255,255,0.6);
+    font-size: 18px;
+    line-height: 0.99;
+  }
+  .experience-popup-visuals.is-clickable { cursor: pointer; }
+  .experience-popup-visuals.is-clickable .experience-popup-media { transition: transform 0.22s ease, filter 0.22s ease; }
+  .experience-popup-visuals.is-clickable:hover .experience-popup-media { filter: brightness(1.08); }
+  .experience-popup-visuals.is-clickable:focus-visible { outline: 1px solid rgba(255,255,255,0.75); outline-offset: 7px; border-radius: 18px; }
+
+  @media (max-width: 700px) {
+    .experience-popup-card {
+      width: min(547px, calc(100vw - 32px));
+      height: min(var(--experience-card-height, 578px), calc(100dvh - 32px));
+    }
+    .experience-popup-close { left: auto; right: 16px; top: 16px; }
+    .experience-popup-copy { left: 24px; width: calc(100% - 48px); top: 28px; }
+    .experience-popup-title { font-size: 34px; letter-spacing: -2.4px; }
+    .experience-popup-description { font-size: 16px; }
+    .experience-popup-visuals { top: 268px; width: 100%; transform: translateX(-50%) scale(0.88); transform-origin: top center; }
+    .experience-popup-case { left: 28px; width: calc(100% - 56px); }
+  }
+  html.experience-modal-open { overflow: hidden; }
 
   /* ===== FILTER CHIPS ===== */
   .filters {
@@ -614,12 +779,6 @@
   .tag-kalendar { position: absolute; top: 2371px; left: 1117px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 500; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(-10deg); transition: top 0.4s ease, left 0.4s ease; }
 
   /* Project 8 — Плакат (row3, col2) */
-  .card-plakat1 { width: 390px; height: 520px; top: 2850px; left: 1500px; z-index: 3; transform: rotate(-6deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
-  .card-plakat2 { width: 360px; height: 380px; top: 3110px; left: 1720px; z-index: 4; transform: rotate(4deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
-  .badge-plakat { position: absolute; top: 3140px; left: 1880px; display: inline-flex; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-1.8deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
-  .badge-plakat h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
-  .badge-plakat p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
-  .tag-plakat { position: absolute; top: 3110px; left: 1960px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 500; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(13deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
 
   /* Project 1 — Electric Lines */
   .card-electric1 {
@@ -702,10 +861,6 @@
   .badge-kalendar { top: 2391px; left: 2971px; }
   .tag-kalendar { top: 2371px; left: 3134px; }
 
-  .card-plakat1 { top: 2210px; left: 3600px; }
-  .card-plakat2 { top: 2470px; left: 3820px; }
-  .badge-plakat { top: 2500px; left: 3980px; }
-  .tag-plakat { top: 2470px; left: 4060px; }
 
   /* Placeholder gradient cards (no real images yet) */
   .placeholder-img {
@@ -983,10 +1138,6 @@
     .badge-kalendar { left: 40px !important; top: 5120px !important; }
     .tag-kalendar { left: 50px !important; top: 5100px !important; }
 
-    .card-plakat1 { width: 360px !important; height: auto !important; left: 30px !important; top: 5400px !important; transform: rotate(-3deg) !important; }
-    .card-plakat2 { width: 320px !important; height: auto !important; left: 220px !important; top: 5700px !important; transform: rotate(3deg) !important; }
-    .badge-plakat { left: 40px !important; top: 5920px !important; }
-    .tag-plakat { left: 50px !important; top: 5900px !important; }
   }
 
   /* Scrollbar for sidebar */
@@ -1044,21 +1195,27 @@
     flex-direction: column;
     pointer-events: none;
     overflow: hidden;
-    clip-path: circle(0% at 50% 50%);
-    transition: none;
+    clip-path: none !important;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.995);
+    transition: opacity 0.24s ease, visibility 0.24s ease, transform 0.24s ease;
   }
   .project-detail.open {
     pointer-events: all;
-    clip-path: circle(150% at var(--morph-x, 50%) var(--morph-y, 50%));
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
   }
   .project-detail.morphing {
-    clip-path: circle(150% at var(--morph-x, 50%) var(--morph-y, 50%));
-    transition: clip-path 0.55s cubic-bezier(.4,0,.2,1);
+    opacity: 1;
+    visibility: visible;
   }
   .project-detail.closing {
     pointer-events: none;
-    clip-path: circle(0% at var(--morph-x, 50%) var(--morph-y, 50%));
-    transition: clip-path 0.45s cubic-bezier(.4,0,.2,1);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.995);
   }
   .project-detail.switching { clip-path: inset(0) !important; transition: none !important; }
   .project-detail.switching .detail-body { opacity: 0; transform: translateY(10px); }
@@ -1431,18 +1588,18 @@
 
 
   /* ===== THEME TOGGLE ===== */
-  body.light-theme { background: #f0f0f0; color: #000; }
-  body.light-theme .canvas-viewport {
+  html.light-theme body { background: #f0f0f0; color: #000; }
+  html.light-theme .canvas-viewport {
     background-color: #f0f0f0;
     background-image: radial-gradient(circle, rgba(0,0,0,0.12) 1px, transparent 1px);
   }
-  body.light-theme .project-detail { background: #e8e8e8; }
-  body.light-theme .detail-sidebar { background: #fff; }
-  body.light-theme .detail-project-info h2 { color: #141414; }
-  body.light-theme .detail-project-info p { color: #141414; }
-  body.light-theme .detail-back { background: #141414; color: #fff; }
-  body.light-theme .detail-back:hover { background: #333; }
-  body.light-theme .detail-tag { background: #141414; color: #fff; }
+  html.light-theme .project-detail { background: #e8e8e8; }
+  html.light-theme .detail-sidebar { background: #fff; }
+  html.light-theme .detail-project-info h2 { color: #141414; }
+  html.light-theme .detail-project-info p { color: #141414; }
+  html.light-theme .detail-back { background: #141414; color: #fff; }
+  html.light-theme .detail-back:hover { background: #333; }
+  html.light-theme .detail-tag { background: #141414; color: #fff; }
   /* Shared settings row style */
   .settings-row {
     display: flex; align-items: center; cursor: pointer;
@@ -2181,11 +2338,16 @@
   /* ===== THEME MORPH ===== */
   .theme-morph {
     position: fixed;
-    border-radius: 50%;
+    inset: 0;
     z-index: 9998;
     pointer-events: none;
-    transform: translate(-50%, -50%);
+    opacity: 0;
+    contain: strict;
+    will-change: opacity;
+    transition: opacity 0.22s ease;
   }
+  .theme-morph.expand { opacity: 1; }
+  .theme-morph.fade { opacity: 0; transition: opacity 0.18s ease; }
 
   /* =========================================================
      INTRO SCREEN — после лоадера, перед главной
@@ -2756,7 +2918,7 @@
     }
     .project-card,
     .badge-electric, .badge-vesh, .badge-ruf, .badge-ozon, .badge-redis,
-    .badge-afisha, .badge-tbank, .badge-kalendar, .badge-plakat {
+    .badge-afisha, .badge-tbank, .badge-kalendar {
       position: absolute !important;
       height: auto !important;
       margin: 0 !important;
@@ -2785,10 +2947,9 @@
       min-height: 260px;
     }
     .card-yulia, .card-ozon2, .card-tbank2, .card-kalendar2,
-    .card-plakat2 { display: block !important; }
     .card-ruf2, .card-redis2, .card-afisha2 { display: none !important; }
     .badge-electric, .badge-vesh, .badge-ruf, .badge-ozon, .badge-redis,
-    .badge-afisha, .badge-tbank, .badge-kalendar, .badge-plakat {
+    .badge-afisha, .badge-tbank, .badge-kalendar {
       display: flex !important;
       padding: 16px !important;
       border-radius: 18px !important;
@@ -2799,7 +2960,7 @@
       box-shadow: 0 12px 28px rgba(0,0,0,0.28);
     }
     .badge-electric h4, .badge-vesh h4, .badge-ruf h4, .badge-ozon h4, .badge-redis h4,
-    .badge-afisha h4, .badge-tbank h4, .badge-kalendar h4, .badge-plakat h4 {
+    .badge-afisha h4, .badge-tbank h4, .badge-kalendar h4 {
       font-size: 28px !important;
       letter-spacing: -1.8px !important;
       line-height: 0.9 !important;
@@ -2807,7 +2968,7 @@
       margin: 0 !important;
     }
     .badge-electric p, .badge-vesh p, .badge-ruf p, .badge-ozon p, .badge-redis p,
-    .badge-afisha p, .badge-tbank p, .badge-kalendar p, .badge-plakat p {
+    .badge-afisha p, .badge-tbank p, .badge-kalendar p {
       font-size: 14px !important;
       line-height: 1.05 !important;
       text-align: left !important;
@@ -2875,10 +3036,6 @@
     .badge-kalendar { top: 4472px !important; left: 68px !important; width: 224px !important; transform: rotate(4deg) !important; }
     .tag-kalendar { top: 4440px !important; left: 258px !important; transform: rotate(-10deg) !important; }
 
-    .card-plakat1 { top: 4770px !important; left: 32px !important; width: 276px !important; height: auto !important; transform: rotate(-3deg) !important; }
-    .card-plakat2 { top: 5040px !important; left: 154px !important; width: 220px !important; height: auto !important; transform: rotate(4deg) !important; }
-    .badge-plakat { top: 5280px !important; left: 60px !important; width: 248px !important; transform: rotate(-2deg) !important; }
-    .tag-plakat { top: 5248px !important; left: 236px !important; transform: rotate(13deg) !important; }
 
     [data-project].filtered-out { display: none !important; }
 
@@ -3499,19 +3656,19 @@
       <div class="info-section">
         <h3>Работала тут</h3>
         <div class="logos-row">
-          <div class="logo-item logo-link" data-open-project="ozon">
+          <div class="logo-item logo-link" data-open-project="ozon" data-experience="ozon" tabindex="0">
             <div class="logo-circle">
               <img loading="lazy" src="Logo/icon_rgb-2 1.webp" alt="Ozon">
             </div>
             <span class="logo-label">Ozon<br>Tech</span>
           </div>
-          <div class="logo-item logo-link" data-open-project="afisha">
+          <div class="logo-item logo-link" data-open-project="afisha" data-experience="redis" tabindex="0">
             <div class="logo-circle">
               <img loading="lazy" src="Logo/icon_rgb-2 1-1.webp" alt="Redis Agency">
             </div>
             <span class="logo-label">Redis<br>Agency</span>
           </div>
-          <div class="logo-item">
+          <div class="logo-item" data-experience="redcollar" tabindex="0">
             <div class="logo-circle">
               <img loading="lazy" src="Logo/icon_rgb-2 1-2.webp" alt="Red Collar">
             </div>
@@ -3523,19 +3680,19 @@
       <div class="info-section">
         <h3>Училась тут</h3>
         <div class="logos-row">
-          <div class="logo-item">
+          <div class="logo-item" data-experience="hse" tabindex="0">
             <div class="logo-circle">
               <img loading="lazy" src="Logo/icon_rgb-2 1-3.webp" alt="Дизайн ВШЭ">
             </div>
             <span class="logo-label">Дизайн<br>ВШЭ</span>
           </div>
-          <div class="logo-item">
+          <div class="logo-item" data-experience="tbank-school" tabindex="0">
             <div class="logo-circle">
               <img loading="lazy" src="Logo/icon_rgb-2 1-4.webp" alt="Школа Т-Банка">
             </div>
             <span class="logo-label">Школа<br>Т-Банка</span>
           </div>
-          <div class="logo-item">
+          <div class="logo-item" data-experience="yandex-school" tabindex="0">
             <div class="logo-circle">
               <img loading="lazy" src="Logo/icon_rgb-2 1-5.webp" alt="ЛШ + ШК Яндекс">
             </div>
@@ -3547,6 +3704,28 @@
 
 
   </aside>
+
+  <section class="experience-popup" id="experiencePopup" role="dialog" aria-modal="true" aria-hidden="true" aria-live="polite" aria-labelledby="experiencePopupTitle">
+    <div class="experience-popup-card">
+      <div class="experience-popup-copy">
+        <div class="experience-popup-heading">
+          <h2 class="experience-popup-title" id="experiencePopupTitle"></h2>
+          <p class="experience-popup-description" id="experiencePopupDescription"></p>
+        </div>
+        <div class="experience-popup-metric">
+          <div class="experience-popup-metric-value" id="experiencePopupMetric"></div>
+          <div class="experience-popup-metric-label" id="experiencePopupMetricLabel"></div>
+        </div>
+      </div>
+      <div class="experience-popup-visuals" id="experiencePopupVisuals"></div>
+      <div class="experience-popup-case" id="experiencePopupCase" aria-hidden="true"><span>К</span><span>е</span><span>й</span><span>с</span></div>
+    </div>
+    <button class="experience-popup-close" id="experiencePopupClose" type="button" aria-label="Закрыть">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+  </section>
 
   <!-- ===== MAIN CANVAS ===== -->
   <main class="main">
@@ -3595,7 +3774,6 @@
           <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="afisha"><span>Redis Agency</span><button class="edit-vis-open" data-edit-open="afisha">открыть</button></label>
           <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="tbank"><span>Homigo</span><button class="edit-vis-open" data-edit-open="tbank">открыть</button></label>
           <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="kalendar"><span>Календари</span><button class="edit-vis-open" data-edit-open="kalendar">открыть</button></label>
-          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="plakat"><span>Плакат</span><button class="edit-vis-open" data-edit-open="plakat">открыть</button></label>
         </div>
         <div class="tour-order-panel" id="tourOrderPanel">
           <div class="tour-order-title">Порядок тура</div>
@@ -3709,13 +3887,6 @@
         <div class="project-card card-kalendar2" data-project="kalendar"><img loading="lazy" src="Календари/обложка 2.webp" alt="Календари — обложка 2"></div>
         <div class="badge-kalendar" data-project="kalendar"><h4>Календари</h4><p>авторские календари<br>о дереализации и СДВГ</p></div>
         <div class="tag-kalendar" data-project="kalendar">комдиз</div>
-
-        <!-- ===== Project 8 — Плакат ===== -->
-        <div class="project-card card-plakat1" data-project="plakat"><div class="placeholder-img ph-13"></div></div>
-        <div class="project-card card-plakat2" data-project="plakat"><div class="placeholder-img ph-14"></div></div>
-        <div class="badge-plakat" data-project="plakat"><h4>Этот сайт</h4><p>вайбкодинг портфолио<br>с помощью AI</p></div>
-        <div class="tag-plakat" data-project="plakat">вайбкодинг</div>
-
 
       </div>
     </div>
@@ -4027,8 +4198,7 @@
     redis: ['web', 'interfaces'],
     afisha: ['komdiz', 'ai'],
     tbank: ['web', 'interfaces'],
-    kalendar: ['komdiz'],
-    plakat: ['ai']
+    kalendar: ['komdiz']
   };
 
   // Original anchor positions (card1 top/left) per project
@@ -4040,8 +4210,7 @@
     redis:    { top: 1550, left: 2400 },
     afisha:   { top: 1600, left: 3600 },
     tbank:    { top: 2210, left: 1483 },
-    kalendar: { top: 2210, left: 2500 },
-    plakat:   { top: 2210, left: 3600 }
+    kalendar: { top: 2210, left: 2500 }
   };
 
   // Desktop: auto-open project when zoomed in very close
@@ -4085,7 +4254,7 @@
     { top: 2100, left: 2500 }
   ];
 
-  const projectOrder = ['electric','vesh','ruf','ozon','redis','afisha','tbank','kalendar','plakat'];
+  const projectOrder = ['electric','vesh','ruf','ozon','redis','afisha','tbank','kalendar'];
   const allProjectEls = document.querySelectorAll('[data-project]');
   const chips = document.querySelectorAll('.chip');
 
@@ -4245,6 +4414,8 @@
       gallery: [
         'Ozon/Frame 2087327238.webp',
         'Ozon/telegram-cloud-photo-size-2-5233277660471957113-y 2.webp',
+        'Ozon/Frame 20873272348.png',
+        'Ozon/Frame 2136138758.png',
         'Ozon/telegram-cloud-photo-size-2-5233277660471957113-y 1.webp',
         'Ozon/telegram-cloud-photo-size-2-5233277660471957113-y 3.webp',
         'Ozon/telegram-cloud-photo-size-2-5206665334432594139-y 1.webp',
@@ -4316,12 +4487,7 @@
         'Календари/4.webp','Календари/5.webp','Календари/6.webp','Календари/7.webp',
         'Календари/8.webp','Календари/9.webp','Календари/10.webp','Календари/11.webp',
         'Календари/12.webp','Календари/13.webp','Календари/14.webp','Календари/15.webp','Календари/16.webp'
-      ] },
-    plakat: { title: 'Этот сайт', desc: 'портфолио-сайт, который ты сейчас смотришь — полностью сделан вайбкодингом с помощью AI', tags: ['вайбкодинг'], accordions: [
-        { label: 'Как это было?', content: '— Весь сайт написан через диалог с Claude — без ручного кода\n— Начала с идеи: интерактивное поле с карточками проектов, которые можно зумить и панить\n— Каждый экран, анимация и взаимодействие описывала текстом — AI генерировал код\n— Итеративный процесс: показывала скриншоты, говорила что не так, получала фиксы\n— Figma → текстовое описание → рабочий код за минуты' },
-        { label: 'Что внутри?', content: '— Canvas с pan & zoom и раскиданными карточками проектов\n— 3D-сфера с проектами на отдельной странице (CSS 3D transforms + Fibonacci)\n— FaceTime-стилистика: видеофон, плавающие карточки, scroll-driven слайды\n— Загрузочный экран с точечным дисплеем и орбитирующими фрагментами\n— Автооткрытие проекта при зуме\n— Полная мобильная адаптация\n— Оптимизация: lazy-load видео, WebP-конвертация, GPU-ускорение' },
-        { label: 'Стек', content: '— Чистый HTML + CSS + JavaScript, без фреймворков\n— CSS 3D transforms для сферы\n— Canvas API для загрузочного экрана\n— Деплой на GitHub Pages' }
-      ], gallery: [] }
+      ] }
   };
 
   // Expose projects for inline editing
@@ -4775,7 +4941,6 @@
     { key: 'afisha', cards: ['.card-afisha1', '.card-afisha2'], badge: '.badge-afisha', tags: ['.tag-afisha-1', '.tag-afisha-2'] },
     { key: 'tbank', cards: ['.card-tbank1', '.card-tbank2'], badge: '.badge-tbank', tag: '.tag-tbank' },
     { key: 'kalendar', cards: ['.card-kalendar1', '.card-kalendar2'], badge: '.badge-kalendar', tag: '.tag-kalendar' },
-    { key: 'plakat', cards: ['.card-plakat1', '.card-plakat2'], badge: '.badge-plakat', tag: '.tag-plakat' },
   ];
   projectConfigs.forEach(({ key, cards, badge, tag, tags }) => {
     cards.forEach(sel => {
@@ -4792,10 +4957,231 @@
   // Sidebar logo clicks → open project detail
   document.querySelectorAll('.logo-link[data-open-project]').forEach(logo => {
     logo.addEventListener('click', () => {
+      if (logo.dataset.experience) return;
       const key = logo.dataset.openProject;
       if (key) openDetail(key);
     });
   });
+
+  // Work / education modal based on Figma node 130:1198.
+  (function() {
+    const popup = document.getElementById('experiencePopup');
+    const popupCard = popup?.querySelector('.experience-popup-card');
+    const popupCopy = popup?.querySelector('.experience-popup-copy');
+    const closeButton = document.getElementById('experiencePopupClose');
+    const title = document.getElementById('experiencePopupTitle');
+    const description = document.getElementById('experiencePopupDescription');
+    const metric = document.getElementById('experiencePopupMetric');
+    const metricLabel = document.getElementById('experiencePopupMetricLabel');
+    const visuals = document.getElementById('experiencePopupVisuals');
+    const caseLabel = document.getElementById('experiencePopupCase');
+    const items = document.querySelectorAll('.logo-item[data-experience]');
+    if (!popup || !items.length) return;
+
+    const popupData = {
+      ru: {
+        ozon: {
+          title: 'Ozon Tech',
+          description: 'Работаю на стыке коммуникационного и продуктового дизайна. Разрабатываю айдентику и визуальные концепции, продуктовые коммуникации и интерфейсы',
+          metric: '2 года', metricLabel: 'в компании', label: 'Кейс',
+          images: ['Ozon/popup-left.png', 'Ozon/popup-right.png', 'Ozon/popup-front.png']
+        },
+        redis: {
+          title: 'Redis Agency',
+          description: 'Работала коммуникационным дизайнером в студии над digital-кампаниями и проектами для Купера и Мираторга',
+          metric: '2 бренда', metricLabel: 'ключевые клиенты', label: 'Кейс',
+          images: ['Redis/Frame 2087327242.webp', 'Redis/6x3.webp', 'Redis/Frame 2087327243.webp']
+        },
+        redcollar: {
+          title: 'Red Collar',
+          description: 'Работала коммуникационным дизайнером на крупном бигтех-проекте. Занималась маркетинговыми и digital-коммуникациями, а также дизайном печатных материалов',
+          metric: '1 год', metricLabel: 'в компании', label: 'Опыт',
+          images: ['Logo/icon_rgb-2 1-2.webp']
+        },
+        hse: {
+          title: 'НИУ ВШЭ',
+          description: 'Два года училась на направлении «Дизайн и программирование», где занималась UX/UI-дизайном и фронтенд-разработкой. Сейчас учусь на коммуникационном дизайне. Входила в топ-10 студентов курса среди 600+ человек',
+          metric: 'топ-10', metricLabel: 'среди 600+ студентов', label: 'Учёба',
+          images: ['Logo/icon_rgb-2 1-3.webp']
+        },
+        'tbank-school': {
+          title: 'Школа Т-Банка',
+          description: 'Прошла трёхмесячное обучение в Школе бренд-дизайна',
+          metric: '3 месяца', metricLabel: 'обучения', label: 'Учёба',
+          images: ['Logo/icon_rgb-2 1-4.webp']
+        },
+        'yandex-school': {
+          title: 'Школы Яндекса',
+          description: 'Прошла интенсивную практику по интерфейсам: за две недели разработала полноценный кейс из 40+ экранов. Также училась в первой Школе креатива, где изучала создание рекламных кампаний, разработку креативных концепций и генерацию идей. Результат — рекламная кампания с полноценным видеороликом, созданным с использованием ИИ',
+          metric: '40+ экранов', metricLabel: 'за 2 недели', label: 'Учёба',
+          images: ['Logo/icon_rgb-2 1-5.webp']
+        }
+      },
+      en: {
+        ozon: {
+          title: 'Ozon Tech',
+          description: 'I work at the intersection of communication and product design, creating identities, visual concepts, product communications and interfaces',
+          metric: '2 years', metricLabel: 'at the company', label: 'Case',
+          images: ['Ozon/popup-left.png', 'Ozon/popup-right.png', 'Ozon/popup-front.png']
+        },
+        redis: {
+          title: 'Redis Agency',
+          description: 'Worked as a communication designer on digital campaigns and projects for Kuper and Miratorg',
+          metric: '2 brands', metricLabel: 'key clients', label: 'Case',
+          images: ['Redis/Frame 2087327242.webp', 'Redis/6x3.webp', 'Redis/Frame 2087327243.webp']
+        },
+        redcollar: {
+          title: 'Red Collar', description: 'Worked as a communication designer on a major big-tech project, creating marketing and digital communications as well as printed materials',
+          metric: '1 year', metricLabel: 'at the company', label: 'Work', images: ['Logo/icon_rgb-2 1-2.webp']
+        },
+        hse: {
+          title: 'HSE University', description: 'Spent two years studying Design and Programming with a focus on UX/UI and frontend development. I now study communication design and ranked among the top 10 students out of more than 600',
+          metric: 'top 10', metricLabel: 'out of 600+ students', label: 'Study', images: ['Logo/icon_rgb-2 1-3.webp']
+        },
+        'tbank-school': {
+          title: 'T-Bank School', description: 'Completed a three-month Brand Design School programme',
+          metric: '3 months', metricLabel: 'of study', label: 'Study', images: ['Logo/icon_rgb-2 1-4.webp']
+        },
+        'yandex-school': {
+          title: 'Yandex Schools', description: 'Completed an intensive interface-design practice and built a complete 40+ screen case in two weeks. I also attended the first Creative School, studying advertising campaigns, creative concepts and ideation. The result was a full campaign with an AI-assisted video',
+          metric: '40+ screens', metricLabel: 'in 2 weeks', label: 'Study', images: ['Logo/icon_rgb-2 1-5.webp']
+        }
+      }
+    };
+
+    let activeKey = null;
+    let activeTrigger = null;
+
+    function setSpacedLabel(value) {
+      caseLabel.innerHTML = '';
+      Array.from(value).forEach(char => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        caseLabel.appendChild(span);
+      });
+    }
+
+    function applyTypography(value, lang) {
+      if (lang === 'en') {
+        return value.replace(/\b(a|an|and|as|at|by|for|in|of|on|or|to|with)\s+/gi, '$1\u00A0');
+      }
+      return value.replace(/(^|[\s(«—])(а|без|в|во|для|до|за|и|из|к|ко|на|над|о|об|от|по|под|при|про|с|со|у)\s+/giu, '$1$2\u00A0');
+    }
+
+    function render(key) {
+      const lang = currentLang === 'en' ? 'en' : 'ru';
+      const data = popupData[lang][key] || popupData.ru[key];
+      if (!data) return false;
+      title.textContent = data.title;
+      description.textContent = applyTypography(data.description, lang);
+      metric.textContent = data.metric;
+      metricLabel.textContent = applyTypography(data.metricLabel, lang);
+      setSpacedLabel(data.label);
+      visuals.innerHTML = '';
+      visuals.className = 'experience-popup-visuals ' + (data.images.length >= 3 ? 'has-three' : 'is-single');
+      const targetProject = key === 'ozon' ? 'ozon' : key === 'redis' ? 'afisha' : '';
+      if (targetProject) {
+        visuals.classList.add('is-clickable');
+        visuals.dataset.project = targetProject;
+        visuals.tabIndex = 0;
+        visuals.setAttribute('role', 'button');
+        visuals.setAttribute('aria-label', lang === 'en' ? `Open ${data.title} case` : `Открыть кейс ${data.title}`);
+      } else {
+        visuals.removeAttribute('data-project');
+        visuals.removeAttribute('tabindex');
+        visuals.removeAttribute('role');
+        visuals.removeAttribute('aria-label');
+      }
+      data.images.slice(0, 3).forEach((src, index) => {
+        const frame = document.createElement('div');
+        frame.className = 'experience-popup-media';
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `${data.title} — ${index + 1}`;
+        frame.appendChild(img);
+        visuals.appendChild(frame);
+      });
+      popup.style.setProperty('--experience-card-height', '578px');
+      visuals.style.top = window.innerWidth <= 700 ? '268px' : '280px';
+      requestAnimationFrame(syncPopupLayout);
+      return true;
+    }
+
+    function syncPopupLayout() {
+      if (!popupCard || !popupCopy) return;
+      const cardRect = popupCard.getBoundingClientRect();
+      const copyRect = popupCopy.getBoundingClientRect();
+      const baseVisualTop = window.innerWidth <= 700 ? 268 : 280;
+      const visualTop = Math.max(baseVisualTop, Math.ceil(copyRect.bottom - cardRect.top + 32));
+      const requiredHeight = Math.max(578, visualTop + 230 + 50);
+      visuals.style.top = `${visualTop}px`;
+      popup.style.setProperty('--experience-card-height', `${requiredHeight}px`);
+    }
+
+    function show(key) {
+      if (!render(key)) return;
+      activeKey = key;
+      activeTrigger = document.querySelector(`.logo-item[data-experience="${key}"]`);
+      popup.classList.add('open');
+      popup.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('experience-modal-open');
+      requestAnimationFrame(() => closeButton.focus({ preventScroll: true }));
+    }
+
+    function hide() {
+      popup.classList.remove('open');
+      popup.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('experience-modal-open');
+      activeKey = null;
+      if (activeTrigger) activeTrigger.focus({ preventScroll: true });
+      activeTrigger = null;
+    }
+
+    items.forEach(item => {
+      const key = item.dataset.experience;
+      item.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          show(key);
+        }
+      });
+      item.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+        show(key);
+      });
+    });
+
+    function openVisualCase() {
+      const projectKey = visuals.dataset.project;
+      if (!projectKey) return;
+      hide();
+      openDetail(projectKey);
+    }
+
+    visuals.addEventListener('click', openVisualCase);
+    visuals.addEventListener('keydown', event => {
+      if ((event.key === 'Enter' || event.key === ' ') && visuals.dataset.project) {
+        event.preventDefault();
+        openVisualCase();
+      }
+    });
+
+    popup.addEventListener('click', event => {
+      if (event.target === popup) hide();
+    });
+    closeButton.addEventListener('click', hide);
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && popup.classList.contains('open')) hide();
+    });
+
+    window.refreshExperiencePopup = () => {
+      if (activeKey && popup.classList.contains('open')) render(activeKey);
+    };
+    window.addEventListener('resize', () => {
+      if (activeKey && popup.classList.contains('open')) syncPopupLayout();
+    });
+  })();
 
   // Back button
   detailBack.addEventListener('click', () => closeDetail());
@@ -4813,15 +5199,11 @@
     }
     projectDetail.classList.remove('closing', 'morphing');
     projectDetail.classList.add('switching');
-    projectDetail.style.clipPath = 'inset(0)';
     setTimeout(() => {
       renderDetailWithoutMorph(nextProject);
       history.replaceState(null, '', '#' + nextProject);
       detailGallery.scrollTop = 0;
-      projectDetail.style.setProperty('--morph-x', '50%');
-      projectDetail.style.setProperty('--morph-y', '50%');
       requestAnimationFrame(() => requestAnimationFrame(() => {
-        projectDetail.style.clipPath = '';
         projectDetail.classList.remove('switching');
         isSwitchingDetail = false;
       }));
@@ -4875,10 +5257,9 @@
         redis: { title: 'ACT', badge: 'медиа-сервис о моушене<br>и VFX' },
         afisha: { title: 'Redis Agency', badge: 'коммуникационный дизайн<br>для Купера и Мираторга' },
         tbank: { title: 'Homigo', badge: 'сервис обмена жильём<br>для путешествий P2P' },
-        kalendar: { title: 'Календари', badge: 'авторские календари<br>о дереализации и СДВГ' },
-        plakat: { title: 'Этот сайт', badge: 'вайбкодинг портфолио<br>с помощью AI' }
+        kalendar: { title: 'Календари', badge: 'авторские календари<br>о дереализации и СДВГ' }
       },
-      canvasTags: { electric: ['комдиз', 'ИИ'], vesh: 'комдиз', ruf: 'комдиз', ozon: ['AI', 'комдиз', 'интерфейсы'], redis: ['интерфейсы', 'веб'], afisha: ['комдиз', 'AI'], tbank: 'интерфейсы', kalendar: 'комдиз', plakat: 'вайбкодинг' },
+      canvasTags: { electric: ['комдиз', 'ИИ'], vesh: 'комдиз', ruf: 'комдиз', ozon: ['AI', 'комдиз', 'интерфейсы'], redis: ['интерфейсы', 'веб'], afisha: ['комдиз', 'AI'], tbank: 'интерфейсы', kalendar: 'комдиз' },
       projectOverrides: {
         electric: {
           title: 'Electric Lines',
@@ -4967,10 +5348,9 @@
         redis: { title: 'ACT', badge: 'media service about motion<br>and VFX' },
         afisha: { title: 'Redis Agency', badge: 'communication design<br>for Kuper and Miratorg' },
         tbank: { title: 'Homigo', badge: 'P2P home exchange<br>service for travelers' },
-        kalendar: { title: 'Calendars', badge: 'author calendars<br>on derealization & ADHD' },
-        plakat: { title: 'This website', badge: 'vibecoded portfolio<br>built with AI' }
+        kalendar: { title: 'Calendars', badge: 'author calendars<br>on derealization & ADHD' }
       },
-      canvasTags: { electric: ['comdes', 'AI'], vesh: 'comdes', ruf: 'comdes', ozon: ['AI', 'comdes', 'interfaces'], redis: ['interfaces', 'web'], afisha: ['comdes', 'AI'], tbank: 'interfaces', kalendar: 'comdes', plakat: 'vibecoding' },
+      canvasTags: { electric: ['comdes', 'AI'], vesh: 'comdes', ruf: 'comdes', ozon: ['AI', 'comdes', 'interfaces'], redis: ['interfaces', 'web'], afisha: ['comdes', 'AI'], tbank: 'interfaces', kalendar: 'comdes' },
       projectOverrides: {
         electric: {
           title: 'Electric Lines',
@@ -5101,7 +5481,7 @@
     document.querySelector('.badge-vesh p').innerHTML = fixPrep(t.canvasBadges.vesh.badge);
     document.querySelector('.badge-komdiz').textContent = t.canvasTags.vesh;
 
-    const projectKeys = ['electric','ruf','ozon','redis','afisha','tbank','kalendar','plakat'];
+    const projectKeys = ['electric','ruf','ozon','redis','afisha','tbank','kalendar'];
     projectKeys.forEach(key => {
       const badge = document.querySelector('.badge-' + key);
       if (badge) {
@@ -5128,6 +5508,7 @@
 
     // Update html lang attribute
     document.documentElement.lang = lang;
+    if (window.refreshExperiencePopup) window.refreshExperiencePopup();
   }
 
   langRu.addEventListener('click', () => applyLang('ru'));
@@ -6619,43 +7000,22 @@
   (function() {
     const toggle = document.getElementById('themeToggle');
     if (!toggle) return;
-    const saved = localStorage.getItem('portfolio-theme');
+    let saved = null;
+    try { saved = localStorage.getItem('portfolio-theme'); } catch (error) {}
+    const root = document.documentElement;
     if (saved === 'light') {
-      document.body.classList.add('light-theme');
+      root.classList.add('light-theme');
       toggle.classList.add('active');
     }
 
-    function morphTheme(e) {
-      const rect = toggle.getBoundingClientRect();
-      const cx = rect.right - 18;  // center of pill
-      const cy = rect.top + rect.height / 2;
-      const maxR = Math.hypot(Math.max(cx, window.innerWidth - cx), Math.max(cy, window.innerHeight - cy));
+    function applyTheme(useLight) {
+      root.classList.toggle('light-theme', useLight);
+      toggle.classList.toggle('active', useLight);
+      try { localStorage.setItem('portfolio-theme', useLight ? 'light' : 'dark'); } catch (error) {}
+    }
 
-      const isLight = document.body.classList.contains('light-theme');
-      const circle = document.createElement('div');
-      circle.className = 'theme-morph';
-      circle.style.left = cx + 'px';
-      circle.style.top = cy + 'px';
-      circle.style.width = '0px';
-      circle.style.height = '0px';
-      circle.style.background = isLight ? '#0F0F0F' : '#f0f0f0';
-      circle.style.transition = `width 0.6s cubic-bezier(.4,0,.2,1), height 0.6s cubic-bezier(.4,0,.2,1)`;
-      document.body.appendChild(circle);
-
-      requestAnimationFrame(() => {
-        const d = maxR * 2;
-        circle.style.width = d + 'px';
-        circle.style.height = d + 'px';
-      });
-
-      setTimeout(() => {
-        document.body.classList.toggle('light-theme');
-        toggle.classList.toggle('active');
-        localStorage.setItem('portfolio-theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
-        circle.style.transition = 'opacity 0.3s ease';
-        circle.style.opacity = '0';
-        setTimeout(() => circle.remove(), 300);
-      }, 350);
+    function morphTheme() {
+      applyTheme(!root.classList.contains('light-theme'));
     }
 
     toggle.addEventListener('click', morphTheme);
@@ -6720,75 +7080,27 @@
     });
   })();
 
-  // ===== 9. MORPHING DETAIL TRANSITION =====
+  // ===== 9. DETAIL FADE TRANSITION =====
   (function() {
     const detail = document.getElementById('projectDetail');
     if (!detail) return;
 
-    // Override openDetail to add morphing
-    const _origOpenDetail = window.openDetail || null;
-
-    // Patch: wrap openDetail
     const origOpen = openDetail;
-    openDetail = function(projectKey, clickEvent) {
-      // Find the clicked card to get morph origin
-      let originX = '50%', originY = '50%';
-
-      // Try to find the card element
-      const allCards = document.querySelectorAll(`[data-project="${projectKey}"]`);
-      let sourceCard = null;
-      allCards.forEach(c => {
-        if (c.classList.contains('project-card') || c.classList.contains('badge-vesh') || c.className.match(/badge-/)) {
-          if (!sourceCard) sourceCard = c;
-        }
-      });
-
-      if (sourceCard) {
-        const rect = sourceCard.getBoundingClientRect();
-        originX = ((rect.left + rect.width / 2) / window.innerWidth * 100) + '%';
-        originY = ((rect.top + rect.height / 2) / window.innerHeight * 100) + '%';
-      }
-
-      detail.style.setProperty('--morph-x', originX);
-      detail.style.setProperty('--morph-y', originY);
-
-      // Reset and trigger morph
+    openDetail = function(projectKey) {
       detail.classList.remove('closing', 'morphing');
-      detail.style.clipPath = `circle(0% at ${originX} ${originY})`;
-
       origOpen(projectKey);
-
-      // Trigger animation
-      requestAnimationFrame(() => {
-        detail.classList.add('morphing');
-        detail.style.clipPath = '';
-        if (window.sfx) window.sfx.open();
-      });
+      detail.classList.add('morphing');
+      if (window.sfx) window.sfx.open();
     };
 
-    // Patch closeDetail for reverse morph
-    const origClose = closeDetail;
     closeDetail = function() {
+      if (!detail.classList.contains('open') || detail.classList.contains('closing')) return;
       detail.classList.add('closing');
       if (window.sfx) window.sfx.close();
-
-      const handler = (e) => {
-        if (e.propertyName !== 'clip-path') return;
-        detail.classList.remove('closing', 'morphing', 'open');
-        detail.style.clipPath = '';
-        currentOpenProject = null;
-        detail.removeEventListener('transitionend', handler);
-      };
-      detail.addEventListener('transitionend', handler);
-
-      // Fallback in case transitionend doesn't fire
       setTimeout(() => {
-        if (detail.classList.contains('closing')) {
-          detail.classList.remove('closing', 'morphing', 'open');
-          detail.style.clipPath = '';
-          currentOpenProject = null;
-        }
-      }, 600);
+        detail.classList.remove('closing', 'morphing', 'open');
+        currentOpenProject = null;
+      }, 260);
     };
   })();
 
@@ -7395,14 +7707,29 @@
       const edits = getEdits();
       const projects = window.__projects;
       if (!projects) return;
+      let editsChanged = false;
       Object.keys(edits).forEach(key => {
         if (!projects[key]) return;
         const e = edits[key];
         if (e.title) projects[key].title = e.title;
         if (e.desc) projects[key].desc = e.desc;
         if (e.tags) projects[key].tags = e.tags;
-        if (e.gallery) projects[key].gallery = e.gallery;
+        if (e.gallery) {
+          if (key === 'ozon') {
+            const newPhotos = ['Ozon/Frame 20873272348.png', 'Ozon/Frame 2136138758.png'];
+            const reordered = e.gallery.filter(src => !newPhotos.includes(src));
+            reordered.splice(2, 0, ...newPhotos);
+            projects[key].gallery = reordered;
+            if (JSON.stringify(reordered) !== JSON.stringify(e.gallery)) {
+              e.gallery = reordered;
+              editsChanged = true;
+            }
+          } else {
+            projects[key].gallery = e.gallery;
+          }
+        }
       });
+      if (editsChanged) localStorage.setItem(EDIT_DATA_KEY, JSON.stringify(edits));
     }
 
     // Project text is edited from the structured admin form.
@@ -7990,7 +8317,7 @@
 
   // ===== KEYBOARD NAVIGATION =====
   (function() {
-    const projectKeys = ['electric', 'vesh', 'ruf', 'ozon', 'redis', 'afisha', 'tbank', 'kalendar', 'plakat'];
+    const projectKeys = ['electric', 'vesh', 'ruf', 'ozon', 'redis', 'afisha', 'tbank', 'kalendar'];
     let focusIdx = -1;
 
     // Make primary project cards focusable
@@ -8132,7 +8459,7 @@
 </script>
 <script src="portfolio-published.js"></script>
 <script src="portfolio-asset-manifest.js"></script>
-<script src="admin-workbench.js"></script>
+<script src="admin-workbench.js?v=20260720-2"></script>
 
 <a href="myvibe.html" class="about-circle">
   <span class="about-circle-text">обо<br>мне</span>
