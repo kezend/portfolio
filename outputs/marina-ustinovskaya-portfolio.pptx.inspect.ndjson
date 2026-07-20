@@ -1,0 +1,454 @@
+{"kind":"deck","id":"pr/bk6f83","name":"Deck"}
+{"kind":"layout","layoutId":"4563d884-a694-465f-8978-b97c2357d057","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"6b624908-c94d-4d3e-acb5-126c45ac88d6","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/boywcq","slide":1,"title":"МАРИНА","textShapes":5}
+{"kind":"shape","id":"sh/zqtcj6to","slide":1,"bbox":[650,0,630,720]}
+{"kind":"shape","id":"sh/hwfyxobm","slide":1,"bbox":[535,0,250,720]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":1,"text":"МАРИНА\nУСТИНОВСКАЯ","textPreview":"МАРИНА | УСТИНОВСКАЯ","textChars":18,"textLines":2,"bbox":[56,94,650,190]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":1,"text":"ПОРТФОЛИО\n2026","textPreview":"ПОРТФОЛИО | 2026","textChars":14,"textLines":2,"bbox":[58,340,310,82]}
+{"kind":"textbox","id":"sh/oza1gvy9","slide":1,"text":"Коммуникационный и продуктовый дизайн,\nинтерфейсы, AI и генеративные инструменты","textPreview":"Коммуникационный и продуктовый дизайн, | интерфейсы, AI и генеративные инструменты","textChars":80,"textLines":2,"bbox":[58,480,470,84]}
+{"kind":"textbox","id":"sh/hk3q5o7q","slide":1,"text":"SELECTED WORK","textPreview":"SELECTED WORK","textChars":13,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/al87ed8b","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/d8bat47y","slide":1,"name":"","alt":"Electric Lines — фрагмент проекта","bbox":[650,0,630,720]}
+{"kind":"notes","id":"nt/boywcq","slide":1,"text":""}
+{"kind":"slide","id":"sl/kak50j","slide":2,"title":"МУЛЬТИДИСЦИПЛИНАРНЫЙ","textShapes":8}
+{"kind":"shape","id":"sh/wra5gbq1","slide":2,"bbox":[52,48,14,624]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":2,"text":"МУЛЬТИДИСЦИПЛИНАРНЫЙ\nДИЗАЙНЕР ИЗ МОСКВЫ","textPreview":"МУЛЬТИДИСЦИПЛИНАРНЫЙ | ДИЗАЙНЕР ИЗ МОСКВЫ","textChars":39,"textLines":2,"bbox":[100,70,780,130]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":2,"text":"3 года","textPreview":"3 года","textChars":6,"textLines":1,"bbox":[102,278,210,60]}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":2,"text":"коммуникационный\nдизайн","textPreview":"коммуникационный | дизайн","textChars":23,"textLines":2,"bbox":[102,340,240,60]}
+{"kind":"textbox","id":"sh/wfyxobm5","slide":2,"text":"2 года","textPreview":"2 года","textChars":6,"textLines":1,"bbox":[410,278,210,60]}
+{"kind":"textbox","id":"sh/7u54zido","slide":2,"text":"продуктовый дизайн\nи UX/UI","textPreview":"продуктовый дизайн | и UX/UI","textChars":26,"textLines":2,"bbox":[410,340,240,60]}
+{"kind":"shape","id":"sh/ed8bat47","slide":2,"bbox":[760,250,455,250]}
+{"kind":"textbox","id":"sh/psfil0rq","slide":2,"text":"КОМДИЗ\nПРОДУКТЫ\nAI / CODE","textPreview":"КОМДИЗ | ПРОДУКТЫ | AI / CODE","textChars":25,"textLines":3,"bbox":[804,290,360,170]}
+{"kind":"textbox","id":"sh/w7mp0bi9","slide":2,"text":"Кейсы дальше показывают диапазон: от айдентики и печати до сложных интерфейсов и собственных digital-инструментов.","textPreview":"Кейсы дальше показывают диапазон: от айдентики и печати до сложных интерфейсов и собственных digital-инструментов.","textChars":114,"textLines":1,"bbox":[100,518,770,84]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1180,676,48,20]}
+{"kind":"notes","id":"nt/kak50j","slide":2,"text":""}
+{"kind":"slide","id":"sl/fh97wv","slide":3,"title":"01 / 09","textShapes":10}
+{"kind":"shape","id":"sh/rmhk3q5o","slide":3,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/g7adsji5","slide":3,"text":"01 / 09","textPreview":"01 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/9s36hcrm","slide":3,"text":"Electric Lines","textPreview":"Electric Lines","textChars":14,"textLines":1,"bbox":[54,84,500,98]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":3,"text":"Айдентика электронной музыкальной группы","textPreview":"Айдентика электронной музыкальной группы","textChars":40,"textLines":1,"bbox":[55,192,480,56]}
+{"kind":"textbox","id":"sh/rytsvu9k","slide":3,"text":"КОМДИЗ   /   AI   /   ВАЙБКОДИНГ","textPreview":"КОМДИЗ   /   AI   /   ВАЙБКОДИНГ","textChars":32,"textLines":1,"bbox":[55,265,470,22]}
+{"kind":"textbox","id":"sh/gfmlkjm1","slide":3,"text":"Живая визуальная система вокруг скачка напряжения: динамический логотип, деформированная типографика, растровые текстуры и кислотные импульсы внутри чёрно-белой основы.","textPreview":"Живая визуальная система вокруг скачка напряжения: динамический логотип, деформированная типографика, растровые текстуры и кислотные импу...","textChars":168,"textLines":1,"bbox":[55,310,490,128]}
+{"kind":"shape","id":"sh/90je9cvi","slide":3,"bbox":[58,479,7,7]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":3,"text":"Разработала гибкую айдентику и систему носителей","textPreview":"Разработала гибкую айдентику и систему носителей","textChars":48,"textLines":1,"bbox":[80,470,454,46]}
+{"kind":"shape","id":"sh/r65wjudg","slide":3,"bbox":[58,537,7,7]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":3,"text":"Создала генеративный редактор для трансформации графики","textPreview":"Создала генеративный редактор для трансформации графики","textChars":55,"textLines":1,"bbox":[80,528,454,46]}
+{"kind":"shape","id":"sh/6tovahoz","slide":3,"bbox":[58,595,7,7]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":3,"text":"Связала визуал с музыкой, камерой и фотографиями в реальном времени","textPreview":"Связала визуал с музыкой, камерой и фотографиями в реальном времени","textChars":67,"textLines":1,"bbox":[80,586,454,46]}
+{"kind":"shape","id":"sh/ovahoza1","slide":3,"bbox":[590,48,638,624]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":3,"text":"ELECTRIC LINES","textPreview":"ELECTRIC LINES","textChars":14,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/ovahoza1","slide":3,"name":"","geometry":"roundRect","alt":"Electric Lines — обложка проекта","bbox":[590,48,638,624]}
+{"kind":"notes","id":"nt/fh97wv","slide":3,"text":""}
+{"kind":"slide","id":"sl/m7op1b","slide":4,"title":"01 / 09","textShapes":5}
+{"kind":"shape","id":"sh/2t83itgf","slide":4,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/9knih4by","slide":4,"text":"01 / 09","textPreview":"01 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/kzupwb2h","slide":4,"text":"Electric Lines","textPreview":"Electric Lines","textChars":14,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/rqd4vmtw","slide":4,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/25kb6xkf","slide":4,"bbox":[52,82,748,574]}
+{"kind":"shape","id":"sh/kb6xkf6d","slide":4,"bbox":[828,82,400,273]}
+{"kind":"shape","id":"sh/2hwfyxob","slide":4,"bbox":[828,383,400,273]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":4,"text":"ELECTRIC LINES","textPreview":"ELECTRIC LINES","textChars":14,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/ulwval87","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/4fu18jqh","slide":4,"name":"","geometry":"roundRect","alt":"Electric Lines — основная работа","bbox":[52,82,748,574]}
+{"kind":"image","id":"im/mlkjm1cf","slide":4,"name":"","geometry":"roundRect","alt":"Electric Lines — работа 2","bbox":[828,82,400,273]}
+{"kind":"image","id":"im/vixczed8","slide":4,"name":"","geometry":"roundRect","alt":"Electric Lines — работа 3","bbox":[828,383,400,273]}
+{"kind":"notes","id":"nt/m7op1b","slide":4,"text":""}
+{"kind":"slide","id":"sl/uhaoor","slide":5,"title":"01 / 09","textShapes":5}
+{"kind":"shape","id":"sh/qtcj6tov","slide":5,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/1gvy90je","slide":5,"text":"01 / 09","textPreview":"01 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/8z25kb6x","slide":5,"text":"Electric Lines","textPreview":"Electric Lines","textChars":14,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/fmlkjm1c","slide":5,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  02","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  02","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/q1orytsv","slide":5,"bbox":[52,82,748,574]}
+{"kind":"shape","id":"sh/87ed8bat","slide":5,"bbox":[828,82,400,273]}
+{"kind":"shape","id":"sh/qd4vmtwr","slide":5,"bbox":[828,383,400,273]}
+{"kind":"textbox","id":"sh/h0fepkzu","slide":5,"text":"ELECTRIC LINES","textPreview":"ELECTRIC LINES","textChars":14,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/4nap4r65","slide":5,"name":"","geometry":"roundRect","alt":"Electric Lines — основная работа","bbox":[52,82,748,574]}
+{"kind":"image","id":"im/mp0bi9s3","slide":5,"name":"","geometry":"roundRect","alt":"Electric Lines — работа 2","bbox":[828,82,400,273]}
+{"kind":"image","id":"im/ji5snelo","slide":5,"name":"","geometry":"roundRect","alt":"Electric Lines — работа 3","bbox":[828,383,400,273]}
+{"kind":"notes","id":"nt/uhaoor","slide":5,"text":""}
+{"kind":"slide","id":"sl/n93qzz","slide":6,"title":"01 / 09","textShapes":5}
+{"kind":"shape","id":"sh/h0fepkzu","slide":6,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":6,"text":"01 / 09","textPreview":"01 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/zupwb2hw","slide":6,"text":"Electric Lines","textPreview":"Electric Lines","textChars":14,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/orytsvu9","slide":6,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  03","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  03","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/hcrmhk3q","slide":6,"bbox":[52,82,748,574]}
+{"kind":"shape","id":"sh/z61032ls","slide":6,"bbox":[828,82,400,273]}
+{"kind":"shape","id":"sh/hk3q5o7q","slide":6,"bbox":[828,383,400,273]}
+{"kind":"textbox","id":"sh/svu9knih","slide":6,"text":"ELECTRIC LINES","textPreview":"ELECTRIC LINES","textChars":14,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/bm58z25k","slide":6,"name":"","geometry":"roundRect","alt":"Electric Lines — основная работа","bbox":[52,82,748,574]}
+{"kind":"image","id":"im/twra5gbq","slide":6,"name":"","geometry":"roundRect","alt":"Electric Lines — работа 2","bbox":[828,82,400,273]}
+{"kind":"image","id":"im/m58z25kb","slide":6,"name":"","geometry":"roundRect","alt":"Electric Lines — работа 3","bbox":[828,383,400,273]}
+{"kind":"notes","id":"nt/n93qzz","slide":6,"text":""}
+{"kind":"slide","id":"sl/uax84j","slide":7,"title":"01 / 09","textShapes":5}
+{"kind":"shape","id":"sh/ahoza1gv","slide":7,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/l87ed8ba","slide":7,"text":"01 / 09","textPreview":"01 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/sneloj2t","slide":7,"text":"Electric Lines","textPreview":"Electric Lines","textChars":14,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":7,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  04","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  04","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/at47y1kr","slide":7,"bbox":[52,82,748,574]}
+{"kind":"shape","id":"sh/szqtcj6t","slide":7,"bbox":[828,82,400,273]}
+{"kind":"shape","id":"sh/ex0nuxc3","slide":7,"bbox":[828,383,400,273]}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":7,"text":"ELECTRIC LINES","textPreview":"ELECTRIC LINES","textChars":14,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/8bat47y1","slide":7,"name":"","geometry":"roundRect","alt":"Electric Lines — основная работа","bbox":[52,82,748,574]}
+{"kind":"image","id":"im/uxc3ylc7","slide":7,"name":"","geometry":"roundRect","alt":"Electric Lines — работа 2","bbox":[828,82,400,273]}
+{"kind":"image","id":"im/vu9knih4","slide":7,"name":"","geometry":"roundRect","alt":"Electric Lines — работа 3","bbox":[828,383,400,273]}
+{"kind":"notes","id":"nt/uax84j","slide":7,"text":""}
+{"kind":"slide","id":"sl/d7exp9","slide":8,"title":"01 / 09","textShapes":5}
+{"kind":"shape","id":"sh/nyd0z610","slide":8,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":8,"text":"01 / 09","textPreview":"01 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/54zidony","slide":8,"text":"Electric Lines","textPreview":"Electric Lines","textChars":14,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":8,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  05","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  05","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/nap4r65w","slide":8,"bbox":[52,82,748,574]}
+{"kind":"shape","id":"sh/5gbq1ory","slide":8,"bbox":[828,82,400,273]}
+{"kind":"shape","id":"sh/jm1cfa9w","slide":8,"bbox":[828,383,400,273]}
+{"kind":"textbox","id":"sh/il0rqd4v","slide":8,"text":"ELECTRIC LINES","textPreview":"ELECTRIC LINES","textChars":14,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/1cfa9w3m","slide":8,"name":"","geometry":"roundRect","alt":"Electric Lines — основная работа","bbox":[52,82,748,574]}
+{"kind":"image","id":"im/j2t83itg","slide":8,"name":"","geometry":"roundRect","alt":"Electric Lines — работа 2","bbox":[828,82,400,273]}
+{"kind":"image","id":"im/s36hcrmh","slide":8,"name":"","geometry":"roundRect","alt":"Electric Lines — работа 3","bbox":[828,383,400,273]}
+{"kind":"notes","id":"nt/d7exp9","slide":8,"text":""}
+{"kind":"slide","id":"sl/8p719s","slide":9,"title":"02 / 09","textShapes":10}
+{"kind":"shape","id":"sh/yhgn29gr","slide":9,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/58z25kb6","slide":9,"text":"02 / 09","textPreview":"02 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":9,"text":"Вещь","textPreview":"Вещь","textChars":4,"textLines":1,"bbox":[54,84,500,98]}
+{"kind":"textbox","id":"sh/nuxc3ylc","slide":9,"text":"Айдентика поп-ап маркета локальной моды","textPreview":"Айдентика поп-ап маркета локальной моды","textChars":39,"textLines":1,"bbox":[55,192,480,56]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":9,"text":"КОМДИЗ   /   БРЕНДИНГ   /   WEB","textPreview":"КОМДИЗ   /   БРЕНДИНГ   /   WEB","textChars":31,"textLines":1,"bbox":[55,265,470,22]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":9,"text":"Гибкая визуальная система объединяет локальных дизайнеров, продажи, лекции и показы в одном сезонном пространстве.","textPreview":"Гибкая визуальная система объединяет локальных дизайнеров, продажи, лекции и показы в одном сезонном пространстве.","textChars":114,"textLines":1,"bbox":[55,310,490,128]}
+{"kind":"shape","id":"sh/gbq1oryt","slide":9,"bbox":[58,479,7,7]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":9,"text":"Логотип, фирменный стиль и модульная сетка","textPreview":"Логотип, фирменный стиль и модульная сетка","textChars":42,"textLines":1,"bbox":[80,470,454,46]}
+{"kind":"shape","id":"sh/u54zidon","slide":9,"bbox":[58,537,7,7]}
+{"kind":"textbox","id":"sh/cbulwval","slide":9,"text":"Баннеры, бейджи, пакеты и навигация","textPreview":"Баннеры, бейджи, пакеты и навигация","textChars":35,"textLines":1,"bbox":[80,528,454,46]}
+{"kind":"shape","id":"sh/5sneloj2","slide":9,"bbox":[58,595,7,7]}
+{"kind":"textbox","id":"sh/u54zidon","slide":9,"text":"Социальные сети и сайт","textPreview":"Социальные сети и сайт","textChars":22,"textLines":1,"bbox":[80,586,454,46]}
+{"kind":"shape","id":"sh/nqxs72x4","slide":9,"bbox":[590,48,638,624]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":9,"text":"ВЕЩЬ","textPreview":"ВЕЩЬ","textChars":4,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/nuxc3ylc","slide":9,"name":"","geometry":"roundRect","alt":"Вещь — обложка проекта","bbox":[590,48,638,624]}
+{"kind":"notes","id":"nt/8p719s","slide":9,"text":""}
+{"kind":"slide","id":"sl/44lpjq","slide":10,"title":"02 / 09","textShapes":5}
+{"kind":"shape","id":"sh/tsvu9kni","slide":10,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/m1cfa9w3","slide":10,"text":"02 / 09","textPreview":"02 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":10,"text":"Вещь","textPreview":"Вещь","textChars":4,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":10,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/tgfmlkjm","slide":10,"bbox":[52,82,748,574]}
+{"kind":"shape","id":"sh/bat47y1k","slide":10,"bbox":[828,82,400,273]}
+{"kind":"shape","id":"sh/t83itgfm","slide":10,"bbox":[828,383,400,273]}
+{"kind":"textbox","id":"sh/gvy90je9","slide":10,"text":"ВЕЩЬ","textPreview":"ВЕЩЬ","textChars":4,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/36hcrmhk","slide":10,"name":"","geometry":"roundRect","alt":"Вещь — основная работа","bbox":[52,82,748,574]}
+{"kind":"image","id":"im/pg3ex0nu","slide":10,"name":"","geometry":"roundRect","alt":"Вещь — работа 2","bbox":[828,82,400,273]}
+{"kind":"image","id":"im/6hcrmhk3","slide":10,"name":"","geometry":"roundRect","alt":"Вещь — работа 3","bbox":[828,383,400,273]}
+{"kind":"notes","id":"nt/44lpjq","slide":10,"text":""}
+{"kind":"slide","id":"sl/1guxnd","slide":11,"title":"02 / 09","textShapes":5}
+{"kind":"shape","id":"sh/judg7ads","slide":11,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/cfa9w3m9","slide":11,"text":"02 / 09","textPreview":"02 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/1032lszq","slide":11,"text":"Вещь","textPreview":"Вещь","textChars":4,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":11,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  02","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  02","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/jm1cfa9w","slide":11,"bbox":[52,82,574,574]}
+{"kind":"shape","id":"sh/1orytsvu","slide":11,"bbox":[654,82,574,574]}
+{"kind":"textbox","id":"sh/nap4r65w","slide":11,"text":"ВЕЩЬ","textPreview":"ВЕЩЬ","textChars":4,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/7u54zido","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/lkjm1cfa","slide":11,"name":"","geometry":"roundRect","alt":"Вещь — работа 1","bbox":[52,82,574,574]}
+{"kind":"image","id":"im/3itgfmlk","slide":11,"name":"","geometry":"roundRect","alt":"Вещь — работа 2","bbox":[654,82,574,574]}
+{"kind":"notes","id":"nt/1guxnd","slide":11,"text":""}
+{"kind":"slide","id":"sl/47qzgv","slide":12,"title":"03 / 09","textShapes":10}
+{"kind":"shape","id":"sh/bat47y1k","slide":12,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":12,"text":"03 / 09","textPreview":"03 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/tgfmlkjm","slide":12,"text":"Ozon","textPreview":"Ozon","textChars":4,"textLines":1,"bbox":[54,84,500,98]}
+{"kind":"textbox","id":"sh/m1cfa9w3","slide":12,"text":"Коммуникационный и продуктовый дизайн","textPreview":"Коммуникационный и продуктовый дизайн","textChars":37,"textLines":1,"bbox":[55,192,480,56]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":12,"text":"КОМДИЗ   /   ИНТЕРФЕЙСЫ   /   AI","textPreview":"КОМДИЗ   /   ИНТЕРФЕЙСЫ   /   AI","textChars":32,"textLines":1,"bbox":[55,265,470,22]}
+{"kind":"textbox","id":"sh/47y1kre1","slide":12,"text":"Работа внутри Ozon Tech: от коммуникационных кампаний и DevRel до продуктовых интерфейсов и развития визуальных систем.","textPreview":"Работа внутри Ozon Tech: от коммуникационных кампаний и DevRel до продуктовых интерфейсов и развития визуальных систем.","textChars":119,"textLines":1,"bbox":[55,310,490,128]}
+{"kind":"shape","id":"sh/tsvu9kni","slide":12,"bbox":[58,479,7,7]}
+{"kind":"textbox","id":"sh/m58z25kb","slide":12,"text":"Баннеры, лендинги, сторис, дайджесты и мерч","textPreview":"Баннеры, лендинги, сторис, дайджесты и мерч","textChars":43,"textLines":1,"bbox":[80,470,454,46]}
+{"kind":"shape","id":"sh/bq1oryts","slide":12,"bbox":[58,537,7,7]}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":12,"text":"Поддержка визуального языка продуктов и инициатив","textPreview":"Поддержка визуального языка продуктов и инициатив","textChars":49,"textLines":1,"bbox":[80,528,454,46]}
+{"kind":"shape","id":"sh/at47y1kr","slide":12,"bbox":[58,595,7,7]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":12,"text":"Продуктовые фичи, UX-гипотезы и внедрение решений","textPreview":"Продуктовые фичи, UX-гипотезы и внедрение решений","textChars":49,"textLines":1,"bbox":[80,586,454,46]}
+{"kind":"shape","id":"sh/szqtcj6t","slide":12,"bbox":[590,48,638,624]}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":12,"text":"OZON","textPreview":"OZON","textChars":4,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/l87ed8ba","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/gbq1oryt","slide":12,"name":"","geometry":"roundRect","alt":"Ozon — обложка проекта","bbox":[590,48,638,624]}
+{"kind":"notes","id":"nt/47qzgv","slide":12,"text":""}
+{"kind":"slide","id":"sl/zd210u","slide":13,"title":"03 / 09","textShapes":5}
+{"kind":"shape","id":"sh/6psfil0r","slide":13,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/dcbulwva","slide":13,"text":"03 / 09","textPreview":"03 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/kre1w7mp","slide":13,"text":"Ozon","textPreview":"Ozon","textChars":4,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/vixczed8","slide":13,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/2x4nap4r","slide":13,"bbox":[52,82,748,574]}
+{"kind":"shape","id":"sh/k3q5o7qp","slide":13,"bbox":[828,82,400,273]}
+{"kind":"shape","id":"sh/29gr2p8n","slide":13,"bbox":[828,383,400,273]}
+{"kind":"textbox","id":"sh/dcbulwva","slide":13,"text":"OZON","textPreview":"OZON","textChars":4,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/6psfil0r","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/0z61032l","slide":13,"name":"","geometry":"roundRect","alt":"Ozon — основная работа","bbox":[52,82,748,574]}
+{"kind":"image","id":"im/i5sneloj","slide":13,"name":"","geometry":"roundRect","alt":"Ozon — работа 2","bbox":[828,82,400,273]}
+{"kind":"image","id":"im/fu18jqh0","slide":13,"name":"","geometry":"roundRect","alt":"Ozon — работа 3","bbox":[828,383,400,273]}
+{"kind":"notes","id":"nt/zd210u","slide":13,"text":""}
+{"kind":"slide","id":"sl/o2iri7","slide":14,"title":"03 / 09","textShapes":5}
+{"kind":"shape","id":"sh/0z61032l","slide":14,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/7ed8bat4","slide":14,"text":"03 / 09","textPreview":"03 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/itgfmlkj","slide":14,"text":"Ozon","textPreview":"Ozon","textChars":4,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":14,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  02","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  02","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/0nuxc3yl","slide":14,"bbox":[52,82,574,574]}
+{"kind":"shape","id":"sh/ih4byhgn","slide":14,"bbox":[654,82,574,574]}
+{"kind":"textbox","id":"sh/wjudg7ad","slide":14,"text":"OZON","textPreview":"OZON","textChars":4,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/6tovahoz","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/ixczed8v","slide":14,"name":"","geometry":"roundRect","alt":"Ozon — работа 1","bbox":[52,82,574,574]}
+{"kind":"image","id":"im/0rqd4vmt","slide":14,"name":"","geometry":"roundRect","alt":"Ozon — работа 2","bbox":[654,82,574,574]}
+{"kind":"notes","id":"nt/o2iri7","slide":14,"text":""}
+{"kind":"slide","id":"sl/vm5ndo","slide":15,"title":"04 / 09","textShapes":10}
+{"kind":"shape","id":"sh/7qpg3ex0","slide":15,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/0bi9s36h","slide":15,"text":"04 / 09","textPreview":"04 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/pwb2hwfy","slide":15,"text":"Книга о Бродском","textPreview":"Книга о Бродском","textChars":16,"textLines":1,"bbox":[54,84,500,98]}
+{"kind":"textbox","id":"sh/ed8v6psf","slide":15,"text":"Редакционный дизайн и печать","textPreview":"Редакционный дизайн и печать","textChars":28,"textLines":1,"bbox":[55,192,480,56]}
+{"kind":"textbox","id":"sh/7y1kre1w","slide":15,"text":"КОМДИЗ   /   EDITORIAL   /   ПЕЧАТЬ","textPreview":"КОМДИЗ   /   EDITORIAL   /   ПЕЧАТЬ","textChars":35,"textLines":1,"bbox":[55,265,470,22]}
+{"kind":"textbox","id":"sh/wjudg7ad","slide":15,"text":"Книга о состоянии между присутствием и отсутствием. Изгнание раскрывается как непрерывный маршрут через города, документы и память.","textPreview":"Книга о состоянии между присутствием и отсутствием. Изгнание раскрывается как непрерывный маршрут через города, документы и память.","textChars":131,"textLines":1,"bbox":[55,310,490,128]}
+{"kind":"shape","id":"sh/p4r65wju","slide":15,"bbox":[58,479,7,7]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":15,"text":"Визуальная система и композиция разворотов","textPreview":"Визуальная система и композиция разворотов","textChars":42,"textLines":1,"bbox":[80,470,454,46]}
+{"kind":"shape","id":"sh/72x4nap4","slide":15,"bbox":[58,537,7,7]}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":15,"text":"Полная вёрстка многостраничного издания","textPreview":"Полная вёрстка многостраничного издания","textChars":39,"textLines":1,"bbox":[80,528,454,46]}
+{"kind":"shape","id":"sh/65wjudg7","slide":15,"bbox":[58,595,7,7]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":15,"text":"Подбор бумаги, тесты просвечивания и подготовка к печати","textPreview":"Подбор бумаги, тесты просвечивания и подготовка к печати","textChars":56,"textLines":1,"bbox":[80,586,454,46]}
+{"kind":"shape","id":"sh/obm58z25","slide":15,"bbox":[590,48,638,624]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":15,"text":"КНИГА О БРОДСКОМ","textPreview":"КНИГА О БРОДСКОМ","textChars":16,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/hk3q5o7q","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/gfmlkjm1","slide":15,"name":"","geometry":"roundRect","alt":"Книга о Бродском — обложка проекта","bbox":[590,48,638,624]}
+{"kind":"notes","id":"nt/vm5ndo","slide":15,"text":""}
+{"kind":"slide","id":"sl/ckfj87","slide":16,"title":"04 / 09","textShapes":5}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":16,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":16,"text":"04 / 09","textPreview":"04 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":16,"text":"Книга о Бродском","textPreview":"Книга о Бродском","textChars":16,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":16,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/n29gr2p8","slide":16,"bbox":[52,82,748,574]}
+{"kind":"shape","id":"sh/58z25kb6","slide":16,"bbox":[828,82,400,273]}
+{"kind":"shape","id":"sh/neloj2t8","slide":16,"bbox":[828,383,400,273]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":16,"text":"КНИГА О БРОДСКОМ","textPreview":"КНИГА О БРОДСКОМ","textChars":16,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":16,"text":"16","textPreview":"16","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/hgn29gr2","slide":16,"name":"","geometry":"roundRect","alt":"Книга о Бродском — основная работа","bbox":[52,82,748,574]}
+{"kind":"image","id":"im/3ylc7u54","slide":16,"name":"","geometry":"roundRect","alt":"Книга о Бродском — работа 2","bbox":[828,82,400,273]}
+{"kind":"image","id":"im/w7mp0bi9","slide":16,"name":"","geometry":"roundRect","alt":"Книга о Бродском — работа 3","bbox":[828,383,400,273]}
+{"kind":"notes","id":"nt/ckfj87","slide":16,"text":""}
+{"kind":"slide","id":"sl/sirndi","slide":17,"title":"04 / 09","textShapes":5}
+{"kind":"shape","id":"sh/jm1cfa9w","slide":17,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/c7u54zid","slide":17,"text":"04 / 09","textPreview":"04 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/1orytsvu","slide":17,"text":"Книга о Бродском","textPreview":"Книга о Бродском","textChars":16,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":17,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  02","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  02","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/judg7ads","slide":17,"bbox":[52,82,574,574]}
+{"kind":"shape","id":"sh/1032lszq","slide":17,"bbox":[654,82,574,574]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":17,"text":"КНИГА О БРОДСКОМ","textPreview":"КНИГА О БРОДСКОМ","textChars":16,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/v6psfil0","slide":17,"text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/hk3q5o7q","slide":17,"name":"","geometry":"roundRect","alt":"Книга о Бродском — работа 1","bbox":[52,82,574,574]}
+{"kind":"image","id":"im/z61032ls","slide":17,"name":"","geometry":"roundRect","alt":"Книга о Бродском — работа 2","bbox":[654,82,574,574]}
+{"kind":"notes","id":"nt/sirndi","slide":17,"text":""}
+{"kind":"slide","id":"sl/bh5yux","slide":18,"title":"05 / 09","textShapes":10}
+{"kind":"shape","id":"sh/lc7u54zi","slide":18,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":18,"text":"05 / 09","textPreview":"05 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":18,"text":"ACT","textPreview":"ACT","textChars":3,"textLines":1,"bbox":[54,84,500,98]}
+{"kind":"textbox","id":"sh/wfyxobm5","slide":18,"text":"Медиа-платформа о motion design и VFX","textPreview":"Медиа-платформа о motion design и VFX","textChars":37,"textLines":1,"bbox":[55,192,480,56]}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":18,"text":"WEB   /   ИНТЕРФЕЙСЫ   /   RESEARCH","textPreview":"WEB   /   ИНТЕРФЕЙСЫ   /   RESEARCH","textChars":35,"textLines":1,"bbox":[55,265,470,22]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":18,"text":"Медиа-сервис объединяет визуальные исследования, кейсы и референсы с фокусом на экспериментальную эстетику и технологии постпродакшена.","textPreview":"Медиа-сервис объединяет визуальные исследования, кейсы и референсы с фокусом на экспериментальную эстетику и технологии постпродакшена.","textChars":135,"textLines":1,"bbox":[55,310,490,128]}
+{"kind":"shape","id":"sh/7u54zido","slide":18,"bbox":[58,479,7,7]}
+{"kind":"textbox","id":"sh/w7mp0bi9","slide":18,"text":"Исследование аудитории и проектирование структуры","textPreview":"Исследование аудитории и проектирование структуры","textChars":49,"textLines":1,"bbox":[80,470,454,46]}
+{"kind":"shape","id":"sh/psfil0rq","slide":18,"bbox":[58,537,7,7]}
+{"kind":"textbox","id":"sh/tsvu9kni","slide":18,"text":"UX/UI для web и mobile web","textPreview":"UX/UI для web и mobile web","textChars":26,"textLines":1,"bbox":[80,528,454,46]}
+{"kind":"shape","id":"sh/47y1kre1","slide":18,"bbox":[58,595,7,7]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":18,"text":"Дизайн-система, тестирование и итеративные доработки","textPreview":"Дизайн-система, тестирование и итеративные доработки","textChars":52,"textLines":1,"bbox":[80,586,454,46]}
+{"kind":"shape","id":"sh/m1cfa9w3","slide":18,"bbox":[590,48,638,624]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":18,"text":"ACT","textPreview":"ACT","textChars":3,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/bat47y1k","slide":18,"text":"18","textPreview":"18","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/uxc3ylc7","slide":18,"name":"","geometry":"roundRect","alt":"ACT — обложка проекта","bbox":[590,48,638,624]}
+{"kind":"notes","id":"nt/bh5yux","slide":18,"text":""}
+{"kind":"slide","id":"sl/wmddvs","slide":19,"title":"05 / 09","textShapes":5}
+{"kind":"shape","id":"sh/rytsvu9k","slide":19,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/gfmlkjm1","slide":19,"text":"05 / 09","textPreview":"05 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/90je9cvi","slide":19,"text":"ACT","textPreview":"ACT","textChars":3,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/y1kre1w7","slide":19,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/rmhk3q5o","slide":19,"bbox":[52,82,748,574]}
+{"kind":"shape","id":"sh/9s36hcrm","slide":19,"bbox":[828,82,400,273]}
+{"kind":"shape","id":"sh/nih4byhg","slide":19,"bbox":[828,383,400,273]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":19,"text":"ACT","textPreview":"ACT","textChars":3,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":19,"text":"19","textPreview":"19","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/x0nuxc3y","slide":19,"name":"","geometry":"roundRect","alt":"ACT — основная работа","bbox":[52,82,748,574]}
+{"kind":"image","id":"im/f6dcbulw","slide":19,"name":"","geometry":"roundRect","alt":"ACT — работа 2","bbox":[828,82,400,273]}
+{"kind":"image","id":"im/gbq1oryt","slide":19,"name":"","geometry":"roundRect","alt":"ACT — работа 3","bbox":[828,383,400,273]}
+{"kind":"notes","id":"nt/wmddvs","slide":19,"text":""}
+{"kind":"slide","id":"sl/gk8urt","slide":20,"title":"06 / 09","textShapes":10}
+{"kind":"shape","id":"sh/neloj2t8","slide":20,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/czed8v6p","slide":20,"text":"06 / 09","textPreview":"06 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":20,"text":"Redis Agency","textPreview":"Redis Agency","textChars":12,"textLines":1,"bbox":[54,84,500,98]}
+{"kind":"textbox","id":"sh/u54zidon","slide":20,"text":"Коммуникационный дизайн для Купера и Мираторга","textPreview":"Коммуникационный дизайн для Купера и Мираторга","textChars":46,"textLines":1,"bbox":[55,192,480,56]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":20,"text":"КОМДИЗ   /   AI   /   DIGITAL","textPreview":"КОМДИЗ   /   AI   /   DIGITAL","textChars":29,"textLines":1,"bbox":[55,265,470,22]}
+{"kind":"textbox","id":"sh/cbulwval","slide":20,"text":"Коммуникационные кампании для крупных брендов: от рекламных креативов и соцсетей до презентаций, моушен-раскадровок и AI-фотографии.","textPreview":"Коммуникационные кампании для крупных брендов: от рекламных креативов и соцсетей до презентаций, моушен-раскадровок и AI-фотографии.","textChars":132,"textLines":1,"bbox":[55,310,490,128]}
+{"kind":"shape","id":"sh/5sneloj2","slide":20,"bbox":[58,479,7,7]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":20,"text":"Баннеры и промо-материалы для разных площадок","textPreview":"Баннеры и промо-материалы для разных площадок","textChars":45,"textLines":1,"bbox":[80,470,454,46]}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":20,"bbox":[58,537,7,7]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":20,"text":"Digital-кампании, соцсети и раскадровки моушена","textPreview":"Digital-кампании, соцсети и раскадровки моушена","textChars":47,"textLines":1,"bbox":[80,528,454,46]}
+{"kind":"shape","id":"sh/eloj2t83","slide":20,"bbox":[58,595,7,7]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":20,"text":"AI-генерация, ретушь и адаптация под web/mobile/performance","textPreview":"AI-генерация, ретушь и адаптация под web/mobile/performance","textChars":59,"textLines":1,"bbox":[80,586,454,46]}
+{"kind":"shape","id":"sh/wra5gbq1","slide":20,"bbox":[590,48,638,624]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":20,"text":"REDIS AGENCY","textPreview":"REDIS AGENCY","textChars":12,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":20,"text":"20","textPreview":"20","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/gbq1oryt","slide":20,"name":"","geometry":"roundRect","alt":"Redis Agency — обложка проекта","bbox":[590,48,638,624]}
+{"kind":"notes","id":"nt/gk8urt","slide":20,"text":""}
+{"kind":"slide","id":"sl/qqyjcu","slide":21,"title":"06 / 09","textShapes":5}
+{"kind":"shape","id":"sh/5kb6xkf6","slide":21,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":21,"text":"06 / 09","textPreview":"06 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/neloj2t8","slide":21,"text":"Redis Agency","textPreview":"Redis Agency","textChars":12,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/cbulwval","slide":21,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/5sneloj2","slide":21,"bbox":[52,82,574,574]}
+{"kind":"shape","id":"sh/nqxs72x4","slide":21,"bbox":[654,82,574,574]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":21,"text":"REDIS AGENCY","textPreview":"REDIS AGENCY","textChars":12,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/54zidony","slide":21,"text":"21","textPreview":"21","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/7ed8bat4","slide":21,"name":"","geometry":"roundRect","alt":"Redis Agency — работа 1","bbox":[52,82,574,574]}
+{"kind":"image","id":"im/pwb2hwfy","slide":21,"name":"","geometry":"roundRect","alt":"Redis Agency — работа 2","bbox":[654,82,574,574]}
+{"kind":"notes","id":"nt/qqyjcu","slide":21,"text":""}
+{"kind":"slide","id":"sl/vyo8wy","slide":22,"title":"07 / 09","textShapes":10}
+{"kind":"shape","id":"sh/sneloj2t","slide":22,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/32lszqtc","slide":22,"text":"07 / 09","textPreview":"07 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":22,"text":"Homigo","textPreview":"Homigo","textChars":6,"textLines":1,"bbox":[54,84,500,98]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":22,"text":"P2P-сервис обмена жильём для путешествий","textPreview":"P2P-сервис обмена жильём для путешествий","textChars":40,"textLines":1,"bbox":[55,192,480,56]}
+{"kind":"textbox","id":"sh/szqtcj6t","slide":22,"text":"PRODUCT   /   ИНТЕРФЕЙСЫ   /   DESIGN SYSTEM","textPreview":"PRODUCT   /   ИНТЕРФЕЙСЫ   /   DESIGN SYSTEM","textChars":44,"textLines":1,"bbox":[55,265,470,22]}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":22,"text":"Сервис помогает пользователям напрямую обмениваться квартирами без аренды: от поиска и заявок до чата, профилей и настроек.","textPreview":"Сервис помогает пользователям напрямую обмениваться квартирами без аренды: от поиска и заявок до чата, профилей и настроек.","textChars":123,"textLines":1,"bbox":[55,310,490,128]}
+{"kind":"shape","id":"sh/at47y1kr","slide":22,"bbox":[58,479,7,7]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":22,"text":"Продуктовая логика, user flows и ключевые сценарии","textPreview":"Продуктовая логика, user flows и ключевые сценарии","textChars":50,"textLines":1,"bbox":[80,470,454,46]}
+{"kind":"shape","id":"sh/w3m94fu1","slide":22,"bbox":[58,537,7,7]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":22,"text":"Web, mobile web и нативные приложения iOS / Android","textPreview":"Web, mobile web и нативные приложения iOS / Android","textChars":51,"textLines":1,"bbox":[80,528,454,46]}
+{"kind":"shape","id":"sh/nyd0z610","slide":22,"bbox":[58,595,7,7]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":22,"text":"Полная дизайн-система и состояния интерфейса","textPreview":"Полная дизайн-система и состояния интерфейса","textChars":44,"textLines":1,"bbox":[80,586,454,46]}
+{"kind":"shape","id":"sh/54zidony","slide":22,"bbox":[590,48,638,624]}
+{"kind":"textbox","id":"sh/nap4r65w","slide":22,"text":"HOMIGO","textPreview":"HOMIGO","textChars":6,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/cvixczed","slide":22,"text":"22","textPreview":"22","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/x4nap4r6","slide":22,"name":"","geometry":"roundRect","alt":"Homigo — обложка проекта","bbox":[590,48,638,624]}
+{"kind":"notes","id":"nt/vyo8wy","slide":22,"text":""}
+{"kind":"slide","id":"sl/9obv5l","slide":23,"title":"07 / 09","textShapes":5}
+{"kind":"shape","id":"sh/9cvixcze","slide":23,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":23,"text":"07 / 09","textPreview":"07 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":23,"text":"Homigo","textPreview":"Homigo","textChars":6,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":23,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":23,"bbox":[52,82,748,574]}
+{"kind":"shape","id":"sh/nih4byhg","slide":23,"bbox":[828,82,400,273]}
+{"kind":"shape","id":"sh/9s36hcrm","slide":23,"bbox":[828,383,400,273]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":23,"text":"HOMIGO","textPreview":"HOMIGO","textChars":6,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":23,"text":"23","textPreview":"23","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/j6tovaho","slide":23,"name":"","geometry":"roundRect","alt":"Homigo — основная работа","bbox":[52,82,748,574]}
+{"kind":"image","id":"im/18jqh0fe","slide":23,"name":"","geometry":"roundRect","alt":"Homigo — работа 2","bbox":[828,82,400,273]}
+{"kind":"image","id":"im/al87ed8b","slide":23,"name":"","geometry":"roundRect","alt":"Homigo — работа 3","bbox":[828,383,400,273]}
+{"kind":"notes","id":"nt/9obv5l","slide":23,"text":""}
+{"kind":"slide","id":"sl/etow86","slide":24,"title":"07 / 09","textShapes":5}
+{"kind":"shape","id":"sh/hwfyxobm","slide":24,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":24,"text":"07 / 09","textPreview":"07 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":24,"text":"Homigo","textPreview":"Homigo","textChars":6,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/oza1gvy9","slide":24,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  02","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  02","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/hk3q5o7q","slide":24,"bbox":[52,82,574,574]}
+{"kind":"shape","id":"sh/zed8v6ps","slide":24,"bbox":[654,82,574,574]}
+{"kind":"textbox","id":"sh/hcrmhk3q","slide":24,"text":"HOMIGO","textPreview":"HOMIGO","textChars":6,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":24,"text":"24","textPreview":"24","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/rytsvu9k","slide":24,"name":"","geometry":"roundRect","alt":"Homigo — работа 1","bbox":[52,82,574,574]}
+{"kind":"image","id":"im/9cvixcze","slide":24,"name":"","geometry":"roundRect","alt":"Homigo — работа 2","bbox":[654,82,574,574]}
+{"kind":"notes","id":"nt/etow86","slide":24,"text":""}
+{"kind":"slide","id":"sl/hf80f8","slide":25,"title":"08 / 09","textShapes":10}
+{"kind":"shape","id":"sh/qh0fepkz","slide":25,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":25,"text":"08 / 09","textPreview":"08 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":25,"text":"Календари","textPreview":"Календари","textChars":9,"textLines":1,"bbox":[54,84,500,98]}
+{"kind":"textbox","id":"sh/jqh0fepk","slide":25,"text":"Два авторских печатных проекта","textPreview":"Два авторских печатных проекта","textChars":30,"textLines":1,"bbox":[55,192,480,56]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":25,"text":"КОМДИЗ   /   ИЛЛЮСТРАЦИЯ   /   ПЕЧАТЬ","textPreview":"КОМДИЗ   /   ИЛЛЮСТРАЦИЯ   /   ПЕЧАТЬ","textChars":37,"textLines":1,"bbox":[55,265,470,22]}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":25,"text":"Две визуальные истории: одна посвящена ощущению дереализации, другая — СДВГ. Каждый месяц работает как отдельная иллюстративная сцена.","textPreview":"Две визуальные истории: одна посвящена ощущению дереализации, другая — СДВГ. Каждый месяц работает как отдельная иллюстративная сцена.","textChars":134,"textLines":1,"bbox":[55,310,490,128]}
+{"kind":"shape","id":"sh/8bat47y1","slide":25,"bbox":[58,479,7,7]}
+{"kind":"textbox","id":"sh/ji5snelo","slide":25,"text":"Концепция, арт-направление и тексты","textPreview":"Концепция, арт-направление и тексты","textChars":35,"textLines":1,"bbox":[80,470,454,46]}
+{"kind":"shape","id":"sh/uxc3ylc7","slide":25,"bbox":[58,537,7,7]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":25,"text":"Иллюстрации для каждого месяца","textPreview":"Иллюстрации для каждого месяца","textChars":30,"textLines":1,"bbox":[80,528,454,46]}
+{"kind":"shape","id":"sh/58z25kb6","slide":25,"bbox":[58,595,7,7]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":25,"text":"Вёрстка, типографика и подготовка к печати","textPreview":"Вёрстка, типографика и подготовка к печати","textChars":42,"textLines":1,"bbox":[80,586,454,46]}
+{"kind":"shape","id":"sh/n29gr2p8","slide":25,"bbox":[590,48,638,624]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":25,"text":"КАЛЕНДАРИ","textPreview":"КАЛЕНДАРИ","textChars":9,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":25,"text":"25","textPreview":"25","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/zed8v6ps","slide":25,"name":"","geometry":"roundRect","alt":"Календари — обложка проекта","bbox":[590,48,638,624]}
+{"kind":"notes","id":"nt/hf80f8","slide":25,"text":""}
+{"kind":"slide","id":"sl/x5dbk6","slide":26,"title":"08 / 09","textShapes":5}
+{"kind":"shape","id":"sh/qd4vmtwr","slide":26,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":26,"text":"08 / 09","textPreview":"08 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":26,"text":"Календари","textPreview":"Календари","textChars":9,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":26,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  01","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/qpg3ex0n","slide":26,"bbox":[52,82,748,574]}
+{"kind":"shape","id":"sh/8v6psfil","slide":26,"bbox":[828,82,400,273]}
+{"kind":"shape","id":"sh/qtcj6tov","slide":26,"bbox":[828,383,400,273]}
+{"kind":"textbox","id":"sh/hgn29gr2","slide":26,"text":"КАЛЕНДАРИ","textPreview":"КАЛЕНДАРИ","textChars":9,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":26,"text":"26","textPreview":"26","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/k3q5o7qp","slide":26,"name":"","geometry":"roundRect","alt":"Календари — основная работа","bbox":[52,82,748,574]}
+{"kind":"image","id":"im/29gr2p8n","slide":26,"name":"","geometry":"roundRect","alt":"Календари — работа 2","bbox":[828,82,400,273]}
+{"kind":"image","id":"im/3ylc7u54","slide":26,"name":"","geometry":"roundRect","alt":"Календари — работа 3","bbox":[828,383,400,273]}
+{"kind":"notes","id":"nt/x5dbk6","slide":26,"text":""}
+{"kind":"slide","id":"sl/vqxv3q","slide":27,"title":"08 / 09","textShapes":5}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":27,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":27,"text":"08 / 09","textPreview":"08 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":27,"text":"Календари","textPreview":"Календари","textChars":9,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":27,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  02","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  02","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/n29gr2p8","slide":27,"bbox":[52,82,748,574]}
+{"kind":"shape","id":"sh/58z25kb6","slide":27,"bbox":[828,82,400,273]}
+{"kind":"shape","id":"sh/neloj2t8","slide":27,"bbox":[828,383,400,273]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":27,"text":"КАЛЕНДАРИ","textPreview":"КАЛЕНДАРИ","textChars":9,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":27,"text":"27","textPreview":"27","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/pwb2hwfy","slide":27,"name":"","geometry":"roundRect","alt":"Календари — основная работа","bbox":[52,82,748,574]}
+{"kind":"image","id":"im/7ed8bat4","slide":27,"name":"","geometry":"roundRect","alt":"Календари — работа 2","bbox":[828,82,400,273]}
+{"kind":"image","id":"im/cvixczed","slide":27,"name":"","geometry":"roundRect","alt":"Календари — работа 3","bbox":[828,383,400,273]}
+{"kind":"notes","id":"nt/vqxv3q","slide":27,"text":""}
+{"kind":"slide","id":"sl/f1rdfw","slide":28,"title":"08 / 09","textShapes":5}
+{"kind":"shape","id":"sh/il0rqd4v","slide":28,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":28,"text":"08 / 09","textPreview":"08 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/0rqd4vmt","slide":28,"text":"Календари","textPreview":"Календари","textChars":9,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/byhgn29g","slide":28,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  03","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  03","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/idonyd0z","slide":28,"bbox":[52,82,748,574]}
+{"kind":"shape","id":"sh/0je9cvix","slide":28,"bbox":[828,82,400,273]}
+{"kind":"shape","id":"sh/i9s36hcr","slide":28,"bbox":[828,383,400,273]}
+{"kind":"textbox","id":"sh/p0bi9s36","slide":28,"text":"КАЛЕНДАРИ","textPreview":"КАЛЕНДАРИ","textChars":9,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/i9s36hcr","slide":28,"text":"28","textPreview":"28","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/8nqxs72x","slide":28,"name":"","geometry":"roundRect","alt":"Календари — основная работа","bbox":[52,82,748,574]}
+{"kind":"image","id":"im/ulwval87","slide":28,"name":"","geometry":"roundRect","alt":"Календари — работа 2","bbox":[828,82,400,273]}
+{"kind":"image","id":"im/j2t83itg","slide":28,"name":"","geometry":"roundRect","alt":"Календари — работа 3","bbox":[828,383,400,273]}
+{"kind":"notes","id":"nt/f1rdfw","slide":28,"text":""}
+{"kind":"slide","id":"sl/r87rhk","slide":29,"title":"08 / 09","textShapes":5}
+{"kind":"shape","id":"sh/cfa9w3m9","slide":29,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/judg7ads","slide":29,"text":"08 / 09","textPreview":"08 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":29,"text":"Календари","textPreview":"Календари","textChars":9,"textLines":1,"bbox":[236,28,520,32]}
+{"kind":"textbox","id":"sh/1orytsvu","slide":29,"text":"ВИЗУАЛЬНАЯ СИСТЕМА  04","textPreview":"ВИЗУАЛЬНАЯ СИСТЕМА  04","textChars":22,"textLines":1,"bbox":[838,33,390,22]}
+{"kind":"shape","id":"sh/c7u54zid","slide":29,"bbox":[52,82,748,574]}
+{"kind":"shape","id":"sh/u18jqh0f","slide":29,"bbox":[828,82,400,273]}
+{"kind":"shape","id":"sh/cvixczed","slide":29,"bbox":[828,383,400,273]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":29,"text":"КАЛЕНДАРИ","textPreview":"КАЛЕНДАРИ","textChars":9,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/47y1kre1","slide":29,"text":"29","textPreview":"29","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"image","id":"im/2p8nqxs7","slide":29,"name":"","geometry":"roundRect","alt":"Календари — основная работа","bbox":[52,82,748,574]}
+{"kind":"image","id":"im/kzupwb2h","slide":29,"name":"","geometry":"roundRect","alt":"Календари — работа 2","bbox":[828,82,400,273]}
+{"kind":"image","id":"im/p8nqxs72","slide":29,"name":"","geometry":"roundRect","alt":"Календари — работа 3","bbox":[828,383,400,273]}
+{"kind":"notes","id":"nt/r87rhk","slide":29,"text":""}
+{"kind":"slide","id":"sl/9dxxw8","slide":30,"title":"09 / 09","textShapes":12}
+{"kind":"shape","id":"sh/kb6xkf6d","slide":30,"bbox":[52,42,66,6]}
+{"kind":"textbox","id":"sh/rqd4vmtw","slide":30,"text":"09 / 09","textPreview":"09 / 09","textChars":7,"textLines":1,"bbox":[130,34,100,22]}
+{"kind":"textbox","id":"sh/25kb6xkf","slide":30,"text":"Этот сайт","textPreview":"Этот сайт","textChars":9,"textLines":1,"bbox":[54,84,500,98]}
+{"kind":"textbox","id":"sh/9knih4by","slide":30,"text":"Интерактивное портфолио, собранное через AI","textPreview":"Интерактивное портфолио, собранное через AI","textChars":43,"textLines":1,"bbox":[55,192,480,56]}
+{"kind":"textbox","id":"sh/kzupwb2h","slide":30,"text":"ВАЙБКОДИНГ   /   WEB   /   AI","textPreview":"ВАЙБКОДИНГ   /   WEB   /   AI","textChars":29,"textLines":1,"bbox":[55,265,470,22]}
+{"kind":"textbox","id":"sh/re1w7mp0","slide":30,"text":"Портфолио спроектировано как интерактивное поле с pan & zoom, 3D-сферой, scroll-driven сценами и собственной админкой — без фреймворков.","textPreview":"Портфолио спроектировано как интерактивное поле с pan & zoom, 3D-сферой, scroll-driven сценами и собственной админкой — без фреймворков.","textChars":136,"textLines":1,"bbox":[55,310,490,128]}
+{"kind":"shape","id":"sh/2t83itgf","slide":30,"bbox":[58,479,7,7]}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":30,"text":"HTML, CSS и JavaScript через итеративный диалог с AI","textPreview":"HTML, CSS и JavaScript через итеративный диалог с AI","textChars":52,"textLines":1,"bbox":[80,470,454,46]}
+{"kind":"shape","id":"sh/gvy90je9","slide":30,"bbox":[58,537,7,7]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":30,"text":"Canvas, CSS 3D transforms, мобильная адаптация и оптимизация","textPreview":"Canvas, CSS 3D transforms, мобильная адаптация и оптимизация","textChars":60,"textLines":1,"bbox":[80,528,454,46]}
+{"kind":"shape","id":"sh/rytsvu9k","slide":30,"bbox":[58,595,7,7]}
+{"kind":"textbox","id":"sh/gfmlkjm1","slide":30,"text":"Админка для объектов, контента, галерей и истории изменений","textPreview":"Админка для объектов, контента, галерей и истории изменений","textChars":59,"textLines":1,"bbox":[80,586,454,46]}
+{"kind":"shape","id":"sh/90je9cvi","slide":30,"bbox":[590,48,638,624]}
+{"kind":"textbox","id":"sh/y1kre1w7","slide":30,"text":"HTML\nCSS\nJS","textPreview":"HTML | CSS | JS","textChars":11,"textLines":3,"bbox":[654,124,500,270]}
+{"kind":"shape","id":"sh/rmhk3q5o","slide":30,"bbox":[654,452,360,16]}
+{"kind":"textbox","id":"sh/g7adsji5","slide":30,"text":"PAN & ZOOM  /  CSS 3D  /  ADMIN","textPreview":"PAN & ZOOM  /  CSS 3D  /  ADMIN","textChars":31,"textLines":1,"bbox":[654,494,510,28]}
+{"kind":"textbox","id":"sh/9s36hcrm","slide":30,"text":"ЭТОТ САЙТ","textPreview":"ЭТОТ САЙТ","textChars":9,"textLines":1,"bbox":[52,684,500,18]}
+{"kind":"textbox","id":"sh/yxobm58z","slide":30,"text":"30","textPreview":"30","textChars":2,"textLines":1,"bbox":[1195,684,34,18]}
+{"kind":"notes","id":"nt/9dxxw8","slide":30,"text":""}
+{"kind":"slide","id":"sl/tmdw5l","slide":31,"title":"СПАСИБО","textShapes":6}
+{"kind":"textbox","id":"sh/72x4nap4","slide":31,"text":"СПАСИБО","textPreview":"СПАСИБО","textChars":7,"textLines":1,"bbox":[56,60,800,100]}
+{"kind":"textbox","id":"sh/0nuxc3yl","slide":31,"text":"за внимание","textPreview":"за внимание","textChars":11,"textLines":1,"bbox":[58,160,520,50]}
+{"kind":"shape","id":"sh/p8nqxs72","slide":31,"bbox":[56,302,1168,2]}
+{"kind":"textbox","id":"sh/itgfmlkj","slide":31,"text":"МАРИНА УСТИНОВСКАЯ","textPreview":"МАРИНА УСТИНОВСКАЯ","textChars":18,"textLines":1,"bbox":[56,346,540,48]}
+{"kind":"textbox","id":"sh/7ed8bat4","slide":31,"text":"telegram: @kezend","textPreview":"telegram: @kezend","textChars":17,"textLines":1,"bbox":[56,424,460,36]}
+{"kind":"textbox","id":"sh/0z61032l","slide":31,"text":"коммуникации  /  интерфейсы  /  AI","textPreview":"коммуникации  /  интерфейсы  /  AI","textChars":34,"textLines":1,"bbox":[56,604,620,28]}
+{"kind":"textbox","id":"sh/pkzupwb2","slide":31,"text":"31","textPreview":"31","textChars":2,"textLines":1,"bbox":[1176,674,48,20]}
+{"kind":"notes","id":"nt/tmdw5l","slide":31,"text":""}
