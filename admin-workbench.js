@@ -229,7 +229,7 @@
   const preview = document.createElement('div');
   preview.className = 'admin-asset-preview';
   preview.id = 'adminAssetPreview';
-  preview.innerHTML = '<img alt="Предпросмотр"><div class="admin-asset-preview-meta"></div>';
+  preview.innerHTML = '<img alt="Предпросмотр"><video muted loop playsinline controls></video><div class="admin-asset-preview-meta"></div>';
   document.body.appendChild(preview);
 
   const guideV = document.createElement('div');
@@ -1092,6 +1092,38 @@
     }
   }
 
+  function appendHomigoGalleryAdditions() {
+    const project = projects.tbank;
+    if (!project || !Array.isArray(project.gallery)) return;
+    const videos = [
+      'Homigo/bc27b365-3103be2b.mp4',
+      'Homigo/Форма_размещения_жилья (1080p).mp4',
+      'Homigo/Жилье_—_карточка (1080p).mp4'
+    ];
+    const photos = ['Homigo/Frame 277131464.png', 'Homigo/Slide 16_9 - 75.png'];
+    const additions = [...videos, ...photos];
+    const reordered = project.gallery.filter(src => !additions.includes(src));
+    reordered.splice(1, 0, ...videos);
+    reordered.push(...photos);
+    project.gallery = reordered;
+
+    const cases = readJSON(CASE_KEY, {});
+    if (cases.tbank) {
+      cases.tbank.gallery = clone(reordered);
+      writeJSON(CASE_KEY, cases);
+    }
+    const draft = readJSON(DRAFT_KEY, null);
+    if (draft?.cases?.tbank) {
+      draft.cases.tbank.gallery = clone(reordered);
+      writeJSON(DRAFT_KEY, draft);
+    }
+    const legacy = readJSON('portfolio-project-edits', {});
+    if (legacy.tbank) {
+      legacy.tbank.gallery = clone(reordered);
+      writeJSON('portfolio-project-edits', legacy);
+    }
+  }
+
   function persistCases() {
     const data = savedCases();
     writeJSON(CASE_KEY, data);
@@ -1116,35 +1148,42 @@
       const bytes = assetBytes(src);
       const heavy = bytes != null && bytes > 1.5 * 1024 * 1024;
       const isHeavyGif = /\.gif(?:$|\?)/i.test(src || '') && bytes != null && bytes > 3 * 1024 * 1024;
+      const isVideo = /\.(?:mp4|webm|mov|m4v)(?:$|\?)/i.test(src || '');
       row.dataset.assetIssue = heavy || isHeavyGif ? 'warning' : '';
       row.innerHTML = `
         <span title="Перетащить">::</span>
-        ${src ? `<img class="admin-gallery-thumb" src="${escapeHtml(src)}" alt="">` : '<div class="admin-gallery-thumb" style="background:#333"></div>'}
+        ${src ? (isVideo
+          ? `<video class="admin-gallery-thumb" src="${escapeHtml(src)}" muted playsinline preload="metadata"></video>`
+          : `<img class="admin-gallery-thumb" src="${escapeHtml(src)}" alt="">`)
+          : '<div class="admin-gallery-thumb" style="background:#333"></div>'}
         <div class="admin-gallery-meta"><strong>${escapeHtml(fileName(src))}</strong><span class="${heavy || isHeavyGif ? 'warning' : ''}">${formatBytes(bytes)} · проверка...</span><br><label><input type="radio" name="admin-cover" ${project.cover === src || (!project.cover && index === 0) ? 'checked' : ''}> обложка</label></div>
         <button type="button" class="admin-layer-action" title="Удалить">x</button>`;
-      const image = row.querySelector('img');
-      if (image) {
-        image.addEventListener('load', () => {
-          const lowResolution = image.naturalWidth < 1200;
+      const media = row.querySelector('img, video');
+      if (media) {
+        const onReady = () => {
+          const width = isVideo ? media.videoWidth : media.naturalWidth;
+          const height = isVideo ? media.videoHeight : media.naturalHeight;
+          const lowResolution = width < 1200;
           const warnings = [];
           if (lowResolution) warnings.push('низкое разрешение');
           if (heavy) warnings.push('тяжёлый файл');
           if (isHeavyGif) warnings.push('тяжёлый GIF');
           row.dataset.assetIssue = warnings.length ? 'warning' : '';
-          const meta = `${formatBytes(bytes)} · ${image.naturalWidth} x ${image.naturalHeight}${warnings.length ? ` · ${warnings.join(', ')}` : ''}`;
+          const meta = `${formatBytes(bytes)} · ${width} x ${height}${warnings.length ? ` · ${warnings.join(', ')}` : ''}`;
           const label = row.querySelector('.admin-gallery-meta span');
           label.textContent = project.cover === src ? `Обложка · ${meta}` : meta;
           label.className = warnings.length ? 'warning' : '';
           updateAssetAudit();
-        });
-        image.addEventListener('error', () => {
+        };
+        media.addEventListener(isVideo ? 'loadedmetadata' : 'load', onReady);
+        media.addEventListener('error', () => {
           row.dataset.assetIssue = 'error';
           const label = row.querySelector('.admin-gallery-meta span');
           label.textContent = 'Битый путь или файл недоступен';
           label.className = 'error';
           updateAssetAudit();
         });
-        image.addEventListener('click', () => openAssetPreview(src, image));
+        media.addEventListener('click', () => openAssetPreview(src, media, isVideo));
       }
       row.querySelector('input[type="radio"]').addEventListener('change', () => {
         project.cover = src;
@@ -1200,11 +1239,23 @@
     status.classList.toggle('warning', errors > 0 || warnings > 0);
   }
 
-  function openAssetPreview(src, sourceImage) {
+  function openAssetPreview(src, sourceMedia, isVideo) {
     if (!src) return;
     const image = preview.querySelector('img');
-    image.src = src;
-    preview.querySelector('.admin-asset-preview-meta').textContent = `${fileName(src)} - ${sourceImage.naturalWidth} x ${sourceImage.naturalHeight}px`;
+    const video = preview.querySelector('video');
+    image.hidden = isVideo;
+    video.hidden = !isVideo;
+    if (isVideo) {
+      video.src = src;
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+      image.src = src;
+    }
+    const width = isVideo ? sourceMedia.videoWidth : sourceMedia.naturalWidth;
+    const height = isVideo ? sourceMedia.videoHeight : sourceMedia.naturalHeight;
+    preview.querySelector('.admin-asset-preview-meta').textContent = `${fileName(src)} - ${width} x ${height}px`;
     preview.classList.add('open');
   }
 
@@ -1536,7 +1587,11 @@
     scheduleSave('Добавление в галерею');
     galleryInput.value = '';
   });
-  preview.addEventListener('click', () => preview.classList.remove('open'));
+  preview.querySelector('video').addEventListener('click', event => event.stopPropagation());
+  preview.addEventListener('click', () => {
+    preview.querySelector('video').pause();
+    preview.classList.remove('open');
+  });
   document.getElementById('adminAuditGallery').addEventListener('click', renderGallery);
 
   document.getElementById('adminCreateVersion').addEventListener('click', () => saveNow('Ручная версия', true));
@@ -1657,6 +1712,7 @@
   applyPositionMap(responsive.desktop || {});
   applyCases(readJSON(CASE_KEY, {}));
   pinOzonGalleryAdditions();
+  appendHomigoGalleryAdditions();
   applyLayerMeta();
   setMobilePreset(document.getElementById('adminDevicePreset').value);
   renderAll();

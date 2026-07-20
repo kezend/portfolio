@@ -778,6 +778,15 @@
   .badge-kalendar p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
   .tag-kalendar { position: absolute; top: 2371px; left: 1117px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 500; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(-10deg); transition: top 0.4s ease, left 0.4s ease; }
 
+  /* Project 8 — UI Concepts (row3, col3) */
+  .card-ui1 { width: 510px; top: 2280px; left: 3550px; z-index: 3; transform: rotate(-4deg); padding: 9px; transition: top 0.4s ease, left 0.4s ease; }
+  .card-ui2 { width: 250px; top: 2410px; left: 3960px; z-index: 4; transform: rotate(7deg); padding: 8px; transition: top 0.4s ease, left 0.4s ease; }
+  .card-ui1 img, .card-ui2 img { height: auto; object-fit: contain; }
+  .badge-ui { position: absolute; top: 2170px; left: 3770px; display: flex; width: 232px; padding: 11px 16px; flex-direction: column; align-items: center; gap: 12px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(3deg); transition: top 0.4s ease, left 0.4s ease; }
+  .badge-ui h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 82%; letter-spacing: -2.4px; text-align: center; color: #141414; }
+  .badge-ui p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
+  .tag-ui { position: absolute; top: 2146px; left: 3992px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 14px; font-weight: 500; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(-8deg); transition: top 0.4s ease, left 0.4s ease; }
+
   /* Project 8 — Плакат (row3, col2) */
 
   /* Project 1 — Electric Lines */
@@ -860,6 +869,11 @@
   .card-kalendar2 { top: 2473px; left: 2788px; }
   .badge-kalendar { top: 2391px; left: 2971px; }
   .tag-kalendar { top: 2371px; left: 3134px; }
+
+  .card-ui1 { top: 2280px; left: 3550px; }
+  .card-ui2 { top: 2410px; left: 3960px; }
+  .badge-ui { top: 2170px; left: 3770px; }
+  .tag-ui { top: 2146px; left: 3992px; }
 
 
   /* Placeholder gradient cards (no real images yet) */
@@ -1095,7 +1109,7 @@
       border-radius: 16px !important;
       height: auto !important;
     }
-    .detail-gallery img, .detail-gallery .gallery-img-wrap {
+    .detail-gallery img, .detail-gallery video, .detail-gallery .gallery-img-wrap {
       width: 100% !important;
       border-radius: 12px;
     }
@@ -1715,7 +1729,7 @@
     scroll-behavior: smooth;
   }
   .detail-gallery::-webkit-scrollbar { width: 0; }
-  .detail-gallery img, .detail-gallery .gallery-img-wrap {
+  .detail-gallery img, .detail-gallery video, .detail-gallery .gallery-img-wrap {
     width: 100%;
     display: block;
     height: auto;
@@ -1723,6 +1737,10 @@
     opacity: 0;
     transform: translateY(30px);
     animation: galleryStagger 0.4s ease forwards;
+  }
+  .detail-gallery video {
+    background: #141414;
+    object-fit: contain;
   }
   @keyframes galleryStagger {
     to { opacity: 1; transform: translateY(0); }
@@ -1740,6 +1758,42 @@
   }
   .gallery-placeholder:nth-child(odd) { background: #2e2e2e; }
   .gallery-placeholder:nth-child(even) { background: #242424; }
+
+  /* UI Concepts: media-only horizontal strip. */
+  .project-detail[data-layout="media-strip"] { background: #000000; }
+  .project-detail[data-layout="media-strip"] .detail-sidebar { display: none; }
+  .project-detail[data-layout="media-strip"] .detail-body {
+    height: 100%;
+    padding: 74px 28px 28px;
+    overflow: hidden;
+  }
+  .project-detail[data-layout="media-strip"] .detail-gallery {
+    width: 100%;
+    height: 100%;
+    flex: none;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 0 7vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-radius: 0;
+    background: transparent;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 7vw;
+    overscroll-behavior-x: contain;
+  }
+  .project-detail[data-layout="media-strip"] .detail-gallery::-webkit-scrollbar { height: 0; }
+  .project-detail[data-layout="media-strip"] .detail-gallery img {
+    width: auto;
+    height: clamp(420px, 68vh, 700px);
+    max-width: none;
+    flex: 0 0 auto;
+    border-radius: 16px;
+    object-fit: contain;
+    scroll-snap-align: center;
+    box-shadow: 0 18px 48px rgba(0,0,0,0.25);
+  }
 
   /* =========================================================
      VESH PROJECT — ArtCircles-style DARK layout + edit mode
@@ -2918,7 +2972,7 @@
     }
     .project-card,
     .badge-electric, .badge-vesh, .badge-ruf, .badge-ozon, .badge-redis,
-    .badge-afisha, .badge-tbank, .badge-kalendar {
+    .badge-afisha, .badge-tbank, .badge-kalendar, .badge-ui {
       position: absolute !important;
       height: auto !important;
       margin: 0 !important;
@@ -2946,10 +3000,10 @@
       aspect-ratio: 4 / 3;
       min-height: 260px;
     }
-    .card-yulia, .card-ozon2, .card-tbank2, .card-kalendar2,
+    .card-yulia, .card-ozon2, .card-tbank2, .card-kalendar2, .card-ui2,
     .card-ruf2, .card-redis2, .card-afisha2 { display: none !important; }
     .badge-electric, .badge-vesh, .badge-ruf, .badge-ozon, .badge-redis,
-    .badge-afisha, .badge-tbank, .badge-kalendar {
+    .badge-afisha, .badge-tbank, .badge-kalendar, .badge-ui {
       display: flex !important;
       padding: 16px !important;
       border-radius: 18px !important;
@@ -2960,7 +3014,7 @@
       box-shadow: 0 12px 28px rgba(0,0,0,0.28);
     }
     .badge-electric h4, .badge-vesh h4, .badge-ruf h4, .badge-ozon h4, .badge-redis h4,
-    .badge-afisha h4, .badge-tbank h4, .badge-kalendar h4 {
+    .badge-afisha h4, .badge-tbank h4, .badge-kalendar h4, .badge-ui h4 {
       font-size: 28px !important;
       letter-spacing: -1.8px !important;
       line-height: 0.9 !important;
@@ -2968,7 +3022,7 @@
       margin: 0 !important;
     }
     .badge-electric p, .badge-vesh p, .badge-ruf p, .badge-ozon p, .badge-redis p,
-    .badge-afisha p, .badge-tbank p, .badge-kalendar p {
+    .badge-afisha p, .badge-tbank p, .badge-kalendar p, .badge-ui p {
       font-size: 14px !important;
       line-height: 1.05 !important;
       text-align: left !important;
@@ -3035,6 +3089,10 @@
     .card-kalendar2 { top: 4208px !important; left: 134px !important; width: 228px !important; height: auto !important; transform: rotate(-5deg) !important; }
     .badge-kalendar { top: 4472px !important; left: 68px !important; width: 224px !important; transform: rotate(4deg) !important; }
     .tag-kalendar { top: 4440px !important; left: 258px !important; transform: rotate(-10deg) !important; }
+
+    .badge-ui { top: 4720px !important; left: 62px !important; width: 230px !important; transform: rotate(-3deg) !important; }
+    .tag-ui { top: 4690px !important; left: 260px !important; transform: rotate(7deg) !important; }
+    .card-ui1 { top: 4840px !important; left: 18px !important; width: 342px !important; height: auto !important; transform: rotate(3deg) !important; }
 
 
     [data-project].filtered-out { display: none !important; }
@@ -3123,10 +3181,35 @@
       gap: 10px !important;
     }
     .detail-gallery img,
+    .detail-gallery video,
     .detail-gallery .gallery-img-wrap {
       width: 100% !important;
       height: auto !important;
       border-radius: 14px !important;
+    }
+    .project-detail[data-layout="media-strip"] .detail-body {
+      height: 100% !important;
+      padding: 62px 0 18px !important;
+      overflow: hidden !important;
+    }
+    .project-detail[data-layout="media-strip"] .detail-gallery {
+      width: 100% !important;
+      height: 100% !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      gap: 12px !important;
+      padding: 0 8vw !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      border-radius: 0 !important;
+      scroll-padding-inline: 8vw;
+    }
+    .project-detail[data-layout="media-strip"] .detail-gallery img {
+      width: auto !important;
+      height: auto !important;
+      max-width: calc(100vw - 28px) !important;
+      max-height: min(64vh, 560px) !important;
+      border-radius: 12px !important;
     }
   }
 
@@ -3528,7 +3611,8 @@
     background: rgba(0,0,0,0.86);
   }
   .admin-asset-preview.open { display: flex; }
-  .admin-asset-preview img { max-width: 90vw; max-height: 82vh; object-fit: contain; }
+  .admin-asset-preview img,
+  .admin-asset-preview video { max-width: 90vw; max-height: 82vh; object-fit: contain; }
   .admin-asset-preview-meta {
     position: absolute;
     left: 20px;
@@ -3774,6 +3858,7 @@
           <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="afisha"><span>Redis Agency</span><button class="edit-vis-open" data-edit-open="afisha">открыть</button></label>
           <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="tbank"><span>Homigo</span><button class="edit-vis-open" data-edit-open="tbank">открыть</button></label>
           <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="kalendar"><span>Календари</span><button class="edit-vis-open" data-edit-open="kalendar">открыть</button></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="ui"><span>UI Concepts</span><button class="edit-vis-open" data-edit-open="ui">открыть</button></label>
         </div>
         <div class="tour-order-panel" id="tourOrderPanel">
           <div class="tour-order-title">Порядок тура</div>
@@ -3887,6 +3972,12 @@
         <div class="project-card card-kalendar2" data-project="kalendar"><img loading="lazy" src="Календари/обложка 2.webp" alt="Календари — обложка 2"></div>
         <div class="badge-kalendar" data-project="kalendar"><h4>Календари</h4><p>авторские календари<br>о дереализации и СДВГ</p></div>
         <div class="tag-kalendar" data-project="kalendar">комдиз</div>
+
+        <!-- ===== Project 8 — UI Concepts ===== -->
+        <div class="project-card card-ui1" data-project="ui"><img loading="lazy" src="UI/Desktop - 19.png" alt="UI Concepts — desktop interface"></div>
+        <div class="project-card card-ui2" data-project="ui"><img loading="lazy" src="UI/iPhone 14 &amp; 15 Pro - 2.png" alt="UI Concepts — mobile interface"></div>
+        <div class="badge-ui" data-project="ui"><h4>UI Concepts</h4><p>подборка интерфейсных<br>концептов</p></div>
+        <div class="tag-ui" data-project="ui">интерфейсы</div>
 
       </div>
     </div>
@@ -4198,7 +4289,8 @@
     redis: ['web', 'interfaces'],
     afisha: ['komdiz', 'ai'],
     tbank: ['web', 'interfaces'],
-    kalendar: ['komdiz']
+    kalendar: ['komdiz'],
+    ui: ['interfaces']
   };
 
   // Original anchor positions (card1 top/left) per project
@@ -4210,7 +4302,8 @@
     redis:    { top: 1550, left: 2400 },
     afisha:   { top: 1600, left: 3600 },
     tbank:    { top: 2210, left: 1483 },
-    kalendar: { top: 2210, left: 2500 }
+    kalendar: { top: 2210, left: 2500 },
+    ui:       { top: 2280, left: 3550 }
   };
 
   // Desktop: auto-open project when zoomed in very close
@@ -4254,7 +4347,7 @@
     { top: 2100, left: 2500 }
   ];
 
-  const projectOrder = ['electric','vesh','ruf','ozon','redis','afisha','tbank','kalendar'];
+  const projectOrder = ['electric','vesh','ruf','ozon','redis','afisha','tbank','kalendar','ui'];
   const allProjectEls = document.querySelectorAll('[data-project]');
   const chips = document.querySelectorAll('.chip');
 
@@ -4474,11 +4567,16 @@
       ],
       gallery: [
         'Homigo/source/image.webp',
+        'Homigo/bc27b365-3103be2b.mp4',
+        'Homigo/Форма_размещения_жилья (1080p).mp4',
+        'Homigo/Жилье_—_карточка (1080p).mp4',
         'Homigo/image 1926988951.webp',
         'Homigo/image 1926988950.webp',
         'Homigo/image 1926988954.webp',
         'Homigo/image 1926988952.webp',
-        'Homigo/image 1926988953.webp'
+        'Homigo/image 1926988953.webp',
+        'Homigo/Frame 277131464.png',
+        'Homigo/Slide 16_9 - 75.png'
       ]
     },
     kalendar: { title: 'Календари', desc: 'два авторских календаря: один посвящён ощущению дереализации, другой — СДВГ', tags: ['комдиз'], accordions: [
@@ -4487,7 +4585,27 @@
         'Календари/4.webp','Календари/5.webp','Календари/6.webp','Календари/7.webp',
         'Календари/8.webp','Календари/9.webp','Календари/10.webp','Календари/11.webp',
         'Календари/12.webp','Календари/13.webp','Календари/14.webp','Календари/15.webp','Календари/16.webp'
-      ] }
+      ] },
+    ui: {
+      title: 'UI Concepts',
+      desc: '',
+      tags: ['интерфейсы'],
+      accordions: [],
+      layout: 'media-strip',
+      gallery: [
+        'UI/Desktop - 19.png',
+        'UI/iPhone 14 & 15 Pro - 2.png',
+        'UI/telegram-cloud-photo-size-2-5341539582547271884-w 1.png',
+        'UI/Two tickets.png',
+        'UI/iPhone 14 & 15 Pro - 4.png',
+        'UI/telegram-cloud-photo-size-2-5341539582547271884-w 2.png',
+        'UI/iPhone 14 & 15 Pro - 6.png',
+        'UI/Авторизация/Desktop - 7.png',
+        'UI/telegram-cloud-photo-size-2-5341539582547271884-w 3.png',
+        'UI/iPhone 14 & 15 Pro - 7.png',
+        'UI/telegram-cloud-photo-size-2-5341539582547271884-w 4.png'
+      ]
+    }
   };
 
   // Expose projects for inline editing
@@ -4827,6 +4945,7 @@
     projectDetail.removeAttribute('data-layout');
     const veshC = document.getElementById('veshLayoutContainer');
     if (veshC) veshC.innerHTML = '';
+    if (data.layout) projectDetail.setAttribute('data-layout', data.layout);
 
     detailTitle.innerHTML = fixPrep(data.title);
     // Support line breaks in description
@@ -4900,6 +5019,9 @@
     if (data.gallery && data.gallery.length > 0) {
       detailGallery.innerHTML = data.gallery.map((src, index) => {
         if (src === null) return '<div class="gallery-placeholder"></div>';
+        if (/\.(mp4|webm|mov|m4v)(?:[?#].*)?$/i.test(src)) {
+          return `<video src="${src}" autoplay muted loop playsinline preload="metadata" aria-label="${data.title} — видео ${index + 1}"></video>`;
+        }
         return `<img src="${src}" alt="${data.title}" loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async"${index === 0 ? ' fetchpriority="high"' : ''}>`;
       }).join('');
     } else {
@@ -4909,15 +5031,27 @@
     }
 
     projectDetail.classList.add('open');
+    detailGallery.querySelectorAll('video').forEach(video => {
+      video.muted = true;
+      const playback = video.play();
+      if (playback?.catch) playback.catch(() => {});
+    });
 
     // Stagger gallery items
     requestAnimationFrame(() => {
-      detailGallery.querySelectorAll('img, .gallery-img-wrap, .gallery-placeholder').forEach((el, i) => {
+      detailGallery.querySelectorAll('img, video, .gallery-img-wrap, .gallery-placeholder').forEach((el, i) => {
         el.style.animationDelay = (i * 70) + 'ms';
       });
     });
   }
   window.openDetail = openDetail;
+
+  detailGallery.addEventListener('wheel', event => {
+    if (projectDetail.dataset.layout !== 'media-strip') return;
+    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+    event.preventDefault();
+    detailGallery.scrollLeft += event.deltaY;
+  }, { passive: false });
 
   function closeDetail() {
     projectDetail.classList.remove('open');
@@ -4941,6 +5075,7 @@
     { key: 'afisha', cards: ['.card-afisha1', '.card-afisha2'], badge: '.badge-afisha', tags: ['.tag-afisha-1', '.tag-afisha-2'] },
     { key: 'tbank', cards: ['.card-tbank1', '.card-tbank2'], badge: '.badge-tbank', tag: '.tag-tbank' },
     { key: 'kalendar', cards: ['.card-kalendar1', '.card-kalendar2'], badge: '.badge-kalendar', tag: '.tag-kalendar' },
+    { key: 'ui', cards: ['.card-ui1', '.card-ui2'], badge: '.badge-ui', tag: '.tag-ui' },
   ];
   projectConfigs.forEach(({ key, cards, badge, tag, tags }) => {
     cards.forEach(sel => {
@@ -5203,6 +5338,7 @@
       renderDetailWithoutMorph(nextProject);
       history.replaceState(null, '', '#' + nextProject);
       detailGallery.scrollTop = 0;
+      detailGallery.scrollLeft = 0;
       requestAnimationFrame(() => requestAnimationFrame(() => {
         projectDetail.classList.remove('switching');
         isSwitchingDetail = false;
@@ -5257,9 +5393,10 @@
         redis: { title: 'ACT', badge: 'медиа-сервис о моушене<br>и VFX' },
         afisha: { title: 'Redis Agency', badge: 'коммуникационный дизайн<br>для Купера и Мираторга' },
         tbank: { title: 'Homigo', badge: 'сервис обмена жильём<br>для путешествий P2P' },
-        kalendar: { title: 'Календари', badge: 'авторские календари<br>о дереализации и СДВГ' }
+        kalendar: { title: 'Календари', badge: 'авторские календари<br>о дереализации и СДВГ' },
+        ui: { title: 'UI Concepts', badge: 'подборка интерфейсных<br>концептов' }
       },
-      canvasTags: { electric: ['комдиз', 'ИИ'], vesh: 'комдиз', ruf: 'комдиз', ozon: ['AI', 'комдиз', 'интерфейсы'], redis: ['интерфейсы', 'веб'], afisha: ['комдиз', 'AI'], tbank: 'интерфейсы', kalendar: 'комдиз' },
+      canvasTags: { electric: ['комдиз', 'ИИ'], vesh: 'комдиз', ruf: 'комдиз', ozon: ['AI', 'комдиз', 'интерфейсы'], redis: ['интерфейсы', 'веб'], afisha: ['комдиз', 'AI'], tbank: 'интерфейсы', kalendar: 'комдиз', ui: 'интерфейсы' },
       projectOverrides: {
         electric: {
           title: 'Electric Lines',
@@ -5348,9 +5485,10 @@
         redis: { title: 'ACT', badge: 'media service about motion<br>and VFX' },
         afisha: { title: 'Redis Agency', badge: 'communication design<br>for Kuper and Miratorg' },
         tbank: { title: 'Homigo', badge: 'P2P home exchange<br>service for travelers' },
-        kalendar: { title: 'Calendars', badge: 'author calendars<br>on derealization & ADHD' }
+        kalendar: { title: 'Calendars', badge: 'author calendars<br>on derealization & ADHD' },
+        ui: { title: 'UI Concepts', badge: 'a selection of interface<br>concepts' }
       },
-      canvasTags: { electric: ['comdes', 'AI'], vesh: 'comdes', ruf: 'comdes', ozon: ['AI', 'comdes', 'interfaces'], redis: ['interfaces', 'web'], afisha: ['comdes', 'AI'], tbank: 'interfaces', kalendar: 'comdes' },
+      canvasTags: { electric: ['comdes', 'AI'], vesh: 'comdes', ruf: 'comdes', ozon: ['AI', 'comdes', 'interfaces'], redis: ['interfaces', 'web'], afisha: ['comdes', 'AI'], tbank: 'interfaces', kalendar: 'comdes', ui: 'interfaces' },
       projectOverrides: {
         electric: {
           title: 'Electric Lines',
@@ -5481,7 +5619,7 @@
     document.querySelector('.badge-vesh p').innerHTML = fixPrep(t.canvasBadges.vesh.badge);
     document.querySelector('.badge-komdiz').textContent = t.canvasTags.vesh;
 
-    const projectKeys = ['electric','ruf','ozon','redis','afisha','tbank','kalendar'];
+    const projectKeys = ['electric','ruf','ozon','redis','afisha','tbank','kalendar','ui'];
     projectKeys.forEach(key => {
       const badge = document.querySelector('.badge-' + key);
       if (badge) {
@@ -7724,6 +7862,22 @@
               e.gallery = reordered;
               editsChanged = true;
             }
+          } else if (key === 'tbank') {
+            const newVideos = [
+              'Homigo/bc27b365-3103be2b.mp4',
+              'Homigo/Форма_размещения_жилья (1080p).mp4',
+              'Homigo/Жилье_—_карточка (1080p).mp4'
+            ];
+            const newPhotos = ['Homigo/Frame 277131464.png', 'Homigo/Slide 16_9 - 75.png'];
+            const additions = [...newVideos, ...newPhotos];
+            const reordered = e.gallery.filter(src => !additions.includes(src));
+            reordered.splice(1, 0, ...newVideos);
+            reordered.push(...newPhotos);
+            projects[key].gallery = reordered;
+            if (JSON.stringify(reordered) !== JSON.stringify(e.gallery)) {
+              e.gallery = reordered;
+              editsChanged = true;
+            }
           } else {
             projects[key].gallery = e.gallery;
           }
@@ -7920,13 +8074,13 @@
     function addGalleryEditBar() {
       const bar = document.createElement('div');
       bar.className = 'gallery-edit-bar';
-      bar.innerHTML = `<button id="galleryAddBtn">+ Добавить фото</button>`;
+      bar.innerHTML = `<button id="galleryAddBtn">+ Добавить медиа</button>`;
       gallery.prepend(bar);
 
       bar.querySelector('#galleryAddBtn').addEventListener('click', () => {
         const input = document.createElement('input');
         input.type = 'file';
-        input.accept = 'image/*';
+        input.accept = 'image/*,video/*';
         input.multiple = true;
         input.addEventListener('change', () => {
           Array.from(input.files).forEach(file => {
@@ -7937,12 +8091,15 @@
               if (!window.__projects[key].gallery) window.__projects[key].gallery = [];
               window.__projects[key].gallery.push(e.target.result);
               // Re-render
-              const img = document.createElement('div');
-              img.className = 'gallery-img-wrap';
-              img.innerHTML = `<img src="${e.target.result}" alt="new" loading="lazy"><button class="gallery-img-remove">✕</button>`;
-              gallery.appendChild(img);
-              bindRemove(img);
-              bindDrag(img);
+              const mediaWrap = document.createElement('div');
+              mediaWrap.className = 'gallery-img-wrap';
+              const media = file.type.startsWith('video/')
+                ? `<video src="${e.target.result}" autoplay muted loop playsinline></video>`
+                : `<img src="${e.target.result}" alt="new" loading="lazy">`;
+              mediaWrap.innerHTML = `${media}<button class="gallery-img-remove">✕</button>`;
+              gallery.appendChild(mediaWrap);
+              bindRemove(mediaWrap);
+              bindDrag(mediaWrap);
               saveGalleryEdits(key);
             };
             reader.readAsDataURL(file);
@@ -7953,7 +8110,7 @@
     }
 
     function wrapGalleryImages() {
-      gallery.querySelectorAll(':scope > img, :scope > .gallery-placeholder').forEach(el => {
+      gallery.querySelectorAll(':scope > img, :scope > video, :scope > .gallery-placeholder').forEach(el => {
         if (el.parentElement.classList.contains('gallery-img-wrap')) return;
         const wrap = document.createElement('div');
         wrap.className = 'gallery-img-wrap';
@@ -8014,10 +8171,10 @@
     function rebuildGalleryFromDom(key) {
       const srcs = [];
       gallery.querySelectorAll('.gallery-img-wrap').forEach(wrap => {
-        const img = wrap.querySelector('img');
-        if (img) {
+        const media = wrap.querySelector('img, video');
+        if (media) {
           // Keep relative path if possible, otherwise full src (e.g. data: URLs)
-          const src = img.getAttribute('src') || img.src;
+          const src = media.getAttribute('src') || media.src;
           srcs.push(src);
         } else {
           srcs.push(null);
@@ -8233,7 +8390,7 @@
     if (!list) return;
 
     const TOUR_ORDER_KEY = 'portfolio-tour-order';
-    const defaultOrder = ['electric', 'vesh', 'ruf', 'ozon', 'tbank', 'afisha', 'redis'];
+    const defaultOrder = ['electric', 'vesh', 'ruf', 'ozon', 'tbank', 'afisha', 'redis', 'kalendar', 'ui'];
 
     function getOrder() {
       try {
@@ -8317,7 +8474,7 @@
 
   // ===== KEYBOARD NAVIGATION =====
   (function() {
-    const projectKeys = ['electric', 'vesh', 'ruf', 'ozon', 'redis', 'afisha', 'tbank', 'kalendar'];
+    const projectKeys = ['electric', 'vesh', 'ruf', 'ozon', 'redis', 'afisha', 'tbank', 'kalendar', 'ui'];
     let focusIdx = -1;
 
     // Make primary project cards focusable
@@ -8459,7 +8616,7 @@
 </script>
 <script src="portfolio-published.js"></script>
 <script src="portfolio-asset-manifest.js"></script>
-<script src="admin-workbench.js?v=20260720-2"></script>
+<script src="admin-workbench.js?v=20260720-5"></script>
 
 <a href="myvibe.html" class="about-circle">
   <span class="about-circle-text">обо<br>мне</span>
