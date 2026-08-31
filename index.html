@@ -617,6 +617,7 @@
     object-fit: cover;
     display: block;
     border-radius: 33px;
+    clip-path: inset(0 round 33px);
     position: relative;
     z-index: 1;
   }
@@ -2990,6 +2991,7 @@
       height: auto !important;
       display: block;
       border-radius: 16px !important;
+      clip-path: inset(0 round 16px) !important;
       object-fit: contain !important;
     }
     .project-card .placeholder-img {
@@ -3654,7 +3656,10 @@
     border-radius: 22px;
     --card-radius: 22px;
   }
-  .card-tala1 img { border-radius: 17px; }
+  .card-tala1 img {
+    border-radius: 17px;
+    clip-path: inset(0 round 17px);
+  }
   .tag-tala { padding: 5px 11px; }
 
   @media (min-width: 901px) {
