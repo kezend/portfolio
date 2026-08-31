@@ -3,7 +3,8 @@
 ## Запуск
 
 ```bash
-node scripts/admin-server.js
+npm ci
+npm run admin
 ```
 
 После запуска открыть:
@@ -26,11 +27,30 @@ http://127.0.0.1:4178/index.html
 После ручного добавления файлов в папки проекта выполнить:
 
 ```bash
-node scripts/build-asset-manifest.js
+npm run manifest
 ```
 
 ## Оптимизация старых GIF
 
 ```bash
 node scripts/optimize-existing-media.js
+```
+
+## Production-сборка
+
+```bash
+npm run build
+```
+
+Сборка создаётся в `_site/`. В неё попадают только используемые файлы:
+
+- изображения автоматически конвертируются в WebP;
+- для поля и загрузчика создаются отдельные облегчённые превью;
+- CSS и JavaScript выносятся из HTML и кешируются отдельно;
+- исходные PNG, GIF, презентации и код админки не публикуются.
+
+Тяжёлые видео перед публикацией можно оптимизировать на macOS:
+
+```bash
+npm run optimize:videos
 ```

@@ -1070,8 +1070,13 @@
   function pinOzonGalleryAdditions() {
     const project = projects.ozon;
     if (!project || !Array.isArray(project.gallery)) return;
-    const additions = ['Ozon/Frame 20873272348.png', 'Ozon/Frame 2136138758.png'];
-    const reordered = project.gallery.filter(src => !additions.includes(src));
+    const additions = [
+      'Ozon/Frame 20873272348.png',
+      'Ozon/Frame 2136138758.png',
+      'Ozon/gift-card-flow-hq.png'
+    ];
+    const oldLowResolution = 'Интерфейсы/2026-04-12 23.13.59.jpg';
+    const reordered = project.gallery.filter(src => !additions.includes(src) && src !== oldLowResolution);
     reordered.splice(2, 0, ...additions);
     project.gallery = reordered;
 
@@ -1092,6 +1097,32 @@
     }
   }
 
+  function appendUiConceptAdditions() {
+    const project = projects.ui;
+    if (!project || !Array.isArray(project.gallery)) return;
+    const addition = 'Ozon/gift-card-flow-hq.png';
+    const oldLowResolution = 'Интерфейсы/2026-04-12 23.13.59.jpg';
+    const reordered = project.gallery.filter(src => src !== addition && src !== oldLowResolution);
+    reordered.splice(4, 0, addition);
+    project.gallery = reordered;
+
+    const cases = readJSON(CASE_KEY, {});
+    if (cases.ui) {
+      cases.ui.gallery = clone(reordered);
+      writeJSON(CASE_KEY, cases);
+    }
+    const draft = readJSON(DRAFT_KEY, null);
+    if (draft?.cases?.ui) {
+      draft.cases.ui.gallery = clone(reordered);
+      writeJSON(DRAFT_KEY, draft);
+    }
+    const legacy = readJSON('portfolio-project-edits', {});
+    if (legacy.ui) {
+      legacy.ui.gallery = clone(reordered);
+      writeJSON('portfolio-project-edits', legacy);
+    }
+  }
+
   function appendHomigoGalleryAdditions() {
     const project = projects.tbank;
     if (!project || !Array.isArray(project.gallery)) return;
@@ -1102,7 +1133,8 @@
     ];
     const photos = ['Homigo/Frame 277131464.png', 'Homigo/Slide 16_9 - 75.png'];
     const additions = [...videos, ...photos];
-    const reordered = project.gallery.filter(src => !additions.includes(src));
+    const duplicateCover = 'Homigo/image 1926988951.webp';
+    const reordered = project.gallery.filter(src => !additions.includes(src) && src !== duplicateCover);
     reordered.splice(1, 0, ...videos);
     reordered.push(...photos);
     project.gallery = reordered;
@@ -1710,9 +1742,133 @@
     if (startupDraft.cases) applyCases(startupDraft.cases);
   }
   applyPositionMap(responsive.desktop || {});
+  const layoutPatchKey = 'portfolio-layout-patch-20260831-ozon-tala-v1';
+  if (!localStorage.getItem(layoutPatchKey)) {
+    const layoutPatch = {
+      'card-ozon1': { top: '267.78px', left: '2215.25px', transform: 'rotate(-5.09deg)', translate: '0px' },
+      'card-ozon2': { top: '112.28px', left: '2552.75px', transform: 'rotate(5.33deg)', translate: '0px' },
+      'badge-ozon': { top: '144.5px', left: '2286.75px', transform: 'rotate(-5.64deg)', translate: 'none' },
+      'tag-ozon-1': { top: '750.78px', left: '2695.25px', transform: 'rotate(22.046deg)', translate: 'none' },
+      'tag-ozon-2': { top: '753.78px', left: '2757.25px', transform: 'rotate(-6.461deg)', translate: 'none' },
+      'card-tala1': { top: '873.78px', left: '1327px', transform: 'rotate(4deg)', translate: '0px' },
+      'badge-tala': { top: '829.78px', left: '1783.26px', transform: 'rotate(-3deg)', translate: 'none' },
+      'tag-tala-1': { top: '799.43px', left: '1361.76px', transform: 'rotate(-5deg)', translate: 'none' },
+      'tag-tala-2': { top: '801.78px', left: '1430.43px', transform: 'rotate(-12.32deg)', translate: 'none' },
+      'tag-tala-3': { top: '765px', left: '1408.76px', transform: 'rotate(7deg)', translate: 'none' }
+    };
+    responsive.desktop = { ...(responsive.desktop || {}), ...layoutPatch };
+    applyPositionMap(layoutPatch);
+    writeJSON(RESPONSIVE_KEY, responsive);
+    const draft = readJSON(DRAFT_KEY, null);
+    if (draft) {
+      draft.responsive = clone(responsive);
+      draft.state = api.captureState();
+      writeJSON(DRAFT_KEY, draft);
+    }
+    localStorage.setItem(layoutPatchKey, '1');
+  }
+  const homigoPatchKey = 'portfolio-layout-patch-20260831-homigo-tag-v1';
+  if (!localStorage.getItem(homigoPatchKey)) {
+    const homigoPatch = {
+      'card-tbank1': { top: '1301.5px', left: '261.167px', transform: 'rotate(-3deg)', translate: '0px' },
+      'card-tbank2': { top: '1542.5px', left: '536.167px', transform: 'rotate(8deg)', translate: '0px' },
+      'badge-tbank': { top: '1408.5px', left: '690.167px', transform: 'rotate(-5.5deg)', translate: 'none' },
+      'tag-tbank': { top: '1394px', left: '858.167px', transform: 'rotate(9deg)', translate: 'none' }
+    };
+    responsive.desktop = { ...(responsive.desktop || {}), ...homigoPatch };
+    applyPositionMap(homigoPatch);
+    writeJSON(RESPONSIVE_KEY, responsive);
+    const draft = readJSON(DRAFT_KEY, null);
+    if (draft) {
+      draft.responsive = clone(responsive);
+      draft.state = api.captureState();
+      writeJSON(DRAFT_KEY, draft);
+    }
+    localStorage.setItem(homigoPatchKey, '1');
+  }
+  const electricPatchKey = 'portfolio-layout-patch-20260831-electric-v1';
+  if (!localStorage.getItem(electricPatchKey)) {
+    const electricPatch = {
+      'card-electric1': { top: '366.5px', left: '380.167px', transform: 'rotate(-4deg)', translate: '0px' },
+      'card-electric2': { top: '638.78px', left: '763px', transform: 'rotate(7deg)', translate: '0px' }
+    };
+    responsive.desktop = { ...(responsive.desktop || {}), ...electricPatch };
+    applyPositionMap(electricPatch);
+    writeJSON(RESPONSIVE_KEY, responsive);
+    const draft = readJSON(DRAFT_KEY, null);
+    if (draft) {
+      draft.responsive = clone(responsive);
+      draft.state = api.captureState();
+      writeJSON(DRAFT_KEY, draft);
+    }
+    localStorage.setItem(electricPatchKey, '1');
+  }
+  const backup3PatchKey = 'portfolio-layout-patch-20260831-backup3-v1';
+  if (!localStorage.getItem(backup3PatchKey)) {
+    const backup3Patch = {
+      'card-redis1': { top: '1130px', left: '2372.62px', transform: 'rotate(-3.66deg)', translate: '0px' },
+      'badge-redis': { top: '1083.5px', left: '2316.75px', transform: 'rotate(-9.042deg)', translate: 'none' },
+      'tag-redis-1': { top: '1219.89px', left: '2302.75px', transform: 'rotate(-18.52deg)', translate: 'none' },
+      'tag-redis-2': { top: '1071px', left: '2542.53px', transform: 'rotate(3deg)', translate: 'none' },
+      'card-tala1': { top: '1065px', left: '1300.74px', transform: 'rotate(4deg)', translate: '0px' },
+      'badge-tala': { top: '1021px', left: '1757px', transform: 'rotate(-3deg)', translate: 'none' },
+      'tag-tala-1': { top: '990.65px', left: '1344.57px', transform: 'rotate(-5deg)', translate: 'none' },
+      'tag-tala-2': { top: '993px', left: '1413.24px', transform: 'rotate(-12.32deg)', translate: 'none' },
+      'tag-tala-3': { top: '956.22px', left: '1391.57px', transform: 'rotate(7deg)', translate: 'none' },
+      'card-kalendar1': { top: '1742.5px', left: '1344.57px', transform: 'rotate(5deg)', translate: '0px' },
+      'card-kalendar2': { top: '1989px', left: '1632.57px', transform: 'rotate(-7deg)', translate: '0px' },
+      'badge-kalendar': { top: '1907px', left: '1815.57px', transform: 'rotate(3.7deg)', translate: 'none' },
+      'tag-kalendar': { top: '1887.5px', left: '1976.57px', transform: 'rotate(-10deg)', translate: 'none' },
+      'card-ui1': { top: '1779.25px', left: '2367.75px', transform: 'rotate(-4deg)', translate: '0px' },
+      'card-ui2': { top: '1909.25px', left: '2777.75px', transform: 'rotate(7deg)', translate: '0px' },
+      'badge-ui': { top: '1700.5px', left: '2683.75px', transform: 'rotate(3deg)', translate: 'none' },
+      'tag-ui': { top: '1828.5px', left: '2887.62px', transform: 'rotate(-8deg)', translate: 'none' }
+    };
+    responsive.desktop = { ...(responsive.desktop || {}), ...backup3Patch };
+    applyPositionMap(backup3Patch);
+    writeJSON(RESPONSIVE_KEY, responsive);
+    const draft = readJSON(DRAFT_KEY, null);
+    if (draft) {
+      draft.responsive = clone(responsive);
+      draft.state = api.captureState();
+      writeJSON(DRAFT_KEY, draft);
+    }
+    localStorage.setItem(backup3PatchKey, '1');
+  }
+  const polishPatchKey = 'portfolio-layout-patch-20260831-polish-v1';
+  if (!localStorage.getItem(polishPatchKey)) {
+    const polishPatch = {
+      'tag-tala-1': { top: '986px', left: '1360px', transform: 'rotate(-5deg)', translate: 'none' },
+      'tag-tala-2': { top: '988px', left: '1418px', transform: 'rotate(-12.32deg)', translate: 'none' },
+      'tag-tala-3': { top: '963px', left: '1395px', transform: 'rotate(7deg)', translate: 'none' }
+    };
+    responsive.desktop = { ...(responsive.desktop || {}), ...polishPatch };
+    applyPositionMap(polishPatch);
+    writeJSON(RESPONSIVE_KEY, responsive);
+    const draft = readJSON(DRAFT_KEY, null);
+    if (draft) {
+      draft.responsive = clone(responsive);
+      draft.state = api.captureState();
+      writeJSON(DRAFT_KEY, draft);
+    }
+    localStorage.setItem(polishPatchKey, '1');
+  }
   applyCases(readJSON(CASE_KEY, {}));
   pinOzonGalleryAdditions();
+  appendUiConceptAdditions();
   appendHomigoGalleryAdditions();
+  const ozonProductText = '— Участвовала в доработке продуктовых интерфейсов и отдельных фич\n\n— Проводила анализ и улучшение пользовательского опыта через гипотезы и визуальные решения\n\n— Концептила новый продукт под NDA и передавала решения доменным командам для дальнейшей проработки';
+  if (projects.ozon?.accordions?.[1]) projects.ozon.accordions[1].content = ozonProductText;
+  const polishedCases = readJSON(CASE_KEY, {});
+  if (polishedCases.ozon?.accordions?.[1]) {
+    polishedCases.ozon.accordions[1].content = ozonProductText;
+    writeJSON(CASE_KEY, polishedCases);
+  }
+  const polishedDraft = readJSON(DRAFT_KEY, null);
+  if (polishedDraft?.cases?.ozon?.accordions?.[1]) {
+    polishedDraft.cases.ozon.accordions[1].content = ozonProductText;
+    writeJSON(DRAFT_KEY, polishedDraft);
+  }
   applyLayerMeta();
   setMobilePreset(document.getElementById('adminDevicePreset').value);
   renderAll();

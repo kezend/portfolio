@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Марина Устиновская — Портфолио</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
-
   @font-face {
     font-family: 'PP Neue Montreal';
     src: url('PPNeueMontreal-Regular.ttf') format('truetype');
@@ -171,7 +172,7 @@
   .avatar-card {
     width: 100%;
     height: 220px;
-    border-radius: 24px;
+    border-radius: 14px 24px 24px 24px;
     overflow: hidden;
     position: relative;
     background: #1a1a1a;
@@ -716,15 +717,6 @@
 
   /* ===== NEW PROJECT CARDS ===== */
 
-  /* Project 2 — Руфъ (row1, col2) */
-  .card-ruf1 { width: 648px; top: 331px; left: 1661px; z-index: 3; transform: rotate(3.66deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; border-radius: 59px; }
-  .card-ruf1 img { height: auto; object-fit: contain; }
-  .card-ruf2 { display: none; }
-  .badge-ruf { position: absolute; top: 183px; left: 1563px; display: flex; width: 248px; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(-9.042deg); transition: top 0.4s ease, left 0.4s ease; }
-  .badge-ruf h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
-  .badge-ruf p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
-  .tag-ruf { position: absolute; top: 333px; left: 1593px; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 400; border-radius: 12px; z-index: 11; cursor: pointer; transform: rotate(-3deg); transition: top 0.4s ease, left 0.4s ease; }
-
   /* Project 3 — Ozon (row1, col3) */
   .card-ozon1 { width: 421px; top: 340px; left: 2620px; z-index: 3; transform: rotate(-5.09deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
   .card-ozon1 img { height: auto; object-fit: contain; }
@@ -749,16 +741,16 @@
   .tag-redis-1 { top: 1653px; left: 225px; transform: rotate(-18.52deg); }
   .tag-redis-2 { top: 1522px; left: 431px; transform: rotate(3deg); }
 
-  /* Project 5 — Афиша (row2, col2) */
-  .card-afisha1 { width: 648px; top: 1571px; left: 1422px; z-index: 3; transform: rotate(4.00deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; } /* frameRadius not specified in JSON */
-  .card-afisha1 img { height: auto; object-fit: contain; }
-  .card-afisha2 { display: none; }
-  .badge-afisha { position: absolute; top: 1491px; left: 1878px; display: flex; width: 232px; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(4.13deg); transition: top 0.4s ease, left 0.4s ease; }
-  .badge-afisha h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
-  .badge-afisha p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
-  .tag-afisha { position: absolute; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 400; border-radius: 12px; z-index: 11; cursor: pointer; transition: top 0.4s ease, left 0.4s ease; }
-  .tag-afisha-1 { top: 1442px; left: 1866px; transform: rotate(-5deg); } /* no changes from JSON */
-  .tag-afisha-2 { top: 1533px; left: 1821px; transform: rotate(3deg); } /* no changes from JSON */
+  /* Project 5 — TALA (row2, col2) */
+  .card-tala1 { width: 648px; top: 1571px; left: 1422px; z-index: 3; transform: rotate(4deg); padding: 10px; transition: top 0.4s ease, left 0.4s ease; }
+  .card-tala1 img { height: auto; object-fit: contain; }
+  .badge-tala { position: absolute; top: 1491px; left: 1878px; display: flex; width: 232px; padding: 11px 16px; flex-direction: column; align-items: center; gap: 15px; background: #fff; border-radius: 24px; color: #141414; z-index: 10; cursor: pointer; transform: rotate(4.13deg); transition: top 0.4s ease, left 0.4s ease; }
+  .badge-tala h4 { font-family: var(--font-heading); font-size: 33px; font-weight: 400; line-height: 79.061%; letter-spacing: -2.64px; text-align: center; color: #141414; }
+  .badge-tala p { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 99%; text-align: center; color: #141414; opacity: 0.6; }
+  .tag-tala { position: absolute; display: inline-flex; padding: 6px 13px; justify-content: center; align-items: center; background: #2A2A2A; color: #fff; font-family: var(--font-body); font-size: 13px; font-weight: 400; border-radius: 12px; z-index: 11; cursor: pointer; transition: top 0.4s ease, left 0.4s ease; }
+  .tag-tala-1 { top: 1442px; left: 1866px; transform: rotate(-5deg); }
+  .tag-tala-2 { top: 1533px; left: 1821px; transform: rotate(3deg); }
+  .tag-tala-3 { top: 1480px; left: 1780px; transform: rotate(7deg); }
 
   /* Project 6 — Т-Банк (row2, col3) */
   .card-tbank1 { width: 400px; height: 490px; top: 1600px; left: 2600px; z-index: 3; transform: rotate(-3.00deg); transition: top 0.4s ease, left 0.4s ease; } /* no changes from JSON */
@@ -791,13 +783,13 @@
 
   /* Project 1 — Electric Lines */
   .card-electric1 {
-    width: 620px; top: 367px; left: 387px; z-index: 3;
+    width: 620px; top: 366.5px; left: 380.167px; z-index: 3;
     padding: 10px; border-radius: 56px;
     transform: rotate(-4deg);
     transition: top 0.4s ease, left 0.4s ease;
   }
   .card-electric2 {
-    width: 430px; top: 639px; left: 747px; z-index: 4;
+    width: 430px; top: 638.78px; left: 763px; z-index: 4;
     padding: 10px; border-radius: 50px;
     transform: rotate(7deg);
     transition: top 0.4s ease, left 0.4s ease;
@@ -839,31 +831,28 @@
   .page.collapsed .card-yulia { top: 131px; left: 1554px; }
   .page.collapsed .badge-vesh { top: 15px; left: 1717px; }
 
-  .card-ruf1 { top: 336px; left: 2262px; }
-  .badge-ruf { top: 185px; left: 2164px; }
-  .tag-ruf { top: 335px; left: 2194px; }
-
-  .card-ozon1 { top: 302px; left: 3201px; }
-  .card-ozon2 { top: 142px; left: 3541px; }
-  .badge-ozon { top: 184px; left: 3280px; }
-  .tag-ozon-1 { top: 785px; left: 3681px; }
-  .tag-ozon-2 { top: 788px; left: 3743px; }
-  .tag-ozon-3 { top: 2092px; left: 3707px; }
+  .card-ozon1 { top: 267.78px; left: 2215.25px; }
+  .card-ozon2 { top: 112.28px; left: 2552.75px; }
+  .badge-ozon { top: 144.5px; left: 2286.75px; }
+  .tag-ozon-1 { top: 750.78px; left: 2695.25px; }
+  .tag-ozon-2 { top: 753.78px; left: 2757.25px; }
 
   .card-redis1 { top: 1550px; left: 2400px; }
   .badge-redis { top: 1520px; left: 2250px; }
   .tag-redis-1 { top: 1643px; left: 2275px; }
   .tag-redis-2 { top: 1512px; left: 2481px; }
 
-  .card-afisha1 { top: 1600px; left: 3600px; }
-  .badge-afisha { top: 1520px; left: 4056px; }
-  .tag-afisha-1 { top: 1471px; left: 4044px; }
-  .tag-afisha-2 { top: 1562px; left: 3999px; }
+  .card-tala1 { top: 873.78px; left: 1327px; border-radius: 21px; }
+  .card-tala1 img { border-radius: 12px; }
+  .badge-tala { top: 829.78px; left: 1783.26px; transform: rotate(-3deg); }
+  .tag-tala-1 { top: 799.43px; left: 1361.76px; }
+  .tag-tala-2 { top: 801.78px; left: 1430.43px; transform: rotate(-12.32deg); }
+  .tag-tala-3 { top: 765px; left: 1408.76px; }
 
-  .card-tbank1 { top: 2210px; left: 1483px; }
-  .card-tbank2 { top: 2451px; left: 1758px; }
-  .badge-tbank { top: 2322px; left: 1913px; }
-  .tag-tbank { top: 2268px; left: 2064px; }
+  .card-tbank1 { top: 1301.5px; left: 261.167px; }
+  .card-tbank2 { top: 1542.5px; left: 536.167px; }
+  .badge-tbank { top: 1408.5px; left: 690.167px; }
+  .tag-tbank { top: 1394px; left: 858.167px; }
 
   .card-kalendar1 { top: 2210px; left: 2500px; }
   .card-kalendar2 { top: 2473px; left: 2788px; }
@@ -1121,9 +1110,6 @@
     .badge-vesh { left: 380px !important; top: 240px !important; }
     .badge-komdiz { left: 400px !important; top: 200px !important; }
 
-    .card-ruf1 { width: 500px !important; left: 30px !important; top: 900px !important; transform: rotate(2deg) !important; }
-    .badge-ruf { left: 40px !important; top: 780px !important; transform: rotate(-5deg) !important; }
-    .tag-ruf { left: 60px !important; top: 870px !important; }
 
     .card-ozon1 { width: 400px !important; left: 30px !important; top: 1600px !important; transform: rotate(-3deg) !important; }
     .card-ozon2 { width: 280px !important; left: 280px !important; top: 1450px !important; transform: rotate(4deg) !important; }
@@ -1137,10 +1123,11 @@
     .tag-redis-1 { left: 50px !important; top: 2320px !important; }
     .tag-redis-2 { left: 150px !important; top: 2320px !important; }
 
-    .card-afisha1 { width: 500px !important; left: 30px !important; top: 3100px !important; transform: rotate(2deg) !important; }
-    .badge-afisha { left: 40px !important; top: 2980px !important; }
-    .tag-afisha-1 { left: 50px !important; top: 3070px !important; }
-    .tag-afisha-2 { left: 130px !important; top: 3070px !important; }
+    .card-tala1 { width: 500px !important; height: auto !important; left: 30px !important; top: 3100px !important; transform: rotate(2deg) !important; }
+    .badge-tala { left: 40px !important; top: 2980px !important; }
+    .tag-tala-1 { left: 50px !important; top: 3070px !important; }
+    .tag-tala-2 { left: 130px !important; top: 3070px !important; }
+    .tag-tala-3 { left: 220px !important; top: 3040px !important; }
 
     .card-tbank1 { width: 380px !important; height: auto !important; left: 30px !important; top: 3800px !important; transform: rotate(-2deg) !important; }
     .card-tbank2 { width: 340px !important; height: auto !important; left: 250px !important; top: 4100px !important; transform: rotate(5deg) !important; }
@@ -1742,6 +1729,12 @@
     background: #141414;
     object-fit: contain;
   }
+  .detail-gallery [data-src] {
+    min-height: min(52vw, 520px);
+  }
+  .detail-gallery [data-src].media-ready {
+    min-height: 0;
+  }
   @keyframes galleryStagger {
     to { opacity: 1; transform: translateY(0); }
   }
@@ -1793,6 +1786,9 @@
     object-fit: contain;
     scroll-snap-align: center;
     box-shadow: 0 18px 48px rgba(0,0,0,0.25);
+  }
+  .project-detail[data-layout="media-strip"] .detail-gallery [data-src] {
+    min-height: 0;
   }
 
   /* =========================================================
@@ -2971,8 +2967,8 @@
       transition: opacity 0.25s ease !important;
     }
     .project-card,
-    .badge-electric, .badge-vesh, .badge-ruf, .badge-ozon, .badge-redis,
-    .badge-afisha, .badge-tbank, .badge-kalendar, .badge-ui {
+    .badge-electric, .badge-vesh, .badge-ozon, .badge-redis,
+    .badge-tala, .badge-tbank, .badge-kalendar, .badge-ui {
       position: absolute !important;
       height: auto !important;
       margin: 0 !important;
@@ -3001,9 +2997,9 @@
       min-height: 260px;
     }
     .card-yulia, .card-ozon2, .card-tbank2, .card-kalendar2, .card-ui2,
-    .card-ruf2, .card-redis2, .card-afisha2 { display: none !important; }
-    .badge-electric, .badge-vesh, .badge-ruf, .badge-ozon, .badge-redis,
-    .badge-afisha, .badge-tbank, .badge-kalendar, .badge-ui {
+    .card-redis2 { display: none !important; }
+    .badge-electric, .badge-vesh, .badge-ozon, .badge-redis,
+    .badge-tala, .badge-tbank, .badge-kalendar, .badge-ui {
       display: flex !important;
       padding: 16px !important;
       border-radius: 18px !important;
@@ -3013,16 +3009,16 @@
       white-space: normal !important;
       box-shadow: 0 12px 28px rgba(0,0,0,0.28);
     }
-    .badge-electric h4, .badge-vesh h4, .badge-ruf h4, .badge-ozon h4, .badge-redis h4,
-    .badge-afisha h4, .badge-tbank h4, .badge-kalendar h4, .badge-ui h4 {
+    .badge-electric h4, .badge-vesh h4, .badge-ozon h4, .badge-redis h4,
+    .badge-tala h4, .badge-tbank h4, .badge-kalendar h4, .badge-ui h4 {
       font-size: 28px !important;
       letter-spacing: -1.8px !important;
       line-height: 0.9 !important;
       text-align: left !important;
       margin: 0 !important;
     }
-    .badge-electric p, .badge-vesh p, .badge-ruf p, .badge-ozon p, .badge-redis p,
-    .badge-afisha p, .badge-tbank p, .badge-kalendar p, .badge-ui p {
+    .badge-electric p, .badge-vesh p, .badge-ozon p, .badge-redis p,
+    .badge-tala p, .badge-tbank p, .badge-kalendar p, .badge-ui p {
       font-size: 14px !important;
       line-height: 1.05 !important;
       text-align: left !important;
@@ -3059,9 +3055,6 @@
     .card-qr { top: 164px !important; left: 18px !important; width: 260px !important; height: auto !important; transform: rotate(-8deg) !important; }
     .card-yulia { top: 384px !important; left: 132px !important; width: 220px !important; height: auto !important; transform: rotate(5deg) !important; }
 
-    .badge-ruf { top: 650px !important; left: 24px !important; width: 236px !important; transform: rotate(-6deg) !important; }
-    .tag-ruf { top: 744px !important; left: 52px !important; transform: rotate(-3deg) !important; }
-    .card-ruf1 { top: 770px !important; left: 16px !important; width: 332px !important; transform: rotate(2deg) !important; }
 
     .badge-ozon { top: 1234px !important; left: 78px !important; width: 248px !important; transform: rotate(-5deg) !important; }
     .card-ozon2 { top: 1166px !important; left: 248px !important; width: 150px !important; height: auto !important; transform: rotate(5deg) !important; }
@@ -3075,10 +3068,11 @@
     .tag-redis-2 { top: 1974px !important; left: 154px !important; transform: rotate(3deg) !important; }
     .card-redis1 { top: 2028px !important; left: 18px !important; width: 332px !important; transform: rotate(-2deg) !important; }
 
-    .badge-afisha { top: 2540px !important; left: 96px !important; width: 232px !important; transform: rotate(4deg) !important; }
-    .tag-afisha-1 { top: 2500px !important; left: 86px !important; transform: rotate(-5deg) !important; }
-    .tag-afisha-2 { top: 2588px !important; left: 44px !important; transform: rotate(3deg) !important; }
-    .card-afisha1 { top: 2664px !important; left: 20px !important; width: 332px !important; transform: rotate(3deg) !important; }
+    .badge-tala { top: 2540px !important; left: 96px !important; width: 232px !important; transform: rotate(4deg) !important; }
+    .tag-tala-1 { top: 2500px !important; left: 86px !important; transform: rotate(-5deg) !important; }
+    .tag-tala-2 { top: 2588px !important; left: 44px !important; transform: rotate(3deg) !important; }
+    .tag-tala-3 { top: 2620px !important; left: 152px !important; transform: rotate(7deg) !important; }
+    .card-tala1 { top: 2664px !important; left: 20px !important; width: 332px !important; height: auto !important; transform: rotate(3deg) !important; }
 
     .badge-tbank { top: 3208px !important; left: 32px !important; width: 224px !important; transform: rotate(-5deg) !important; }
     .tag-tbank { top: 3180px !important; left: 246px !important; transform: rotate(9deg) !important; }
@@ -3653,6 +3647,53 @@
     height: 6140px !important;
     transform: none !important;
   }
+
+  /* Canonical desktop layout from portfolio-backup-2026-08-31 (3).json. */
+  .card-tala1 {
+    padding: 5px;
+    border-radius: 22px;
+    --card-radius: 22px;
+  }
+  .card-tala1 img { border-radius: 17px; }
+  .tag-tala { padding: 5px 11px; }
+
+  @media (min-width: 901px) {
+    .card-electric1 { top: 366.5px; left: 380.167px; transform: rotate(-4deg); }
+    .card-electric2 { top: 638.78px; left: 763px; transform: rotate(7deg); }
+    .badge-electric { top: 300px; left: 500px; transform: matrix(0.996195, -0.0871557, 0.0871557, 0.996195, 0, 0); }
+    .tag-electric-1 { top: 248px; left: 763px; transform: matrix(0.990268, 0.139173, -0.139173, 0.990268, 0, 0); }
+    .tag-electric-2 { top: 292px; left: 805px; transform: matrix(0.996195, -0.0871557, 0.0871557, 0.996195, 0, 0); }
+    .card-qr { top: -101px; left: 1327px; transform: rotate(-8deg); }
+    .card-yulia { top: 131px; left: 1554px; transform: rotate(5deg); }
+    .badge-vesh { top: 15px; left: 1717px; transform: matrix(0.998293, 0.0584004, -0.0584004, 0.998293, 0, 0); }
+    .badge-komdiz { top: 7px; left: 1855px; transform: matrix(0.963677, 0.26707, -0.26707, 0.963677, 0, 0); }
+    .card-ozon1 { top: 267.78px; left: 2215.25px; transform: rotate(-5.09deg); }
+    .card-ozon2 { top: 112.28px; left: 2552.75px; transform: rotate(5.33deg); }
+    .badge-ozon { top: 144.5px; left: 2286.75px; transform: rotate(-5.64deg); }
+    .tag-ozon-1 { top: 750.78px; left: 2695.25px; transform: rotate(22.046deg); }
+    .tag-ozon-2 { top: 753.78px; left: 2757.25px; transform: rotate(-6.461deg); }
+    .card-redis1 { top: 1130px; left: 2372.62px; transform: rotate(-3.66deg); }
+    .badge-redis { top: 1083.5px; left: 2316.75px; transform: matrix(0.987573, -0.157158, 0.157158, 0.987573, 0, 0); }
+    .tag-redis-1 { top: 1219.89px; left: 2302.75px; transform: matrix(0.948213, -0.317636, 0.317636, 0.948213, 0, 0); }
+    .tag-redis-2 { top: 1071px; left: 2542.53px; transform: matrix(0.99863, 0.052336, -0.052336, 0.99863, 0, 0); }
+    .card-tala1 { top: 1065px; left: 1300.74px; transform: rotate(4deg); }
+    .badge-tala { top: 1021px; left: 1757px; transform: rotate(-3deg); }
+    .tag-tala-1 { top: 986px; left: 1360px; transform: rotate(-5deg); }
+    .tag-tala-2 { top: 988px; left: 1418px; transform: rotate(-12.32deg); }
+    .tag-tala-3 { top: 963px; left: 1395px; transform: rotate(7deg); }
+    .card-tbank1 { top: 1301.5px; left: 261.167px; transform: rotate(-3deg); }
+    .card-tbank2 { top: 1542.5px; left: 536.167px; transform: rotate(8deg); }
+    .badge-tbank { top: 1408.5px; left: 690.167px; transform: rotate(-5.5deg); }
+    .tag-tbank { top: 1394px; left: 858.167px; transform: rotate(9deg); }
+    .card-kalendar1 { top: 1742.5px; left: 1344.57px; transform: rotate(5deg); }
+    .card-kalendar2 { top: 1989px; left: 1632.57px; transform: rotate(-7deg); }
+    .badge-kalendar { top: 1907px; left: 1815.57px; transform: matrix(0.997916, 0.0645323, -0.0645323, 0.997916, 0, 0); }
+    .tag-kalendar { top: 1887.5px; left: 1976.57px; transform: matrix(0.984808, -0.173648, 0.173648, 0.984808, 0, 0); }
+    .card-ui1 { top: 1779.25px; left: 2367.75px; transform: rotate(-4deg); }
+    .card-ui2 { top: 1909.25px; left: 2777.75px; transform: rotate(7deg); }
+    .badge-ui { top: 1700.5px; left: 2683.75px; transform: matrix(0.99863, 0.052336, -0.052336, 0.99863, 0, 0); }
+    .tag-ui { top: 1828.5px; left: 2887.62px; transform: matrix(0.990268, -0.139173, 0.139173, 0.990268, 0, 0); }
+  }
 </style>
 </head>
 <body>
@@ -3705,7 +3746,7 @@
 
     <!-- Avatar -->
     <div class="avatar-card">
-      <img loading="lazy" src="telegram-cloud-photo-size-2-2980514266578881289-c.webp" alt="Марина Устиновская">
+      <img loading="lazy" data-src="telegram-cloud-photo-size-2-2980514266578881289-c.webp" alt="Марина Устиновская">
       <div class="avatar-icons">
         <button class="av-icon tg" title="Telegram">
           <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.57 8.15l-1.77 8.36c-.13.6-.48.74-.98.46l-2.72-2.01-1.31 1.27c-.15.15-.27.27-.55.27l.2-2.76 5.05-4.56c.22-.2-.05-.3-.34-.12L8.6 13.4l-2.68-.84c-.58-.18-.6-.58.12-.86l10.49-4.04c.49-.18.91.12.75.86l.29-.37z"/></svg>
@@ -3742,19 +3783,19 @@
         <div class="logos-row">
           <div class="logo-item logo-link" data-open-project="ozon" data-experience="ozon" tabindex="0">
             <div class="logo-circle">
-              <img loading="lazy" src="Logo/icon_rgb-2 1.webp" alt="Ozon">
+              <img loading="lazy" data-src="Logo/icon_rgb-2 1.webp" alt="Ozon">
             </div>
             <span class="logo-label">Ozon<br>Tech</span>
           </div>
           <div class="logo-item logo-link" data-open-project="afisha" data-experience="redis" tabindex="0">
             <div class="logo-circle">
-              <img loading="lazy" src="Logo/icon_rgb-2 1-1.webp" alt="Redis Agency">
+              <img loading="lazy" data-src="Logo/icon_rgb-2 1-1.webp" alt="Redis Agency">
             </div>
             <span class="logo-label">Redis<br>Agency</span>
           </div>
           <div class="logo-item" data-experience="redcollar" tabindex="0">
             <div class="logo-circle">
-              <img loading="lazy" src="Logo/icon_rgb-2 1-2.webp" alt="Red Collar">
+              <img loading="lazy" data-src="Logo/icon_rgb-2 1-2.webp" alt="Red Collar">
             </div>
             <span class="logo-label">Red<br>Collar</span>
           </div>
@@ -3766,19 +3807,19 @@
         <div class="logos-row">
           <div class="logo-item" data-experience="hse" tabindex="0">
             <div class="logo-circle">
-              <img loading="lazy" src="Logo/icon_rgb-2 1-3.webp" alt="Дизайн ВШЭ">
+              <img loading="lazy" data-src="Logo/icon_rgb-2 1-3.webp" alt="Дизайн ВШЭ">
             </div>
             <span class="logo-label">Дизайн<br>ВШЭ</span>
           </div>
           <div class="logo-item" data-experience="tbank-school" tabindex="0">
             <div class="logo-circle">
-              <img loading="lazy" src="Logo/icon_rgb-2 1-4.webp" alt="Школа Т-Банка">
+              <img loading="lazy" data-src="Logo/icon_rgb-2 1-4.webp" alt="Школа Т-Банка">
             </div>
             <span class="logo-label">Школа<br>Т-Банка</span>
           </div>
           <div class="logo-item" data-experience="yandex-school" tabindex="0">
             <div class="logo-circle">
-              <img loading="lazy" src="Logo/icon_rgb-2 1-5.webp" alt="ЛШ + ШК Яндекс">
+              <img loading="lazy" data-src="Logo/icon_rgb-2 1-5.webp" alt="ЛШ + ШК Яндекс">
             </div>
             <span class="logo-label">ЛШ + ШК<br>Яндекс</span>
           </div>
@@ -3852,10 +3893,9 @@
           <div class="edit-vis-title">Видимость проектов</div>
           <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="electric"><span>Electric Lines</span><button class="edit-vis-open" data-edit-open="electric">открыть</button></label>
           <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="vesh"><span>Вещь</span><button class="edit-vis-open" data-edit-open="vesh">открыть</button></label>
-          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="ruf"><span>Бродский</span><button class="edit-vis-open" data-edit-open="ruf">открыть</button></label>
           <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="ozon"><span>Ozon</span><button class="edit-vis-open" data-edit-open="ozon">открыть</button></label>
           <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="redis"><span>ACT</span><button class="edit-vis-open" data-edit-open="redis">открыть</button></label>
-          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="afisha"><span>Redis Agency</span><button class="edit-vis-open" data-edit-open="afisha">открыть</button></label>
+          <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="tala"><span>TALA</span><button class="edit-vis-open" data-edit-open="tala">открыть</button></label>
           <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="tbank"><span>Homigo</span><button class="edit-vis-open" data-edit-open="tbank">открыть</button></label>
           <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="kalendar"><span>Календари</span><button class="edit-vis-open" data-edit-open="kalendar">открыть</button></label>
           <label class="edit-vis-toggle"><input type="checkbox" checked data-vis-project="ui"><span>UI Concepts</span><button class="edit-vis-open" data-edit-open="ui">открыть</button></label>
@@ -3902,10 +3942,10 @@
 
         <!-- ===== Project 1 — Electric Lines ===== -->
         <div class="project-card card-electric1" data-project="electric">
-          <img loading="lazy" src="Electric Lines/Slide 16_9 - 17.webp" alt="Electric Lines — постеры айдентики">
+          <img loading="lazy" data-src="Electric Lines/Slide 16_9 - 17.webp" alt="Electric Lines — постеры айдентики">
         </div>
         <div class="project-card card-electric2" data-project="electric">
-          <img loading="lazy" src="Electric Lines/Slide 16_9 - 28.webp" alt="Electric Lines — генеративный редактор">
+          <img loading="lazy" data-src="Electric Lines/Slide 16_9 - 28.webp" alt="Electric Lines — генеративный редактор">
         </div>
         <div class="badge-electric" data-project="electric">
           <h4>Electric Lines</h4>
@@ -3916,12 +3956,12 @@
 
         <!-- Project 2 — Вещь -->
         <div class="project-card card-qr" data-project="vesh">
-          <img loading="lazy" src="Vesh/059f76be07f84d6bbd88948c3fef72252880x1620 (1).webp" alt="Вещь — QR выставка">
+          <img loading="lazy" data-src="Vesh/059f76be07f84d6bbd88948c3fef72252880x1620 (1).webp" alt="Вещь — QR выставка">
         </div>
 
         <!-- Card 2 — Yuliawave -->
         <div class="project-card card-yulia" data-project="vesh">
-          <img loading="lazy" src="Vesh/Screenshot 2026-04-08 at 20.48.54.webp" alt="Вещь — Твоё пространство моды">
+          <img loading="lazy" data-src="Vesh/Screenshot 2026-04-08 at 20.48.54.webp" alt="Вещь — Твоё пространство моды">
         </div>
 
         <!-- Badge: Вещь -->
@@ -3933,49 +3973,42 @@
         <!-- Badge: комдиз -->
         <div class="badge-komdiz" data-project="vesh">комдиз</div>
 
-        <!-- ===== Project 2 — Книга о Бродском ===== -->
-        <div class="project-card card-ruf1" data-project="ruf"><img loading="lazy" src="Brod/image 1926988946.webp" alt="Книга о Бродском"></div>
-        <div class="project-card card-ruf2" data-project="ruf" style="display:none"></div>
-        <div class="badge-ruf" data-project="ruf"><h4>Книга<br>о Бродском</h4><p>верстка многостраничного<br>издания и печать</p></div>
-        <div class="tag-ruf" data-project="ruf">комдиз</div>
-
         <!-- ===== Project 3 — Ozon ===== -->
-        <div class="project-card card-ozon1" data-project="ozon"><img loading="lazy" src="Ozon/image 1926988942.webp" alt="Ozon — telegram"></div>
-        <div class="project-card card-ozon2" data-project="ozon"><img loading="lazy" src="Ozon/appstore-1.webp" alt="Ozon — app store"></div>
+        <div class="project-card card-ozon1" data-project="ozon"><img loading="lazy" data-src="Ozon/image 1926988942.webp" alt="Ozon — telegram"></div>
+        <div class="project-card card-ozon2" data-project="ozon"><img loading="lazy" data-src="Ozon/appstore-1.webp" alt="Ozon — app store"></div>
         <div class="badge-ozon" data-project="ozon"><h4>Ozon</h4><p>комдиз + продуктовый дизайн<br>в компании</p></div>
         <div class="tag-ozon tag-ozon-1" data-project="ozon">AI</div>
         <div class="tag-ozon tag-ozon-2" data-project="ozon">комдиз</div>
-        <div class="tag-ozon tag-ozon-3" data-project="ozon">интерфейсы</div>
 
         <!-- ===== Project 4 — ACT ===== -->
-        <div class="project-card card-redis1" data-project="redis"><img loading="lazy" src="ACT/image 1926988943.webp" alt="ACT"></div>
+        <div class="project-card card-redis1" data-project="redis"><img loading="lazy" data-src="ACT/image 1926988943.webp" alt="ACT"></div>
         <div class="project-card card-redis2" data-project="redis" style="display:none"></div>
         <div class="badge-redis" data-project="redis"><h4>ACT</h4><p>медиа-сервис о моушене<br>и VFX</p></div>
         <div class="tag-redis tag-redis-1" data-project="redis">интерфейсы</div>
         <div class="tag-redis tag-redis-2" data-project="redis">веб</div>
 
-        <!-- ===== Project 5 — Redis Agency ===== -->
-        <div class="project-card card-afisha1" data-project="afisha"><img loading="lazy" src="Redis/6x33.webp" alt="Redis Agency"></div>
-        <div class="project-card card-afisha2" data-project="afisha" style="display:none"></div>
-        <div class="badge-afisha" data-project="afisha"><h4>Redis Agency</h4><p>коммуникационный дизайн<br>для Купера и Мираторга</p></div>
-        <div class="tag-afisha tag-afisha-1" data-project="afisha">комдиз</div>
-        <div class="tag-afisha tag-afisha-2" data-project="afisha">AI</div>
+        <!-- ===== Project 5 — TALA ===== -->
+        <div class="project-card card-tala1" data-project="tala"><img loading="lazy" data-src="TALA/02-home.png" alt="TALA — home screen"></div>
+        <div class="badge-tala" data-project="tala"><h4>TALA</h4><p>B2B-платформа генерации<br>видео и медиа</p></div>
+        <div class="tag-tala tag-tala-1" data-project="tala">веб</div>
+        <div class="tag-tala tag-tala-2" data-project="tala">интерфейсы</div>
+        <div class="tag-tala tag-tala-3" data-project="tala">AI</div>
 
-        <!-- ===== Project 6 — Homigo ===== -->
-        <div class="project-card card-tbank1" data-project="tbank"><img loading="lazy" src="Homigo/image 1926988951.webp" alt="Homigo"></div>
-        <div class="project-card card-tbank2" data-project="tbank"><img loading="lazy" src="Homigo/image 1926988954.webp" alt="Homigo"></div>
+        <!-- ===== Project 5 — Homigo ===== -->
+        <div class="project-card card-tbank1" data-project="tbank"><img loading="lazy" data-src="Homigo/image 1926988951.webp" alt="Homigo"></div>
+        <div class="project-card card-tbank2" data-project="tbank"><img loading="lazy" data-src="Homigo/image 1926988954.webp" alt="Homigo"></div>
         <div class="badge-tbank" data-project="tbank"><h4>Homigo</h4><p>сервис обмена жильём<br>для путешествий P2P</p></div>
         <div class="tag-tbank" data-project="tbank">интерфейсы</div>
 
         <!-- ===== Project 7 — Календари ===== -->
-        <div class="project-card card-kalendar1" data-project="kalendar"><img loading="lazy" src="Календари/обложка 1.webp" alt="Календари — обложка 1"></div>
-        <div class="project-card card-kalendar2" data-project="kalendar"><img loading="lazy" src="Календари/обложка 2.webp" alt="Календари — обложка 2"></div>
+        <div class="project-card card-kalendar1" data-project="kalendar"><img loading="lazy" data-src="Календари/обложка 1.webp" alt="Календари — обложка 1"></div>
+        <div class="project-card card-kalendar2" data-project="kalendar"><img loading="lazy" data-src="Календари/обложка 2.webp" alt="Календари — обложка 2"></div>
         <div class="badge-kalendar" data-project="kalendar"><h4>Календари</h4><p>авторские календари<br>о дереализации и СДВГ</p></div>
         <div class="tag-kalendar" data-project="kalendar">комдиз</div>
 
         <!-- ===== Project 8 — UI Concepts ===== -->
-        <div class="project-card card-ui1" data-project="ui"><img loading="lazy" src="UI/Desktop - 19.png" alt="UI Concepts — desktop interface"></div>
-        <div class="project-card card-ui2" data-project="ui"><img loading="lazy" src="UI/iPhone 14 &amp; 15 Pro - 2.png" alt="UI Concepts — mobile interface"></div>
+        <div class="project-card card-ui1" data-project="ui"><img loading="lazy" data-src="UI/Desktop - 19.png" alt="UI Concepts — desktop interface"></div>
+        <div class="project-card card-ui2" data-project="ui"><img loading="lazy" data-src="UI/iPhone 14 &amp; 15 Pro - 2.png" alt="UI Concepts — mobile interface"></div>
         <div class="badge-ui" data-project="ui"><h4>UI Concepts</h4><p>подборка интерфейсных<br>концептов</p></div>
         <div class="tag-ui" data-project="ui">интерфейсы</div>
 
@@ -4050,15 +4083,7 @@
       </div>
 
       <!-- Detail Gallery -->
-      <div class="detail-gallery" id="detailGallery">
-        <img loading="lazy" src="Vesh/fe8988188f1145b399d30325c42f68d3_orig.optimized.webp" alt="Вещь — 1">
-        <img loading="lazy" src="Vesh/image 1926988943.webp" alt="Вещь — 2">
-        <img loading="lazy" src="Vesh/image 1926988944.webp" alt="Вещь — 3">
-        <img loading="lazy" src="Vesh/image 1926988945.webp" alt="Вещь — 4">
-        <div class="gallery-placeholder"></div>
-        <img loading="lazy" src="Vesh/image 1926988948.webp" alt="Вещь — 6">
-        <img loading="lazy" src="Vesh/412658cc3222418e939a47d4b88bf922_orig.optimized.webp" alt="Вещь — 7">
-      </div>
+      <div class="detail-gallery" id="detailGallery"></div>
 
       <!-- Special layout container — populated for specific projects (e.g. Vesh) -->
       <div class="vesh-layout-container" id="veshLayoutContainer"></div>
@@ -4284,10 +4309,9 @@
   const projectFilterTags = {
     electric: ['komdiz', 'ai'],
     vesh: ['komdiz', 'ai'],
-    ruf: ['komdiz'],
     ozon: ['komdiz', 'interfaces', 'ai'],
     redis: ['web', 'interfaces'],
-    afisha: ['komdiz', 'ai'],
+    tala: ['web', 'interfaces', 'ai'],
     tbank: ['web', 'interfaces'],
     kalendar: ['komdiz'],
     ui: ['interfaces']
@@ -4295,15 +4319,14 @@
 
   // Original anchor positions (card1 top/left) per project
   const projectAnchors = {
-    electric: { top: 367,  left: 387  },
+    electric: { top: 366.5, left: 380.167 },
     vesh:     { top: -101, left: 1327 },
-    ruf:      { top: 336,  left: 2262 },
-    ozon:     { top: 302,  left: 3201 },
-    redis:    { top: 1550, left: 2400 },
-    afisha:   { top: 1600, left: 3600 },
-    tbank:    { top: 2210, left: 1483 },
-    kalendar: { top: 2210, left: 2500 },
-    ui:       { top: 2280, left: 3550 }
+    ozon:     { top: 267.78, left: 2215.25 },
+    redis:    { top: 1130, left: 2372.62 },
+    tala:     { top: 1065, left: 1300.74 },
+    tbank:    { top: 1301.5, left: 261.167 },
+    kalendar: { top: 1742.5, left: 1344.57 },
+    ui:       { top: 1779.25, left: 2367.75 }
   };
 
   // Desktop: auto-open project when zoomed in very close
@@ -4347,7 +4370,7 @@
     { top: 2100, left: 2500 }
   ];
 
-  const projectOrder = ['electric','vesh','ruf','ozon','redis','afisha','tbank','kalendar','ui'];
+  const projectOrder = ['electric','vesh','ozon','redis','tala','tbank','kalendar','ui'];
   const allProjectEls = document.querySelectorAll('[data-project]');
   const chips = document.querySelectorAll('.chip');
 
@@ -4502,33 +4525,18 @@
       tags: ['комдиз', 'интерфейсы', 'AI'],
       accordions: [
         { label: 'Что из комдиза?', content: '— Разрабатывала визуальные материалы для внутренних и внешних коммуникаций (баннеры, посты, дайджесты, лендинги, сторис)\n\n— Формировала и поддерживала визуальный стиль продуктов и инициатив внутри Ozon Tech\n\n— Работала с DevRel и комьюнити: оформление постов, коллаборации, спецпроекты\n\n— Создавала мерч и промо-материалы для мероприятий и внутренних активностей\n\n— Участвовала в развитии дизайн-системы коммуникаций и улучшении качества визуала' },
-        { label: 'Что из продуктового?', content: '— Участвовала в доработке продуктовых интерфейсов и отдельных фич\n\n— Проводила анализ и улучшение пользовательского опыта через гипотезы и визуальные решения\n\n— Взаимодействовала с продуктовой командой и внедряла решения в прод' }
+        { label: 'Что из продуктового?', content: '— Участвовала в доработке продуктовых интерфейсов и отдельных фич\n\n— Проводила анализ и улучшение пользовательского опыта через гипотезы и визуальные решения\n\n— Концептила новый продукт под NDA и передавала решения доменным командам для дальнейшей проработки' }
       ],
       gallery: [
         'Ozon/Frame 2087327238.webp',
         'Ozon/telegram-cloud-photo-size-2-5233277660471957113-y 2.webp',
         'Ozon/Frame 20873272348.png',
         'Ozon/Frame 2136138758.png',
+        'Ozon/gift-card-flow-hq.png',
         'Ozon/telegram-cloud-photo-size-2-5233277660471957113-y 1.webp',
         'Ozon/telegram-cloud-photo-size-2-5233277660471957113-y 3.webp',
         'Ozon/telegram-cloud-photo-size-2-5206665334432594139-y 1.webp',
         'Ozon/cover_ozon.webp'
-      ]
-    },
-    ruf: {
-      title: 'Книга\nо Бродском',
-      desc: 'Книга про Бродского\nкак про состояние между\nприсутствием и отсутствием.\nИзгнание как непрерывный\nмаршрут — через города,\nдокументы и память',
-      tags: ['комдиз'],
-      accordions: [
-        { label: 'Что сделала?', content: '— Настроила композицию разворотов и визуальную систему\n\n— Сверстала книгу целиком\n\n— Подобрала бумагу и протестировала эффект просвечивания\n\n— Подготовила файл к печати' }
-      ],
-      gallery: [
-        'Brod/source/image.webp',
-        'Brod/image 1926988943.webp',
-        'Brod/image 1926988944.webp',
-        'Brod/image 1926988945.webp',
-        'Brod/image 1926988946.webp',
-        'Brod/image 1926988948.webp'
       ]
     },
     redis: {
@@ -4558,6 +4566,24 @@
         'Redis/Frame 2087327243.webp'
       ]
     },
+    tala: {
+      title: 'TALA',
+      desc: 'B2B-платформа для генерации видео и медиа: команды собирают пайплайны из нод или поручают их AI-агенту',
+      tags: ['веб', 'интерфейсы', 'AI'],
+      accordions: [
+        { label: 'Задача', content: 'Пользователь приходил в TALA, чтобы быстро собрать и запустить генерацию видео, но вместо понятного сценария видел технические параметры моделей и API. После аудита продукта и конкурентов я перестроила этот путь вокруг задачи: от идеи и промпта — к готовому пайплайну и результату.' },
+        { label: 'Дизайн-система', content: 'С нуля собрала TALA.DS: трёхуровневые токены, переменные цвета, типографики, отступов и радиусов, а также около 150 компонентов. Для компонентов описала состояния и переходы, а проверки токенов, контраста и скелетонов довела до CI.' },
+        { label: 'Интерфейсы и код', content: 'Переработала канвас и ноды, инспектор, чат AI-агента, настройки, коллекции, метрики и шаблоны. Упростила генерацию: промпт стал главным полем, параметры сгруппированы по нодам, а ошибки объясняют причину и следующий шаг. Проверяла решения прямо в коде и исправляла реальные проблемы состояний, контраста и навигации.' }
+      ],
+      gallery: [
+        'TALA/01-cover.png',
+        'TALA/02-home.png',
+        'TALA/03-animation-editor.png',
+        'TALA/04-video-editor.png',
+        'TALA/05-performance.png',
+        'TALA/06-usage.png'
+      ]
+    },
     tbank: {
       title: 'Homigo',
       desc: 'сервис обмена жильём для путешествий в формате P2P (шеринг без аренды), где пользователи обмениваются квартирами напрямую',
@@ -4570,7 +4596,6 @@
         'Homigo/bc27b365-3103be2b.mp4',
         'Homigo/Форма_размещения_жилья (1080p).mp4',
         'Homigo/Жилье_—_карточка (1080p).mp4',
-        'Homigo/image 1926988951.webp',
         'Homigo/image 1926988950.webp',
         'Homigo/image 1926988954.webp',
         'Homigo/image 1926988952.webp',
@@ -4597,6 +4622,7 @@
         'UI/iPhone 14 & 15 Pro - 2.png',
         'UI/telegram-cloud-photo-size-2-5341539582547271884-w 1.png',
         'UI/Two tickets.png',
+        'Ozon/gift-card-flow-hq.png',
         'UI/iPhone 14 & 15 Pro - 4.png',
         'UI/telegram-cloud-photo-size-2-5341539582547271884-w 2.png',
         'UI/iPhone 14 & 15 Pro - 6.png',
@@ -4615,6 +4641,42 @@
   const detailTags = document.getElementById('detailTags');
   const detailAccordions = document.querySelector('.detail-accordions');
   let currentOpenProject = null;
+  let galleryMediaObserver = null;
+
+  function releaseGalleryMedia() {
+    if (galleryMediaObserver) galleryMediaObserver.disconnect();
+    galleryMediaObserver = null;
+    detailGallery.querySelectorAll('video').forEach(video => {
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+    });
+  }
+
+  function observeGalleryMedia() {
+    if (galleryMediaObserver) galleryMediaObserver.disconnect();
+    const rootMargin = projectDetail.dataset.layout === 'media-strip' ? '0px 600px' : '600px 0px';
+    galleryMediaObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const media = entry.target;
+        if (entry.isIntersecting) {
+          if (!media.src && media.dataset.src) {
+            const readyEvent = media.tagName === 'VIDEO' ? 'loadedmetadata' : 'load';
+            media.addEventListener(readyEvent, () => media.classList.add('media-ready'), { once: true });
+            media.src = media.dataset.src;
+          }
+          if (media.tagName === 'VIDEO') {
+            media.muted = true;
+            const playback = media.play();
+            if (playback?.catch) playback.catch(() => {});
+          }
+        } else if (media.tagName === 'VIDEO') {
+          media.pause();
+        }
+      });
+    }, { root: detailGallery, rootMargin, threshold: 0.01 });
+    detailGallery.querySelectorAll('[data-src]').forEach(media => galleryMediaObserver.observe(media));
+  }
 
   // Expose for inline editing
   Object.defineProperty(window, '__currentOpenProject', {
@@ -4924,11 +4986,13 @@
   }
 
   function openDetail(projectKey) {
+    releaseGalleryMedia();
     currentOpenProject = projectKey;
     const data = projects[projectKey] || projects.vesh;
-    let projectOrder = Object.keys(projects);
+    let projectOrder = Object.keys(projects).filter(key => key !== 'afisha');
     try {
-      const savedOrder = JSON.parse(localStorage.getItem('portfolio-tour-order') || '[]');
+      const savedOrder = JSON.parse(localStorage.getItem('portfolio-tour-order') || '[]')
+        .filter(key => key !== 'afisha' && projects[key]);
       if (savedOrder.length) projectOrder = [...savedOrder, ...projectOrder.filter(key => !savedOrder.includes(key))];
       const hidden = JSON.parse(localStorage.getItem('portfolio-hidden-projects') || '[]');
       projectOrder = projectOrder.filter(key => projects[key] && !hidden.includes(key));
@@ -5020,9 +5084,12 @@
       detailGallery.innerHTML = data.gallery.map((src, index) => {
         if (src === null) return '<div class="gallery-placeholder"></div>';
         if (/\.(mp4|webm|mov|m4v)(?:[?#].*)?$/i.test(src)) {
-          return `<video src="${src}" autoplay muted loop playsinline preload="metadata" aria-label="${data.title} — видео ${index + 1}"></video>`;
+          return `<video data-src="${src}" muted loop playsinline preload="none" aria-label="${data.title} — видео ${index + 1}"></video>`;
         }
-        return `<img src="${src}" alt="${data.title}" loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async"${index === 0 ? ' fetchpriority="high"' : ''}>`;
+        if (index === 0) {
+          return `<img src="${src}" alt="${data.title}" loading="eager" decoding="async" fetchpriority="high">`;
+        }
+        return `<img data-src="${src}" alt="${data.title}" loading="lazy" decoding="async">`;
       }).join('');
     } else {
       let html = '';
@@ -5031,11 +5098,7 @@
     }
 
     projectDetail.classList.add('open');
-    detailGallery.querySelectorAll('video').forEach(video => {
-      video.muted = true;
-      const playback = video.play();
-      if (playback?.catch) playback.catch(() => {});
-    });
+    observeGalleryMedia();
 
     // Stagger gallery items
     requestAnimationFrame(() => {
@@ -5055,6 +5118,7 @@
 
   function closeDetail() {
     projectDetail.classList.remove('open');
+    releaseGalleryMedia();
     currentOpenProject = null;
     // Clear Vesh special layout state so a subsequent open starts fresh
     projectDetail.removeAttribute('data-layout');
@@ -5069,10 +5133,9 @@
   // Click handlers — all new projects (badges, tags, cards)
   const projectConfigs = [
     { key: 'electric', cards: ['.card-electric1', '.card-electric2'], badge: '.badge-electric', tags: ['.tag-electric-1', '.tag-electric-2'] },
-    { key: 'ruf', cards: ['.card-ruf1', '.card-ruf2'], badge: '.badge-ruf', tag: '.tag-ruf' },
-    { key: 'ozon', cards: ['.card-ozon1', '.card-ozon2'], badge: '.badge-ozon', tags: ['.tag-ozon-1', '.tag-ozon-2', '.tag-ozon-3'] },
+    { key: 'ozon', cards: ['.card-ozon1', '.card-ozon2'], badge: '.badge-ozon', tags: ['.tag-ozon-1', '.tag-ozon-2'] },
     { key: 'redis', cards: ['.card-redis1'], badge: '.badge-redis', tags: ['.tag-redis-1', '.tag-redis-2'] },
-    { key: 'afisha', cards: ['.card-afisha1', '.card-afisha2'], badge: '.badge-afisha', tags: ['.tag-afisha-1', '.tag-afisha-2'] },
+    { key: 'tala', cards: ['.card-tala1'], badge: '.badge-tala', tags: ['.tag-tala-1', '.tag-tala-2', '.tag-tala-3'] },
     { key: 'tbank', cards: ['.card-tbank1', '.card-tbank2'], badge: '.badge-tbank', tag: '.tag-tbank' },
     { key: 'kalendar', cards: ['.card-kalendar1', '.card-kalendar2'], badge: '.badge-kalendar', tag: '.tag-kalendar' },
     { key: 'ui', cards: ['.card-ui1', '.card-ui2'], badge: '.badge-ui', tag: '.tag-ui' },
@@ -5388,15 +5451,15 @@
       canvasBadges: {
         electric: { title: 'Electric Lines', badge: 'айдентика электронной<br>музыкальной группы' },
         vesh: { title: 'Вещь', badge: 'айдентика для поп-ап<br>маркета моды' },
-        ruf: { title: 'Книга<br>о Бродском', badge: 'верстка многостраничного<br>издания и печать' },
         ozon: { title: 'Ozon', badge: 'комдиз + продуктовый дизайн<br>в компании' },
         redis: { title: 'ACT', badge: 'медиа-сервис о моушене<br>и VFX' },
         afisha: { title: 'Redis Agency', badge: 'коммуникационный дизайн<br>для Купера и Мираторга' },
+        tala: { title: 'TALA', badge: 'B2B-платформа генерации<br>видео и медиа' },
         tbank: { title: 'Homigo', badge: 'сервис обмена жильём<br>для путешествий P2P' },
         kalendar: { title: 'Календари', badge: 'авторские календари<br>о дереализации и СДВГ' },
         ui: { title: 'UI Concepts', badge: 'подборка интерфейсных<br>концептов' }
       },
-      canvasTags: { electric: ['комдиз', 'ИИ'], vesh: 'комдиз', ruf: 'комдиз', ozon: ['AI', 'комдиз', 'интерфейсы'], redis: ['интерфейсы', 'веб'], afisha: ['комдиз', 'AI'], tbank: 'интерфейсы', kalendar: 'комдиз', ui: 'интерфейсы' },
+      canvasTags: { electric: ['комдиз', 'ИИ'], vesh: 'комдиз', ozon: ['AI', 'комдиз', 'интерфейсы'], redis: ['интерфейсы', 'веб'], afisha: ['комдиз', 'AI'], tala: ['веб', 'интерфейсы', 'AI'], tbank: 'интерфейсы', kalendar: 'комдиз', ui: 'интерфейсы' },
       projectOverrides: {
         electric: {
           title: 'Electric Lines',
@@ -5417,21 +5480,13 @@
             { label: 'Что сделала?', content: 'Логотип, фирменный стиль, модульная сетка, типографика, носители (баннеры, бейджи, пакеты, навигация), социальные сети, сайт.' }
           ]
         },
-        ruf: {
-          title: 'Книга\nо Бродском',
-          desc: 'Книга про Бродского\nкак про состояние между\nприсутствием и отсутствием.\nИзгнание как непрерывный\nмаршрут — через города,\nдокументы и память',
-          tags: ['комдиз'],
-          accordions: [
-            { label: 'Что сделала?', content: '— Настроила композицию разворотов и визуальную систему\n\n— Сверстала книгу целиком\n\n— Подобрала бумагу и протестировала эффект просвечивания\n\n— Подготовила файл к печати' }
-          ]
-        },
         ozon: {
           title: 'Ozon',
           desc: 'комдиз + продуктовый\nдизайн в компании',
           tags: ['комдиз', 'интерфейсы', 'AI'],
           accordions: [
             { label: 'Что из комдиза?', content: '— Разрабатывала визуальные материалы для внутренних и внешних коммуникаций (баннеры, посты, дайджесты, лендинги, сторис)\n\n— Формировала и поддерживала визуальный стиль продуктов и инициатив внутри Ozon Tech\n\n— Работала с DevRel и комьюнити: оформление постов, коллаборации, спецпроекты\n\n— Создавала мерч и промо-материалы для мероприятий и внутренних активностей\n\n— Участвовала в развитии дизайн-системы коммуникаций и улучшении качества визуала' },
-            { label: 'Что из продуктового?', content: '— Участвовала в доработке продуктовых интерфейсов и отдельных фич\n\n— Проводила анализ и улучшение пользовательского опыта через гипотезы и визуальные решения\n\n— Взаимодействовала с продуктовой командой и внедряла решения в прод' }
+            { label: 'Что из продуктового?', content: '— Участвовала в доработке продуктовых интерфейсов и отдельных фич\n\n— Проводила анализ и улучшение пользовательского опыта через гипотезы и визуальные решения\n\n— Концептила новый продукт под NDA и передавала решения доменным командам для дальнейшей проработки' }
           ]
         },
         redis: {
@@ -5448,6 +5503,16 @@
           tags: ['комдиз', 'AI'],
           accordions: [
             { label: 'Что сделала?', content: '— Разрабатывала баннеры и промо-материалы для Купера и Мираторга\n\n— Работала с digital-кампаниями: соцсети, рекламные креативы, раскадровки моушена, немножко интерфейсов, занималась презентациями\n\n— Адаптировала визуалы под разные форматы и площадки (web, mobile, performance)\n\n— Генерировала фото для рекламных кампаний, когда нейросети выдавали по 6 пальцев. Потом ретушировала, гг\n\n— Взаимодействовала с маркетинговой командой и участвовала в реализации кампаний' }
+          ]
+        },
+        tala: {
+          title: 'TALA',
+          desc: 'B2B-платформа для генерации видео и медиа: команды собирают пайплайны из нод или поручают их AI-агенту',
+          tags: ['веб', 'интерфейсы', 'AI'],
+          accordions: [
+            { label: 'Задача', content: 'Пользователь приходил в TALA, чтобы быстро собрать и запустить генерацию видео, но вместо понятного сценария видел технические параметры моделей и API. После аудита продукта и конкурентов я перестроила этот путь вокруг задачи: от идеи и промпта — к готовому пайплайну и результату.' },
+            { label: 'Дизайн-система', content: 'С нуля собрала TALA.DS: трёхуровневые токены, переменные цвета, типографики, отступов и радиусов, а также около 150 компонентов. Для компонентов описала состояния и переходы, а проверки токенов, контраста и скелетонов довела до CI.' },
+            { label: 'Интерфейсы и код', content: 'Переработала канвас и ноды, инспектор, чат AI-агента, настройки, коллекции, метрики и шаблоны. Упростила генерацию: промпт стал главным полем, параметры сгруппированы по нодам, а ошибки объясняют причину и следующий шаг. Проверяла решения прямо в коде и исправляла реальные проблемы состояний, контраста и навигации.' }
           ]
         },
         tbank: {
@@ -5480,15 +5545,15 @@
       canvasBadges: {
         electric: { title: 'Electric Lines', badge: 'identity for an electronic<br>music band' },
         vesh: { title: 'Vesh', badge: 'identity for a pop-up<br>fashion market' },
-        ruf: { title: 'Book on<br>Brodsky', badge: 'multi-page publication<br>layout and print' },
         ozon: { title: 'Ozon', badge: 'comdes + product design<br>in-house' },
         redis: { title: 'ACT', badge: 'media service about motion<br>and VFX' },
         afisha: { title: 'Redis Agency', badge: 'communication design<br>for Kuper and Miratorg' },
+        tala: { title: 'TALA', badge: 'B2B video and media<br>generation platform' },
         tbank: { title: 'Homigo', badge: 'P2P home exchange<br>service for travelers' },
         kalendar: { title: 'Calendars', badge: 'author calendars<br>on derealization & ADHD' },
         ui: { title: 'UI Concepts', badge: 'a selection of interface<br>concepts' }
       },
-      canvasTags: { electric: ['comdes', 'AI'], vesh: 'comdes', ruf: 'comdes', ozon: ['AI', 'comdes', 'interfaces'], redis: ['interfaces', 'web'], afisha: ['comdes', 'AI'], tbank: 'interfaces', kalendar: 'comdes', ui: 'interfaces' },
+      canvasTags: { electric: ['comdes', 'AI'], vesh: 'comdes', ozon: ['AI', 'comdes', 'interfaces'], redis: ['interfaces', 'web'], afisha: ['comdes', 'AI'], tala: ['web', 'interfaces', 'AI'], tbank: 'interfaces', kalendar: 'comdes', ui: 'interfaces' },
       projectOverrides: {
         electric: {
           title: 'Electric Lines',
@@ -5509,21 +5574,13 @@
             { label: 'What I did', content: 'Logo, brand identity, modular grid, typography, media (banners, badges, bags, wayfinding), social media, website.' }
           ]
         },
-        ruf: {
-          title: 'Book on\nBrodsky',
-          desc: 'A book about Brodsky\nas a state between\npresence and absence.\nExile as a continuous\nroute — through cities,\ndocuments and memory',
-          tags: ['comdes'],
-          accordions: [
-            { label: 'What I did', content: '— Designed the spread composition and visual system\n\n— Typeset the entire book\n\n— Selected paper and tested the see-through effect\n\n— Prepared the file for print' }
-          ]
-        },
         ozon: {
           title: 'Ozon',
           desc: 'comdes + product\ndesign in-house',
           tags: ['comdes', 'interfaces', 'AI'],
           accordions: [
             { label: 'Communication design', content: '— Developed visual materials for internal and external communications (banners, posts, digests, landings, stories)\n\n— Formed and maintained the visual style of products and initiatives within Ozon Tech\n\n— Worked with DevRel and the community: post design, collaborations, special projects\n\n— Created merch and promo materials for events and internal activities\n\n— Contributed to the development of the communication design system and visual quality improvement' },
-            { label: 'Product design', content: '— Participated in refining product interfaces and individual features\n\n— Conducted UX analysis and improvements through hypotheses and visual solutions\n\n— Collaborated with the product team and shipped solutions to production' }
+            { label: 'Product design', content: '— Participated in refining product interfaces and individual features\n\n— Conducted UX analysis and improvements through hypotheses and visual solutions\n\n— Concepted a new product under NDA and handed solutions off to domain teams for further development' }
           ]
         },
         redis: {
@@ -5540,6 +5597,16 @@
           tags: ['comdes', 'AI'],
           accordions: [
             { label: 'What I did', content: '— Developed banners and promo materials for Kuper and Miratorg\n\n— Worked on digital campaigns: social media, ad creatives, motion storyboards, some interfaces, presentations\n\n— Adapted visuals for different formats and platforms (web, mobile, performance)\n\n— Generated photos for ad campaigns when neural networks still gave 6 fingers. Then retouched them, lol\n\n— Collaborated with the marketing team and participated in campaign execution' }
+          ]
+        },
+        tala: {
+          title: 'TALA',
+          desc: 'a B2B video and media generation platform where teams build node pipelines or delegate them to an AI agent',
+          tags: ['web', 'interfaces', 'AI'],
+          accordions: [
+            { label: 'Challenge', content: 'People came to TALA to build and launch video generation quickly, but the interface exposed model and API parameters instead of a clear workflow. After auditing the product and its competitors, I rebuilt the journey around the actual task: from an idea and prompt to a ready pipeline and result.' },
+            { label: 'Design system', content: 'I built TALA.DS from scratch: three-level tokens, variables for color, typography, spacing and radius, plus roughly 150 components. Component states and transitions are documented, while token, contrast and skeleton checks run in CI.' },
+            { label: 'Interfaces and code', content: 'I redesigned the canvas and nodes, inspector, AI agent chat, settings, collections, metrics and templates. The prompt became the primary field, parameters are grouped by owner node, and errors explain both the cause and the next step. I validated the work in code and fixed real issues with states, contrast and navigation.' }
           ]
         },
         tbank: {
@@ -5619,7 +5686,7 @@
     document.querySelector('.badge-vesh p').innerHTML = fixPrep(t.canvasBadges.vesh.badge);
     document.querySelector('.badge-komdiz').textContent = t.canvasTags.vesh;
 
-    const projectKeys = ['electric','ruf','ozon','redis','afisha','tbank','kalendar','ui'];
+    const projectKeys = ['electric','ozon','redis','tala','tbank','kalendar','ui'];
     projectKeys.forEach(key => {
       const badge = document.querySelector('.badge-' + key);
       if (badge) {
@@ -7257,14 +7324,15 @@
     const DWELL = 1.6;  // seconds to linger on each project
     const keyframes = [];
     const stops = [
-      toStop(697,  541),                  // Electric Lines
+      toStop(690,  541),                  // Electric Lines
       toStop(1537, 167),                  // Вещь
-      toStop(2586, 576),                  // Бродский
-      toStop(3411, 540),                  // Ozon
-      toStop(1683, 2455),                 // Homigo
-      toStop(3924, 1900),                 // Redis Agency
-      toStop(2724, 1810),                 // ACT
-      toStop(697,  541),                  // back to Electric Lines
+      toStop(1625, 1240),                 // TALA
+      toStop(2425, 500),                  // Ozon
+      toStop(2697, 1375),                 // ACT
+      toStop(461, 1547),                  // Homigo
+      toStop(1555, 1990),                 // Calendars
+      toStop(2623, 1950),                 // UI Concepts
+      toStop(690,  541),                  // back to Electric Lines
     ];
 
     // Build timeline: arrive → dwell → depart
@@ -7337,6 +7405,23 @@
 
     // Tour is now started by the loader after it finishes
     window.startTour = runTour;
+  })();
+
+  // Load only images that are near the visible viewport. Native lazy loading
+  // treats the transformed project field as one large visible surface.
+  (function observeDeferredImages() {
+    const images = document.querySelectorAll('img[data-src]');
+    if (!images.length) return;
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const image = entry.target;
+        image.src = image.dataset.src;
+        image.removeAttribute('data-src');
+        observer.unobserve(image);
+      });
+    }, { rootMargin: '700px', threshold: 0.01 });
+    images.forEach(image => observer.observe(image));
   })();
 
   // ===== CUSTOM CURSOR =====
@@ -7461,7 +7546,6 @@
       { src: 'Electric Lines/Slide 16_9 - 17.webp',                    w: 150, h: 90,  label: 'ELECTRIC LINES' },
       { src: 'Electric Lines/Slide 16_9 - 28.webp',                    w: 145, h: 92,  label: 'ELECTRIC LINES' },
       { src: 'Vesh/059f76be07f84d6bbd88948c3fef72252880x1620 (1).webp', w: 150, h: 100, label: 'ВЕЩЬ' },
-      { src: 'Brod/image 1926988946.webp',                              w: 130, h: 95,  label: 'БРОДСКИЙ' },
       { src: 'Ozon/image 1926988942.webp',                              w: 140, h: 95,  label: 'OZON' },
       { src: 'Ozon/appstore-1.webp',                                    w: 110, h: 110, label: 'OZON' },
       { src: 'ACT/image 1926988943.webp',                               w: 145, h: 92,  label: 'ACT' },
@@ -7471,7 +7555,6 @@
       { src: 'Календари/обложка 1.webp',                                w: 120, h: 110, label: 'КАЛЕНДАРЬ' },
       { src: 'Календари/обложка 2.webp',                                w: 125, h: 105, label: 'КАЛЕНДАРЬ' },
       { src: 'Vesh/Screenshot 2026-04-08 at 20.48.54.webp',             w: 145, h: 95,  label: 'ВЕЩЬ' },
-      { src: 'Brod/image 1926988944.webp',                              w: 130, h: 100, label: 'БРОДСКИЙ' },
       { src: 'ACT/image 1926988945.webp',                               w: 135, h: 95,  label: 'ACT' },
       { src: 'Ozon/cover_ozon.webp',                                    w: 142, h: 92,  label: 'OZON' }
     ];
@@ -7496,6 +7579,7 @@
       return (topY + botY) / 2; // positive → ring sits visually below center
     }
 
+    const loaderAssetPromises = [];
     thumbs.forEach((th, i) => {
       const el = document.createElement('div');
       el.className = 'loader-card';
@@ -7510,6 +7594,12 @@
       // Base delay 240ms gives the loader a moment to settle before cards pop in.
       el.style.transitionDelay = (240 + i * 70) + 'ms';
       const img = document.createElement('img');
+      img.decoding = 'async';
+      img.fetchPriority = i < 6 ? 'high' : 'low';
+      loaderAssetPromises.push(new Promise(resolve => {
+        img.addEventListener('load', resolve, { once: true });
+        img.addEventListener('error', resolve, { once: true });
+      }));
       img.src = th.src;
       img.onload = () => { el.style.opacity = 1; };
       img.onerror = () => { el.style.opacity = 0.6; };
@@ -7613,27 +7703,32 @@
       if (rotVel < -12) rotVel = -12;
     }, { passive: false });
 
-    const allImgs = Array.from(document.images);
-    const total = allImgs.length || 1;
-    let loadedCount = 0;
+    const loaderStartedAt = performance.now();
+    const repeatVisit = (() => {
+      try { return sessionStorage.getItem('portfolioLoaded') === '1'; }
+      catch (error) { return false; }
+    })();
+    const minimumLoaderTime = repeatVisit ? 220 : 700;
+    const maximumLoaderTime = repeatVisit ? 450 : 1800;
     let displayedPct = 0;
-    let targetPct = 0;
+    let targetPct = repeatVisit ? 88 : 16;
 
-    function onProgress() {
-      loadedCount++;
-      targetPct = Math.min(100, Math.round((loadedCount / total) * 100));
-    }
-    allImgs.forEach(img => {
-      if (img.complete) { onProgress(); return; }
-      img.addEventListener('load', onProgress);
-      img.addEventListener('error', onProgress);
+    loaderAssetPromises.forEach((promise, index) => {
+      promise.then(() => {
+        targetPct = Math.max(targetPct, Math.round(((index + 1) / loaderAssetPromises.length) * 92));
+      });
     });
-    setTimeout(() => { targetPct = 100; }, 4000);
+    Promise.allSettled(loaderAssetPromises).then(() => {
+      const elapsed = performance.now() - loaderStartedAt;
+      setTimeout(() => { targetPct = 100; }, Math.max(0, minimumLoaderTime - elapsed));
+    });
+    setTimeout(() => { targetPct = 100; }, maximumLoaderTime);
 
     let finished = false;
     function finish() {
       if (finished) return;
       finished = true;
+      try { sessionStorage.setItem('portfolioLoaded', '1'); } catch (error) {}
       setTimeout(() => {
         // Show the intro FIRST (it's z-index 10001, above the loader) so the
         // main portfolio never peeks through during the loader→intro swap.
@@ -7641,12 +7736,15 @@
         // Now let the loader fade away underneath the intro, then remove it.
         loader.classList.add('fade-out');
         setTimeout(() => loader.remove(), 600);
-      }, 400);
+      }, repeatVisit ? 0 : 120);
     }
 
     function renderLoader(now) {
       if (finished) return;
-      if (displayedPct < targetPct) displayedPct++;
+      if (displayedPct < targetPct) {
+        displayedPct += Math.max(1, Math.ceil((targetPct - displayedPct) * 0.24));
+        displayedPct = Math.min(displayedPct, targetPct, 100);
+      }
       if (displayedPct >= 100) { finish(); }
 
       ctx.clearRect(0, 0, W, H);
@@ -8390,7 +8488,7 @@
     if (!list) return;
 
     const TOUR_ORDER_KEY = 'portfolio-tour-order';
-    const defaultOrder = ['electric', 'vesh', 'ruf', 'ozon', 'tbank', 'afisha', 'redis', 'kalendar', 'ui'];
+    const defaultOrder = ['electric', 'vesh', 'ozon', 'tala', 'tbank', 'redis', 'kalendar', 'ui'];
 
     function getOrder() {
       try {
@@ -8474,7 +8572,7 @@
 
   // ===== KEYBOARD NAVIGATION =====
   (function() {
-    const projectKeys = ['electric', 'vesh', 'ruf', 'ozon', 'redis', 'afisha', 'tbank', 'kalendar', 'ui'];
+    const projectKeys = ['electric', 'vesh', 'ozon', 'redis', 'tala', 'tbank', 'kalendar', 'ui'];
     let focusIdx = -1;
 
     // Make primary project cards focusable
@@ -8615,8 +8713,21 @@
 
 </script>
 <script src="portfolio-published.js"></script>
-<script src="portfolio-asset-manifest.js"></script>
-<script src="admin-workbench.js?v=20260720-5"></script>
+<script>
+  (function loadAdminOnlyWhenRequested() {
+    const params = new URLSearchParams(location.search);
+    const localHost = location.protocol === 'file:' || ['localhost', '127.0.0.1', '::1'].includes(location.hostname);
+    if (!localHost && !params.has('admin')) return;
+    const manifest = document.createElement('script');
+    manifest.src = 'portfolio-asset-manifest.js';
+    manifest.onload = () => {
+      const admin = document.createElement('script');
+      admin.src = 'admin-workbench.js?v=20260831-gallery2';
+      document.body.appendChild(admin);
+    };
+    document.body.appendChild(manifest);
+  })();
+</script>
 
 <a href="myvibe.html" class="about-circle">
   <span class="about-circle-text">обо<br>мне</span>

@@ -1,0 +1,13 @@
+{
+  "name": "marina-portfolio",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-pages-site.js",
+    "manifest": "node scripts/build-asset-manifest.js",
+    "admin": "node scripts/admin-server.js",
+    "optimize:videos": "node scripts/optimize-videos.js"
+  },
+  "dependencies": {
+    "sharp": "0.35.4"
+  }
+}

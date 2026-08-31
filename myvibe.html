@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Vibe — Марина Устиновская</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Onest:wght@400;500&display=swap">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Onest:wght@400;500&display=swap');
   @font-face {
     font-family: 'PP Neue Montreal';
     src: url('PPNeueMontreal-Regular.ttf') format('truetype');
@@ -739,7 +741,7 @@
      =========================================================== -->
 <section class="ft-section" id="ftSection">
   <div class="ft-sticky">
-    <div class="ft-bg"><video src="IMG_1362.MOV" autoplay muted loop playsinline preload="auto"></video></div>
+    <div class="ft-bg"><video src="runtime-video/d553fcfb4640c9.m4v" autoplay muted loop playsinline preload="auto"></video></div>
     <div class="ft-overlay"></div>
     <div class="ft-grid"></div>
 
@@ -835,7 +837,7 @@
       </div>
 
       <div class="fc" style="bottom:22%; left:6%; width:340px;">
-        <div class="fc-img"><img src="Homigo/image 1926988950.webp" alt=""></div>
+        <div class="fc-img"><img src="vibe-assets/game-scene.png" alt="Кадр из видеоигры"></div>
         <div class="fc-body">
           <div class="fc-title">ещё люблю детективы, VFX и&nbsp;видеоигры</div>
           <div class="fc-sub">играю и&nbsp;анализирую, могла&nbsp;бы быть нарративным дизайнером в&nbsp;геймдеве</div>
@@ -977,10 +979,10 @@
       {src:'Фото/photo_2026-04-12 22.49.37.webp',sz:'sz-w'},
     ]},
     { name:'Занимаюсь генеративкой', imgs:[
-      {src:'Генератив/video1.mp4',sz:'sz-circle',video:true,circle:true},
-      {src:'Генератив/video2.mp4',sz:'sz-circle',video:true,circle:true},
-      {src:'Генератив/video3.mp4',sz:'sz-circle',video:true,circle:true},
-      {src:'Генератив/IMG_7491.MOV',sz:'sz-a',video:true},
+      {src:'runtime-video/0d8d856812a9ee.m4v',sz:'sz-circle',video:true,circle:true},
+      {src:'runtime-video/c3c26d7723c967.m4v',sz:'sz-circle',video:true,circle:true},
+      {src:'runtime-video/22f96bb18dce77.m4v',sz:'sz-circle',video:true,circle:true},
+      {src:'runtime-video/76f26b777f9aa5.m4v',sz:'sz-a',video:true},
       {src:'Генератив/IMG_8665.MP4',sz:'sz-b',video:true},
     ]},
     { name:'Рисую интерфейсики', imgs:[
@@ -990,7 +992,7 @@
       {src:'Интерфейсы/image 7.webp',sz:'sz-c'},
       {src:'Интерфейсы/image 8.webp',sz:'sz-d'},
       {src:'Интерфейсы/2026-04-12 23.10.47.webp',sz:'sz-s'},
-      {src:'Интерфейсы/2026-04-12 23.13.59.webp',sz:'sz-w'},
+      {src:'Ozon/gift-card-flow-hq.png',sz:'sz-w'},
     ]},
     { name:'Рисую графику', imgs:[
       {src:'Графика/2026-04-12 23.11.38.webp',sz:'sz-a'},
@@ -1536,6 +1538,7 @@
   }
 
   function imageDetailCandidates(src) {
+    if (/^media\//.test(src)) return [src];
     if (!/\.webp$/i.test(src)) return [src];
     const base = src.replace(/\.webp$/i, '');
     let candidates;
@@ -1561,7 +1564,8 @@
   }
 
   function appendCardMedia(target, item) {
-    if (isVideoSrc(item.src, item)) {
+    const detailSrc = window.__PORTFOLIO_DETAIL_MEDIA__?.[item.src] || item.src;
+    if (isVideoSrc(detailSrc, item)) {
       const v = document.createElement('video');
       v.className = 'lb-card-media';
       v.muted = true;
@@ -1572,7 +1576,7 @@
       v.addEventListener('loadedmetadata', () => {
         setCardOrientation(target, v.videoWidth, v.videoHeight);
       }, { once: true });
-      v.src = item.src;
+      v.src = detailSrc;
       target.appendChild(v);
       try { v.play(); } catch (e) {}
       return;
@@ -1586,7 +1590,7 @@
     img.addEventListener('load', () => {
       setCardOrientation(target, img.naturalWidth, img.naturalHeight);
     }, { once: true });
-    setImageWithFallback(img, imageDetailCandidates(item.src));
+    setImageWithFallback(img, imageDetailCandidates(detailSrc));
     if (img.complete) setCardOrientation(target, img.naturalWidth, img.naturalHeight);
     target.appendChild(img);
   }

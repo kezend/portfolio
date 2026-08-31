@@ -22,8 +22,15 @@ jobs:
         uses: actions/checkout@v4
       - name: Set up Pages
         uses: actions/configure-pages@v5
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install build dependencies
+        run: npm ci
       - name: Build compact site
-        run: node scripts/build-pages-site.js
+        run: npm run build
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
