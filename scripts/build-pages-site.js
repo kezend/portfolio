@@ -254,7 +254,25 @@ async function main() {
       transformed = extractAssets(transformed, path.basename(entry, '.html'), scriptPrefix);
       transformed = transformed.replace(
         '</body>',
-        `<script>if ('serviceWorker' in navigator && location.protocol === 'https:') { addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {})); }</script>\n</body>`
+        `<script>
+if (location.protocol === 'https:' && ('serviceWorker' in navigator || 'caches' in window)) {
+  addEventListener('load', async () => {
+    try {
+      const registrations = 'serviceWorker' in navigator ? await navigator.serviceWorker.getRegistrations() : [];
+      const hadWorker = registrations.length > 0;
+      await Promise.all(registrations.map(registration => registration.unregister()));
+      if ('caches' in window) {
+        const keys = await caches.keys();
+        await Promise.all(keys.map(key => caches.delete(key)));
+      }
+      if (hadWorker && !sessionStorage.getItem('portfolio-cache-reset-v1')) {
+        sessionStorage.setItem('portfolio-cache-reset-v1', '1');
+        location.reload();
+      }
+    } catch (_) {}
+  });
+}
+</script>\n</body>`
       );
     }
     write(entry, transformed);
