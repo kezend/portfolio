@@ -1100,10 +1100,15 @@
   function appendUiConceptAdditions() {
     const project = projects.ui;
     if (!project || !Array.isArray(project.gallery)) return;
-    const addition = 'Ozon/gift-card-flow-hq.png';
+    const additions = [
+      'Ozon/gift-card-flow-hq.png',
+      'UI/bank-runway-onboarding.png',
+      'UI/bank-runway-dashboard.png',
+      'UI/bank-runway-chat.png'
+    ];
     const oldLowResolution = 'Интерфейсы/2026-04-12 23.13.59.jpg';
-    const reordered = project.gallery.filter(src => src !== addition && src !== oldLowResolution);
-    reordered.splice(4, 0, addition);
+    const reordered = project.gallery.filter(src => !additions.includes(src) && src !== oldLowResolution);
+    reordered.splice(4, 0, ...additions);
     project.gallery = reordered;
 
     const cases = readJSON(CASE_KEY, {});
