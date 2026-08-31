@@ -138,13 +138,16 @@ function extractAssets(indexSource, filename, scriptPrefix = '') {
     const css = style[1]
       .replace(/url\((["']?)PPNeueMontreal-Regular\.ttf\1\)/g, "url('../PPNeueMontreal-Regular.ttf')")
       .trim() + '\n';
+    const cssVersion = crypto.createHash('sha1').update(css).digest('hex').slice(0, 10);
     write(cssPath, css);
-    html = html.replace(style[0], `<link rel="stylesheet" href="${cssPath}">`);
+    html = html.replace(style[0], `<link rel="stylesheet" href="${cssPath}?v=${cssVersion}">`);
   }
   if (script) {
     const jsPath = `scripts/${filename}.js`;
-    write(jsPath, scriptPrefix + script[1].trim() + '\n');
-    html = html.replace(script[0], `<script src="${jsPath}" defer></script>`);
+    const js = scriptPrefix + script[1].trim() + '\n';
+    const jsVersion = crypto.createHash('sha1').update(js).digest('hex').slice(0, 10);
+    write(jsPath, js);
+    html = html.replace(script[0], `<script src="${jsPath}?v=${jsVersion}" defer></script>`);
   }
   return html;
 }
