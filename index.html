@@ -6742,22 +6742,24 @@
       while (pills.length > 0) removePill(pills[0]);
     }
 
-    let hasViewedCase = false;
-    // Track when user closes a project detail (= viewed a case)
+    const REQUIRED_VIEWED_CASES = 3;
+    const viewedCases = new Set();
+    let trailEnabled = false;
+    // Enable the trail after three different project cases have been opened.
     const detailElTrail = document.querySelector('.project-detail');
     if (detailElTrail) {
       const trailObserver = new MutationObserver(() => {
-        if (!detailElTrail.classList.contains('open') && !hasViewedCase) {
-          // Detail just closed for the first time
-          hasViewedCase = true;
-        }
+        if (!detailElTrail.classList.contains('open')) return;
+        const projectKey = window.__currentOpenProject;
+        if (projectKey) viewedCases.add(projectKey);
+        trailEnabled = viewedCases.size >= REQUIRED_VIEWED_CASES;
       });
       trailObserver.observe(detailElTrail, { attributes: true, attributeFilter: ['class'] });
     }
 
     document.querySelector('.main').addEventListener('mousemove', (e) => {
-      // Don't spawn until user has viewed at least one case
-      if (!hasViewedCase) return;
+      // Don't spawn until the user has opened three different cases.
+      if (!trailEnabled) return;
       // Don't spawn when detail view is open or edit mode is active
       if (document.querySelector('.project-detail.open')) return;
       if (document.body.classList.contains('edit-mode')) return;
